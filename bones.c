@@ -227,8 +227,7 @@ void bonebridge(int in, int cn) {
             ch[cn].flags |= CF_ITEMS;
 
             in2 = create_item("bone");
-            ch[cn].citem = in2;
-            it[in2].carried = cn;
+            take_to_hand(cn, in2);
         }
     }
 }
@@ -686,9 +685,7 @@ void boneholder(int in, int cn) {
         }
         it[in].drdata[0] = 0;
 
-        ch[cn].citem = in2;
-        it[in2].carried = cn;
-        ch[cn].flags |= CF_ITEMS;
+        take_to_hand(cn, in2);
     }
 
     update_holder(in);

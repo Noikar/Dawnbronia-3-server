@@ -2299,9 +2299,7 @@ void junkpile(int in, int cn) {
     if (in2) {
         log_char(cn, LOG_SYSTEM, 0, "You found something between all that junk.");
         dlog(cn, in2, "took from junk pile");
-        ch[cn].citem = in2;
-        it[in2].carried = cn;
-        ch[cn].flags |= CF_ITEMS;
+        take_to_hand(cn, in2);
     }
     remove_item_map(in);
     destroy_item(in);

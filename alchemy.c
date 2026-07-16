@@ -1112,9 +1112,7 @@ void flower_driver(int in, int cn) {
 
     if (ch[cn].flags & CF_PLAYER) dlog(cn, in2, "alchemy: picked");
 
-    ch[cn].citem = in2;
-    ch[cn].flags |= CF_ITEMS;
-    it[in2].carried = cn;
+    take_to_hand(cn, in2);
 }
 
 int ch_driver(int nr, int cn, int ret, int lastact) {

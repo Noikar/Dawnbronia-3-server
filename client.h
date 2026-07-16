@@ -352,6 +352,7 @@ union ceffect {
 #define CL_PING 39
 #define CL_GETQUESTLOG 40
 #define CL_REOPENQUEST 41
+#define CL_AUTOPOCKET 42
 
 #define CL_MAX_SURFACE 32
 

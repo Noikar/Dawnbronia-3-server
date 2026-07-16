@@ -211,8 +211,13 @@ static int act_take(int cn) {
 
     if (ch[cn].flags & CF_PLAYER) dlog(cn, in, "took %s", it[in].name);
 
-    ch[cn].citem = in;
-    it[in].carried = cn;
+    // auto-pocket: drop straight into the first free inventory slot instead of the
+    // cursor. store_item() returns 0 (and does nothing) when the pack is full, so
+    // we fall back to the cursor.
+    if (!(ch[cn].autopocket && store_item(cn, in))) {
+        ch[cn].citem = in;
+        it[in].carried = cn;
+    }
     ch[cn].flags |= CF_ITEMS;
 
     if (!(ch[cn].flags & CF_NONOTIFY)) notify_area(ch[cn].x, ch[cn].y, NT_CHAR, cn, 0, 0);

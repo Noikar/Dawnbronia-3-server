@@ -899,7 +899,6 @@ static void cmd_help(int cn) {
         log_char(cn, LOG_SYSTEM, 0, "/invisible");
         log_char(cn, LOG_SYSTEM, 0, "/infrared");
         log_char(cn, LOG_SYSTEM, 0, "/saves <amount>");
-        log_char(cn, LOG_SYSTEM, 0, "/god <name>");
         log_char(cn, LOG_SYSTEM, 0, "/staff <name>");
         log_char(cn, LOG_SYSTEM, 0, "/staffcode <name> <code>");
         log_char(cn, LOG_SYSTEM, 0, "/qmaster <name>");
@@ -2200,12 +2199,10 @@ int command(int cn, char *ptr) { // 1=ok, 0=repeat
         return 1;
     }
 
-    if ((len = cmdcmp(ptr, "god", 3)) && (ch[cn].flags & CF_GOD)) {
-        ptr += len;
-        while (isspace(*ptr)) ptr++;
-
-        return cmd_flag(cn, ptr, CF_GOD);
-    }
+    // The /god <name> promotion command was removed on purpose: gods must not be
+    // able to mint other gods. God characters are created only from a DB-admin
+    // account via the in-client character creator. /staff (below) is retained so
+    // a god may still bestow staff powers in-game.
 
     if ((len = cmdcmp(ptr, "setsir", 6)) && (ch[cn].flags & CF_GOD)) {
         ptr += len;

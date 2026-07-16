@@ -350,6 +350,16 @@ void psend(int nr, char *buf, int len) {
     player[nr]->tptr += len;
 }
 
+// Send raw, uncompressed bytes straight into the output ring-buffer, bypassing
+// the deflate stream that psend()/pflush() use. This is only for the pre-login
+// account sub-protocol, whose tiny replies are read raw by the client's account
+// helper (no zlib). Do not mix with psend() on the same message.
+void psend_raw(int nr, char *buf, int len) {
+    if (!player[nr]) return;
+
+    csend(nr, (unsigned char *)buf, len);
+}
+
 // careful here, any csend might clear player[n]!
 void pflush(void) {
     int n, ilen, olen, csize, ret, olow, ohigh;

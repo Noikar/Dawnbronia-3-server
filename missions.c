@@ -1550,9 +1550,7 @@ void missionchest_driver(int in, int cn) {
     strcpy(it[in2].name, md->itemname);
     strcpy(it[in2].description, md->itemdesc);
 
-    ch[cn].citem = in2;
-    ch[cn].flags |= CF_ITEMS;
-    it[in2].carried = cn;
+    take_to_hand(cn, in2);
 
     ppd->find_item[0] = 1;
     mission_status(cn, ppd);

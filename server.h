@@ -432,6 +432,7 @@ struct character {
     unsigned int act1, act2;
 
     unsigned char speed_mode; // SM_NORMAL, SM_FAST, SM_STEALTH
+    unsigned char autopocket; // player option: send gathered/given items straight to inventory (runtime only, set by client on login)
     unsigned short merchant; // merchant the character is currently dealing with
     unsigned int con_in; // container-IN the character is currently looking at
 

@@ -7,6 +7,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
+#include <ctype.h>
 #include <zlib.h>
 #include <netinet/in.h>
 
@@ -204,6 +205,77 @@ void decrypt(char *name, char *password) {
     }
 }
 
+// Handle a pre-login account request (register / list characters / create
+// character). Distinguished from a classic login by a non-alpha first byte.
+// The reply is written RAW (uncompressed) via psend_raw so the client's account
+// helper can read it without zlib; see account_proto.h.
+static void read_account_op(int nr) {
+    int op, need, flags = 0, ret, i;
+    char username[ACC_NAMELEN], password[ACC_PWLEN], charname[ACC_NAMELEN];
+    struct account_reply rep;
+    unsigned char rbuf[5 + ACC_MAXCHARS * (2 + ACC_NAMELEN + 8)];
+    int rlen;
+
+    op = player[nr]->inbuf[0];
+
+    switch (op) {
+    case ACC_OP_REGISTER:
+    case ACC_OP_LIST:
+        need = ACC_REQ_BASE;
+        break;
+    case ACC_OP_CREATE:
+        need = ACC_REQ_CREATE;
+        break;
+    default:
+        player_client_exit(nr, "Unsupported request.");
+        return;
+    }
+
+    if (player[nr]->in_len < need) return; // wait until the whole request arrived
+
+    memcpy(username, player[nr]->inbuf + 1, ACC_NAMELEN);
+    username[ACC_NAMELEN - 1] = 0;
+    memcpy(password, player[nr]->inbuf + 1 + ACC_NAMELEN, ACC_PWLEN);
+    decrypt(username, password); // deobfuscate, keyed by the account username
+    password[ACC_PWLEN - 1] = 0;
+
+    charname[0] = 0;
+    if (op == ACC_OP_CREATE) {
+        memcpy(charname, player[nr]->inbuf + 1 + ACC_NAMELEN + ACC_PWLEN, ACC_NAMELEN);
+        charname[ACC_NAMELEN - 1] = 0;
+        flags = player[nr]->inbuf[1 + ACC_NAMELEN + ACC_PWLEN + ACC_NAMELEN];
+    }
+
+    ret = account_op(nr, op, username, password, charname, flags, htonl(player[nr]->addr), &rep);
+    if (ret == 0) return; // still processing; poll again next tick
+
+    remove_input(nr, need);
+
+    // build the raw reply frame (see account_proto.h for the layout)
+    rlen = 0;
+    rbuf[rlen++] = ACC_REPLY_MAGIC;
+    rbuf[rlen++] = (unsigned char)op;
+    rbuf[rlen++] = (unsigned char)rep.result;
+    rbuf[rlen++] = (unsigned char)rep.count;
+    rbuf[rlen++] = (unsigned char)rep.acctflags;
+    for (i = 0; i < rep.count; i++) {
+        int nl = (int)strlen(rep.list[i].name);
+        if (nl > ACC_NAMELEN - 1) nl = ACC_NAMELEN - 1;
+        rbuf[rlen++] = (unsigned char)nl;
+        memcpy(rbuf + rlen, rep.list[i].name, nl);
+        rlen += nl;
+        memcpy(rbuf + rlen, &rep.list[i].flags, 4);
+        rlen += 4;
+        memcpy(rbuf + rlen, &rep.list[i].exp, 4);
+        rlen += 4;
+    }
+
+    psend_raw(nr, (char *)rbuf, rlen);
+
+    player[nr]->state = ST_EXIT;
+    player[nr]->lastcmd = ticker;
+}
+
 static void read_login(int nr) {
     int cn, ret, vendor, mirror, area, ID;
     char password[MAXPASSWORD], name[sizeof(ch[0].name)], buf[16];
@@ -316,6 +388,7 @@ static void read_login(int nr) {
     }
 
     ch[cn].player = nr;
+    ch[cn].autopocket = 0; // default off; client resends its saved preference right after login
     player[nr]->cn = cn;
     player[nr]->login_time = realtime;
     player[nr]->ticker = ticker;
@@ -619,6 +692,14 @@ static void cl_speed(int nr, char *buf) {
 
 static void cl_fightmode(int nr, char *buf) {
     return;
+}
+
+static void cl_autopocket(int nr, char *buf) {
+    int cn;
+
+    if (!(cn = player[nr]->cn)) return;
+
+    ch[cn].autopocket = *(unsigned char *)(buf + 0) ? 1 : 0;
 }
 
 static void cl_mapspell(int nr, char *buf, int driver) {
@@ -1088,6 +1169,9 @@ static void read_input(int nr) {
     case CL_REOPENQUEST:
         need = 2;
         break;
+    case CL_AUTOPOCKET:
+        need = 2;
+        break;
 
     default:
         player[nr]->in_len = 0; // got illegal command. trash all input and bail out
@@ -1228,6 +1312,9 @@ static void read_input(int nr) {
         break;
     case CL_REOPENQUEST:
         cl_reopen_quest(nr, player[nr]->inbuf + 1);
+        break;
+    case CL_AUTOPOCKET:
+        cl_autopocket(nr, player[nr]->inbuf + 1);
         break;
 
     default:
@@ -2679,7 +2766,13 @@ void tick_player(void) {
         if (player[n]) {
             switch (player[n]->state) {
             case ST_CONNECT:
-                if (player[n]) read_login(n);
+                // A classic login begins with an alphabetic character-name byte;
+                // the account sub-protocol uses non-alpha op codes (see
+                // account_proto.h), so we can tell them apart by the first byte.
+                if (player[n]) {
+                    if (player[n]->in_len >= 1 && !isalpha((unsigned char)player[n]->inbuf[0])) read_account_op(n);
+                    else read_login(n);
+                }
                 if (player[n]) check_idle(n);
                 break;
 

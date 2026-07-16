@@ -90,9 +90,7 @@ void itemspawn(int in, int cn) {
     }
 
     if (ch[cn].flags & CF_PLAYER) dlog(cn, in2, "took from ice itemspawn");
-    ch[cn].citem = in2;
-    ch[cn].flags |= CF_ITEMS;
-    it[in2].carried = cn;
+    take_to_hand(cn, in2);
 
     log_char(cn, LOG_SYSTEM, 0, "You got a %s.", it[in2].name);
 }
@@ -110,9 +108,7 @@ void warmfire(int in, int cn) {
         in2 = create_item("ice_scroll");
         if (in2) {
             if (ch[cn].flags & CF_PLAYER) dlog(cn, in2, "took from warmfire");
-            ch[cn].citem = in2;
-            it[in2].carried = cn;
-            ch[cn].flags |= CF_ITEMS;
+            take_to_hand(cn, in2);
             it[in2].drdata[0] = ch[cn].x;
             it[in2].drdata[1] = ch[cn].y;
 

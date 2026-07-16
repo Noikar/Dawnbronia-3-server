@@ -86,6 +86,7 @@
 #define DT_CLUBS 19
 #define DT_PVPLIST 20
 #define DT_KARMALOG 21
+#define DT_ACCOUNT 22
 
 #define MAXAREA 40
 #define MAXMIRROR 27
@@ -95,6 +96,7 @@ MYSQL mysql;
 static void *db_thread(void *);
 static int add_query(int type, char *opt1, char *opt2, int nolock);
 static void load_char(char *name, char *password);
+static void db_account_op(void);
 static void update_arealist(void);
 static void db_create_storage(void);
 static void db_update_storage(void);
@@ -1339,6 +1341,9 @@ static void db_thread_sub(void) {
         case DT_PVPLIST:
             db_pvplist(opt1, opt2);
             break;
+        case DT_ACCOUNT:
+            db_account_op();
+            break;
         }
 
         // free the strings
@@ -1646,6 +1651,311 @@ static void login_newarea(int area, int mirror) {
     login.new_area = area;
     login.mirror = mirror;
     pthread_mutex_unlock(&data_mutex);
+}
+
+// ----------- pre-login account operations -----------
+// Registration and character management before login. Uses the same single-slot
+// "fill in, enqueue, poll until done" design as the login mechanism above (only
+// one account request is processed at a time, which is plenty - these are rare).
+
+#define AQ_EMPTY 0 // no account op in progress
+#define AQ_READ 1  // queued, waiting for the DB thread
+#define AQ_DONE 2  // DB thread finished, result ready to collect
+
+static struct account_slot {
+    int status;
+    int age;
+    int nr; // requesting player connection
+
+    // in
+    int op;
+    char username[ACC_NAMELEN];
+    char password[ACC_PWLEN];
+    char charname[ACC_NAMELEN];
+    int flags;
+    unsigned int ip;
+
+    // out
+    struct account_reply reply;
+} aq = {.status = AQ_EMPTY};
+
+// account name: 1..ACC_NAMELEN-1 alphanumeric characters.
+static int valid_account_name(const char *s) {
+    int n = 0;
+
+    if (!s || !*s) return 0;
+    for (; *s; s++, n++) {
+        if (!isalnum((unsigned char)*s)) return 0;
+    }
+    return (n < ACC_NAMELEN);
+}
+
+// character name: 1..ACC_NAMELEN-1 alphabetic characters (matches find_login).
+static int valid_char_name(const char *s) {
+    int n = 0;
+
+    if (!s || !*s) return 0;
+    for (; *s; s++, n++) {
+        if (!isalpha((unsigned char)*s)) return 0;
+    }
+    return (n < ACC_NAMELEN);
+}
+
+static int db_acc_register(const char *username, const char *password) {
+    char euser[ACC_NAMELEN * 2 + 1], hash[256], buf[512];
+    MYSQL_RES *result;
+    int taken;
+
+    if (!valid_account_name(username)) return ACC_ST_INVALID;
+    if (strlen(password) < 4) return ACC_ST_INVALID;
+
+    mysql_real_escape_string(&mysql, euser, username, strlen(username));
+
+    // subscriber.email is only indexed (not unique), so we guard uniqueness
+    // ourselves. Safe from races because the DB thread serializes all queries.
+    sprintf(buf, "select ID from subscriber where email='%s'", euser);
+    if (mysql_query_con(&mysql, buf)) return ACC_ST_SERVERERR;
+    if (!(result = mysql_store_result_cnt(&mysql))) return ACC_ST_SERVERERR;
+    taken = (mysql_num_rows(result) > 0);
+    mysql_free_result_cnt(result);
+    if (taken) return ACC_ST_TAKEN;
+
+    if (argon2id_hash_password(hash, sizeof(hash), password, NULL)) return ACC_ST_SERVERERR;
+
+    sprintf(buf,
+        "insert subscriber (email,password,creation_time,locked,banned,vendor) values ('%s','%s',%d,'N','I',0)",
+        euser, hash, (int)time(NULL));
+    if (mysql_query_con(&mysql, buf)) return ACC_ST_SERVERERR;
+
+    return ACC_ST_OK;
+}
+
+// verify account credentials, returning ACC_ST_OK and *psID, or an error status.
+// Authenticate an account. On success returns its subscriber ID via *psID and,
+// if padmin is non-NULL, whether the account is an admin (subscriber.admin='Y')
+// via *padmin. Admin accounts are the only ones allowed to create arch / god
+// characters, so this is the single source of that privilege check.
+static int db_acc_auth(const char *username, const char *password, int *psID, int *padmin) {
+    char euser[ACC_NAMELEN * 2 + 1], buf[512];
+    MYSQL_RES *result;
+    MYSQL_ROW row;
+
+    if (padmin) *padmin = 0;
+
+    if (!valid_account_name(username)) return ACC_ST_BADCREDS;
+
+    mysql_real_escape_string(&mysql, euser, username, strlen(username));
+
+    sprintf(buf, "select ID,password,admin from subscriber where email='%s'", euser);
+    if (mysql_query_con(&mysql, buf)) return ACC_ST_SERVERERR;
+    if (!(result = mysql_store_result_cnt(&mysql))) return ACC_ST_SERVERERR;
+    if (mysql_num_rows(result) == 0) {
+        mysql_free_result_cnt(result);
+        return ACC_ST_BADCREDS;
+    }
+    row = mysql_fetch_row(result);
+    if (!row || !row[0] || !row[1]) {
+        mysql_free_result_cnt(result);
+        return ACC_ST_SERVERERR;
+    }
+    if (argon2id_verify_password(row[1], password, NULL) != 1) {
+        mysql_free_result_cnt(result);
+        return ACC_ST_BADCREDS;
+    }
+    *psID = atoi(row[0]);
+    if (padmin) *padmin = (row[2] && row[2][0] == 'Y');
+    mysql_free_result_cnt(result);
+    return ACC_ST_OK;
+}
+
+static int db_acc_list(const char *username, const char *password, struct account_reply *out) {
+    char buf[512];
+    MYSQL_RES *result;
+    MYSQL_ROW row;
+    int sID = 0, admin = 0, ret, n = 0;
+
+    ret = db_acc_auth(username, password, &sID, &admin);
+    if (ret != ACC_ST_OK) return ret;
+
+    out->acctflags = admin ? ACC_ACCT_ADMIN : 0;
+
+    sprintf(buf, "select name,class,experience from chars where sID=%d order by ID limit %d", sID, ACC_MAXCHARS);
+    if (mysql_query_con(&mysql, buf)) return ACC_ST_SERVERERR;
+    if (!(result = mysql_store_result_cnt(&mysql))) return ACC_ST_SERVERERR;
+
+    while (n < ACC_MAXCHARS && (row = mysql_fetch_row(result))) {
+        if (row[0]) {
+            strncpy(out->list[n].name, row[0], ACC_NAMELEN - 1);
+            out->list[n].name[ACC_NAMELEN - 1] = 0;
+        } else out->list[n].name[0] = 0;
+        out->list[n].flags = row[1] ? (unsigned int)strtoul(row[1], NULL, 10) : 0;
+        out->list[n].exp = row[2] ? (unsigned int)strtoul(row[2], NULL, 10) : 0;
+        n++;
+    }
+    mysql_free_result_cnt(result);
+
+    out->count = n;
+    return ACC_ST_OK;
+}
+
+static int db_acc_count_chars(int sID, int *pcount) {
+    char buf[256];
+    MYSQL_RES *result;
+    MYSQL_ROW row;
+
+    sprintf(buf, "select count(*) from chars where sID=%d", sID);
+    if (mysql_query_con(&mysql, buf)) return ACC_ST_SERVERERR;
+    if (!(result = mysql_store_result_cnt(&mysql))) return ACC_ST_SERVERERR;
+    row = mysql_fetch_row(result);
+    *pcount = (row && row[0]) ? atoi(row[0]) : 0;
+    mysql_free_result_cnt(result);
+    return ACC_ST_OK;
+}
+
+#define ACC_WANTSIZE 512
+
+// Create a character on the authenticated account. Mirrors create_character.c's
+// row building, but forces gender + warrior/mage flags only - never god/staff.
+static int db_acc_create(const char *username, const char *password, const char *charname, int flags) {
+    char ename[ACC_NAMELEN * 2 + 1];
+    // buf is generously sized: the escaped ppd blob (dbuf) can approach
+    // ACC_WANTSIZE*2, and gcc's format-overflow analysis wants headroom for it
+    // plus the escaped name/flag fields all at once.
+    char data[80], dbuf[ACC_WANTSIZE * 2], ddata[ACC_WANTSIZE], buf[ACC_WANTSIZE * 4];
+    unsigned long long flag = 0;
+    int sID = 0, admin = 0, ret, count = 0, size, expandto, add, mirror;
+
+    ret = db_acc_auth(username, password, &sID, &admin);
+    if (ret != ACC_ST_OK) return ret;
+
+    if (!valid_char_name(charname)) return ACC_ST_INVALID;
+
+    ret = db_acc_count_chars(sID, &count);
+    if (ret != ACC_ST_OK) return ret;
+    if (count >= ACC_MAXCHARS) return ACC_ST_LIMIT;
+
+    // gender.
+    if (flags & ACC_FLAG_MALE) flag |= CF_MALE;
+    else flag |= CF_FEMALE;
+
+    // profession: warrior and/or mage. Both bits set = seyan, which is earned
+    // via an in-game quest in normal play, so only admins may create it
+    // directly; a non-admin asking for both collapses to warrior. Default to
+    // warrior if the client somehow sent neither.
+    if (flags & ACC_FLAG_WARRIOR) flag |= CF_WARRIOR;
+    if (flags & ACC_FLAG_MAGE) flag |= CF_MAGE;
+    if (!admin && (flag & CF_WARRIOR) && (flag & CF_MAGE)) flag &= ~CF_MAGE;
+    if (!(flag & (CF_WARRIOR | CF_MAGE))) flag |= CF_WARRIOR;
+
+    // arch and god are admin-only. Never trust these bits from a non-admin
+    // account: the client is told (via the LIST reply's admin flag) not to offer
+    // them, but the server is the real gate.
+    if (admin) {
+        if (flags & ACC_FLAG_ARCH) flag |= CF_ARCH;
+        if (flags & ACC_FLAG_GOD) flag |= CF_GOD;
+    }
+
+    mysql_real_escape_string(&mysql, ename, charname, strlen(charname));
+    mysql_real_escape_string(&mysql, data, (char *)&flag, sizeof(flag));
+
+    // persistent-player-data junk blob, sized exactly as create_character.c does
+    size = 8 + 8 + strlen(charname) + 15 * 4 + 1 + 3 * 2 + 1 + 6 - 20;
+    expandto = ((size + (ACC_WANTSIZE - 1) + 9) / ACC_WANTSIZE) * ACC_WANTSIZE;
+    add = expandto - size;
+
+    *(unsigned int *)(ddata + 0) = DRD_JUNK_PPD;
+    *(unsigned int *)(ddata + 4) = add - 8;
+    memset(ddata + 8, 0, add - 8);
+
+    mysql_real_escape_string(&mysql, dbuf, ddata, add);
+
+    mirror = RANDOM(26) + 1;
+
+    sprintf(buf, "insert chars values (0,'%s',%u,0,0,0,0,0,0,1,%d,1,1,'N',%d,'%s','%s','%s',%d,0,1)", ename,
+        (unsigned int)(flag & 0xffffffff), (int)time(NULL), sID, data, data, dbuf, mirror);
+    if (mysql_query_con(&mysql, buf)) {
+        if (mysql_errno(&mysql) == ER_DUP_ENTRY) return ACC_ST_TAKEN;
+        return ACC_ST_SERVERERR;
+    }
+
+    sprintf(buf, "insert charinfo values (%d,'%s',%u,0,0,0,0,0,0,%d,1,1,'N',%d)", (int)mysql_insert_id(&mysql), ename,
+        (unsigned int)(flag & 0xffffffff), (int)time(NULL), sID);
+    if (mysql_query_con(&mysql, buf)) {
+        // the chars row is already in; log but do not fail the player.
+        elog("db_acc_create: charinfo insert failed: %s (%d)", mysql_error(&mysql), mysql_errno(&mysql));
+    }
+
+    return ACC_ST_OK;
+}
+
+// runs on the DB thread: performs the account op and stores the result.
+static void db_account_op(void) {
+    struct account_reply out;
+    int result;
+
+    bzero(&out, sizeof(out));
+
+    switch (aq.op) {
+    case ACC_OP_REGISTER:
+        result = db_acc_register(aq.username, aq.password);
+        break;
+    case ACC_OP_LIST:
+        result = db_acc_list(aq.username, aq.password, &out);
+        break;
+    case ACC_OP_CREATE:
+        result = db_acc_create(aq.username, aq.password, aq.charname, aq.flags);
+        break;
+    default:
+        result = ACC_ST_INVALID;
+        break;
+    }
+    out.result = result;
+
+    pthread_mutex_lock(&data_mutex);
+    aq.reply = out;
+    aq.status = AQ_DONE;
+    aq.age = ticker;
+    pthread_mutex_unlock(&data_mutex);
+}
+
+int account_op(int nr, int op, const char *username, const char *password, const char *charname, int flags,
+    unsigned int ip, struct account_reply *out) {
+    pthread_mutex_lock(&data_mutex);
+
+    // drop a stale request whose client vanished without collecting the result
+    if (aq.status != AQ_EMPTY && ticker > aq.age + 20) aq.status = AQ_EMPTY;
+
+    if (aq.status == AQ_EMPTY) {
+        bzero(&aq, sizeof(aq));
+        aq.status = AQ_READ;
+        aq.age = ticker;
+        aq.nr = nr;
+        aq.op = op;
+        strncpy(aq.username, username, ACC_NAMELEN - 1);
+        memcpy(aq.password, password, ACC_PWLEN);
+        if (charname) strncpy(aq.charname, charname, ACC_NAMELEN - 1);
+        aq.flags = flags;
+        aq.ip = ip;
+        add_query(DT_ACCOUNT, NULL, NULL, 1); // nolock: we already hold data_mutex
+        pthread_mutex_unlock(&data_mutex);
+        return 0;
+    }
+
+    if (aq.nr != nr) { // another connection's op is in flight; wait our turn
+        pthread_mutex_unlock(&data_mutex);
+        return 0;
+    }
+
+    if (aq.status != AQ_DONE) { // still being processed
+        aq.age = ticker;
+        pthread_mutex_unlock(&data_mutex);
+        return 0;
+    }
+
+    *out = aq.reply;
+    aq.status = AQ_EMPTY;
+    pthread_mutex_unlock(&data_mutex);
+    return 1;
 }
 
 void check_prof_max(int cn) {

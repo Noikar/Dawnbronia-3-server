@@ -996,9 +996,7 @@ void pick_berry(int in, int cn) {
 
     if (ch[cn].flags & CF_PLAYER) dlog(cn, in2, "berry/flower: picked");
 
-    ch[cn].citem = in2;
-    ch[cn].flags |= CF_ITEMS;
-    it[in2].carried = cn;
+    take_to_hand(cn, in2);
 }
 
 void flower_mixer(int in, int cn) {

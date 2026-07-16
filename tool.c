@@ -2167,6 +2167,20 @@ int store_item(int cn, int in) {
     return 0;
 }
 
+// Route a freshly gathered/looted world item into the character's hand, or straight
+// into the first free backpack slot when the auto-pocket option is on and a slot is
+// free. Money items are always left on the cursor -- they only convert to gold via a
+// real inventory swap, so pocketing one would strand it un-converted. When the pack
+// is full we also fall back to the cursor. Callers must already hold an empty hand
+// (the world-item drivers guard for that).
+void take_to_hand(int cn, int in) {
+    if (!(ch[cn].autopocket && !(it[in].flags & IF_MONEY) && store_item(cn, in))) {
+        ch[cn].citem = in;
+        it[in].carried = cn;
+    }
+    ch[cn].flags |= CF_ITEMS;
+}
+
 void look_values_bg(int cnID, int coID) {
     int co, n;
     char buf[512];
@@ -2457,7 +2471,10 @@ char *lower_case(char *src) {
 int give_char_item(int cn, int in) {
     int n;
 
-    if (!ch[cn].citem) ch[cn].citem = in;
+    // normal: fill the hand first, spill into the pack when the hand is taken.
+    // auto-pocket: skip the hand and go straight to the pack, only using the hand
+    // as a fallback when the pack is full.
+    if (!ch[cn].autopocket && !ch[cn].citem) ch[cn].citem = in;
     else {
         for (n = 30; n < INVENTORYSIZE; n++) {
             if (!ch[cn].item[n]) {
@@ -2465,7 +2482,10 @@ int give_char_item(int cn, int in) {
                 break;
             }
         }
-        if (n == INVENTORYSIZE) return 0;
+        if (n == INVENTORYSIZE) {
+            if (ch[cn].autopocket && !ch[cn].citem) ch[cn].citem = in;
+            else return 0;
+        }
     }
     it[in].carried = cn;
     ch[cn].flags |= CF_ITEMS;

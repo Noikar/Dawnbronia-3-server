@@ -1688,9 +1688,7 @@ void dungeonkey(int in, int cn) {
     }
 
     if (ch[cn].flags & CF_PLAYER) dlog(cn, in2, "took from dungeonkey");
-    ch[cn].citem = in2;
-    ch[cn].flags |= CF_ITEMS;
-    it[in2].carried = cn;
+    take_to_hand(cn, in2);
 
     if (!it[in].drdata[2]) {
         it[in].drdata[2] = 1;

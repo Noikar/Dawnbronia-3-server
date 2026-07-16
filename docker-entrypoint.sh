@@ -77,7 +77,16 @@ init_database() {
 # Start the server processes
 start_server() {
     echo "Starting Astonia Community Server (v3)..."
-    
+
+    # Provision the server key file if absent. server.c calls
+    # config_file(".serverkey") at startup, and config_file() fatally exit(1)s
+    # when the file cannot be opened - so this optional key file must always
+    # exist or every area server dies immediately.
+    if [ ! -f .serverkey ]; then
+        echo "svrkey = ${AS3_SVRKEY:-4241}" > .serverkey
+        echo "Created default .serverkey"
+    fi
+
     # Start chatserver first
     echo "Starting chatserver..."
     ./chatserver &

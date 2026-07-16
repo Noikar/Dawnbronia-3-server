@@ -18,3 +18,9 @@ zones/generic/armor.itm
 *.vpwhist
 *.vtg
 .serverkey
+
+# Local secrets — never commit
+.env
+*.p12
+*.pem
+private_keys/

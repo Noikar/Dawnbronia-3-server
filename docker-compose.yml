@@ -4,8 +4,12 @@ services:
     container_name: astonia3-db
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-astonia}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env (copy .env.example)}
       MYSQL_DATABASE: merc
+    ports:
+      # Loopback-only: lets host tools / a local MCP client reach MariaDB. Not exposed publicly.
+      # Host port 13306 (not 3306) avoids clashing with a native mysqld already on this host.
+      - "127.0.0.1:13306:3306"
     volumes:
       - astonia3-db-data:/var/lib/mysql
     healthcheck:
@@ -30,7 +34,7 @@ services:
     environment:
       AS3_DBHOST: db
       AS3_DBUSER: root
-      AS3_DBPASS: ${MYSQL_ROOT_PASSWORD:-astonia}
+      AS3_DBPASS: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env (copy .env.example)}
       AS3_DBNAME: merc
       AS3_CHATHOST: localhost
     ports:

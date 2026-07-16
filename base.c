@@ -633,9 +633,7 @@ void chest_driver(int in, int cn) {
 
     if (ch[cn].flags & CF_PLAYER) dlog(cn, in2, "took from treasure chest");
 
-    ch[cn].citem = in2;
-    ch[cn].flags |= CF_ITEMS;
-    it[in2].carried = cn;
+    take_to_hand(cn, in2);
 
     ppd->last_access[nr] = realtime;
 
@@ -1977,8 +1975,7 @@ void randchest_driver(int in, int cn) {
     if (in2) {
         if (ch[cn].flags & CF_PLAYER) dlog(cn, in2, "took from randchest");
 
-        ch[cn].citem = in2;
-        it[in2].carried = cn;
+        take_to_hand(cn, in2);
     }
     ch[cn].flags |= CF_ITEMS;
 }
@@ -2349,9 +2346,7 @@ void orbspawn_driver(int in, int cn) {
 
     if (ch[cn].flags & CF_PLAYER) dlog(cn, in2, "took from orbspawner");
 
-    ch[cn].citem = in2;
-    ch[cn].flags |= CF_ITEMS;
-    it[in2].carried = cn;
+    take_to_hand(cn, in2);
 }
 
 void spade(int in, int cn) {
@@ -2413,9 +2408,7 @@ void spade(int in, int cn) {
     if (in2) {
         log_char(cn, LOG_SYSTEM, 0, "You found a %s.", it[in2].name);
         if (ch[cn].flags & CF_PLAYER) dlog(cn, in2, "took from dug hole");
-        it[in2].carried = cn;
-        ch[cn].citem = in2;
-        ch[cn].flags |= CF_ITEMS;
+        take_to_hand(cn, in2);
     } else log_char(cn, LOG_SYSTEM, 0, "You dug a nice deep hole but you didn't find anything. Embarrassed you stop digging and fill the hole again.");
 }
 
@@ -2785,9 +2778,7 @@ void infinite_chest(int in, int cn) {
 
     if (ch[cn].flags & CF_PLAYER) dlog(cn, in2, "took from infinite chest");
 
-    ch[cn].citem = in2;
-    ch[cn].flags |= CF_ITEMS;
-    it[in2].carried = cn;
+    take_to_hand(cn, in2);
 
     log_char(cn, LOG_SYSTEM, 0, "You got a %s.", it[in2].name);
 }

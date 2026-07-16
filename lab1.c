@@ -409,9 +409,7 @@ void deathfibrin(int in, int cn) {
         bondtake_item(in2, cn);
 
         if (ch[cn].flags & CF_PLAYER) dlog(cn, in2, "took deathfibrin");
-        ch[cn].citem = in2;
-        ch[cn].flags |= CF_ITEMS;
-        it[in2].carried = cn;
+        take_to_hand(cn, in2);
 
         return;
     }

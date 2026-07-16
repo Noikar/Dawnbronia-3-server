@@ -768,9 +768,7 @@ void chest(int in, int cn) {
     }
 
     if (ch[cn].flags & CF_PLAYER) dlog(cn, in2, "took from forest chest");
-    ch[cn].citem = in2;
-    it[in2].carried = cn;
-    ch[cn].flags |= CF_ITEMS;
+    take_to_hand(cn, in2);
 
     log_char(cn, LOG_SYSTEM, 0, "You found a nice sum of money!");
 }

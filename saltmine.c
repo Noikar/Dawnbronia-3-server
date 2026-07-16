@@ -710,9 +710,7 @@ void saltmine_item(int in, int cn) {
                 ppd->salt = 0;
                 ppd->gatamastate = 0;
 
-                ch[cn].citem = in2;
-                ch[cn].flags |= CF_ITEMS;
-                it[in2].carried = cn;
+                take_to_hand(cn, in2);
 
                 log_char(cn, LOG_SYSTEM, 0, "Thou took %d units of salt, feeling thou have earned it.", *(unsigned int *)(it[in2].drdata));
             }

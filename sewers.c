@@ -249,9 +249,7 @@ void ratchest_driver(int in, int cn) {
     log_char(cn, LOG_SYSTEM, 0, "You found some money (%.2fG)!", amount / 100.0);
 
     if (ch[cn].flags & CF_PLAYER) dlog(cn, in2, "took from ratchest");
-    ch[cn].citem = in2;
-    ch[cn].flags |= CF_ITEMS;
-    it[in2].carried = cn;
+    take_to_hand(cn, in2);
 }
 
 void ratling_died(int cn, int co) {

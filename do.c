@@ -1334,7 +1334,10 @@ int container(int cn, int pos, int flag, int fast) {
         it[in2].contained = ct;
         it[in2].carried = 0;
 
-        if (fast) store_citem(cn);
+        // fast-take always pockets. auto-pocket does the same, but only when we
+        // just pulled an item (in) out into a previously empty hand (!in2) -- a
+        // deliberate swap (hand not empty) is left alone.
+        if (fast || (ch[cn].autopocket && !in2 && in)) store_citem(cn);
 
         ch[cn].flags |= CF_ITEMS;
     } else {

@@ -107,9 +107,7 @@ void tree_driver(int in, int cn) {
         return;
     }
 
-    ch[cn].citem = in2;
-    it[in2].carried = cn;
-    ch[cn].flags |= CF_ITEMS;
+    take_to_hand(cn, in2);
 }
 
 void pede_driver(int in, int cn) {
@@ -148,9 +146,7 @@ void pede_driver(int in, int cn) {
         return;
     }
 
-    ch[cn].citem = in2;
-    it[in2].carried = cn;
-    ch[cn].flags |= CF_ITEMS;
+    take_to_hand(cn, in2);
 }
 
 void rock_driver(int in, int cn) {
@@ -197,9 +193,7 @@ void rock_driver(int in, int cn) {
         return;
     }
 
-    ch[cn].citem = in2;
-    it[in2].carried = cn;
-    ch[cn].flags |= CF_ITEMS;
+    take_to_hand(cn, in2);
 }
 
 void door_driver(int in, int cn) {

@@ -2113,9 +2113,7 @@ void fdemon_farm(int in, int cn) {
         }
 
         if (ch[cn].flags & CF_PLAYER) dlog(cn, in2, "took from fdemon farm");
-        ch[cn].citem = in2;
-        it[in2].carried = cn;
-        ch[cn].flags |= CF_ITEMS;
+        take_to_hand(cn, in2);
 
         crystal = nr = str = 0;
     }

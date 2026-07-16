@@ -1301,9 +1301,7 @@ void lab2_water(int in, int cn) {
             log_char(cn, LOG_SYSTEM, 0, "You received a %s.", it[in2].name);
 
             if (ch[cn].flags & CF_PLAYER) dlog(cn, in2, "took from lab2_water");
-            ch[cn].citem = in2;
-            ch[cn].flags |= CF_ITEMS;
-            it[in2].carried = cn;
+            take_to_hand(cn, in2);
         } else if (it[in].drdata[0] == 2) {
             if (!ch[cn].citem || it[ch[cn].citem].driver != IDR_LAB2_WATER || it[ch[cn].citem].drdata[0] != 4) {
                 log_char(cn, LOG_SYSTEM, 0, "You feel the holyness of the Altar. Water would be holy now, if you had some.");

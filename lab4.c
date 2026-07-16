@@ -612,9 +612,7 @@ void lab4_item(int in, int cn) {
         if (in2) {
             log_char(cn, LOG_SYSTEM, 0, "You took the key out of the fire.");
             if (ch[cn].flags & CF_PLAYER) dlog(cn, in2, "took from lab4_item");
-            ch[cn].citem = in2;
-            ch[cn].flags |= CF_ITEMS;
-            it[in2].carried = cn;
+            take_to_hand(cn, in2);
         }
         return;
     }

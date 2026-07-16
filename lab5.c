@@ -1079,9 +1079,7 @@ void lab5_item(int in, int cn) {
                 return;
             }
 
-            ch[cn].citem = in2;
-            ch[cn].flags |= CF_ITEMS;
-            it[in2].carried = cn;
+            take_to_hand(cn, in2);
         }
 
         // combopotion
