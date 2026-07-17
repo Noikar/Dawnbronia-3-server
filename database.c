@@ -2090,7 +2090,10 @@ void tick_login(void) {
     //xlog("tick_login(): creating new character for %s",login.name);
 
     if (!(flags & CF_USED)) { // character marked as unused, new account
-        if (flags & CF_WARRIOR) {
+        if ((flags & (CF_WARRIOR | CF_MAGE)) == (CF_WARRIOR | CF_MAGE)) { // seyan (admin-created)
+            if (flags & CF_MALE) cn = create_char("seyan_m", 0);
+            else cn = create_char("seyan_f", 0);
+        } else if (flags & CF_WARRIOR) {
             if (flags & CF_MALE) cn = create_char("new_warrior_m", 0);
             else cn = create_char("new_warrior_f", 0);
         } else {
