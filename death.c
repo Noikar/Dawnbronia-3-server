@@ -39,6 +39,7 @@
 #include "consistency.h"
 #include "lostcon.h"
 #include "teufel_pk.h"
+#include "balance.h"
 
 // respawn character tmp at tmpx,tmpy
 // if that place is occupied, try again in one second
@@ -132,7 +133,7 @@ static void give_first_kill(int cn, int co) {
 
     ppd->kill[index] |= mask;
 
-    give_exp_bonus(cn, kill_score(co, cn) * 5);
+    give_exp_bonus(cn, kill_score(co, cn) * 5 * KILL_EXP_RATE / 100);
 
     if (ch[co].flags & CF_HASNAME) {
         log_char(cn, LOG_SYSTEM, 0, "You just killed %s for the first time. Congratulations!", ch[co].name);
@@ -154,7 +155,7 @@ static void give_first_kill(int cn, int co) {
     } else if ((ch[co].class >= 258 && ch[co].class <= 305) || (ch[co].class >= 404 && ch[co].class <= 411)) {
         if (get_army_rank_int(cn)) {
             log_char(cn, LOG_SYSTEM, 0, "You just killed your first level %d %s! The Governor will be proud of you.", ch[co].level, ch[co].name);
-            give_military_pts_no_npc(cn, min(ch[co].level / 3, 10), kill_score(co, cn) * 15);
+            give_military_pts_no_npc(cn, min(ch[co].level / 3, 10), kill_score(co, cn) * 15 * KILL_EXP_RATE / 100);
         } else log_char(cn, LOG_SYSTEM, 0, "You just killed your first level %d %s!", ch[co].level, ch[co].name);
     } else {
         log_char(cn, LOG_SYSTEM, 0, "You just killed your first %s. Congratulations!", ch[co].name);
@@ -243,7 +244,7 @@ int kill_char(int cn, int co) {
     ch[cn].flags |= CF_DEAD;
 
     if (co && ch[cn].flags) {
-        val = kill_score(cn, co);
+        val = kill_score(cn, co) * KILL_EXP_RATE / 100;
         if (ch[co].flags & CF_HARDCORE) val = (int)(val * 1.35);
         if (ch[co].flags & CF_LAG) val = min(val, 1);
         if (ch[co].driver == CDR_LOSTCON) val = min(val, 1);

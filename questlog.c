@@ -42,6 +42,7 @@
 #include "nomad_ppd.h"
 #include "container.h"
 #include "chat.h"
+#include "balance.h"
 
 #define QLF_REPEATABLE (1u << 0)
 #define QLF_XREPEAT (1u << 1)
@@ -220,6 +221,9 @@ int questlog_done(int cn, int qnr) {
     else if (ch[cn].level > 19) val = min(level_value(ch[cn].level) / 4, val);
     else if (ch[cn].level > 4) val = min(level_value(ch[cn].level) / 2, val);
     else val = min(level_value(ch[cn].level), val);
+
+    // apply global quest exp rate after the level cap so the bonus is always visible
+    val = val * QUEST_EXP_RATE / 100;
 
     give_exp(cn, val);
     if (questlog[qnr].exp > 0) dlog(cn, 0, "Received %d exp for doing quest %s for the %d. time (nominal value %d exp)", val, questlog[qnr].name, (cnt + 1), questlog[qnr].exp);

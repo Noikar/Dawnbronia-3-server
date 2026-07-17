@@ -46,6 +46,7 @@
 #include "consistency.h"
 #include "questlog.h"
 #include "two_ppd.h"
+#include "balance.h"
 
 // library helper functions needed for init
 int ch_driver(int nr, int cn, int ret, int lastact); // character driver (decides next action)
@@ -1593,7 +1594,7 @@ void thiefmaster(int cn, int ret, int lastact) {
                     tmp = val;
                     val = questlog_scale(questlog_count(co, 25), val);
                     dlog(cn, 0, "Received %d exp for doing quest Earning the Lockpick for the %d. time (nominal value %d exp)", val, questlog_count(co, 25) + 1, tmp);
-                    give_exp(co, min(level_value(ch[co].level) / 5, val));
+                    give_exp(co, min(level_value(ch[co].level) / 5, val) * QUEST_EXP_RATE / 100);
                     ppd->thief_bits |= 1;
                     questlog_done(co, 25);
 
@@ -1642,7 +1643,7 @@ void thiefmaster(int cn, int ret, int lastact) {
                     tmp = val;
                     val = questlog_scale(questlog_count(co, 26), val);
                     dlog(cn, 0, "Received %d exp for doing quest Extortion for the %d. time (nominal value %d exp)", val, questlog_count(co, 26) + 1, tmp);
-                    give_exp(co, min(level_value(ch[co].level) / 5, val));
+                    give_exp(co, min(level_value(ch[co].level) / 5, val) * QUEST_EXP_RATE / 100);
                     ppd->thief_bits |= 2;
                     questlog_done(co, 26);
 
@@ -2058,7 +2059,7 @@ void sanwyn(int cn, int ret, int lastact) {
                     ppd->sanwyn_bits |= 1;
                     if (ppd->sanwyn_bits == 7) ppd->sanwyn_state = 7;
 
-                    give_military_pts(cn, co, 15, min(level_value(ch[co].level) / 5, 15000));
+                    give_military_pts(cn, co, 15, min(level_value(ch[co].level) / 5, 15000) * QUEST_EXP_RATE / 100);
 
                     // let it vanish, then
                     destroy_item(ch[cn].citem);
@@ -2068,7 +2069,7 @@ void sanwyn(int cn, int ret, int lastact) {
                     ppd->sanwyn_bits |= 2;
                     if (ppd->sanwyn_bits == 7) ppd->sanwyn_state = 7;
 
-                    give_military_pts(cn, co, 15, min(level_value(ch[co].level) / 5, 15000));
+                    give_military_pts(cn, co, 15, min(level_value(ch[co].level) / 5, 15000) * QUEST_EXP_RATE / 100);
 
                     // let it vanish, then
                     destroy_item(ch[cn].citem);
@@ -2078,7 +2079,7 @@ void sanwyn(int cn, int ret, int lastact) {
                     ppd->sanwyn_bits |= 4;
                     if (ppd->sanwyn_bits == 7) ppd->sanwyn_state = 7;
 
-                    give_military_pts(cn, co, 15, min(level_value(ch[co].level) / 5, 15000));
+                    give_military_pts(cn, co, 15, min(level_value(ch[co].level) / 5, 15000) * QUEST_EXP_RATE / 100);
 
                     // let it vanish, then
                     destroy_item(ch[cn].citem);

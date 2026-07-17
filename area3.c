@@ -39,6 +39,7 @@
 #include "skill.h"
 #include "database.h"
 #include "questlog.h"
+#include "balance.h"
 
 // library helper functions needed for init
 int ch_driver(int nr, int cn, int ret, int lastact); // character driver (decides next action)
@@ -643,7 +644,7 @@ void kelly_driver(int cn, int ret, int lastact) {
                         if (cnt != 1) quiet_say(cn, "Well done. I see thou hast discovered %d shrines, %s.", cnt, ch[co].name);
                         else quiet_say(cn, "Well done. I see thou hast discovered %d shrine, %s.", cnt, ch[co].name);
 
-                        give_military_pts(cn, co, (cnt - ppd->kelly_found_cnt) * 2, (cnt - ppd->kelly_found_cnt) * EXP_AREA3_SHRINE);
+                        give_military_pts(cn, co, (cnt - ppd->kelly_found_cnt) * 2, (cnt - ppd->kelly_found_cnt) * EXP_AREA3_SHRINE * QUEST_EXP_RATE / 100);
 
                         ppd->kelly_found_cnt = cnt;
                         didsay = 1;

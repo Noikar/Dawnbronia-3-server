@@ -38,6 +38,7 @@
 #include "staffer_ppd.h"
 #include "questlog.h"
 #include "arkhata.h"
+#include "balance.h"
 
 #define BRANFO_EXP_BASE 10000
 #define BRAN_EXP_BASE 15000 //(gives out base*19 = 285,000 exp)
@@ -647,7 +648,7 @@ void count_brannington_driver(int cn, int ret, int lastact) {
 
                     val = questlog_scale(questlog_count(co, 40), 60000);
                     dlog(cn, 0, "Received %d exp for doing quest Three Jewels I for the %d. time (nominal value %d exp)", val, questlog_count(co, 40) + 1, 60000);
-                    give_exp(co, min(val, level_value(ch[co].level) / 4));
+                    give_exp(co, min(val, level_value(ch[co].level) / 4) * QUEST_EXP_RATE / 100);
 
                     if (questlog_count(co, 40) == 0) give_money(co, 1000 * 100, "Count Bran Quest 1");
 
@@ -668,7 +669,7 @@ void count_brannington_driver(int cn, int ret, int lastact) {
 
                     val = questlog_scale(questlog_count(co, 40), 30000);
                     dlog(cn, 0, "Received %d exp for doing quest Three Jewels II for the %d. time (nominal value %d exp)", val, questlog_count(co, 40) + 1, 30000);
-                    give_exp(co, min(val, level_value(ch[co].level) / 4));
+                    give_exp(co, min(val, level_value(ch[co].level) / 4) * QUEST_EXP_RATE / 100);
 
                     if (questlog_count(co, 40) == 0) give_money(co, 500 * 100, "Count Bran Quest 2");
 
@@ -689,7 +690,7 @@ void count_brannington_driver(int cn, int ret, int lastact) {
 
                     val = questlog_scale(questlog_count(co, 40), 30000);
                     dlog(cn, 0, "Received %d exp for doing quest Three Jewels III for the %d. time (nominal value %d exp)", val, questlog_count(co, 40) + 1, 30000);
-                    give_exp(co, min(val, level_value(ch[co].level) / 4));
+                    give_exp(co, min(val, level_value(ch[co].level) / 4) * QUEST_EXP_RATE / 100);
 
                     if (questlog_count(co, 40) == 0) give_money(co, 500 * 100, "Count Bran Quest 3");
                     ppd->countbran_bits |= 4;
@@ -1417,7 +1418,7 @@ void countessa_brannington_driver(int cn, int ret, int lastact) {
                         ppd->countessabran_state++;
                         didsay = 1;
                         ppd->countbran_bits |= 8;
-                        give_exp(co, min(BRAN_EXP_BASE * 2, level_value(ch[co].level) / 4));
+                        give_exp(co, min(BRAN_EXP_BASE * 2, level_value(ch[co].level) / 4) * QUEST_EXP_RATE / 100);
                         give_money(co, 500 * 100, "Count Bran Quest 2B");
                         break;
                     }
@@ -1566,7 +1567,7 @@ void daughter_brannington_driver(int cn, int ret, int lastact) {
                         ppd->daughterbran_state++;
                         didsay = 1;
                         ppd->countbran_bits |= 16;
-                        give_exp(co, min(BRAN_EXP_BASE * 2, level_value(ch[co].level) / 4));
+                        give_exp(co, min(BRAN_EXP_BASE * 2, level_value(ch[co].level) / 4) * QUEST_EXP_RATE / 100);
                         in = create_item("lollipop");
                         if (in) give_char_item(co, in);
                         break;

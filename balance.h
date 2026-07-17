@@ -16,3 +16,7 @@ Added RCS tags
 
 #define FIREBALL_DAMAGE 5 // orig 5
 #define STRIKE_DAMAGE 5 // orig 5
+
+// experience rate multipliers, in percent (100 = original rate)
+#define KILL_EXP_RATE 140 // per-kill exp, including first-kill bonuses
+#define QUEST_EXP_RATE 125 // quest completion exp, including driver-awarded quest exp
