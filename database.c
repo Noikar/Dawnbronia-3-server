@@ -64,6 +64,7 @@
 #include "badip.h"
 #include "argon.h"
 #include "config.h"
+#include "complaint.h"
 
 #define DT_QUERY 1
 #define DT_LOAD 2
@@ -87,6 +88,11 @@
 #define DT_PVPLIST 20
 #define DT_KARMALOG 21
 #define DT_ACCOUNT 22
+#define DT_COMPLAINT_ADD 23
+#define DT_COMPLAINT_LIST 24
+#define DT_COMPLAINT_VIEW 25
+#define DT_COMPLAINT_CLOSE 26
+#define DT_COMPLAINT_LOG 27
 
 #define MAXAREA 40
 #define MAXMIRROR 27
@@ -1145,6 +1151,44 @@ int lastseen(int uID, int rID) {
     return add_query(DT_LASTSEEN, op1, op2, 0);
 }
 
+// ---- complaint system queue wrappers (handlers live in complaint.c) ----
+
+int queue_complaint_add(char *query, char *announce) {
+    return add_query(DT_COMPLAINT_ADD, query, announce, 0);
+}
+
+int complaint_list(int staffID, int all) {
+    char op1[80];
+
+    sprintf(op1, "%d %d", staffID, all);
+
+    return add_query(DT_COMPLAINT_LIST, op1, "complaint list", 0);
+}
+
+int complaint_view(int staffID, int id) {
+    char op1[80];
+
+    sprintf(op1, "%d %d", staffID, id);
+
+    return add_query(DT_COMPLAINT_VIEW, op1, "complaint view", 0);
+}
+
+int complaint_close(int staffID, int id) {
+    char op1[80];
+
+    sprintf(op1, "%d %d", staffID, id);
+
+    return add_query(DT_COMPLAINT_CLOSE, op1, "complaint close", 0);
+}
+
+int complaint_log(int staffID, int id) {
+    char op1[80];
+
+    sprintf(op1, "%d %d", staffID, id);
+
+    return add_query(DT_COMPLAINT_LOG, op1, "complaint log", 0);
+}
+
 // -------------- database thread for background database access --------------------
 
 struct query {
@@ -1343,6 +1387,21 @@ static void db_thread_sub(void) {
             break;
         case DT_ACCOUNT:
             db_account_op();
+            break;
+        case DT_COMPLAINT_ADD:
+            db_complaint_add(opt1, opt2);
+            break;
+        case DT_COMPLAINT_LIST:
+            db_complaint_list(opt1);
+            break;
+        case DT_COMPLAINT_VIEW:
+            db_complaint_view(opt1);
+            break;
+        case DT_COMPLAINT_CLOSE:
+            db_complaint_close(opt1);
+            break;
+        case DT_COMPLAINT_LOG:
+            db_complaint_log(opt1);
             break;
         }
 

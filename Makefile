@@ -47,7 +47,8 @@ OBJS=.obj/server.o .obj/io.o .obj/libload.o .obj/tool.o .obj/sleep.o \
 .obj/prof.o .obj/motd.o .obj/ignore.o .obj/tell.o .obj/clanlog.o \
 .obj/respawn.o .obj/poison.o .obj/swear.o .obj/lab.o \
 .obj/consistency.o .obj/btrace.o .obj/club.o .obj/teufel_pk.o \
-.obj/questlog.o .obj/badip.o .obj/argon.o .obj/config.o
+.obj/questlog.o .obj/badip.o .obj/argon.o .obj/config.o \
+.obj/complaint.o
 
 
 # ------- Server -----
@@ -216,6 +217,9 @@ server:	$(OBJS)
 
 .obj/clanlog.o:		clanlog.c clanlog.h log.h talk.h server.h mem.h
 	$(CC) $(CFLAGS) -o .obj/clanlog.o -c clanlog.c
+
+.obj/complaint.o:	complaint.c complaint.h server.h log.h mem.h database.h create.h chat.h lookup.h player.h
+	$(CC) $(CFLAGS) -o .obj/complaint.o -c complaint.c
 
 .obj/respawn.o:		respawn.c respawn.h log.h talk.h server.h mem.h
 	$(CC) $(CFLAGS) -o .obj/respawn.o -c respawn.c

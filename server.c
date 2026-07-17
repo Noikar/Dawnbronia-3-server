@@ -457,6 +457,7 @@ int main(int argc, char *args[]) {
         prof = prof_start(34);
         tick_login();
         prof_stop(34, prof);
+        tick_chatlog_xfer();
         prof = prof_start(6);
         pflush();
         prof_stop(6, prof);

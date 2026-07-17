@@ -59,6 +59,13 @@ void db_new_pvp(void);
 void db_add_pvp(char *killer, char *victim, char *what, int damage);
 int karmalog(int rID);
 
+// complaint system (see complaint.c)
+int queue_complaint_add(char *query, char *announce);
+int complaint_list(int staffID, int all);
+int complaint_view(int staffID, int id);
+int complaint_close(int staffID, int id);
+int complaint_log(int staffID, int id);
+
 // --- pre-login account sub-protocol ---
 #include "account_proto.h"
 

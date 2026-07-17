@@ -135,6 +135,14 @@ struct player {
     // complaint buffer
     char scrollback[MAXSCROLLBACK];
     int scrollpos;
+
+    // outgoing complaint chat log transfer (SV_CHATLOG); set by the db thread
+    // under lock_server(), drained by tick_chatlog_xfer(), freed there or in
+    // exit_player()
+    unsigned char *xfer_buf;
+    int xfer_len;
+    int xfer_pos; // -1 = START message not sent yet
+    int xfer_id; // complaint ID
 };
 
 extern struct player **player;
@@ -142,6 +150,7 @@ extern struct player **player;
 #endif
 
 void tick_player(void);
+void tick_chatlog_xfer(void);
 int log_player(int nr, int color, char *format, ...);
 void set_player_knows_name(int nr, int cn, int flag);
 void kick_player(int nr, char *reason);

@@ -47,6 +47,7 @@
 #include "club.h"
 #include "questlog.h"
 #include "player_driver.h"
+#include "complaint.h"
 
 struct gotolist {
     char *name;
@@ -174,7 +175,7 @@ static int cmd_complain(int cn, char *ptr) {
     }
 
     if (!ppd->complaint_date) {
-        log_char(cn, LOG_SYSTEM, 0, "\260c3Complaints are meant as a way to complain about verbal attacks by another player, or to report a scam. If you wish to complain about something else, please email game@astonia.com. No complaint has been sent. Repeat the command if you still want to send your complaint.");
+        log_char(cn, LOG_SYSTEM, 0, "\260c3Complaints are meant as a way to complain about verbal attacks by another player, or to report a scam. Your complaint and a copy of your chat log will be stored for the staff to review. No complaint has been sent yet. Repeat the command if you still want to send your complaint.");
         ppd->complaint_date = 1;
         return 1;
     }
@@ -211,8 +212,48 @@ static int cmd_complain(int cn, char *ptr) {
 
     ppd->complaint_date = realtime;
 
-    write_scrollback(ch[cn].player, cn, reason, ch[cn].name, name);
+    while (isspace(*ptr)) ptr++; // reason is everything after the name
+    reason = ptr;
+
+    complaint_new(cn, ret, realname, reason);
     log_char(cn, LOG_SYSTEM, 0, "Your complaint about '%s' has been sent to game management.", realname);
+
+    return 1;
+}
+
+// staff command: review stored complaints (see complaint.c)
+static int cmd_complaints(int cn, char *ptr) {
+    int len, id;
+
+    if (!*ptr) {
+        complaint_list(ch[cn].ID, 0);
+        return 1;
+    }
+    if (cmdcmp(ptr, "all", 3)) {
+        complaint_list(ch[cn].ID, 1);
+        return 1;
+    }
+    if ((len = cmdcmp(ptr, "view", 4))) {
+        id = atoi(ptr + len);
+        if (id > 0) {
+            complaint_view(ch[cn].ID, id);
+            return 1;
+        }
+    } else if ((len = cmdcmp(ptr, "close", 5))) {
+        id = atoi(ptr + len);
+        if (id > 0) {
+            complaint_close(ch[cn].ID, id);
+            return 1;
+        }
+    } else if ((len = cmdcmp(ptr, "log", 3))) {
+        id = atoi(ptr + len);
+        if (id > 0) {
+            complaint_log(ch[cn].ID, id);
+            return 1;
+        }
+    }
+
+    log_char(cn, LOG_SYSTEM, 0, "Usage: /complaints [all | view <id> | close <id> | log <id>]");
 
     return 1;
 }
@@ -881,6 +922,7 @@ static void cmd_help(int cn) {
 
     if (ch[cn].flags & CF_STAFF) {
         log_char(cn, LOG_SYSTEM, 0, "/jump <name> <mirror>");
+        log_char(cn, LOG_SYSTEM, 0, "/complaints [all | view <id> | close <id> | log <id>] - review player complaints");
         log_char(cn, LOG_SYSTEM, 0, "/punish <name> <level> <reason>");
         log_char(cn, LOG_SYSTEM, 0, "/shutup <name> <time in minutes>");
         log_char(cn, LOG_SYSTEM, 0, "/look <name>");
@@ -1704,6 +1746,13 @@ int command(int cn, char *ptr) { // 1=ok, 0=repeat
         }
 
         return 1;
+    }
+
+    if ((len = cmdcmp(ptr, "complaints", 10)) && (ch[cn].flags & (CF_GOD | CF_STAFF))) {
+        ptr += len;
+        while (isspace(*ptr)) ptr++;
+
+        return cmd_complaints(cn, ptr);
     }
 
     if ((len = cmdcmp(ptr, "punish", 6)) && (ch[cn].flags & (CF_GOD | CF_STAFF))) {

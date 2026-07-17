@@ -61,6 +61,7 @@
 #include "questlog.h"
 #include "shrine.h"
 #include "config.h"
+#include "mem.h"
 
 #define SERVER_PROTOCOL_VERSION 2
 
@@ -2756,6 +2757,60 @@ void write_scrollback(int nr, int cn, char *reason, char *namea, char *nameb) {
     sprintf(sub, "Auto Complaint from %s", ch[cn].name);
     sendmail("complaint@astonia.com", sub, buf, "auto@astonia.com", 0);
     //sendmail("joker@astonia.com",sub,buf,"auto@astonia.com",0);
+}
+
+// Stream pending complaint chat logs (see complaint.c) to their staff
+// clients, one small chunk per tick, so the pre-compress buffer (OBUFSIZE,
+// overflow kicks the player) never fills up. Called from the main loop just
+// before pflush(). Wire format: [SV_CHATLOG][u8 subtype][u16 len][payload],
+// subtype 0 = START (u32 complaint ID, u32 total size), 1 = DATA, 2 = END.
+void tick_chatlog_xfer(void) {
+    unsigned char head[12];
+    int n, chunk, room;
+
+    for (n = 1; n < MAXPLAYER; n++) {
+        if (!player[n] || !player[n]->xfer_buf) continue;
+
+        if (player[n]->state != ST_NORMAL) continue; // freed by exit_player if they never return
+
+        room = OBUFSIZE - player[n]->tptr - 512; // headroom above whatever this tick queued
+        if (room < 64) continue;
+
+        if (player[n]->xfer_pos < 0) { // send START first
+            head[0] = SV_CHATLOG;
+            head[1] = 0;
+            *(unsigned short *)(head + 2) = 8;
+            *(unsigned int *)(head + 4) = (unsigned int)player[n]->xfer_id;
+            *(unsigned int *)(head + 8) = (unsigned int)player[n]->xfer_len;
+            psend(n, (char *)head, 12);
+            player[n]->xfer_pos = 0;
+            room -= 12;
+        }
+
+        chunk = min(2048, player[n]->xfer_len - player[n]->xfer_pos);
+        chunk = min(chunk, room - 8); // 4 bytes DATA header + 4 bytes for a possible END
+        if (chunk > 0) {
+            head[0] = SV_CHATLOG;
+            head[1] = 1;
+            *(unsigned short *)(head + 2) = (unsigned short)chunk;
+            psend(n, (char *)head, 4);
+            if (!player[n]) continue; // paranoia: psend may kick on overflow
+            psend(n, (char *)(player[n]->xfer_buf + player[n]->xfer_pos), chunk);
+            if (!player[n]) continue;
+            player[n]->xfer_pos += chunk;
+        }
+
+        if (player[n]->xfer_pos >= player[n]->xfer_len) { // done: send END and free
+            head[0] = SV_CHATLOG;
+            head[1] = 2;
+            *(unsigned short *)(head + 2) = 0;
+            psend(n, (char *)head, 4);
+            if (!player[n]) continue;
+            xfree(player[n]->xfer_buf);
+            player[n]->xfer_buf = NULL;
+            player[n]->xfer_len = player[n]->xfer_pos = player[n]->xfer_id = 0;
+        }
+    }
 }
 
 void tick_player(void) {

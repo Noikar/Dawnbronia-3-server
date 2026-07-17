@@ -40,6 +40,7 @@ void exit_player(int nr) {
     online--;
     close(player[nr]->sock);
     deflateEnd(&player[nr]->zs);
+    if (player[nr]->xfer_buf) xfree(player[nr]->xfer_buf); // pending complaint chat log transfer
     xfree(player[nr]);
     player[nr] = NULL;
     mem_usage -= sizeof(struct player);

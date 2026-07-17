@@ -161,6 +161,27 @@ CREATE TABLE clanlog (
 );
 
 --
+-- Table structure for table 'complaints'
+--
+
+CREATE TABLE complaints (
+  ID int(11) NOT NULL auto_increment,
+  date int(11) NOT NULL default '0',
+  cID int(11) NOT NULL default '0',
+  cname varchar(40) NOT NULL default '',
+  vID int(11) NOT NULL default '0',
+  vname varchar(40) NOT NULL default '',
+  reason varchar(255) NOT NULL default '',
+  state int(11) NOT NULL default '0',
+  closer int(11) NOT NULL default '0',
+  close_date int(11) NOT NULL default '0',
+  chatlog mediumblob,
+  PRIMARY KEY  (ID),
+  KEY state (state),
+  KEY date (date)
+);
+
+--
 -- Table structure for table 'clubs'
 --
 
