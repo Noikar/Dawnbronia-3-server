@@ -1,0 +1,40 @@
+# Isolated client file-host stack (the auto-updater backend).
+#
+# Serves ONLY ./client_dist over plain HTTP so the standalone updater.exe can
+# download the game. It shares nothing with the game/DB stack (docker-compose.yml):
+# its own network, a read-only bind mount of just the dist tree, and no route to
+# the database or game server. Republishing a client can therefore never bounce
+# the live game (recreating the game container drops every player).
+#
+#   docker compose -f docker-compose.updates.yml up -d     # start hosting
+#   docker compose -f docker-compose.updates.yml down       # stop hosting
+#
+# Publish a new build with ./pack_client.sh — the read-only mount picks it up
+# immediately, no container restart needed.
+#
+# Its own Compose project name keeps it fully separate from the game/DB stack
+# (which defaults to the directory name): without this they would share a project
+# and each would see the other's containers as "orphans" — so a stray
+# `--remove-orphans` on one could delete the other's containers.
+name: astonia3-updates
+
+services:
+  updates:
+    image: nginx:1.27-alpine
+    container_name: astonia3-updates
+    restart: unless-stopped
+    ports:
+      # Public: open 8080/tcp inbound on the host firewall. This is the port the
+      # updater's UPDATE_BASE_URL must point at.
+      - "8080:80"
+    volumes:
+      # Only the dist tree is visible to nginx, and only for reading. Server
+      # source, *.sql, and the DB volume are simply not in this container.
+      - ./client_dist:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - updates-net
+
+networks:
+  updates-net:
+    driver: bridge

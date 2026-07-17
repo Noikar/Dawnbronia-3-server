@@ -24,3 +24,6 @@ zones/generic/armor.itm
 *.p12
 *.pem
 private_keys/
+
+# Client auto-updater dist tree (large, host-local build output; regen with pack_client.sh)
+client_dist/
