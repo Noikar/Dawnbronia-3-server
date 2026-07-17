@@ -145,7 +145,7 @@ static void check_ingame_idle(int nr) {
         elog("character-player link wrong for player %d, character %s (%d) (%d)", nr, ch[cn].name, cn, ch[cn].player);
         player_client_exit(nr, "idle too long");
         player[nr]->lastcmd = ticker;
-    } else if (ticker > player[nr]->lastcmd + TICKS * 60 * 5) {
+    } else if (ticker > player[nr]->lastcmd + TICKS * 60 * 15) {
         xlog("check_ingame_idle(): going to kick player %d for being idle too long.", nr);
         exit_char(cn);
         player_client_exit(nr, "idle too long");
