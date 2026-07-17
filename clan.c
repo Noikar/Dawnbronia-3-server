@@ -307,8 +307,14 @@ void tick_clan(void) {
             update_time = ticker;
             update_state++;
         } else if (res == -1) {
-            elog("Could not read Clan data");
-            update_state = 2;
+            if (areaID == 3) { // only area 3 updates clan info, so only it creates the row
+                elog("No Clan data found, creating it");
+                update_state = 8;
+            } else {
+                // fresh database: wait for area 3 to create the row, then retry
+                update_time = ticker;
+                update_state = 2;
+            }
         }
         break;
     case 2:
@@ -348,6 +354,26 @@ void tick_clan(void) {
             update_state = 0;
             elog("clan update storage failed, data lost!");
         }
+        break;
+
+    case 8:
+        if (create_storage(1, "Clan Data", clan, sizeof(clan))) update_state++;
+        break;
+    case 9:
+        res = check_create_storage();
+        if (res == 1) {
+            version = 1; // db_create_storage() inserts with version 1
+            update_time = ticker;
+            update_state = 2;
+        } else if (res == -1) {
+            elog("Could not create Clan data");
+            update_time = ticker;
+            update_state = 10;
+        }
+        break;
+    case 10: // creation failed: throttle, then retry from the top
+        update_done = 1; // keep the original failure semantics (see case 2)
+        if (ticker > update_time + TICKS * 10) update_state = 0;
         break;
 
     default:

@@ -1220,6 +1220,67 @@ void cmd_renclan(int cn, char *ptr) {
     log_char(cn, LOG_SYSTEM, 0, "Clan %d name changed to \"%s\".", cnr, name);
 }
 
+// god command: create a clan and install an online player as its founding leader,
+// mirroring the clanmaster jewel ceremony (found_clan + add_member + rank 4)
+void cmd_createclan(int cn, char *ptr) {
+    int co, nr, n;
+    char pname[80], cname[80], *exname;
+
+    if (areaID != 3) {
+        log_char(cn, LOG_SYSTEM, 0, "Sorry, this command only works in Aston.");
+        return;
+    }
+
+    while (isspace(*ptr)) ptr++;
+
+    // first word = name of the founding character
+    for (n = 0; n < 79 && ptr[n] && !isspace(ptr[n]); n++) pname[n] = ptr[n];
+    pname[n] = 0;
+    ptr += n;
+    while (isspace(*ptr)) ptr++;
+
+    // rest of the line = clan name (may contain spaces)
+    for (n = 0; n < 79 && ptr[n]; n++) cname[n] = ptr[n];
+    cname[n] = 0;
+
+    if (!pname[0] || !cname[0]) {
+        log_char(cn, LOG_SYSTEM, 0, "Usage: /createclan <character> <clan-name>");
+        return;
+    }
+
+    for (n = 1; n < MAXCLAN; n++) {
+        exname = get_clan_name(n);
+        if (exname && exname[0] && !strcasecmp(exname, cname)) {
+            log_char(cn, LOG_SYSTEM, 0, "There already is a clan named \"%s\" (number %d).", exname, n);
+            return;
+        }
+    }
+
+    for (co = getfirst_char(); co; co = getnext_char(co)) {
+        if ((ch[co].flags & CF_PLAYER) && !strcasecmp(ch[co].name, pname)) break;
+    }
+    if (!co) {
+        log_char(cn, LOG_SYSTEM, 0, "Sorry, no player by the name %s found in Aston.", pname);
+        return;
+    }
+    if (get_char_clan(co) || get_char_club(co)) {
+        log_char(cn, LOG_SYSTEM, 0, "%s is already a member of a clan or club.", ch[co].name);
+        return;
+    }
+
+    if (found_clan(cname, co, &nr)) {
+        log_char(cn, LOG_SYSTEM, 0, "Could not create the clan - no free clan slot, or the name is too long.");
+        return;
+    }
+
+    add_member(co, nr, ch[cn].name);
+    ch[co].clan_rank = 4;
+
+    dlog(cn, 0, "created clan %d '%s' with leader %s", nr, cname, ch[co].name);
+    log_char(cn, LOG_SYSTEM, 0, "Clan %d \"%s\" created. %s is now its leader (rank 4).", nr, cname, ch[co].name);
+    log_char(co, LOG_SYSTEM, 0, "There is a new clan named '%s', and you, %s, are its master!", cname, ch[co].name);
+}
+
 void cmd_renclub(int cn, char *ptr) {
     int cnr, n;
     char name[80];
@@ -1745,6 +1806,11 @@ int command(int cn, char *ptr) { // 1=ok, 0=repeat
             kill_club(nr);
         }
 
+        return 1;
+    }
+
+    if ((len = cmdcmp(ptr, "createclan", 7)) && (ch[cn].flags & CF_GOD)) {
+        cmd_createclan(cn, ptr + len);
         return 1;
     }
 
