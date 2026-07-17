@@ -45,6 +45,8 @@ services:
     volumes:
       # Persist server logs (optional)
       - ./logs:/server/logs
+      # Persist Live Quest saves (/questsave writes quest/<name>.qst here)
+      - ./quest:/server/quest
     networks:
       - astonia3-net
 

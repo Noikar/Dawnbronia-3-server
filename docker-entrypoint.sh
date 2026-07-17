@@ -93,8 +93,11 @@ start_server() {
     sleep 1
     
     # Define areas to start (based on v3 Makefile)
-    # Areas: 1 2 3 5 6 8 10 11 13 14 15 16 17 18 19 20 22 23 24 25 26 28 29 31 32 33 34 35 36 37
-    AREAS="1 2 3 5 6 8 10 11 13 14 15 16 17 18 19 20 22 23 24 25 26 28 29 31 32 33 34 35 36 37"
+    # Areas 30 (Clan Spawners) and 12 (Mine) are appended LAST on purpose:
+    # ports are assigned first-free in start order, so appending keeps areas
+    # 31-37 on their long-established ports (e.g. LQ area 35 = 5583) and puts
+    # 30 on 5586 and 12 on 5587. (12 was missing from the upstream list.)
+    AREAS="1 2 3 5 6 8 10 11 13 14 15 16 17 18 19 20 22 23 24 25 26 28 29 31 32 33 34 35 36 37 30 12"
     
     # Start all area servers (no -d flag, run in background with &)
     # -e flag tells server to read config from environment variables
