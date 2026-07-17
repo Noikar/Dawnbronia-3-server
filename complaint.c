@@ -70,12 +70,24 @@ static int html_escape_append(char *dst, int pos, int max, const char *src) {
         if (pos >= max - 8) break; // leave room for the longest entity + zero
 
         switch (c) {
-        case '&': pos += sprintf(dst + pos, "&amp;"); break;
-        case '<': pos += sprintf(dst + pos, "&lt;"); break;
-        case '>': pos += sprintf(dst + pos, "&gt;"); break;
-        case '"': pos += sprintf(dst + pos, "&quot;"); break;
-        case '\'': pos += sprintf(dst + pos, "&#39;"); break;
-        default: dst[pos++] = (char)c; break;
+        case '&':
+            pos += sprintf(dst + pos, "&amp;");
+            break;
+        case '<':
+            pos += sprintf(dst + pos, "&lt;");
+            break;
+        case '>':
+            pos += sprintf(dst + pos, "&gt;");
+            break;
+        case '"':
+            pos += sprintf(dst + pos, "&quot;");
+            break;
+        case '\'':
+            pos += sprintf(dst + pos, "&#39;");
+            break;
+        default:
+            dst[pos++] = (char)c;
+            break;
         }
         src++;
     }

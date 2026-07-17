@@ -1718,8 +1718,8 @@ static void login_newarea(int area, int mirror) {
 // one account request is processed at a time, which is plenty - these are rare).
 
 #define AQ_EMPTY 0 // no account op in progress
-#define AQ_READ 1  // queued, waiting for the DB thread
-#define AQ_DONE 2  // DB thread finished, result ready to collect
+#define AQ_READ 1 // queued, waiting for the DB thread
+#define AQ_DONE 2 // DB thread finished, result ready to collect
 
 static struct account_slot {
     int status;
@@ -1782,8 +1782,8 @@ static int db_acc_register(const char *username, const char *password) {
     if (argon2id_hash_password(hash, sizeof(hash), password, NULL)) return ACC_ST_SERVERERR;
 
     sprintf(buf,
-        "insert subscriber (email,password,creation_time,locked,banned,vendor) values ('%s','%s',%d,'N','I',0)",
-        euser, hash, (int)time(NULL));
+            "insert subscriber (email,password,creation_time,locked,banned,vendor) values ('%s','%s',%d,'N','I',0)",
+            euser, hash, (int)time(NULL));
     if (mysql_query_con(&mysql, buf)) return ACC_ST_SERVERERR;
 
     return ACC_ST_OK;
@@ -1931,14 +1931,14 @@ static int db_acc_create(const char *username, const char *password, const char 
     mirror = RANDOM(26) + 1;
 
     sprintf(buf, "insert chars values (0,'%s',%u,0,0,0,0,0,0,1,%d,1,1,'N',%d,'%s','%s','%s',%d,0,1)", ename,
-        (unsigned int)(flag & 0xffffffff), (int)time(NULL), sID, data, data, dbuf, mirror);
+            (unsigned int)(flag & 0xffffffff), (int)time(NULL), sID, data, data, dbuf, mirror);
     if (mysql_query_con(&mysql, buf)) {
         if (mysql_errno(&mysql) == ER_DUP_ENTRY) return ACC_ST_TAKEN;
         return ACC_ST_SERVERERR;
     }
 
     sprintf(buf, "insert charinfo values (%d,'%s',%u,0,0,0,0,0,0,%d,1,1,'N',%d)", (int)mysql_insert_id(&mysql), ename,
-        (unsigned int)(flag & 0xffffffff), (int)time(NULL), sID);
+            (unsigned int)(flag & 0xffffffff), (int)time(NULL), sID);
     if (mysql_query_con(&mysql, buf)) {
         // the chars row is already in; log but do not fail the player.
         elog("db_acc_create: charinfo insert failed: %s (%d)", mysql_error(&mysql), mysql_errno(&mysql));
@@ -1978,7 +1978,7 @@ static void db_account_op(void) {
 }
 
 int account_op(int nr, int op, const char *username, const char *password, const char *charname, int flags,
-    unsigned int ip, struct account_reply *out) {
+               unsigned int ip, struct account_reply *out) {
     pthread_mutex_lock(&data_mutex);
 
     // drop a stale request whose client vanished without collecting the result

@@ -18,20 +18,20 @@
 // Field widths on the wire. These match the login blob: ACC_NAMELEN ==
 // sizeof(ch[].name) (40) and ACC_PWLEN == MAXPASSWORD (16).
 #define ACC_NAMELEN 40
-#define ACC_PWLEN   16
+#define ACC_PWLEN 16
 
 // Request op codes (first byte of the request). Non-alpha on purpose.
 #define ACC_OP_REGISTER 0x01
-#define ACC_OP_LIST     0x02
-#define ACC_OP_CREATE   0x03
-#define ACC_OP_DELETE   0x04 // reserved for a later phase
+#define ACC_OP_LIST 0x02
+#define ACC_OP_CREATE 0x03
+#define ACC_OP_DELETE 0x04 // reserved for a later phase
 
 // CREATE character flags byte.
-#define ACC_FLAG_MALE    0x01 // clear = female
+#define ACC_FLAG_MALE 0x01 // clear = female
 #define ACC_FLAG_WARRIOR 0x02 // warrior bit
-#define ACC_FLAG_MAGE    0x04 // mage bit (warrior+mage both set = seyan)
-#define ACC_FLAG_ARCH    0x08 // arch variant - honored only for admin accounts
-#define ACC_FLAG_GOD     0x10 // god powers - honored only for admin accounts
+#define ACC_FLAG_MAGE 0x04 // mage bit (warrior+mage both set = seyan)
+#define ACC_FLAG_ARCH 0x08 // arch variant - honored only for admin accounts
+#define ACC_FLAG_GOD 0x10 // god powers - honored only for admin accounts
 
 // Per-account character cap (also the max entries in a LIST reply).
 #define ACC_MAXCHARS 8
@@ -42,8 +42,8 @@
 //                     + charname(ACC_NAMELEN) + flags(1)
 // The password field is obfuscated with the same XOR scheme login uses, keyed
 // by the account username.
-#define ACC_REQ_BASE  (1 + ACC_NAMELEN + ACC_PWLEN)          // REGISTER / LIST
-#define ACC_REQ_CREATE (ACC_REQ_BASE + ACC_NAMELEN + 1)      // CREATE
+#define ACC_REQ_BASE (1 + ACC_NAMELEN + ACC_PWLEN) // REGISTER / LIST
+#define ACC_REQ_CREATE (ACC_REQ_BASE + ACC_NAMELEN + 1) // CREATE
 
 // Reply. The server writes this RAW (uncompressed) with a direct csend, so it
 // arrives right after the connection's tiny uncompressed SV_REALTIME greeting
@@ -63,11 +63,11 @@
 // Account-level reply flags (the acctflags byte).
 #define ACC_ACCT_ADMIN 0x01 // account may create arch / god characters
 
-#define ACC_ST_OK        0
-#define ACC_ST_BADCREDS  1
-#define ACC_ST_TAKEN     2
-#define ACC_ST_INVALID   3
-#define ACC_ST_LIMIT     4
+#define ACC_ST_OK 0
+#define ACC_ST_BADCREDS 1
+#define ACC_ST_TAKEN 2
+#define ACC_ST_INVALID 3
+#define ACC_ST_LIMIT 4
 #define ACC_ST_SERVERERR 5
 
 #endif

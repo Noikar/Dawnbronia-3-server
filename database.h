@@ -70,13 +70,13 @@ int complaint_log(int staffID, int id);
 #include "account_proto.h"
 
 struct account_reply {
-    int result;    // ACC_ST_*
-    int count;     // number of list entries
+    int result; // ACC_ST_*
+    int count; // number of list entries
     int acctflags; // account-level flags (ACC_ACCT_*) for the reply header
     struct {
         char name[ACC_NAMELEN];
         unsigned int flags; // character class flag bits
-        unsigned int exp;   // experience
+        unsigned int exp; // experience
     } list[ACC_MAXCHARS];
 };
 
@@ -84,4 +84,4 @@ struct account_reply {
 // Returns 0 while busy (call again next tick) or 1 when finished, in which case
 // *out holds the result. Mirrors find_login()'s pattern.
 int account_op(int nr, int op, const char *username, const char *password, const char *charname, int flags,
-    unsigned int ip, struct account_reply *out);
+               unsigned int ip, struct account_reply *out);
