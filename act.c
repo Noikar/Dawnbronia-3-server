@@ -211,10 +211,13 @@ static int act_take(int cn) {
 
     if (ch[cn].flags & CF_PLAYER) dlog(cn, in, "took %s", it[in].name);
 
-    // auto-pocket: drop straight into the first free inventory slot instead of the
-    // cursor. store_item() returns 0 (and does nothing) when the pack is full, so
-    // we fall back to the cursor.
-    if (!(ch[cn].autopocket && store_item(cn, in))) {
+    // auto-pocket: money goes straight into the wallet, metal stacks merge into
+    // an existing pack stack, everything else drops into the first free inventory
+    // slot instead of the cursor. store_item() returns 0 (and does nothing) when
+    // the pack is full, so we fall back to the cursor.
+    if (ch[cn].autopocket && (it[in].flags & IF_MONEY)) {
+        pocket_money(cn, in);
+    } else if (!(ch[cn].autopocket && (merge_into_stack(cn, in) || store_item(cn, in)))) {
         ch[cn].citem = in;
         it[in].carried = cn;
     }

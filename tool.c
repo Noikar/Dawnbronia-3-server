@@ -2167,14 +2167,62 @@ int store_item(int cn, int in) {
     return 0;
 }
 
+// Auto-pocket helper: convert a money item straight into the character's gold
+// counter (wallet), so found/given money never occupies the cursor or an
+// inventory slot. The item must not sit in any slot or on the map.
+void pocket_money(int cn, int in) {
+    int value;
+
+    if (ch[cn].flags & CF_PLAYER) dlog(cn, in, "dropped into goldbag");
+    value = destroy_money_item(in);
+    ch[cn].gold += value;
+    stats_update(cn, 0, value);
+    ch[cn].flags |= CF_ITEMS;
+}
+
+// Auto-pocket helper: merge a freshly obtained metal stack (IDR_ENHANCE --
+// mined silver/gold, unit count in drdata+1) with an existing stack of the
+// same metal in the backpack, mirroring collect_item()'s manual combine.
+// The incoming item absorbs the old stack and takes over its pack slot, so
+// callers may keep using its item number afterwards. Returns 1 when merged.
+int merge_into_stack(int cn, int in) {
+    int n, in2;
+
+    if (it[in].driver != IDR_ENHANCE) return 0;
+
+    for (n = 30; n < INVENTORYSIZE; n++) {
+        if (!(in2 = ch[cn].item[n])) continue;
+        if (it[in2].driver != IDR_ENHANCE || it[in2].drdata[0] != it[in].drdata[0]) continue;
+
+        *(unsigned int *)(it[in].drdata + 1) += *(unsigned int *)(it[in2].drdata + 1);
+        it[in].value += it[in2].value;
+        sprintf(it[in].description, "%d units of %s.", *(unsigned int *)(it[in].drdata + 1), it[in].name);
+
+        if (ch[cn].flags & CF_PLAYER) dlog(cn, in2, "dropped by merging metal stacks");
+        destroy_item(in2);
+
+        ch[cn].item[n] = in;
+        it[in].carried = cn;
+        ch[cn].flags |= CF_ITEMS;
+        return 1;
+    }
+    return 0;
+}
+
 // Route a freshly gathered/looted world item into the character's hand, or straight
-// into the first free backpack slot when the auto-pocket option is on and a slot is
-// free. Money items are always left on the cursor -- they only convert to gold via a
-// real inventory swap, so pocketing one would strand it un-converted. When the pack
-// is full we also fall back to the cursor. Callers must already hold an empty hand
-// (the world-item drivers guard for that).
+// into the pack when the auto-pocket option is on: money goes into the wallet,
+// metal stacks merge into an existing stack, everything else takes the first free
+// backpack slot. When the pack is full we fall back to the cursor. Callers must
+// already hold an empty hand (the world-item drivers guard for that).
 void take_to_hand(int cn, int in) {
-    if (!(ch[cn].autopocket && !(it[in].flags & IF_MONEY) && store_item(cn, in))) {
+    if (ch[cn].autopocket) {
+        if (it[in].flags & IF_MONEY) {
+            pocket_money(cn, in);
+            return;
+        }
+        if (merge_into_stack(cn, in)) return;
+    }
+    if (!(ch[cn].autopocket && store_item(cn, in))) {
         ch[cn].citem = in;
         it[in].carried = cn;
     }
@@ -2470,6 +2518,13 @@ char *lower_case(char *src) {
 
 int give_char_item(int cn, int in) {
     int n;
+
+    // auto-pocket: money handed over by NPCs (quest rewards) goes straight into
+    // the wallet instead of a pack slot (where it would sit un-converted).
+    if (ch[cn].autopocket && (it[in].flags & IF_MONEY)) {
+        pocket_money(cn, in);
+        return 1;
+    }
 
     // normal: fill the hand first, spill into the pack when the hand is taken.
     // auto-pocket: skip the hand and go straight to the pack, only using the hand

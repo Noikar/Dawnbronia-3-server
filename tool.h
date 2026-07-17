@@ -63,6 +63,8 @@ int create_spell_timer(int cn, int in, int pos);
 int set_army_rank(int cn, int rank);
 int store_citem(int cn);
 int store_item(int cn, int in);
+void pocket_money(int cn, int in);
+int merge_into_stack(int cn, int in);
 void take_to_hand(int cn, int in);
 char *save_number(int nr);
 void add_hate(int cn, int co);

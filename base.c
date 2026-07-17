@@ -633,11 +633,13 @@ void chest_driver(int in, int cn) {
 
     if (ch[cn].flags & CF_PLAYER) dlog(cn, in2, "took from treasure chest");
 
+    // log before take_to_hand: with auto-pocket on, a money treasure is
+    // converted straight to wallet gold and the item no longer exists after
+    log_char(cn, LOG_SYSTEM, 0, "You got a %s.", it[in2].name);
+
     take_to_hand(cn, in2);
 
     ppd->last_access[nr] = realtime;
-
-    log_char(cn, LOG_SYSTEM, 0, "You got a %s.", it[in2].name);
 }
 
 void usetrap(int in, int cn) {
