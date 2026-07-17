@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <unistd.h>
 
 #include "server.h"
 #include "talk.h"
@@ -1493,6 +1494,115 @@ int command(int cn, char *ptr) { // 1=ok, 0=repeat
 
         start_shutdown(diff, down);
 
+        return 1;
+    }
+    // Take an area server offline or bring it back online at runtime, no restart.
+    //   /zone off <N> [reason]  - writes zones/<N>/OFFLINE. That area evacuates its
+    //                             players to their recall point and shuts down; the
+    //                             entrypoint supervisor then leaves it down. The
+    //                             marker is tagged as a runtime (non-permanent) off.
+    //   /zone on  <N>           - removes the marker so the supervisor restarts it.
+    //                             A runtime marker (from /zone off) comes straight
+    //                             back. A permanent/committed marker (no runtime tag)
+    //                             instead reports its reason; a second /zone on within
+    //                             30s is required to force it online.
+    if ((len = cmdcmp(ptr, "zone", 4)) && (ch[cn].flags & CF_GOD)) {
+        // sentinel written into markers created by /zone off, so /zone on can tell a
+        // throwaway runtime off from a permanent committed one
+        static const char runtime_tag[] = "ASTONIA_RUNTIME_OFFLINE";
+        static int zforce_cn = 0, zforce_area = 0;
+        static unsigned int zforce_tick = 0;
+        char zpath[80], zreason[220];
+        int zarea;
+        FILE *zfp;
+
+        ptr += len;
+        while (isspace(*ptr)) ptr++;
+
+        if (!strncasecmp(ptr, "off", 3)) {
+            ptr += 3;
+            while (isspace(*ptr)) ptr++;
+            zarea = atoi(ptr);
+            while (isdigit(*ptr)) ptr++;
+            while (isspace(*ptr)) ptr++;
+
+            snprintf(zpath, sizeof(zpath), "zones/%d", zarea);
+            if (zarea < 1 || access(zpath, F_OK) != 0) {
+                log_char(cn, LOG_SYSTEM, 0, "No such area %d.", zarea);
+                return 1;
+            }
+            snprintf(zpath, sizeof(zpath), "zones/%d/OFFLINE", zarea);
+            if (access(zpath, F_OK) == 0) {
+                log_char(cn, LOG_SYSTEM, 0, "Area %d is already flagged offline.", zarea);
+                return 1;
+            }
+            if (!(zfp = fopen(zpath, "w"))) {
+                log_char(cn, LOG_SYSTEM, 0, "Could not flag area %d offline (write failed).", zarea);
+                return 1;
+            }
+            if (*ptr) fprintf(zfp, "%s\n", ptr);
+            else fprintf(zfp, "Taken offline by %s\n", ch[cn].name);
+            fprintf(zfp, "%s\n", runtime_tag); // mark as a runtime off (not permanent)
+            fclose(zfp);
+
+            log_char(cn, LOG_SYSTEM, 0, "Area %d flagged offline; it will evacuate players and shut down shortly.", zarea);
+            charlog(cn, "zone off %d", zarea);
+            dlog(cn, 0, "zone off %d (%s)", zarea, *ptr ? ptr : "no reason");
+            return 1;
+        }
+
+        if (!strncasecmp(ptr, "on", 2)) {
+            ptr += 2;
+            while (isspace(*ptr)) ptr++;
+            zarea = atoi(ptr);
+
+            if (zarea < 1) {
+                log_char(cn, LOG_SYSTEM, 0, "Usage: /zone on <area>.");
+                return 1;
+            }
+            snprintf(zpath, sizeof(zpath), "zones/%d/OFFLINE", zarea);
+            if (access(zpath, F_OK) != 0) {
+                log_char(cn, LOG_SYSTEM, 0, "Area %d is not flagged offline (it should be running or starting).", zarea);
+                return 1;
+            }
+
+            // read the marker: capture the reason (for the report) and detect whether
+            // it is a runtime off (has the tag) or a permanent/committed marker
+            int zruntime = 0;
+            zreason[0] = 0;
+            if ((zfp = fopen(zpath, "r"))) {
+                char zline[220];
+                while (fgets(zline, sizeof(zline), zfp)) {
+                    zline[strcspn(zline, "\r\n")] = 0;
+                    if (!strcmp(zline, runtime_tag)) zruntime = 1;
+                    else if (!*zreason && *zline) snprintf(zreason, sizeof(zreason), "%s", zline);
+                }
+                fclose(zfp);
+            }
+
+            // Only a permanent (committed) marker needs a confirming second /zone on;
+            // a runtime marker from /zone off comes straight back online.
+            if (!zruntime && !(zforce_cn == cn && zforce_area == zarea && ticker - zforce_tick < TICKS * 30)) {
+                zforce_cn = cn;
+                zforce_area = zarea;
+                zforce_tick = ticker;
+                log_char(cn, LOG_SYSTEM, 0, "Area %d is permanently offline: %s", zarea, *zreason ? zreason : "(no reason given)");
+                log_char(cn, LOG_SYSTEM, 0, "Run /zone on %d again within 30s to force it online.", zarea);
+                return 1;
+            }
+
+            zforce_cn = zforce_area = 0;
+            if (remove(zpath) != 0) {
+                log_char(cn, LOG_SYSTEM, 0, "Could not bring area %d online (marker removal failed).", zarea);
+                return 1;
+            }
+            log_char(cn, LOG_SYSTEM, 0, "Area %d coming online; it will start within a few seconds.", zarea);
+            charlog(cn, "zone on %d", zarea);
+            dlog(cn, 0, "zone on %d%s", zarea, zruntime ? "" : " (forced)");
+            return 1;
+        }
+
+        log_char(cn, LOG_SYSTEM, 0, "Usage: /zone off <area> [reason]  |  /zone on <area>");
         return 1;
     }
     if ((len = cmdcmp(ptr, "gold", 4))) {

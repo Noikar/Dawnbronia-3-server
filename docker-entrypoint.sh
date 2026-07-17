@@ -92,40 +92,87 @@ start_server() {
     ./chatserver &
     sleep 1
     
-    # Define areas to start (based on v3 Makefile)
-    # Areas 30 (Clan Spawners) and 12 (Mine) are appended LAST on purpose:
-    # ports are assigned first-free in start order, so appending keeps areas
-    # 31-37 on their long-established ports (e.g. LQ area 35 = 5583) and puts
-    # 30 on 5586 and 12 on 5587. (12 was missing from the upstream list.)
-    AREAS="1 2 3 5 6 8 10 11 13 14 15 16 17 18 19 20 22 23 24 25 26 28 29 31 32 33 34 35 36 37 30 12"
-    
-    # Start all area servers (no -d flag, run in background with &)
-    # -e flag tells server to read config from environment variables
-    for area in $AREAS; do
-        echo "Starting area $area..."
-        ./server -e -a $area &
+    # Discover every startable area instead of hand-maintaining a list: a zone
+    # is startable if zones/<N> exists, N is numeric, and it contains a .map.
+    # DEFAULT IS ON - every zone boots unless it is explicitly flagged offline,
+    # so we never end up with a silently-dead zone (like pents used to be).
+    #
+    # A zone stays offline if EITHER:
+    #   - a marker file zones/<N>/OFFLINE exists (permanent, version-controlled), OR
+    #   - N appears in the OFFLINE_AREAS env var (quick ops toggle, no rebuild).
+    #
+    # Ports are now deterministic (io.c binds 5555+N), so start order no longer
+    # affects which port an area gets - discovery order is purely cosmetic.
+    OFFLINE_AREAS="${OFFLINE_AREAS:-}"
+    SUPERVISOR_INTERVAL="${SUPERVISOR_INTERVAL:-5}"
+
+    # desired_areas: echo the numeric IDs of every area that SHOULD be online right
+    # now - it has a zones/<N>/*.map and is not flagged offline (by a zones/<N>/OFFLINE
+    # marker or the OFFLINE_AREAS list). Re-evaluated live, so the supervisor picks up
+    # /zone on|off marker changes without a restart.
+    desired_areas() {
+        local zdir area list=""
+        for zdir in zones/*/; do
+            area="${zdir#zones/}"; area="${area%/}"
+            case "$area" in '' | *[!0-9]*) continue ;; esac
+            ls "$zdir"*.map >/dev/null 2>&1 || continue
+            [ -e "${zdir}OFFLINE" ] && continue
+            case " $OFFLINE_AREAS " in *" $area "*) continue ;; esac
+            list="$list $area"
+        done
+        echo "$list" | tr ' ' '\n' | sort -n | tr '\n' ' '
+    }
+
+    # area_listening: succeeds if an area server is bound to its port (5555+N).
+    # /proc/net/tcp col 4 == 0A is LISTEN; col 2 is HEXIP:HEXPORT (mawk coerces "0x..").
+    area_listening() {
+        local port=$((5555 + $1))
+        awk -v p="$port" 'NR>1 && $4=="0A" { split($2,a,":"); if ((("0x" a[2])+0) == p) f=1 } END { exit(f?0:1) }' /proc/net/tcp
+    }
+
+    # Log which zones start held-offline (boot-time visibility).
+    for zdir in zones/*/; do
+        area="${zdir#zones/}"; area="${area%/}"
+        case "$area" in '' | *[!0-9]*) continue ;; esac
+        ls "$zdir"*.map >/dev/null 2>&1 || continue
+        if [ -e "${zdir}OFFLINE" ]; then
+            echo "Area $area held OFFLINE (marker): $(head -n1 "${zdir}OFFLINE" 2>/dev/null)"
+        else
+            case " $OFFLINE_AREAS " in *" $area "*) echo "Area $area held OFFLINE (OFFLINE_AREAS)" ;; esac
+        fi
+    done
+
+    # Initial start of every desired area. Ports are deterministic (5555+N) so start
+    # order is cosmetic; the stagger just smooths load. -e reads config from env.
+    for area in $(desired_areas); do
+        echo "Starting area $area (port $((5555 + area)))..."
+        ./server -e -a "$area" &
         sleep 0.5
     done
-    
+
     echo "All server processes started!"
     echo "Server is ready for connections."
-    
-    # Keep the container running and wait for any process to exit
+
+    # Supervisor: keep the desired set running. Respawns crashed areas (a crash used
+    # to mean a dead zone until the next container restart) and starts any area whose
+    # OFFLINE marker was just removed by /zone on - all without a restart. An area
+    # taken offline evacuates its own players and exits; since it is no longer
+    # "desired", we simply never restart it.
+    echo "Supervisor active (every ${SUPERVISOR_INTERVAL}s)."
     while true; do
-        # Check if critical processes are still running
-        if ! pgrep -x chatserver > /dev/null; then
-            echo "WARNING: chatserver died, restarting..."
+        sleep "$SUPERVISOR_INTERVAL"
+
+        if ! pgrep -x chatserver >/dev/null; then
+            echo "Supervisor: chatserver died, restarting..."
             ./chatserver &
         fi
-        
-        # Count running server processes
-        local running
-        running=$(pgrep -c "^server$" 2>/dev/null) || running=0
-        if [ "$running" -lt 5 ]; then
-            echo "WARNING: Only $running server processes running. Something may be wrong."
-        fi
-        
-        sleep 10
+
+        for area in $(desired_areas); do
+            if ! area_listening "$area"; then
+                echo "Supervisor: starting area $area (port $((5555 + area)))..."
+                ./server -e -a "$area" &
+            fi
+        done
     done
 }
 

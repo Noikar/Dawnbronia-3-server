@@ -142,6 +142,7 @@ void player_use_recall(int cn);
 int level2maxitem(int level);
 int create_orb2(int what);
 void shutdown_warn(void);
+void check_zone_offline(void);
 int check_levelup(int cn);
 int check_can_wear_item(int cn);
 void shutdown_bg(int t, int down);

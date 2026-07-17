@@ -501,6 +501,10 @@ int main(int argc, char *args[]) {
 #endif
         }
 
+        if ((ticker & 63) == 0) {
+            check_zone_offline(); // self-shutdown if a zones/<areaID>/OFFLINE marker appeared
+        }
+
         if ((ticker & 255) == 168) {
             prof = prof_start(38);
             consistency_check_items();

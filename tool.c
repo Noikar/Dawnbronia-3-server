@@ -7,6 +7,7 @@
 #include <ctype.h>
 #include <string.h>
 #include <math.h>
+#include <unistd.h>
 
 #include "server.h"
 #include "log.h"
@@ -2306,6 +2307,60 @@ void lollipop_bg(int cnID, int coID) {
 }
 
 static int shutdown_last = 0;
+
+// Evacuate every player in this area to their recall point (ch[].rest*), falling
+// back to a main town if that point is in this same (offline-bound) area or its
+// server is down. Used when a zone is taken offline at runtime so nobody is left
+// stranded with current_area pointing at a server that is about to disappear.
+static void evac_area_players(void) {
+    int cn, fa, fx, fy;
+
+    // fallback safe town: Aston (area 3), or Cameron fort (area 1) if we ARE Aston
+    if (areaID == 3) {
+        fa = 1;
+        fx = 126;
+        fy = 179;
+    } else {
+        fa = 3;
+        fx = 167;
+        fy = 188;
+    }
+
+    for (cn = 1; cn < MAXCHARS; cn++) {
+        if (!(ch[cn].flags & CF_PLAYER)) continue;
+
+        log_char(cn, LOG_SYSTEM, 0, "This area is going offline. You are being recalled to safety.");
+
+        // recall point, unless it is in this same area being shut down
+        if (ch[cn].resta && (int)ch[cn].resta != areaID && change_area(cn, ch[cn].resta, ch[cn].restx, ch[cn].resty)) continue;
+
+        // fallback to a main town
+        change_area(cn, fa, fx, fy);
+    }
+}
+
+// Runtime zone on/off: every area server watches for a zones/<areaID>/OFFLINE
+// marker (created by the /zone god command, or committed in the repo). When one
+// appears, evacuate the players and shut this area down gracefully; the
+// entrypoint supervisor sees the marker and does not respawn it. Two-stage: we
+// evacuate on the cycle the marker is seen, then quit on the next one so player
+// hand-offs to their destination servers have time to flush.
+void check_zone_offline(void) {
+    static int evacuating = 0;
+    char path[80];
+
+    if (evacuating) {
+        quit = 1; // grace cycle elapsed - exit now via the normal shutdown path
+        return;
+    }
+
+    snprintf(path, sizeof(path), "zones/%d/OFFLINE", areaID);
+    if (access(path, F_OK) != 0) return; // no marker: stay online
+
+    xlog("Zone %d flagged OFFLINE - evacuating players and shutting down", areaID);
+    evac_area_players();
+    evacuating = 1;
+}
 
 void shutdown_warn(void) {
     char buf[256];

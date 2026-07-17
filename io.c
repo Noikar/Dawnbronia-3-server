@@ -310,12 +310,25 @@ int init_io(void) {
     ioctl(sock, FIONBIO, (u_long *)&one); // non-blocking mode
     setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (const char *)&one, sizeof(int));
 
-    for (port = 5556; port < 5600; port++) {
-        addr.sin_family = AF_INET;
-        addr.sin_port = htons(port);
-        addr.sin_addr.s_addr = 0;
+    // Deterministic port: area N always binds 5555+N, so area 1 -> 5556 (the
+    // login port, unchanged) and every area's port is a fixed function of its
+    // ID - start order no longer matters and offline zones just leave a gap.
+    // Fall back to first-free 5556-5599 if the preferred port is taken (e.g. an
+    // area mirror sharing an ID). Either way the bound port is published to the
+    // DB `area` table by area_alive(), so clients always follow the real port.
+    port = (areaID >= 1) ? 5555 + areaID : 0;
+    addr.sin_family = AF_INET;
+    addr.sin_port = htons(port);
+    addr.sin_addr.s_addr = 0;
 
-        if (!bind(sock, (struct sockaddr *)&addr, sizeof(addr))) break;
+    if (port == 0 || bind(sock, (struct sockaddr *)&addr, sizeof(addr))) {
+        for (port = 5556; port < 5600; port++) {
+            addr.sin_family = AF_INET;
+            addr.sin_port = htons(port);
+            addr.sin_addr.s_addr = 0;
+
+            if (!bind(sock, (struct sockaddr *)&addr, sizeof(addr))) break;
+        }
     }
 
     if (listen(sock, 50)) return 0;

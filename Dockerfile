@@ -126,8 +126,10 @@ RUN chmod +x /entrypoint.sh
 RUN echo "Welcome to Astonia Community Server" > motd.txt
 
 # Expose ports
+# Area servers bind first-free from 5556 (io.c loops port < 5600). We start 36
+# areas -> 5556-5591; expose to 5599 to match the code's ceiling and leave room.
 EXPOSE 5554
-EXPOSE 5556-5590
+EXPOSE 5556-5599
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["start"]

@@ -40,8 +40,9 @@ services:
     ports:
       # Chat server (internal communication, usually not exposed publicly)
       # - "5554:5554"
-      # Game server ports - area servers
-      - "5556-5590:5556-5590"
+      # Game server ports - area servers (36 areas bind 5556-5591; io.c allows
+      # up to 5599, so map the full range to match the Dockerfile EXPOSE).
+      - "5556-5599:5556-5599"
     volumes:
       # Persist server logs (optional)
       - ./logs:/server/logs
