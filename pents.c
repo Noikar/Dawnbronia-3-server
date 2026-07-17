@@ -63,6 +63,8 @@ static int init_done = 0;
 static int solve_ser = 255;
 static int total = 0, active = 0, solve = 12;
 static int lastsolve = 0;
+static int last_pop = 0; // area population at last solve-threshold roll
+static int next_pop_check = 0; // ticker gate for the live population poll
 static int power[MAXLEVEL]; /*={
         2000,2000,2000,2000,2000,2000,2000,2000,2000,2000,
         2000,2000,2000,2000,2000,2000,2000,2000,2000,2000,
@@ -173,7 +175,7 @@ static void solve_pents(int cc) {
             }
         }
 
-        log_char(cn, LOG_SYSTEM, 0, "The current record is %d pentagrammas in one run, held by %s. You have %d pentagrammas so far.", pent_record, pent_record_name, nppd->pent_cnt);
+        log_char(cn, LOG_SYSTEM, 0, "The current record is %d pentagrams in one run, held by %s. You have %d pentagrams so far.", pent_record, pent_record_name, nppd->pent_cnt);
     }
     lastsolve = ticker;
 }
@@ -193,7 +195,7 @@ static void add_pent(int cn, int in, int didsolve) {
 
     if (didsolve) nppd->bonus += value * 3;
 
-    log_char(cn, LOG_SYSTEM, 0, "You got a %s Pentagram, value %d. %d of %d Pentagrammas are active.",
+    log_char(cn, LOG_SYSTEM, 0, "You got a %s Pentagram, value %d. %d of %d Pentagrams are active.",
              colortext[color], value, active, total);
 
     // add pent to data structure
@@ -230,7 +232,7 @@ static void add_pent(int cn, int in, int didsolve) {
             }
             if (same == 5) {
                 nppd->status = 1;
-                log_char(cn, LOG_SYSTEM, 0, "You got five Pentagrammas of the same color!");
+                log_char(cn, LOG_SYSTEM, 0, "You got five Pentagrams of the same color!");
             }
         } else {
             if (nppd->pent_value[5] < value) {
@@ -289,7 +291,10 @@ static void add_pent(int cn, int in, int didsolve) {
     }
 }
 
-static void set_pent_solve_cnt(void) {
+// count the players who count toward this area's pent quest. most areas use the
+// whole area population; 25 and 34 host the quest in only part of the map, so we
+// restrict the count to that sub-region.
+static int pent_pop_count(void) {
     int cnt, cn;
 
     if (areaID == 25) {
@@ -302,11 +307,47 @@ static void set_pent_solve_cnt(void) {
         }
     } else cnt = online;
 
-    solve = 12 + (cnt + 1) * 4 + RANDOM((cnt + 1) * 7);
+    return cnt;
+}
 
-    if (solve > total - total / 4) solve = total - total / 4;
+// the solve threshold for a given population. keeps the RANDOM term so the exact
+// number stays hidden from players (they can't game a fixed count).
+static int pent_solve_target(int cnt) {
+    int s;
 
-    if (areaID == 21) solve = 12;
+    s = 12 + (cnt + 1) * 4 + RANDOM((cnt + 1) * 7);
+
+    if (s > total - total / 4) s = total - total / 4;
+
+    if (areaID == 21) s = 12;
+
+    return s;
+}
+
+static void set_pent_solve_cnt(void) {
+    last_pop = pent_pop_count();
+    solve = pent_solve_target(last_pop);
+}
+
+// re-roll the threshold downward when the area empties out mid-run, so a
+// shrunken crowd is not left chasing a target set for a full house. down-only:
+// min() logic guards the RANDOM term from nudging it back up, and gating on an
+// actual population drop keeps solve from drifting on a stable crowd. players
+// joining are tracked but never raise the current run's bar.
+static void adjust_pent_solve_cnt(void) {
+    int cnt, target;
+
+    if (ticker < next_pop_check) return;
+    next_pop_check = ticker + TICKS * 5;
+
+    cnt = pent_pop_count();
+
+    if (cnt < last_pop) {
+        target = pent_solve_target(cnt);
+        if (target < solve) solve = target;
+    }
+
+    last_pop = cnt;
 }
 
 void pent_init(void) {
@@ -380,6 +421,8 @@ void pent_driver(int in, int cn) {
         pent_init();
         init_done = 1;
     }
+
+    adjust_pent_solve_cnt();
 
     level = *(unsigned char *)(it[in].drdata + 0);
     status = *(unsigned char *)(it[in].drdata + 1);
