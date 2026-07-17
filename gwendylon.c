@@ -2256,10 +2256,70 @@ void asturin_dead(int cn, int co) {
 
 //-----------------------
 
+// walk-up hand-off state shared by the quest NPCs below: instead of having a
+// quest item appear out of thin air, the NPC parks it in its own hand and
+// carries it over to the player (give animation included).
+struct npc_give_state {
+    int target; // character to walk to and hand the item to, 0 = idle
+    int serial; // target's serial, guards against char slot reuse
+    int timeout; // tick after which we stop walking and transfer instantly
+};
+
+// Park <in> in the NPC's hand and remember <co> so the driver's main loop
+// (walkup_give_poll) can walk over and hand it to them. Falls back to an
+// instant transfer when the NPC's hand is already busy.
+static void walkup_give_start(int cn, int co, int in, struct npc_give_state *gs) {
+    if (ch[cn].citem) { // hand is busy: give instantly rather than risk losing the item
+        if (!give_char_item(co, in)) destroy_item(in);
+        return;
+    }
+    it[in].carried = cn;
+    ch[cn].citem = in;
+    ch[cn].flags |= CF_ITEMS;
+
+    gs->target = co;
+    gs->serial = ch[co].serial;
+    gs->timeout = ticker + TICKS * 5;
+}
+
+// Drive a pending walk-up hand-off. Returns 1 if the NPC spent its action on
+// walking/giving and the driver should return.
+static int walkup_give_poll(int cn, struct npc_give_state *gs) {
+    int co = gs->target, in;
+
+    if (!co) return 0;
+
+    if (!(in = ch[cn].citem)) { // hand is empty: the give went through
+        gs->target = 0;
+        return 0;
+    }
+    if (!ch[co].flags || ch[co].serial != gs->serial) { // target is gone
+        gs->target = 0;
+        remove_item(in);
+        destroy_item(in);
+        return 0;
+    }
+    // taking too long (blocked path, player ran off): fall back to an instant
+    // transfer so the quest cannot get stuck and the NPC is not lured away
+    if (ticker > gs->timeout || dist_from_home(cn, co) > 24) {
+        gs->target = 0;
+        if (give_char_item(co, in)) {
+            ch[cn].citem = 0;
+            ch[cn].flags |= CF_ITEMS;
+        } else {
+            remove_item(in);
+            destroy_item(in);
+        }
+        return 0;
+    }
+    return give_driver(cn, co);
+}
+
 struct guiwynn_driver_data {
     int last_talk;
     int current_victim;
     int nighttime;
+    struct npc_give_state give;
 };
 
 void guiwynn_driver(int cn, int ret, int lastact) {
@@ -2360,8 +2420,10 @@ void guiwynn_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     if (!has_item(co, IID_AREA1_MADKEY1)) {
                         in = create_item("mad_key1");
-                        if (!give_char_item(co, in)) destroy_item(in);
-                        quiet_say(cn, "This key opens the front door of the Order.");
+                        if (in) {
+                            walkup_give_start(cn, co, in, &dat->give);
+                            quiet_say(cn, "This key opens the front door of the Order.");
+                        }
                     }
                     break;
                 case 5:
@@ -2387,8 +2449,10 @@ void guiwynn_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     if (!has_item(co, IID_AREA1_MADKEY1)) {
                         in = create_item("mad_key1");
-                        if (!give_char_item(co, in)) destroy_item(in);
-                        quiet_say(cn, "This key opens the front door of the Order.");
+                        if (in) {
+                            walkup_give_start(cn, co, in, &dat->give);
+                            quiet_say(cn, "This key opens the front door of the Order.");
+                        }
                     }
                     break;
                 case 8:
@@ -2408,8 +2472,10 @@ void guiwynn_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     if (!has_item(co, IID_AREA1_MADKEY1)) {
                         in = create_item("mad_key1");
-                        if (!give_char_item(co, in)) destroy_item(in);
-                        quiet_say(cn, "This key opens the front door of the Order.");
+                        if (in) {
+                            walkup_give_start(cn, co, in, &dat->give);
+                            quiet_say(cn, "This key opens the front door of the Order.");
+                        }
                     }
                     break;
                 case 11:
@@ -2539,6 +2605,9 @@ void guiwynn_driver(int cn, int ret, int lastact) {
         remove_message(cn, msg);
     }
 
+    // walk a pending quest item over to its recipient
+    if (walkup_give_poll(cn, &dat->give)) return;
+
     // do something. whenever possible, call do_idle with as high a tick count
     // as reasonable when doing nothing.
     if (talkdir) turn(cn, talkdir);
@@ -2558,6 +2627,7 @@ struct logain_driver_data {
     int last_talk;
     int current_victim;
     int nighttime;
+    struct npc_give_state give;
 };
 
 void logain_driver(int cn, int ret, int lastact) {
@@ -2658,8 +2728,10 @@ void logain_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     if (!has_item(co, IID_AREA1_MADKEY6)) {
                         in = create_item("mad_key6");
-                        if (!give_char_item(co, in)) destroy_item(in);
-                        quiet_say(cn, "Thou willt need this key to gain entry.");
+                        if (in) {
+                            walkup_give_start(cn, co, in, &dat->give);
+                            quiet_say(cn, "Thou willst need this key to gain entry.");
+                        }
                     }
                     break;
                 case 5:
@@ -2679,8 +2751,10 @@ void logain_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     if (!has_item(co, IID_AREA1_MADKEY9)) {
                         in = create_item("mad_key9");
-                        if (!give_char_item(co, in)) destroy_item(in);
-                        quiet_say(cn, "Here. I won't use it. But thou might want to search his house.");
+                        if (in) {
+                            walkup_give_start(cn, co, in, &dat->give);
+                            quiet_say(cn, "Here. I won't use it. But thou might want to search his house.");
+                        }
                     }
                     break;
                 case 8:
@@ -2689,8 +2763,10 @@ void logain_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     if (!has_item(co, IID_AREA1_MADKEY6)) {
                         in = create_item("mad_key6");
-                        if (!give_char_item(co, in)) destroy_item(in);
-                        quiet_say(cn, "Shouldst thou wish to visit the Brotherhood again, here's the key.");
+                        if (in) {
+                            walkup_give_start(cn, co, in, &dat->give);
+                            quiet_say(cn, "Shouldst thou wish to visit the Brotherhood again, here's the key.");
+                        }
                     }
                     break;
                 case 9:
@@ -2795,6 +2871,9 @@ void logain_driver(int cn, int ret, int lastact) {
 
         remove_message(cn, msg);
     }
+
+    // walk a pending quest item over to its recipient
+    if (walkup_give_poll(cn, &dat->give)) return;
 
     // do something. whenever possible, call do_idle with as high a tick count
     // as reasonable when doing nothing.
