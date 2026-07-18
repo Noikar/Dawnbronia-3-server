@@ -18,6 +18,7 @@
 #include "talk.h"
 #include "effect.h"
 #include "database.h"
+#include "mem.h"
 #include "map.h"
 #include "create.h"
 #include "container.h"
@@ -86,6 +87,44 @@ static int tpower = 0, minlevel = 0, maxlevel = 0;
 static int pent_record = 0, pent_record_ID = 0;
 static int demoncnt = 0;
 char pent_record_name[40] = {"Nobody"};
+
+// ---------------------------------------------------------------------------
+// Global, persistent pent record.
+//
+// pent_record / pent_record_ID / pent_record_name used to be plain in-memory
+// values that reset to 0 whenever an area process restarted, so a container
+// recreate or a single /zone restart silently wiped the all-time record. They
+// are now backed by storage row PENT_RECORD_STORAGE_ID, which is shared by
+// every pent area - giving one global record that survives restarts.
+//
+// tick_pents() (pumped from pent_driver, so it only runs in areas that actually
+// have pents) drives a small async state machine: seed the row if missing, load
+// it on boot, push it when a local run breaks it (pent_dirty), and re-read it
+// periodically so records set in other areas appear here too. Cross-area write
+// races are resolved by update_storage()'s optimistic version check: the loser
+// re-reads and re-decides whether its record still leads.
+// ---------------------------------------------------------------------------
+#define PENT_RECORD_STORAGE_ID 1000 // reserved, well clear of zone storage= ids
+
+#define PENT_IO_CREATE 0
+#define PENT_IO_CREATE_WAIT 1
+#define PENT_IO_READ 2
+#define PENT_IO_READ_WAIT 3
+#define PENT_IO_IDLE 4
+#define PENT_IO_WRITE_WAIT 5
+#define PENT_IO_REREAD_WAIT 6
+
+struct pent_record_data {
+    int record;
+    int record_ID;
+    char record_name[40];
+};
+
+static int pent_io_state = PENT_IO_CREATE;
+static int pent_version = 0;
+static int pent_dirty = 0; // a local run beat the record; needs persisting
+static int pent_next_reread = 0; // ticker gate for the periodic cross-area re-read
+static struct pent_record_data pent_io_buf; // stable buffer for the in-flight async op
 
 struct pent_nppd {
     int status; // 0 = normal, 1 = got 5 of same color
@@ -289,6 +328,115 @@ static void add_pent(int cn, int in, int didsolve) {
         pent_record = nppd->pent_cnt;
         pent_record_ID = ch[cn].ID;
         strcpy(pent_record_name, ch[cn].name);
+        pent_dirty = 1; // persist the new global record (see tick_pents)
+    }
+}
+
+// adopt a record read back from storage. a strictly higher stored record
+// overrides ours; once the stored record has caught up to (or passed) ours
+// there is nothing local left to push, so clear the dirty flag.
+static void apply_pent_record(struct pent_record_data *prd) {
+    if (prd->record > pent_record) {
+        pent_record = prd->record;
+        pent_record_ID = prd->record_ID;
+        memcpy(pent_record_name, prd->record_name, sizeof(pent_record_name));
+        pent_record_name[sizeof(pent_record_name) - 1] = 0;
+    }
+    if (prd->record >= pent_record) pent_dirty = 0;
+}
+
+// snapshot the current in-memory record into a buffer for an async create/update.
+static void pack_pent_record(struct pent_record_data *prd) {
+    memset(prd, 0, sizeof(*prd));
+    prd->record = pent_record;
+    prd->record_ID = pent_record_ID;
+    memcpy(prd->record_name, pent_record_name, sizeof(prd->record_name));
+    prd->record_name[sizeof(prd->record_name) - 1] = 0;
+}
+
+// pump the global pent-record persistence. cheap: mostly a state check per call.
+static void tick_pents(void) {
+    struct pent_record_data prd;
+    void *tmp;
+    int res, size;
+
+    switch (pent_io_state) {
+    case PENT_IO_CREATE:
+        // try to seed the row. harmless if another area already created it -
+        // that comes back as a failed create, and we read next either way.
+        pack_pent_record(&pent_io_buf);
+        if (create_storage(PENT_RECORD_STORAGE_ID, "Pent Record", &pent_io_buf, sizeof(pent_io_buf))) pent_io_state = PENT_IO_CREATE_WAIT;
+        break;
+
+    case PENT_IO_CREATE_WAIT:
+        if (check_create_storage()) pent_io_state = PENT_IO_READ;
+        break;
+
+    case PENT_IO_READ:
+        if (read_storage(PENT_RECORD_STORAGE_ID, pent_version)) pent_io_state = PENT_IO_READ_WAIT;
+        break;
+
+    case PENT_IO_READ_WAIT:
+        res = check_read_storage(&pent_version, &tmp, &size);
+        if (res == 1) {
+            if (size == (int)sizeof(prd)) {
+                memcpy(&prd, tmp, sizeof(prd));
+                apply_pent_record(&prd);
+            } else if (size) {
+                elog("pents: incompatible Pent Record data (%d vs %d), ignoring", size, (int)sizeof(prd));
+            }
+            if (size) xfree(tmp);
+            pent_next_reread = ticker + TICKS * 15;
+            pent_io_state = PENT_IO_IDLE;
+        } else if (res == -1) {
+            pent_io_state = PENT_IO_CREATE; // row missing/read failed: (re)create it
+        }
+        break;
+
+    case PENT_IO_IDLE:
+        if (pent_dirty) {
+            pack_pent_record(&pent_io_buf);
+            if (update_storage(PENT_RECORD_STORAGE_ID, pent_version, &pent_io_buf, sizeof(pent_io_buf))) {
+                pent_dirty = 0; // optimistic; re-armed below on a version conflict
+                pent_io_state = PENT_IO_WRITE_WAIT;
+            }
+        } else if (ticker >= pent_next_reread) {
+            if (read_storage(PENT_RECORD_STORAGE_ID, pent_version)) pent_io_state = PENT_IO_REREAD_WAIT;
+        }
+        break;
+
+    case PENT_IO_WRITE_WAIT:
+        res = check_update_storage();
+        if (res == 1) {
+            pent_version++; // our update bumped the stored version by one
+            pent_next_reread = ticker + TICKS * 15;
+            pent_io_state = PENT_IO_IDLE;
+        } else if (res == -1) {
+            // another area wrote first. re-read, then re-decide if we still lead.
+            pent_dirty = 1;
+            pent_io_state = PENT_IO_READ;
+        }
+        break;
+
+    case PENT_IO_REREAD_WAIT:
+        res = check_read_storage(&pent_version, &tmp, &size);
+        if (res == 1) {
+            if (size == (int)sizeof(prd)) {
+                memcpy(&prd, tmp, sizeof(prd));
+                apply_pent_record(&prd);
+            }
+            if (size) xfree(tmp);
+            pent_next_reread = ticker + TICKS * 15;
+            pent_io_state = PENT_IO_IDLE;
+        } else if (res == -1) {
+            pent_next_reread = ticker + TICKS * 15; // transient; retry later
+            pent_io_state = PENT_IO_IDLE;
+        }
+        break;
+
+    default:
+        pent_io_state = PENT_IO_CREATE;
+        break;
     }
 }
 
@@ -424,6 +572,7 @@ void pent_driver(int in, int cn) {
     }
 
     adjust_pent_solve_cnt();
+    tick_pents(); // drive the global pent-record persistence
 
     level = *(unsigned char *)(it[in].drdata + 0);
     status = *(unsigned char *)(it[in].drdata + 1);
@@ -536,7 +685,7 @@ void pentboss_door_driver(int in, int cn) {
     dx = (ch[cn].x - it[in].x);
     dy = (ch[cn].y - it[in].y);
 
-    if (ticker - lastsolve > TICKS * 30 && (dx > 0 || dy > 0)) {
+    if (ticker - lastsolve > TICKS * 60 && (dx > 0 || dy > 0)) {
         log_char(cn, LOG_SYSTEM, 0, "The door won't open. It seems it is only accessible directly after a solve.");
         return;
     }
