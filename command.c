@@ -1854,19 +1854,42 @@ int command(int cn, char *ptr) { // 1=ok, 0=repeat
 
     if ((len = cmdcmp(ptr, "joinclan", 8)) && (ch[cn].flags & CF_GOD)) {
         int nr, n;
+        char *cname;
 
         ptr += len;
         while (isspace(*ptr)) ptr++;
 
-        nr = atoi(ptr);
-
-        if (nr >= 0 && nr < MAXCLAN) {
-            ch[cn].clan = nr;
-            ch[cn].clan_serial = clan_serial(nr);
-            ch[cn].clan_rank = 4;
+        // require an explicit numeric argument. Without this guard, typing
+        // "/joinclan" with no (or a junk) argument silently set clan 0, which
+        // un-clanned the caller by accident.
+        if (!isdigit((unsigned char)*ptr)) {
+            log_char(cn, LOG_SYSTEM, 0, "Usage: /joinclan <clan-nr>. This joins YOU to a clan; use /clan to list them.");
+            return 1;
         }
 
+        nr = atoi(ptr);
+
+        // clan 0 is "no clan", so refuse it here - leaving a clan must be a
+        // deliberate act, not a side effect of a mistyped join
+        if (nr < 1 || nr >= MAXCLAN) {
+            log_char(cn, LOG_SYSTEM, 0, "Clan number must be between 1 and %d.", MAXCLAN - 1);
+            return 1;
+        }
+
+        // only join clans that actually exist
+        cname = get_clan_name(nr);
+        if (!cname || !*cname) {
+            log_char(cn, LOG_SYSTEM, 0, "There is no clan number %d.", nr);
+            return 1;
+        }
+
+        ch[cn].clan = nr;
+        ch[cn].clan_serial = clan_serial(nr);
+        ch[cn].clan_rank = 4;
+
         for (n = 1; n < MAXPLAYER; n++) set_player_knows_name(n, cn, 0);
+
+        log_char(cn, LOG_SYSTEM, 0, "You are now the leader (rank 4) of clan '%s' (%d).", cname, nr);
 
         return 1;
     }
@@ -1877,15 +1900,34 @@ int command(int cn, char *ptr) { // 1=ok, 0=repeat
         ptr += len;
         while (isspace(*ptr)) ptr++;
 
-        nr = atoi(ptr);
-
-        if (nr >= 0 && nr < MAXCLUB) {
-            ch[cn].clan = nr + CLUBOFFSET;
-            ch[cn].clan_serial = club[nr].serial;
-            ch[cn].clan_rank = 2;
+        // require an explicit numeric argument. Without this guard, typing
+        // "/joinclub" with no (or a junk) argument silently set club 0, which
+        // un-clubbed the caller by accident.
+        if (!isdigit((unsigned char)*ptr)) {
+            log_char(cn, LOG_SYSTEM, 0, "Usage: /joinclub <club-nr>. This joins YOU to a club.");
+            return 1;
         }
 
+        nr = atoi(ptr);
+
+        if (nr < 0 || nr >= MAXCLUB) {
+            log_char(cn, LOG_SYSTEM, 0, "Club number must be between 0 and %d.", MAXCLUB - 1);
+            return 1;
+        }
+
+        // only join clubs that actually exist
+        if (!club[nr].name[0]) {
+            log_char(cn, LOG_SYSTEM, 0, "There is no club number %d.", nr);
+            return 1;
+        }
+
+        ch[cn].clan = nr + CLUBOFFSET;
+        ch[cn].clan_serial = club[nr].serial;
+        ch[cn].clan_rank = 2;
+
         for (n = 1; n < MAXPLAYER; n++) set_player_knows_name(n, cn, 0);
+
+        log_char(cn, LOG_SYSTEM, 0, "You are now the founder (rank 2) of club '%s' (%d).", club[nr].name, nr);
 
         return 1;
     }
