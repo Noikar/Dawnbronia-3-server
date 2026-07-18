@@ -21,3 +21,4 @@ Added RCS tags
 #define KILL_EXP_RATE 170 // per-kill exp, including first-kill bonuses
 #define QUEST_EXP_RATE 145 // quest completion exp, including driver-awarded quest exp
 #define PENT_EXP_RATE 150 // pentagram solve exp (main solve reward + clan-jewel reflection)
+#define PENT_CLICK_EXP_MULT 120 // per-click pentagram worth multiplier (the "%d exp" shown per pent)

@@ -219,7 +219,7 @@ static void add_pent(int cn, int in, int didsolve) {
                 nppd->pent_it[n] = in;
                 nppd->pent_color[n] = color;
                 nppd->pent_value[n] = value;
-                nppd->pent_worth[n] = value / 6;
+                nppd->pent_worth[n] = value / 6 * PENT_CLICK_EXP_MULT / 100;
             }
             for (n = same = lastcolor = 0; n < 5; n++) {
                 if (!nppd->pent_value[n]) break;
@@ -240,7 +240,7 @@ static void add_pent(int cn, int in, int didsolve) {
                 nppd->pent_it[5] = in;
                 nppd->pent_color[5] = color;
                 nppd->pent_value[5] = value;
-                nppd->pent_worth[5] = value;
+                nppd->pent_worth[5] = value * PENT_CLICK_EXP_MULT / 100;
             }
         }
     }
