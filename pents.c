@@ -32,6 +32,7 @@
 #include "libload.h"
 #include "clan.h"
 #include "act.h"
+#include "balance.h"
 #include "consistency.h"
 #include "skill.h"
 
@@ -153,7 +154,7 @@ static void solve_pents(int cc) {
         exp += nppd->bonus;
         nppd->status = nppd->bonus = 0;
 
-        give_exp_bonus(cn, min(level_value(ch[cn].level) / 3, (int)(exp * 0.66)));
+        give_exp_bonus(cn, min(level_value(ch[cn].level) / 3, (int)(exp * 0.66)) * PENT_EXP_RATE / 100);
         log_char(cn, LOG_SYSTEM, 0, "%s solved the pentagram quest (tm). You got %d experience points!", ch[cc].name, exp);
         if (tpower >= 0) log_char(cn, LOG_SYSTEM, 0, "Training area power setting now at %.2f%%.", 100.0 / 32000 * tpower);
         else log_char(cn, LOG_SYSTEM, 0, "Training area power setting down to 0.00%%, %.2f%% underpowered.", -100.0 / 32000 * tpower);
@@ -169,7 +170,7 @@ static void solve_pents(int cc) {
                     exp = exp * min(20, cnt) / 100;
                     if (exp) {
                         log_char(cn, LOG_SYSTEM, 0, "Your clan's jewels reflected %d exp of the solve to you.", exp);
-                        give_exp(cn, min(level_value(ch[cn].level) / 6, (int)(exp * 0.70)));
+                        give_exp(cn, min(level_value(ch[cn].level) / 6, (int)(exp * 0.70)) * PENT_EXP_RATE / 100);
                     }
                 }
             }
