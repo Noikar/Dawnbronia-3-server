@@ -27,3 +27,6 @@ private_keys/
 
 # Client auto-updater dist tree (large, host-local build output; regen with pack_client.sh)
 client_dist/
+
+# LiveQuest saves written at runtime by /questsave (bind-mounted in docker-compose)
+quest/
