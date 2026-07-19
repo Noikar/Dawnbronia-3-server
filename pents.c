@@ -157,7 +157,7 @@ void set_demon_prof(int cn) {
 }
 
 static void solve_pents(int cc) {
-    int cn, exp, n, oldcolor, in, sum;
+    int cn, exp, n, oldcolor, in, sum, gained;
     struct pent_nppd *nppd;
 
     for (n = minlevel, sum = 0; n <= maxlevel; n++) {
@@ -193,8 +193,9 @@ static void solve_pents(int cc) {
         exp += nppd->bonus;
         nppd->status = nppd->bonus = 0;
 
-        give_exp_bonus(cn, min(level_value(ch[cn].level) / 3, (int)(exp * 0.66)) * PENT_EXP_RATE / 100);
-        log_char(cn, LOG_SYSTEM, 0, "%s solved the pentagram quest (tm). You got %d experience points!", ch[cc].name, exp);
+        gained = min(level_value(ch[cn].level) / 3, (int)(exp * 0.66)) * PENT_EXP_RATE / 100;
+        give_exp_bonus(cn, gained);
+        log_char(cn, LOG_SYSTEM, 0, "%s solved the pentagram quest (tm). You got %d experience points!", ch[cc].name, gained);
         if (tpower >= 0) log_char(cn, LOG_SYSTEM, 0, "Training area power setting now at %.2f%%.", 100.0 / 32000 * tpower);
         else log_char(cn, LOG_SYSTEM, 0, "Training area power setting down to 0.00%%, %.2f%% underpowered.", -100.0 / 32000 * tpower);
 
@@ -206,10 +207,13 @@ static void solve_pents(int cc) {
 
                 cnt = get_clan_bonus(get_char_clan(cc), 0);
                 if (cnt > 0) {
+                    int reflected;
+
                     exp = exp * min(20, cnt) / 100;
-                    if (exp) {
-                        log_char(cn, LOG_SYSTEM, 0, "Your clan's jewels reflected %d exp of the solve to you.", exp);
-                        give_exp(cn, min(level_value(ch[cn].level) / 6, (int)(exp * 0.70)) * PENT_EXP_RATE / 100);
+                    reflected = min(level_value(ch[cn].level) / 6, (int)(exp * 0.70)) * PENT_EXP_RATE / 100;
+                    if (reflected) {
+                        log_char(cn, LOG_SYSTEM, 0, "Your clan's jewels reflected %d exp of the solve to you.", reflected);
+                        give_exp(cn, reflected);
                     }
                 }
             }
@@ -218,6 +222,13 @@ static void solve_pents(int cc) {
         log_char(cn, LOG_SYSTEM, 0, "The current record is %d pentagrams in one run, held by %s. You have %d pentagrams so far.", pent_record, pent_record_name, nppd->pent_cnt);
     }
     lastsolve = ticker;
+}
+
+// Convert an accumulated (raw) pentagram worth into the exp it actually yields:
+// the 0.66 solve haircut and the PENT_EXP_RATE overall bonus, mirroring solve_pents()
+// so the "%d exp" the player sees matches what gets awarded (until the per-solve cap bites).
+static int pent_exp(int raw) {
+    return (int)(raw * 0.66) * PENT_EXP_RATE / 100;
 }
 
 static void add_pent(int cn, int in, int didsolve) {
@@ -258,7 +269,7 @@ static void add_pent(int cn, int in, int didsolve) {
                 nppd->pent_it[n] = in;
                 nppd->pent_color[n] = color;
                 nppd->pent_value[n] = value;
-                nppd->pent_worth[n] = value / 6 * PENT_CLICK_EXP_MULT / 100;
+                nppd->pent_worth[n] = value / 6;
             }
             for (n = same = lastcolor = 0; n < 5; n++) {
                 if (!nppd->pent_value[n]) break;
@@ -279,7 +290,7 @@ static void add_pent(int cn, int in, int didsolve) {
                 nppd->pent_it[5] = in;
                 nppd->pent_color[5] = color;
                 nppd->pent_value[5] = value;
-                nppd->pent_worth[5] = value * PENT_CLICK_EXP_MULT / 100;
+                nppd->pent_worth[5] = value;
             }
         }
     }
@@ -299,7 +310,7 @@ static void add_pent(int cn, int in, int didsolve) {
                  nppd->pent_color[5],
                  nppd->pent_value[5],
                  colortext[nppd->pent_color[5]],
-                 nppd->pent_worth[5]);
+                 pent_exp(nppd->pent_worth[5]));
         worth += nppd->pent_worth[5];
     } else log_char(cn, LOG_SYSTEM, 0, "#3");
 
@@ -311,10 +322,10 @@ static void add_pent(int cn, int in, int didsolve) {
                  nppd->pent_color[n],
                  nppd->pent_value[n],
                  colortext[nppd->pent_color[n]],
-                 nppd->pent_worth[n]);
+                 pent_exp(nppd->pent_worth[n]));
         worth += nppd->pent_worth[n];
     }
-    log_char(cn, LOG_SYSTEM, 0, "#90Bonus: %d, total: %d", nppd->bonus, worth + nppd->bonus);
+    log_char(cn, LOG_SYSTEM, 0, "#90Bonus: %d, total: %d", pent_exp(nppd->bonus), pent_exp(worth + nppd->bonus));
 
     nppd->pent_cnt++;
     if (nppd->pent_cnt > pent_record) {
