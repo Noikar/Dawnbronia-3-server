@@ -153,7 +153,7 @@ void lab2_herald_driver(int cn, int ret, int lastact) {
 
             switch (ppd->herald_talkstep) {
             case 0: // INTRO
-                say(cn, "Hello %s. I am Herald, the Keeper of this graveyard. I can't say how glad I am to see thee here. I assume thou wantst to pass this test. I need thine help urgently. Horrible things happen here, as thou hast probably noticed. I don't dare to leave the chapel since the dead are rising from their graves. \260c4Arathas\260c0 has caused this abomination, may his soul rest in peace.", ch[co].name);
+                say(cn, "Hello %s. I am Herald, the Keeper of this graveyard. I can't say how glad I am to see thee here. I assume thou wantst to pass this test. I need thy help urgently. Horrible things happen here, as thou hast probably noticed. I don't dare to leave the chapel since the dead are rising from their graves. \260c4Arathas\260c0 has caused this abomination, may his soul rest in peace.", ch[co].name);
                 didsay = 1;
                 ppd->herald_talkstep++;
                 dat->next_talk = ticker + 10 * TICKS;

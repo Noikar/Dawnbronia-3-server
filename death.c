@@ -544,8 +544,8 @@ static int shutdown_save_char(int cn) {
         }
     }
 
-    if (loss) log_char(cn, LOG_SYSTEM, 0, "Thou died and lost some experience points. Because of the coming shutdown, you did not lose your items.");
-    else log_char(cn, LOG_SYSTEM, 0, "Thou died, but since thou art still a Newbie, thou did not lose any experience points. Because of the coming shutdown, you did not lose your items. Consider yourself lucky.");
+    if (loss) log_char(cn, LOG_SYSTEM, 0, "Thou diedst and lost some experience points. Because of the coming shutdown, thou didst not lose thine items.");
+    else log_char(cn, LOG_SYSTEM, 0, "Thou diedst, but since thou art still a Newbie, thou didst not lose any experience points. Because of the coming shutdown, thou didst not lose thine items. Consider thyself lucky.");
 
     ch[cn].exp -= loss;
 

@@ -1116,7 +1116,7 @@ void servant_dead(int cn, int co) {
         if (ppd) {
             ppd->citizen_status = CS_ENEMY;
             ppd->legal_status = LS_DEAD;
-            say(cn, "Thou shalt pay dearly for this, %s. Even though I am just the governors double, he wilt have thine head just for trying to kill him!", ch[co].name);
+            say(cn, "Thou shalt pay dearly for this, %s. Even though I am just the governors double, he wilt have thy head just for trying to kill him!", ch[co].name);
         }
     } else say(cn, "Arrgh! GUARDS!");
 

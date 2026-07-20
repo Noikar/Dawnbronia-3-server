@@ -548,7 +548,7 @@ void jaz_driver(int cn, int ret, int lastact) {
                 case 5:
                     break; // waiting for bracelet
                 case 6:
-                    say(cn, "Thank thee so much, I will call thee my %s from now on.", (ch[co].flags & CF_MALE) ? "brother" : "sister");
+                    say(cn, "I thank thee so much, I will call thee my %s from now on.", (ch[co].flags & CF_MALE) ? "brother" : "sister");
                     ppd->jaz_state++;
                     didsay = 1;
                     break;
@@ -774,7 +774,7 @@ void fiona_driver(int cn, int ret, int lastact) {
                 case 3:
                     break; // waiting for ring
                 case 4:
-                    say(cn, "Thank thee ever so much.");
+                    say(cn, "I thank thee ever so much.");
                     ppd->fiona_state++;
                     didsay = 1;
                     break;
@@ -1602,7 +1602,7 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                     break; // waiting for player to kill the bad book eater
                 case 20:
                     if (nr == 4) {
-                        say(cn, "Thank you, my novels should be safe now. Here is thy reward.");
+                        say(cn, "I thank thee, my novels should be safe now. Here is thy reward.");
                         give_money(co, 200 * 100, "solved Tracy's quest");
                         ppd->monk_state++;
                         didsay = 1;
@@ -2545,7 +2545,7 @@ void jada_driver(int cn, int ret, int lastact) {
                     destroy_item_byID(co, IID_ARKHATA_BLADE);
                     questlog_done(co, 72);
                     ppd->jada_state = 5;
-                    say(cn, "By the bless-swirls, this thing is a concentration of evil! I will have to ask the monks for help to contain it. Thank thee, thou hast most certainly saved us all!");
+                    say(cn, "By the bless-swirls, this thing is a concentration of evil! I will have to ask the monks for help to contain it. I thank thee, thou hast most certainly saved us all!");
 
                     // let it vanish, then
                     destroy_item(ch[cn].citem);
@@ -3248,7 +3248,7 @@ void clerk_driver(int cn, int ret, int lastact) {
                     destroy_item_byID(co, IID_ARKHATA_NOTE1);
                     ppd->clerk_bits |= 1;
                     if (ppd->clerk_bits == (1 | 2 | 4)) {
-                        say(cn, "You have done a great job. Now the transport will be safe, thank you.");
+                        say(cn, "You have done a great job. Now the transport will be safe, I thank thee.");
                         questlog_done(co, 76);
                     } else say(cn, "Oh there might be hope after all then.");
 
@@ -3259,7 +3259,7 @@ void clerk_driver(int cn, int ret, int lastact) {
                     destroy_item_byID(co, IID_ARKHATA_NOTE2);
                     ppd->clerk_bits |= 2;
                     if (ppd->clerk_bits == (1 | 2 | 4)) {
-                        say(cn, "You have done a great job, Now the transport will be safe, thank you.");
+                        say(cn, "You have done a great job, Now the transport will be safe, I thank thee.");
                         questlog_done(co, 76);
                     } else say(cn, "Oh there might be hope after all then.");
 
@@ -3270,7 +3270,7 @@ void clerk_driver(int cn, int ret, int lastact) {
                     destroy_item_byID(co, IID_ARKHATA_NOTE3);
                     ppd->clerk_bits |= 4;
                     if (ppd->clerk_bits == (1 | 2 | 4)) {
-                        say(cn, "You have done a great job, Now the transport will be safe, thank you.");
+                        say(cn, "You have done a great job, Now the transport will be safe, I thank thee.");
                         questlog_done(co, 76);
                         ppd->clerk_state = 6;
                     } else say(cn, "Oh there might be hope after all then.");
@@ -3393,7 +3393,7 @@ void trainer_driver(int cn, int ret, int lastact) {
                         ppd->trainer_state++;
                     } else break;
                 case 7:
-                    say(cn, "Thank thee great fighter. Now that my student is safe I can sleep at night. You have proven your skills once again. The door to the academy will always be open to you.");
+                    say(cn, "I thank thee great fighter. Now that my student is safe I can sleep at night. You have proven your skills once again. The door to the academy will always be open to you.");
                     ppd->trainer_state++;
                     didsay = 1;
                     break;
@@ -3550,7 +3550,7 @@ void kidnappee_driver(int cn, int ret, int lastact) {
                     if (has_item(co, IID_ARKHATA_IRONPOTION)) ppd->kid_state = 2;
                     break;
                 case 4:
-                    say(cn, "Thank thee so much for rescuing me.");
+                    say(cn, "I thank thee so much for rescuing me.");
                     log_char(co, LOG_SYSTEM, 0, "You've rescued the student. Now go back to the trainer to claim your reward.");
                     ppd->kid_state++;
                     didsay = 1;

@@ -935,7 +935,7 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
         break;
     case QA_LIKESMILE:
         if (dat->emote.likes[slot] > 5) {
-            say(cn, "Why, thank you, %s.", ch[co].name);
+            say(cn, "Why, I thank thee, %s.", ch[co].name);
             dat->emote.likes[slot]++;
         } else {
             say(cn, "Is that so, %s?", ch[co].name);

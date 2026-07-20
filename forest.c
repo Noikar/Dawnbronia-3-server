@@ -266,7 +266,7 @@ void imp_driver(int cn, int ret, int lastact) {
                     else break;
                 case 8:
                     if (ppd->hermit_state == 4 && (!(in = has_item(co, IID_HARDKILL)) || it[in].drdata[37] < 38)) {
-                        if (in) say(cn, "Listen, human, for this might save thine life: The spider queen is beyond the strength of thine holy weapon. Thou needst find another stone circle. Find the skeleton ruin and go eastward.");
+                        if (in) say(cn, "Listen, human, for this might save thine life: The spider queen is beyond the strength of thy holy weapon. Thou needst find another stone circle. Find the skeleton ruin and go eastward.");
                         else say(cn, "Listen, human, for this might save thine life: Thou needst a holy weapon, otherwise thine task will remain unfulfilled.");
                         didsay = 1;
                     }
@@ -606,7 +606,7 @@ void hermit_driver(int cn, int ret, int lastact) {
             if (ppd) {
                 switch (ppd->hermit_state) {
                 case 0:
-                    say(cn, "My greetings to thee, %s. 'Tis most fortunate to see such a formidable hero as thyself. Be aware that I am in dire need of thine help.", ch[co].name);
+                    say(cn, "My greetings to thee, %s. 'Tis most fortunate to see such a formidable hero as thyself. Be aware that I am in dire need of thy help.", ch[co].name);
                     questlog_open(co, 24);
                     ppd->hermit_state++;
                     didsay = 1;

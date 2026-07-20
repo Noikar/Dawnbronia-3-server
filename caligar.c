@@ -465,7 +465,7 @@ void glori_driver(int cn, int ret, int lastact) {
 
             switch (ppd->glori_state) {
             case 0:
-                quiet_say(cn, "Thank you for coming %s!", ch[co].name);
+                quiet_say(cn, "I thank thee for coming %s!", ch[co].name);
                 questlog_done(co, 54);
                 questlog_open(co, 55);
                 ppd->glori_last_talk = realtime;
@@ -1090,13 +1090,13 @@ void homden_driver(int cn, int ret, int lastact) {
             case 4:
                 break;
             case 5:
-                quiet_say(cn, "Thank you, %s.", ch[co].name);
+                quiet_say(cn, "I thank thee, %s.", ch[co].name);
                 ppd->homden_last_talk = realtime;
                 ppd->homden_state++;
                 didsay = 1;
                 break;
             case 6:
-                quiet_say(cn, "Now, about my brothers. They are planning to resurrect the last Emporer. If they succeed, they hope to trick the citizens of Aston into thinking that the Emporer has returned and try to restore his royal status.");
+                quiet_say(cn, "Now, about my brothers. They are planning to resurrect the last Emperor. If they succeed, they hope to trick the citizens of Aston into thinking that the Emperor has returned and try to restore his royal status.");
                 ppd->homden_last_talk = realtime;
                 ppd->homden_state++;
                 didsay = 1;
@@ -1120,7 +1120,7 @@ void homden_driver(int cn, int ret, int lastact) {
                 didsay = 1;
                 break;
             case 10:
-                quiet_say(cn, "If they do not have that plaque, they cannot raise the Emporer. But, I suggest you hurry. Once their army is complete, they will begin trying to raise the Emporer. Good luck adventurer!");
+                quiet_say(cn, "If they do not have that plaque, they cannot raise the Emperor. But, I suggest you hurry. Once their army is complete, they will begin trying to raise the Emperor. Good luck adventurer!");
                 ppd->homden_last_talk = realtime;
                 ppd->homden_state++;
                 didsay = 1;

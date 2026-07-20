@@ -672,7 +672,7 @@ int nomad_5_give(int cn, int co, int in, struct nomad_ppd *ppd, int nr) {
             else give_exp(co, diff / 2);
 
         } else {
-            say(cn, "Isn't it beautiful? Thank thee, %s. Now, let me teach thee...", ch[co].name);
+            say(cn, "Isn't it beautiful? I thank thee, %s. Now, let me teach thee...", ch[co].name);
             questlog_done(co, 34);
             ppd->nomad_state[nr] = 4;
         }

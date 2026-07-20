@@ -143,7 +143,7 @@ struct story ruby6_story[] = {
     {0, "My greetings, %s!", 0, 0, {{"Hello, %s!", 1}, {"My greetings, noble Lady!", 1}, {"Yes?", 1}, {NULL}}},
     {1, "Thou don't happen to have a spare orange crystal, %s?", 0, 0, {{"Yes, as a matter of fact I do.", 2}, {"No, but I'll get one for thee.", 2}, {"No.", 20}, {NULL}}},
     {2, "(Waiting for orange crystal)", SPEC_ITEM, IID_AREA6_YELLOWCRYSTAL, {{NULL, 3}, {NULL}}},
-    {3, "Thank thee, %s.", SPEC_SETBIT, BIT_OCRYSTAL, {{NULL}}},
+    {3, "I thank thee, %s.", SPEC_SETBIT, BIT_OCRYSTAL, {{NULL}}},
 
     {20, "Nevermind then, %s.", 0, 0, {{NULL}}},
     {0, NULL}};
@@ -152,7 +152,7 @@ struct story ruby8_story[] = {
     {0, "My greetings, %s!", 0, 0, {{"Hello, %s!", 1}, {"My greetings, noble Lady!", 1}, {"Yes?", 1}, {NULL}}},
     {1, "I'm looking for a big red crystal, %s.", 0, 0, {{"Here, take this one.", 2}, {"I'll get one for thee.", 2}, {"I don't care.", 20}, {NULL}}},
     {2, "(Waiting for big red crystal)", SPEC_ITEM32, IID_AREA8_REDCRYSTAL, {{NULL, 3}, {NULL}}},
-    {3, "Thank thee, %s.", SPEC_SETBIT, BIT_RCRYSTAL, {{NULL}}},
+    {3, "I thank thee, %s.", SPEC_SETBIT, BIT_RCRYSTAL, {{NULL}}},
 
     {20, "So? Leave me alone then, %s.", 0, 0, {{NULL}}},
     {0, NULL}};
@@ -172,7 +172,7 @@ struct story ruby11_story[] = {
     {2, "Well, I need one of Islena's rings for my collection.", 0, 0, {{"Islena's Rings?", 3}, {"No, sorry. I cannot help thee with that.", 21}, {NULL}}},
     {3, "Yes. Islena is wearing them. Wouldst thou bring me one of them?", 0, 0, {{"Yes, I will.", 4}, {"No, sorry. I cannot help thee with that.", 21}, {NULL}}},
     {4, "(Waiting for Islena's ring)", SPEC_ITEM, IID_ISLENARING, {{NULL, 5}, {NULL}}},
-    {5, "Oh, it's wonderful. Thank thee, %s, thank thee very much! ", SPEC_SETBIT, BIT_ISLENA, {{NULL}}},
+    {5, "Oh, it's wonderful. I thank thee, %s, thank thee very much! ", SPEC_SETBIT, BIT_ISLENA, {{NULL}}},
 
     {20, "So? Well, it's thy choice, %s, but I think thou wilt regret this.", 0, 0, {{NULL}}},
     {21, "Oh. Alright. I understand.", 0, 0, {{NULL}}},
@@ -182,7 +182,7 @@ struct story ruby12_story[] = {
     {0, "Hello? %s?", 0, 0, {{"Hello, %s!", 1}, {"My greetings, noble Lady!", 1}, {"Yes?", 1}, {NULL}}},
     {1, "My torch is running out, couldst thou spare one?", 0, 0, {{"Yes, certainly.", 2}, {"Not right now, but I'll go get one for thee.", 2}, {"I don't care.", 20}, {NULL}}},
     {2, "(Waiting for torch)", SPEC_ITEMDRV, 12, {{NULL, 3}, {NULL}}},
-    {3, "Oh, jolly good. Thanks, %s!", SPEC_SETBIT, BIT_TORCH, {{NULL}}},
+    {3, "Oh, jolly good. I thank thee, %s!", SPEC_SETBIT, BIT_TORCH, {{NULL}}},
 
     {20, "So? Well, I'll go in the dark then, %s.", 0, 0, {{NULL}}},
     {0, NULL}};
@@ -191,7 +191,7 @@ struct story ruby15_story[] = {
     {0, "May Ishtar be with thee, %s.", 0, 0, {{"Hello, %s!", 1}, {"And with thee, %s!", 1}, {"Yes?", 1}, {NULL}}},
     {1, "I am looking for Swamp Beast heads, thou dost not happen to have any, %s?", 0, 0, {{"Here, I can spare one.", 2}, {"Not right now, but I'll go get one for thee.", 2}, {"No, and I don't care what thou wantst.", 20}, {NULL}}},
     {2, "(Waiting for Swamp Beast head)", SPEC_ITEM, IID_AREA15_HEAD, {{NULL, 3}, {NULL}}},
-    {3, "Ah, yes, that's it. Thanks, %s!", SPEC_SETBIT, BIT_SWAMP, {{NULL}}},
+    {3, "Ah, yes, that's it. I thank thee, %s!", SPEC_SETBIT, BIT_SWAMP, {{NULL}}},
 
     {20, "So? I don't like thee either, %s.", 0, 0, {{NULL}}},
     {0, NULL}};
@@ -201,7 +201,7 @@ struct story ruby16_story[] = {
     {1, "I've heard rumors that there's a treasure buried somewhere in this forest.", 0, 0, {{"Rumors?", 2}, {"Yes, I've heard the same.", 2}, {"Shut up, %s.", 20}, {NULL}}},
     {2, "Well, I think it's right here, but my spade broke....", 0, 0, {{"Here, take my spade.", 3}, {"I'll get a spade for thee, %s.", 3}, {"That's too bad. Well, I must be going.", 20}, {NULL}}},
     {3, "(Waiting for Spade)", SPEC_ITEMDRV, 77, {{NULL, 4}, {NULL}}},
-    {4, "Thanks, %s! *Starts digging*", SPEC_SETBIT, BIT_FOREST, {{NULL}}},
+    {4, "I thank thee, %s! *Starts digging*", SPEC_SETBIT, BIT_FOREST, {{NULL}}},
 
     {20, "Oh? *Sighs*", 0, 0, {{NULL}}},
     {0, NULL}};
@@ -209,8 +209,8 @@ struct story ruby16_story[] = {
 struct story ruby17_story[] = {
     {0, "Welcome to Exkordon, %s.", 0, 0, {{"Hello, %s!", 1}, {"Yes?", 1}, {NULL}}},
     {1, "I'm trying to get on the good side of the governor, and I thought I'd bring him some nice food as a gift. Dost thou, perchance, know what he likes to eat?", 0, 0, {{"Apple pie.", 3}, {"Plum pie.", 3}, {"Strawberry pie.", 2}, {"Pear pie.", 3}, {NULL}}},
-    {2, "Ah. Good. Thanks, %s!", SPEC_SETBIT, BIT_GOVERNOR, {{NULL}}},
-    {3, "Ah. Good. Thanks, %s!", SPEC_SETBIT, BIT_WRONG1, {{NULL}}},
+    {2, "Ah. Good. I thank thee, %s!", SPEC_SETBIT, BIT_GOVERNOR, {{NULL}}},
+    {3, "Ah. Good. I thank thee, %s!", SPEC_SETBIT, BIT_WRONG1, {{NULL}}},
 
     {0, NULL}};
 
@@ -537,7 +537,7 @@ int ruby_aston_char(int cn, int co, struct sidestory_ppd *ppd) {
         if (bitvalue >= 30) ppd->ruby3.state = 0;
         break;
     case 3:
-        quiet_say(cn, "Oh, hello again, %s. I guess I owe thee something for thine help. I collect weapons of all kinds. Maybe thou'd take one of them for all thy trouble?", ch[co].name);
+        quiet_say(cn, "Oh, hello again, %s. I guess I owe thee something for thy help. I collect weapons of all kinds. Maybe thou'd take one of them for all thy trouble?", ch[co].name);
         ppd->ruby3.state++;
         didsay = 1;
         break;

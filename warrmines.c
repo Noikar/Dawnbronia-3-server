@@ -312,7 +312,7 @@ void dwarfchief_driver(int cn, int ret, int lastact) {
                     ppd->dwarfchief_state++;
                     // fall-through intended
                 case 14:
-                    quiet_say(cn, "Thank you for saving the last one! You have been of great help to us. Now let's hope they can stay out of the hands of those golems once and for all. Those recall scrolls aren't cheap you know!");
+                    quiet_say(cn, "I thank thee for saving the last one! You have been of great help to us. Now let's hope they can stay out of the hands of those golems once and for all. Those recall scrolls aren't cheap you know!");
                     ppd->dwarfchief_state++;
                     didsay = 1;
                     break;
@@ -496,7 +496,7 @@ void dwarfshaman_driver(int cn, int ret, int lastact) {
                         ppd->dwarfshaman_state = 10;
                         break;
                     }
-                    quiet_say(cn, "It's good that you can swim, you have no idea how much I hate water. Thanks for the berries. As I suspected, they seem to have magic properties, which I may be able to use.");
+                    quiet_say(cn, "It's good that you can swim, you have no idea how much I hate water. I thank thee for the berries. As I suspected, they seem to have magic properties, which I may be able to use.");
                     questlog_open(co, 53);
                     ppd->dwarfshaman_state++;
                     didsay = 1;
@@ -515,7 +515,7 @@ void dwarfshaman_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 10:
-                    quiet_say(cn, "Thank you for helping out! I guess you are sturdier than you look, even though your kind looks skinnier than a dwarven skeleton!");
+                    quiet_say(cn, "I thank thee for helping out! I guess you are sturdier than you look, even though your kind looks skinnier than a dwarven skeleton!");
                     ppd->dwarfshaman_state++;
                     didsay = 1;
                     break;
@@ -874,7 +874,7 @@ void lostdwarf_driver(int cn, int ret, int lastact) {
 
                 if (ppd && ppd->dwarfchief_state <= 3 && dat->nr == 1 && it[in].ID == IID_DWARFRECALL1) {
                     ppd->dwarfchief_state = 4;
-                    say(cn, "Thank you for saving me, %s. I got so hungry I almost ate my beard.", ch[co].name);
+                    say(cn, "I thank thee for saving me, %s. I got so hungry I almost ate my beard.", ch[co].name);
                     log_area(ch[cn].x, ch[cn].y, LOG_INFO, cn, 10, "%s uses a scroll of recall and vanishes.", ch[cn].name);
                     ch[cn].flags |= CF_INVISIBLE;
                     dat->invis_tick = ticker + TICKS * 30;
@@ -883,7 +883,7 @@ void lostdwarf_driver(int cn, int ret, int lastact) {
 
                 if (ppd && ppd->dwarfchief_state >= 5 && ppd->dwarfchief_state <= 6 && dat->nr == 2 && it[in].ID == IID_DWARFRECALL2) {
                     ppd->dwarfchief_state = 7;
-                    say(cn, "Thank you for saving me, %s. I got so hungry I almost ate my boots.", ch[co].name);
+                    say(cn, "I thank thee for saving me, %s. I got so hungry I almost ate my boots.", ch[co].name);
                     log_char(co, LOG_SYSTEM, 0, "You notice that the dwarf's beard looks somewhat thin.");
                     log_area(ch[cn].x, ch[cn].y, LOG_INFO, cn, 10, "%s uses a scroll of recall and vanishes.", ch[cn].name);
                     ch[cn].flags |= CF_INVISIBLE;
@@ -893,7 +893,7 @@ void lostdwarf_driver(int cn, int ret, int lastact) {
 
                 if (ppd && ppd->dwarfchief_state >= 8 && ppd->dwarfchief_state <= 9 && dat->nr == 3 && it[in].ID == IID_DWARFRECALL3) {
                     ppd->dwarfchief_state = 10;
-                    say(cn, "Thank you for saving me, %s. I got so hungry I almost ate my pick-axe.", ch[co].name);
+                    say(cn, "I thank thee for saving me, %s. I got so hungry I almost ate my pick-axe.", ch[co].name);
                     log_char(co, LOG_SYSTEM, 0, "You notice that the dwarf is barefoot.");
                     log_area(ch[cn].x, ch[cn].y, LOG_INFO, cn, 10, "%s uses a scroll of recall and vanishes.", ch[cn].name);
                     ch[cn].flags |= CF_INVISIBLE;
@@ -903,7 +903,7 @@ void lostdwarf_driver(int cn, int ret, int lastact) {
 
                 if (ppd && ppd->dwarfchief_state >= 11 && ppd->dwarfchief_state <= 12 && dat->nr == 4 && it[in].ID == IID_DWARFRECALL4) {
                     ppd->dwarfchief_state = 13;
-                    say(cn, "Thank you for saving me, %s. I got so hungry I did eat my pick-axe.", ch[co].name);
+                    say(cn, "I thank thee for saving me, %s. I got so hungry I did eat my pick-axe.", ch[co].name);
                     log_area(ch[cn].x, ch[cn].y, LOG_INFO, cn, 10, "%s uses a scroll of recall and vanishes.", ch[cn].name);
                     ch[cn].flags |= CF_INVISIBLE;
                     dat->invis_tick = ticker + TICKS * 30;

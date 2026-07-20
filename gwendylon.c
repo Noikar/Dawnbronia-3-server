@@ -238,7 +238,7 @@ void gwendylon_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 2:
-                    quiet_say(cn, "I am trying to understand this magic. But I am too old to travel there, so I couldst use thine help, %s. Wouldst thou go thither and look for magical items?", ch[co].name);
+                    quiet_say(cn, "I am trying to understand this magic. But I am too old to travel there, so I couldst use thy help, %s. Wouldst thou go thither and look for magical items?", ch[co].name);
                     ppd->gwendy_state = 3;
                     didsay = 1;
                     break;
@@ -410,7 +410,7 @@ void gwendylon_driver(int cn, int ret, int lastact) {
                 if (it[in].ID == IID_AREA1_SKELSKULL && ppd && ppd->gwendy_state <= 5) {
                     int tmp;
 
-                    quiet_say(cn, "Ahh, yes, that might be the thing I was looking for. Thank thee, %s.", ch[co].name);
+                    quiet_say(cn, "Ahh, yes, that might be the thing I was looking for. I thank thee, %s.", ch[co].name);
                     tmp = questlog_done(co, 1);
                     destroy_item_byID(co, IID_AREA1_SKELSKULL);
                     destroy_item_byID(co, IID_AREA1_SKELKEY1);
@@ -429,7 +429,7 @@ void gwendylon_driver(int cn, int ret, int lastact) {
                 } else if (it[in].ID == IID_AREA1_WOODSKULL && ppd && ppd->gwendy_state >= 6 && ppd->gwendy_state <= 9) {
                     int tmp;
 
-                    quiet_say(cn, "Ahh, yes, this is the thing I was looking for. Thank thee, %s.", ch[co].name);
+                    quiet_say(cn, "Ahh, yes, this is the thing I was looking for. I thank thee, %s.", ch[co].name);
                     tmp = questlog_done(co, 2);
                     destroy_item_byID(co, IID_AREA1_WOODSKULL);
                     destroy_item_byID(co, IID_AREA1_WOODKEY);
@@ -446,7 +446,7 @@ void gwendylon_driver(int cn, int ret, int lastact) {
                 } else if (it[in].ID == IID_AREA1_MAGESKULL && ppd && ppd->gwendy_state >= 10 && ppd->gwendy_state <= 12) {
                     int tmp;
 
-                    quiet_say(cn, "Ahh, yes, this is the third skull. Thank thee, %s, I appreciate thine efforts.", ch[co].name);
+                    quiet_say(cn, "Ahh, yes, this is the third skull. I thank thee, %s, I appreciate thine efforts.", ch[co].name);
                     tmp = questlog_done(co, 3);
                     destroy_item_byID(co, IID_AREA1_MAGESKULL);
                     ppd->gwendy_state = 13;
@@ -662,7 +662,7 @@ void yoakin_driver(int cn, int ret, int lastact) {
 
                 if (it[in].ID == IID_AREA1_BIGBEAR_TOOTH && ppd && ppd->yoakin_state <= 4) {
                     int tmp;
-                    quiet_say(cn, "Thank thee, %s. Travelling in the forest will be safer now.", ch[co].name);
+                    quiet_say(cn, "I thank thee, %s. Travelling in the forest will be safer now.", ch[co].name);
                     tmp = questlog_done(co, 5);
                     destroy_item_byID(co, IID_AREA1_BIGBEAR_TOOTH);
                     ppd->yoakin_state = 5;
@@ -677,7 +677,7 @@ void yoakin_driver(int cn, int ret, int lastact) {
                     }
                 } else if (it[in].ID == IID_SHRIKE_TALISMAN && ppd && ppd->shrike_state == 0) {
                     emote(cn, "turns deadly pale and starts to tremble");
-                    quiet_say(cn, "I... I thank thee, %s. I'd have never thought... Thank thee!", ch[co].name);
+                    quiet_say(cn, "I... I thank thee, %s. I'd have never thought... I thank thee!", ch[co].name);
 
                     if (ppd->shrike_fails) {
                         quiet_say(cn, "And I forgive thee trying to kill me. My wounds were almost fatal, but I survived.");
@@ -1565,7 +1565,7 @@ void lydia_driver(int cn, int ret, int lastact) {
                 ppd = set_data(co, DRD_AREA1_PPD, sizeof(struct area1_ppd));
 
                 if (it[in].ID == IID_AREA1_WOODPOTION && ppd && ppd->lydia_state <= 4) {
-                    quiet_say(cn, "Ah. That feels so much better. Thank thee, %s.", ch[co].name);
+                    quiet_say(cn, "Ah. That feels so much better. I thank thee, %s.", ch[co].name);
                     questlog_done(co, 0);
                     destroy_item_byID(co, IID_AREA1_WOODPOTION);
                     destroy_item_byID(co, IID_AREA1_WOODKEY2);
@@ -2005,7 +2005,7 @@ void reskin_driver(int cn, int ret, int lastact) {
                     break;
                 case 7:
                     if (check_first_kill(co, 16)) {
-                        quiet_say(cn, "Oh, thank you for talking to the Guild Master, %s.", ch[co].name);
+                        quiet_say(cn, "Oh, I thank thee for talking to the Guild Master, %s.", ch[co].name);
                         questlog_done(co, 17);
                         ppd->reskin_state++;
                     }
@@ -2403,7 +2403,7 @@ void guiwynn_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 10:
-                    quiet_say(cn, "I thank thee, %s, for thine help. Mayest thou find happiness in thine life.", ch[co].name);
+                    quiet_say(cn, "I thank thee, %s, for thy help. Mayest thou find happiness in thine life.", ch[co].name);
                     ppd->guiwynn_state++;
                     didsay = 1;
                     if (!has_item(co, IID_AREA1_MADKEY1)) {
@@ -2474,7 +2474,7 @@ void guiwynn_driver(int cn, int ret, int lastact) {
 
                 if (it[in].ID == IID_AREA1_MADPOTION && ppd && ppd->guiwynn_state <= 5) {
                     int tmp;
-                    quiet_say(cn, "Ahh, yes, that might be what was looking for. Thank thee, %s.", ch[co].name);
+                    quiet_say(cn, "Ahh, yes, that might be what was looking for. I thank thee, %s.", ch[co].name);
                     tmp = questlog_done(co, 7);
                     ppd->guiwynn_state = 6;
                     destroy_item_byID(co, IID_AREA1_MADPOTION);
@@ -2490,7 +2490,7 @@ void guiwynn_driver(int cn, int ret, int lastact) {
                     }
                 } else if (it[in].ID == IID_AREA1_MADNOTE && ppd && ppd->guiwynn_state >= 6 && ppd->guiwynn_state <= 8) {
                     int tmp;
-                    quiet_say(cn, "Ahh, yes, this is the recipe I was looking for. Thank thee, %s.", ch[co].name);
+                    quiet_say(cn, "Ahh, yes, this is the recipe I was looking for. I thank thee, %s.", ch[co].name);
                     tmp = questlog_done(co, 8);
                     destroy_item_byID(co, IID_AREA1_MADNOTE);
                     destroy_item_byID(co, IID_AREA1_MADKEY2);

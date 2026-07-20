@@ -634,7 +634,7 @@ void count_brannington_driver(int cn, int ret, int lastact) {
                 ppd2 = set_data(co, DRD_ARKHATA_PPD, sizeof(struct arkhata_ppd));
 
                 if (it[in].ID == IID_STAFF_COUNTJEWEL && ppd && !(ppd->countbran_bits & 1)) {
-                    quiet_say(cn, "Thank you so much for bringing this back, %s. It has been in the family for generations. Here is your reward.", ch[co].name);
+                    quiet_say(cn, "I thank thee so much for bringing this back, %s. It has been in the family for generations. Here is your reward.", ch[co].name);
                     destroy_item_byID(co, IID_STAFF_COUNTJEWEL);
                     destroy_item_byID(co, IID_STAFF_THIEFKEY1);
                     destroy_item_byID(co, IID_STAFF_REDKEY1);
@@ -696,7 +696,7 @@ void count_brannington_driver(int cn, int ret, int lastact) {
                     if ((ppd->countbran_bits & (1 | 2 | 4)) == (1 | 2 | 4)) questlog_done(co, 40);
                     countbran_give_keys(cn, co, ppd);
                 } else if (it[in].ID == IID_ARKHATA_LETTER3 && ppd && !(ppd2->letter_bits & 4)) {
-                    quiet_say(cn, "Ahh, this is a most clever solution. Thank you once again, %s.", ch[co].name);
+                    quiet_say(cn, "Ahh, this is a most clever solution. I thank thee once again, %s.", ch[co].name);
                     destroy_item_byID(co, IID_ARKHATA_LETTER3);
 
                     ppd2->letter_bits |= 4;
@@ -864,7 +864,7 @@ void brenneth_brannington_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 14:
-                    quiet_say(cn, "Thank you for helping me, I will not forget this, I hope.");
+                    quiet_say(cn, "I thank thee for helping me, I will not forget this, I hope.");
                     emote(cn, "smiles");
                     ppd->brennethbran_state++;
                     didsay = 1;
@@ -1413,7 +1413,7 @@ void countessa_brannington_driver(int cn, int ret, int lastact) {
                         ppd->countessabran_state = 3;
                         // fall through intended
                     } else {
-                        quiet_say(cn, "Thank you for returning my jewelry! Let me reward you for your kindness, %s!", ch[co].name);
+                        quiet_say(cn, "I thank thee for returning my jewelry! Let me reward you for your kindness, %s!", ch[co].name);
                         ppd->countessabran_state++;
                         didsay = 1;
                         ppd->countbran_bits |= 8;
@@ -1562,7 +1562,7 @@ void daughter_brannington_driver(int cn, int ret, int lastact) {
                         ppd->daughterbran_state = 3;
                         // fall through intended
                     } else {
-                        quiet_say(cn, "Oh thank you great %s, you are my hero! Let me reward you for such heroism, %s!", (ch[co].flags & CF_MALE) ? "Sir" : "Lady", ch[co].name);
+                        quiet_say(cn, "Oh, I thank thee, great %s, you are my hero! Let me reward you for such heroism, %s!", (ch[co].flags & CF_MALE) ? "Sir" : "Lady", ch[co].name);
                         ppd->daughterbran_state++;
                         didsay = 1;
                         ppd->countbran_bits |= 16;
@@ -1729,7 +1729,7 @@ void guard_brannington_driver(int cn, int ret, int lastact) {
                         questlog_done(co, 64);
                     } else break;
                 case 7:
-                    quiet_say(cn, "Excellent! The Count will be most pleased to hear this. Thank you, %s!", ch[co].name);
+                    quiet_say(cn, "Excellent! The Count will be most pleased to hear this. I thank thee, %s!", ch[co].name);
                     ppd->guardbran_state++;
                     didsay = 1;
                     break;
@@ -2099,12 +2099,12 @@ void broklin_driver(int cn, int ret, int lastact) {
                     destroy_item_byID(co, IID_STAFF_ROBBERKEYAREA1);
 
                     if (tmp == 1) {
-                        quiet_say(cn, "Thank you! Take these 2,000 gu - I am sure it will be useful to you.");
+                        quiet_say(cn, "I thank thee! Take these 2,000 gu - I am sure it will be useful to you.");
                         in = create_item("gold_2000");
                         if (in) {
                             if (!give_char_item(co, in)) destroy_item(in);
                         }
-                    } else quiet_say(cn, "Thank you!");
+                    } else quiet_say(cn, "I thank thee!");
                     ppd->broklin_state = 5;
                 } else {
                     quiet_say(cn, "Thou hast better use for this than I do. Well, if there is use for it at all.");

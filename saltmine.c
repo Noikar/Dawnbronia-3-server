@@ -282,7 +282,7 @@ void monk_gatama_driver(int cn, int ret, int lastact) {
 
                 // Intro
             case 10:
-                say(cn, "Welcome %s. The Monastery of Kir Laka needs thine help. We live from the salt we get from the saltmine thou can find to the west. But now many golems appeared in the mine and we had to run for our lives, and all the salt we had already mined is lost there.", ch[co].name);
+                say(cn, "Welcome %s. The Monastery of Kir Laka needs thy help. We live from the salt we get from the saltmine thou can find to the west. But now many golems appeared in the mine and we had to run for our lives, and all the salt we had already mined is lost there.", ch[co].name);
                 didsay = 1;
                 ppd->gatamastate++;
                 break;
@@ -350,7 +350,7 @@ void monk_gatama_driver(int cn, int ret, int lastact) {
 
                 // Reward
             case 50:
-                say(cn, "Thanks thee %s for thine help. Thou canst use the saltbag in the store room, to take thee thine reward. I trust thee, that thou wilt take the right amount.", ch[co].name);
+                say(cn, "I thank thee, %s, for thy help. Thou canst use the saltbag in the store room to take thy reward. I trust thee, that thou wilt take the right amount.", ch[co].name);
                 ppd->gatamastate++;
             case 51:
                 talkdat->cv_co = 0;

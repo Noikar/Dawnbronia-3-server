@@ -338,7 +338,7 @@ void seymour_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 6:
-                    say(cn, "%s, the Seyan'Du are offering you rank and status, in exchange for some missions. The first of these missions is to find out more about a certain Loisan.", ch[co].name);
+                    say(cn, "%s, the Seyan'Du are offering thee rank and status, in exchange for some missions. The first of these missions is to find out more about a certain Loisan.", ch[co].name);
                     ppd->seymour_state++;
                     didsay = 1;
                     break;
@@ -348,7 +348,7 @@ void seymour_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 8:
-                    say(cn, "As a first step, I want you to go back to Cameron and search Loisan's house there. I have heard rumors that he was working on strange human skulls, and I want you to acquire one of those and bring it to me.");
+                    say(cn, "As a first step, I would have thee go back to Cameron and search Loisan's house there. I have heard rumors that he was working on strange human skulls, and I would have thee acquire one of those and bring it to me.");
                     ppd->seymour_state++;
                     didsay = 1;
                     break;
@@ -359,7 +359,7 @@ void seymour_driver(int cn, int ret, int lastact) {
                         ppd->seymour_state = 12;
                         break;
                     }
-                    say(cn, "Your next mission, %s, is to search Loisan's house here in Aston. It is on this street, on the western side. As far as we know, he's been using silver skulls here, and I want you to bring me one of those. You might also want to talk to the Governor of Aston for additional missions.", get_army_rank_string(co));
+                    say(cn, "Thy next mission, %s, is to search Loisan's house here in Aston. It is on this street, on the western side. As far as we know, he's been using silver skulls here, and I would have thee bring me one of those. Thou mightst also want to talk to the Governor of Aston for additional missions.", get_army_rank_string(co));
                     questlog_open(co, 11);
                     ppd->seymour_state++;
                     didsay = 1;
@@ -451,7 +451,7 @@ void seymour_driver(int cn, int ret, int lastact) {
                 if (it[in].ID == IID_AREA2_LOISANNOTE && ppd->seymour_state == 15) {
                     int tmp;
 
-                    say(cn, "So he is dead. Ah, well. Thank you, %s.", ch[co].name);
+                    say(cn, "So he is dead. Ah, well. I thank thee, %s.", ch[co].name);
                     tmp = questlog_done(co, 12);
                     destroy_item_byID(co, IID_AREA2_LOISANNOTE);
                     ppd->seymour_state = 16;
@@ -723,7 +723,7 @@ void kelly_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 21:
-                    quiet_say(cn, "I have another mission for you. An important plaque containing the signatures of every Emporer who has ruled over Aston has been stolen from Wesley's bank vault.");
+                    quiet_say(cn, "I have another mission for thee. An important plaque containing the signatures of every Emperor who hath ruled over Aston has been stolen from Wesley's bank vault.");
                     ppd->kelly_state++;
                     didsay = 1;
                     break;
@@ -834,7 +834,7 @@ void kelly_driver(int cn, int ret, int lastact) {
 
                     questlog_done(co, 60);
 
-                    quiet_say(cn, "Oh thank you so much, %s! I don't think I can ever repay you for your effort. However, I can give you these 5,000 gold coins.", ch[co].name);
+                    quiet_say(cn, "Oh, I thank thee so much, %s! I don't think I can ever repay you for your effort. However, I can give you these 5,000 gold coins.", ch[co].name);
                     ch[co].gold += 5000 * 100;
                     ch[co].flags |= CF_ITEMS;
 
@@ -1906,7 +1906,7 @@ void supermax_driver(int cn, int ret, int lastact) {
                 break;
             case 6:
                 ppd = set_data(co, DRD_MISC_PPD, sizeof(struct misc_ppd));
-                if (ppd && ppd->supermax_gold > 0) say(cn, "You spent %d gold already. The Astonian Wildlife Fund says: 'Thank you!'", ppd->supermax_gold / 100);
+                if (ppd && ppd->supermax_gold > 0) say(cn, "You spent %d gold already. The Astonian Wildlife Fund says: 'I thank thee!'", ppd->supermax_gold / 100);
                 break;
             }
             if (didsay > 100 && didsay < 200) supermax_raise(cn, co, didsay - 100);

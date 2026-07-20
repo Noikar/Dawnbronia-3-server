@@ -1238,7 +1238,7 @@ void create_dungeon(int cn, int co, int target, struct master_data *dat) {
         say(cn, "Sorry, you cannot afford the fee of %dG.", fee);
         return;
     }
-    say(cn, "Very well, I have created the catacomb for you. Thank you for paying %d gold.", fee);
+    say(cn, "Very well, I have created the catacomb for you. I thank thee for paying %d gold.", fee);
 
     xoff = (bestn % 3) * 81 + 2;
     yoff = (bestn / 3) * 81 + 2;

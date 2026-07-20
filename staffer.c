@@ -429,7 +429,7 @@ void smugglecom_driver(int cn, int ret, int lastact) {
                     }
                     break;
                 case 7:
-                    quiet_say(cn, "Thank you, you are of great help in hurting the smuggler's operations.");
+                    quiet_say(cn, "I thank thee, you are of great help in hurting the smuggler's operations.");
                     if (questlog_isdone(co, 37)) {
                         ppd->smugglecom_state = 10;
                         break;
@@ -442,7 +442,7 @@ void smugglecom_driver(int cn, int ret, int lastact) {
                 case 8:
                     break;
                 case 9:
-                    quiet_say(cn, "Thank you for helping us, %s, you have been of great value.", ch[co].name);
+                    quiet_say(cn, "I thank thee for helping us, %s, you have been of great value.", ch[co].name);
                     ppd->smugglecom_state++;
                     didsay = 1;
                     questlog_done(co, 37);
@@ -501,12 +501,12 @@ void smugglecom_driver(int cn, int ret, int lastact) {
                 ppd = set_data(co, DRD_STAFFER_PPD, sizeof(struct staffer_ppd));
 
                 if (it[in].ID == IID_STAFF_SMUGGLEBOOK && ppd && ppd->smugglecom_state <= 4 && (ch[co].flags & CF_PLAYER)) {
-                    quiet_say(cn, "Thank you for the book, %s.", ch[co].name);
+                    quiet_say(cn, "I thank thee for the book, %s.", ch[co].name);
                     questlog_done(co, 35);
                     destroy_item_byID(co, IID_STAFF_SMUGGLEBOOK);
                     ppd->smugglecom_state = 5;
                 } else if (it[in].ID == IID_STAFF_SMUGGLEPEARLS && ppd && !(ppd->smugglecom_bits & SMUGGLEBIT_PEARLS) && (ch[co].flags & CF_PLAYER)) {
-                    quiet_say(cn, "Thank you for bringing back the %s, %s.", it[in].name, ch[co].name);
+                    quiet_say(cn, "I thank thee for bringing back the %s, %s.", it[in].name, ch[co].name);
 
                     val = questlog_scale(questlog_count(co, 36), 1000);
                     dlog(cn, 0, "Received %d exp for doing quest Contraband I for the %d. time (nominal value %d exp)", val, questlog_count(co, 36) + 1, 1000);
@@ -514,7 +514,7 @@ void smugglecom_driver(int cn, int ret, int lastact) {
 
                     ppd->smugglecom_bits |= SMUGGLEBIT_PEARLS;
                 } else if (it[in].ID == IID_STAFF_SMUGGLERING && ppd && !(ppd->smugglecom_bits & SMUGGLEBIT_RING) && (ch[co].flags & CF_PLAYER)) {
-                    quiet_say(cn, "Thank you for bringing back the %s, %s.", it[in].name, ch[co].name);
+                    quiet_say(cn, "I thank thee for bringing back the %s, %s.", it[in].name, ch[co].name);
 
                     val = questlog_scale(questlog_count(co, 36), 1000);
                     dlog(cn, 0, "Received %d exp for doing quest Contraband II for the %d. time (nominal value %d exp)", val, questlog_count(co, 36) + 1, 1000);
@@ -522,7 +522,7 @@ void smugglecom_driver(int cn, int ret, int lastact) {
 
                     ppd->smugglecom_bits |= SMUGGLEBIT_RING;
                 } else if (it[in].ID == IID_STAFF_SMUGGLECAPE && ppd && !(ppd->smugglecom_bits & SMUGGLEBIT_CAPE) && (ch[co].flags & CF_PLAYER)) {
-                    quiet_say(cn, "Thank you for bringing back the %s, %s.", it[in].name, ch[co].name);
+                    quiet_say(cn, "I thank thee for bringing back the %s, %s.", it[in].name, ch[co].name);
 
                     val = questlog_scale(questlog_count(co, 36), 1000);
                     dlog(cn, 0, "Received %d exp for doing quest Contraband III for the %d. time (nominal value %d exp)", val, questlog_count(co, 36) + 1, 1000);
@@ -530,7 +530,7 @@ void smugglecom_driver(int cn, int ret, int lastact) {
 
                     ppd->smugglecom_bits |= SMUGGLEBIT_CAPE;
                 } else if (it[in].ID == IID_STAFF_SMUGGLENECKLACE && ppd && !(ppd->smugglecom_bits & SMUGGLEBIT_NECKLACE) && (ch[co].flags & CF_PLAYER)) {
-                    quiet_say(cn, "Thank you for bringing back the %s, %s.", it[in].name, ch[co].name);
+                    quiet_say(cn, "I thank thee for bringing back the %s, %s.", it[in].name, ch[co].name);
 
                     val = questlog_scale(questlog_count(co, 36), 1000);
                     dlog(cn, 0, "Received %d exp for doing quest Contraband IV for the %d. time (nominal value %d exp)", val, questlog_count(co, 36) + 1, 1000);
@@ -696,7 +696,7 @@ void rouven_driver(int cn, int ret, int lastact) {
                     break; // waiting for player to find chronicles
 
                 case 10:
-                    quiet_say(cn, "Thank you %s. It will be most useful in our rebuilding efforts.", ch[co].name);
+                    quiet_say(cn, "I thank thee %s. It will be most useful in our rebuilding efforts.", ch[co].name);
                     ppd->rouven_state++;
                     didsay = 1;
                     break;
@@ -763,7 +763,7 @@ void rouven_driver(int cn, int ret, int lastact) {
                 ppd = set_data(co, DRD_STAFFER_PPD, sizeof(struct staffer_ppd));
 
                 if (it[in].ID == IID_MAX_CHRONICLES && ppd && ppd->rouven_state >= 6 && ppd->rouven_state <= 9 && (ch[co].flags & CF_PLAYER)) {
-                    quiet_say(cn, "Thank you for the book, %s.", ch[co].name);
+                    quiet_say(cn, "I thank thee for the book, %s.", ch[co].name);
                     questlog_done(co, 63);
                     destroy_item_byID(co, IID_MAX_CHRONICLES);
                     ppd->rouven_state = 10;

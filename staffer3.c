@@ -328,7 +328,7 @@ void aristocrat_driver(int cn, int ret, int lastact) {
 
                 if (it[in].ID == IID_STAFF_ARIAMULET && ppd && ppd->aristocrat_state <= 7) {
                     int tmp;
-                    quiet_say(cn, "Yes! Many thanks adventurer! Please accept this reward.");
+                    quiet_say(cn, "Yes! Many thanks, adventurer! Please accept this reward.");
                     tmp = questlog_done(co, 38);
                     destroy_item_byID(co, IID_STAFF_ARIAMULET);
                     destroy_item_byID(co, IID_STAFF_ARIKEY);
@@ -521,7 +521,7 @@ void yoatin_driver(int cn, int ret, int lastact) {
                 ppd = set_data(co, DRD_STAFFER_PPD, sizeof(struct staffer_ppd));
 
                 if (it[in].ID == IID_STAFF_BEARHEAD && ppd && ppd->yoatin_state <= 8) {
-                    quiet_say(cn, "Thank you %s! This will be perfect proof. Here, take my belt, you are clearly the greater hunter!", ch[co].name);
+                    quiet_say(cn, "I thank thee %s! This will be perfect proof. Here, take my belt, you are clearly the greater hunter!", ch[co].name);
                     questlog_done(co, 39);
                     destroy_item_byID(co, IID_STAFF_BEARHEAD);
                     if ((in = create_item("WS_Hunter_Belt"))) {
