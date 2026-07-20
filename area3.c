@@ -71,13 +71,13 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"repeat", NULL}, NULL, 2},
     {{"restart", NULL}, NULL, 2},
     {{"please", "repeat", NULL}, NULL, 2},
@@ -375,7 +375,7 @@ void seymour_driver(int cn, int ret, int lastact) {
                         ppd->seymour_state = 16;
                         break;
                     }
-                    say(cn, "Alright, now that we have the skulls he was using, it would be nice to know what became of Loisan. If you can find him, his body, or proof of his whereabouts, bring it to me.");
+                    say(cn, "Alright, now that we have the skulls he was using, it would be nice to know what became of Loisan. If thou canst find him, his body, or proof of his whereabouts, bring it to me.");
                     questlog_open(co, 12);
                     ppd->seymour_state++;
                     didsay = 1;
@@ -525,7 +525,7 @@ int collect_heads(int cn, int co) {
         }
     }
     if (cnt) {
-        say(cn, "Ah. %d heads. I'll give you %.2fG for them.", cnt, sum / 100.0);
+        say(cn, "Ah. %d heads. I shall give thee %.2fG for them.", cnt, sum / 100.0);
         ch[co].gold += sum;
         ch[co].flags |= CF_ITEMS;
         return 1;
@@ -628,7 +628,7 @@ void kelly_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 7:
-                    quiet_say(cn, "They found a strange shrine there. I suspect there are several of them. Thou are to go there and find them all. Report back when thou hast found at least one.");
+                    quiet_say(cn, "They found a strange shrine there. I suspect there are several of them. Thou art to go there and find them all. Report back when thou hast found at least one.");
                     ppd->kelly_state++;
                     didsay = 1;
                     break;
@@ -940,7 +940,7 @@ void astro1_driver(int cn, int ret, int lastact) {
             dat->state++;
             break;
         case 12:
-            quiet_say(cn, "But then I got interrupted by my colleague, who wanted to have a heated discussion about something I don't remember. I offered him some food to quiet him and continued my observations.");
+            quiet_say(cn, "But then I got interrupted by my colleague, who wanted to have a heated discussion about something I do not remember. I offered him some food to quiet him and continued my observations.");
             dat->state++;
             break;
         case 13:
@@ -1032,7 +1032,7 @@ void astro2_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    say(cn, "Me and my colleagues, we've been watching the moon from our big telescope in the garden south-east of here.");
+                    say(cn, "Me and my colleagues, we have been watching the moon from our big telescope in the garden south-east of here.");
                     ppd->astro2_state++;
                     didsay = 1;
                     break;
@@ -1042,7 +1042,7 @@ void astro2_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    say(cn, "Could thou try to get those notes back? I'd... well, I'd pay thee handsomely!");
+                    say(cn, "Couldst thou try to get those notes back? I would... well, I would pay thee handsomely!");
                     ppd->astro2_state++;
                     didsay = 1;
                     break;
@@ -1358,7 +1358,7 @@ void sir_jones_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 4:
-                    say(cn, "Would thou be willing to go? Say \260c4Aye\260c0 or \260c4Nay\260c0!");
+                    say(cn, "Wouldst thou be willing to go? Say \260c4Aye\260c0 or \260c4Nay\260c0!");
                     ppd->crypt_state++;
                     didsay = 1;
                     break;
@@ -1399,7 +1399,7 @@ void sir_jones_driver(int cn, int ret, int lastact) {
                     ppd->crypt_state++;
                     break;
                 case 13:
-                    say(cn, "I don't believe in these rumors, but it is said that thou canst gain entry to its lair by walking through the wall in the western corner of the Vampire Lords room.");
+                    say(cn, "I do not believe in these rumors, but it is said that thou canst gain entry to its lair by walking through the wall in the western corner of the Vampire Lords room.");
                     ppd->crypt_state++;
                     break;
                 case 14:
@@ -1564,12 +1564,12 @@ void carlos_driver(int cn, int ret, int lastact) {
                         didsay = 1;
                         break;
                     case 1:
-                        quiet_say(cn, "I need your help in aquiring a magical ritual that may aid in preventing any more attacks on the city.");
+                        quiet_say(cn, "I need thy help in aquiring a magical ritual that may aid in preventing any more attacks on the city.");
                         ppd->carlos2_state++;
                         didsay = 1;
                         break;
                     case 2:
-                        quiet_say(cn, "The only known copy of this ritual was on a scroll stored in the Imperial Vault. I need you to find and bring the scroll to me.");
+                        quiet_say(cn, "The only known copy of this ritual was on a scroll stored in the Imperial Vault. I need thee to find and bring the scroll to me.");
                         ppd->carlos2_state++;
                         didsay = 1;
                         break;
@@ -1721,7 +1721,7 @@ void supermax_list(int cn, int co) {
 
     left = ch[co].exp - ch[co].exp_used;
     if (left < 1) {
-        say(cn, "You cannot raise anything while you don't have any experience to spend.");
+        say(cn, "Thou canst not raise anything while thou dost not have any experience to spend.");
         return;
     }
     smax = skillmax(co);
@@ -1753,7 +1753,7 @@ void supermax_raise(int cn, int co, int skl) {
     smax = skillmax(co);
 
     if (ch[co].value[1][skl] < smax) {
-        say(cn, "You can only raise skills you have already maxed, %s.", ch[co].name);
+        say(cn, "Thou canst only raise skills thou hast already maxed, %s.", ch[co].name);
         return;
     }
     if (ch[co].value[1][skl] >= 250) {
@@ -1761,16 +1761,16 @@ void supermax_raise(int cn, int co, int skl) {
         return;
     }
     if (cost > left) {
-        say(cn, "You do not have enough experience to raise %s, %s.", skill[skl].name, ch[co].name);
+        say(cn, "Thou dost not have enough experience to raise %s, %s.", skill[skl].name, ch[co].name);
         return;
     }
     if (ch[co].gold < 2000 * 100) {
-        say(cn, "You cannot pay the fee of 2000 gold, %s.", ch[co].name);
+        say(cn, "Thou canst not pay the fee of 2000 gold, %s.", ch[co].name);
         return;
     }
 
     dlog(co, 0, "supermax: raise %s, val %d, smax %d, left %d, cost %d", skill[skl].name, ch[co].value[1][skl], smax, left, cost);
-    say(cn, "Your %s has been raised, %s.", skill[skl].name, ch[co].name);
+    say(cn, "Thy %s has been raised, %s.", skill[skl].name, ch[co].name);
 
     ch[co].value[1][skl]++;
     ch[co].exp_used += cost;
@@ -1786,7 +1786,7 @@ void supermax_lower(int cn, int co, int skl) {
     smax = skillmax(co);
 
     if (ch[co].value[1][skl] <= smax) {
-        say(cn, "You can only lower skills you have already raised past the max, %s.", ch[co].name);
+        say(cn, "Thou canst only lower skills thou hast already raised past the max, %s.", ch[co].name);
         return;
     }
 
@@ -1794,7 +1794,7 @@ void supermax_lower(int cn, int co, int skl) {
     cost = supermax_cost(co, skl, ch[co].value[1][skl]);
     ch[co].exp_used -= cost;
     dlog(co, 0, "supermax: lower %s, val %d, smax %d, cost %d", skill[skl].name, ch[co].value[1][skl], smax, cost);
-    say(cn, "Your %s has been lowered, %s.", skill[skl].name, ch[co].name);
+    say(cn, "Thy %s has been lowered, %s.", skill[skl].name, ch[co].name);
 }
 
 void supermax_driver(int cn, int ret, int lastact) {
@@ -1857,12 +1857,12 @@ void supermax_driver(int cn, int ret, int lastact) {
             if (ppd) {
                 switch (ppd->supermax_state) {
                 case 0:
-                    say(cn, "Hello, %s. I am %s, and I can turn your life upside down.", ch[co].name, ch[cn].name);
+                    say(cn, "Hello, %s. I am %s, and I can turn thy life upside down.", ch[co].name, ch[cn].name);
                     ppd->supermax_state++;
                     didsay = 1;
                     break;
                 case 1:
-                    say(cn, "I can raise any of your attributes, skills or spells past your normal maximum of %d.", smax);
+                    say(cn, "I can raise any of thine attributes, skills or spells past thy normal maximum of %d.", smax);
                     ppd->supermax_state++;
                     didsay = 1;
                     break;

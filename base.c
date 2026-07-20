@@ -78,13 +78,13 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"what's", "your", "name", NULL}, NULL, 1},
     {{"what", "is", "your", "name", NULL}, NULL, 1},
     {{"who", "are", "you", NULL}, NULL, 1},
@@ -160,7 +160,7 @@ int analyse_text_driver(int cn, int type, char *text, int co) {
                 if (qa[q].answer) quiet_say(cn, qa[q].answer, ch[co].name, ch[cn].name);
                 else switch (qa[q].answer_code) {
                     case 1:
-                        quiet_say(cn, "I'm %s.", ch[cn].name);
+                        quiet_say(cn, "I am %s.", ch[cn].name);
                         break;
                     }
                 break;
@@ -279,14 +279,14 @@ void macro_driver(int cn, int ret, int lastact) {
                             else say(cn, "Merry Christmas, %s!", ch[co].name);
                         }
                     } else if (RANDOM(20) == 0) {
-                        say(cn, "Experience is a nice thing, isn't it?");
+                        say(cn, "Experience is a nice thing, is not it?");
                         give_exp(co, level_value(ch[co].level) / 20 + 1);
                     }
                     dat->victim++;
                     dat->state = 0;
                 } else if (val) {
                     dlog(co, 0, "answered macro wrongly: '%s' (%d)", text, dat->val1 + dat->val2);
-                    say(cn, "That's wrong, %s. I'll reduce your time by 30 seconds.", ch[co].name);
+                    say(cn, "That is wrong, %s. I shall reduce thy time by 30 seconds.", ch[co].name);
                     dat->start -= TICKS * 30;
                 }
                 tabunga(cn, co, (char *)(msg->dat2));
@@ -395,7 +395,7 @@ void macro_driver(int cn, int ret, int lastact) {
             do_idle(cn, TICKS);
             return;
         }
-        say(cn, "Your time is up. Sorry, pal.");
+        say(cn, "Thy time is up. Sorry, pal.");
         talkdir = offset2dx(ch[cn].x, ch[cn].y, ch[co].x, ch[co].y);
 
         ppd = set_data(co, DRD_MACRO_PPD, sizeof(struct macro_ppd));
@@ -2943,7 +2943,7 @@ void trader_driver(int cn, int ret, int lastact) {
                     continue;
                 }
                 if (cnt_free_inv(co) < 10) {
-                    quiet_say(cn, "Sorry, your inventory is too filled to trade, %s.", ch[co].name);
+                    quiet_say(cn, "Sorry, thine inventory is too filled to trade, %s.", ch[co].name);
                     talkdir = offset2dx(ch[cn].x, ch[cn].y, ch[co].x, ch[co].y);
                     remove_message(cn, msg);
                     continue;
@@ -2970,7 +2970,7 @@ void trader_driver(int cn, int ret, int lastact) {
                     continue;
                 }
                 if (ch[co].ID != dat->c1ID && ch[co].ID != dat->c2ID) {
-                    quiet_say(cn, "Sorry, I am not trading on your behalf at the moment.");
+                    quiet_say(cn, "Sorry, I am not trading on thy behalf at the moment.");
                     talkdir = offset2dx(ch[cn].x, ch[cn].y, ch[co].x, ch[co].y);
                     remove_message(cn, msg);
                     continue;
@@ -2992,7 +2992,7 @@ void trader_driver(int cn, int ret, int lastact) {
                     continue;
                 }
                 if (ch[co].ID != dat->c1ID && ch[co].ID != dat->c2ID) {
-                    quiet_say(cn, "Sorry, I am not trading at your behalf at the moment.");
+                    quiet_say(cn, "Sorry, I am not trading at thy behalf at the moment.");
                     talkdir = offset2dx(ch[cn].x, ch[cn].y, ch[co].x, ch[co].y);
                     remove_message(cn, msg);
                     continue;
@@ -3012,7 +3012,7 @@ void trader_driver(int cn, int ret, int lastact) {
                     dat->state = 2;
                 }
             } else if (strstr(text, "accept trade")) {
-                say(cn, "You have to say \"accept trade\" by itself, not as part of a longer sentence to make it work. Like this:");
+                say(cn, "Thou hast to say \"accept trade\" by itself, not as part of a longer sentence to make it work. Like this:");
                 say(cn, "accept trade");
                 say(cn, "No leading or trailing spaces, either.");
             }
@@ -3024,7 +3024,7 @@ void trader_driver(int cn, int ret, int lastact) {
                     continue;
                 }
                 if (ch[co].ID != dat->c1ID && ch[co].ID != dat->c2ID) {
-                    quiet_say(cn, "Sorry, I am not trading at your behalf at the moment.");
+                    quiet_say(cn, "Sorry, I am not trading at thy behalf at the moment.");
                     talkdir = offset2dx(ch[cn].x, ch[cn].y, ch[co].x, ch[co].y);
                     remove_message(cn, msg);
                     continue;
@@ -3051,7 +3051,7 @@ void trader_driver(int cn, int ret, int lastact) {
                 continue;
             }
             if (!ch[co].ID || (ch[co].ID != dat->c1ID && ch[co].ID != dat->c2ID)) {
-                quiet_say(cn, "I am not trading at your behalf at the moment, %s.", ch[co].name);
+                quiet_say(cn, "I am not trading at thy behalf at the moment, %s.", ch[co].name);
                 talkdir = offset2dx(ch[cn].x, ch[cn].y, ch[co].x, ch[co].y);
                 if (ch[cn].citem && !give_char_item(co, ch[cn].citem)) {
                     destroy_item(ch[cn].citem);
@@ -3094,7 +3094,7 @@ void trader_driver(int cn, int ret, int lastact) {
                     ch[cn].citem = 0;
                 }
             } else { //uh?
-                quiet_say(cn, "I'm confused.");
+                quiet_say(cn, "I am confused.");
                 talkdir = offset2dx(ch[cn].x, ch[cn].y, ch[co].x, ch[co].y);
                 destroy_item(ch[cn].citem);
                 ch[cn].citem = 0;

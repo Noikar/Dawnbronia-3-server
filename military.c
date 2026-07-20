@@ -68,14 +68,14 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"help", NULL}, "Sorry, I'm just a merchant, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"help", NULL}, "Sorry, I am just a merchant, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"what's", "your", "name", NULL}, NULL, 1},
     {{"what", "is", "your", "name", NULL}, NULL, 1},
     {{"who", "are", "you", NULL}, NULL, 1},
@@ -166,7 +166,7 @@ int analyse_text_driver(int cn, int type, char *text, int co) {
                 if (qa[q].answer) quiet_say(cn, qa[q].answer, ch[co].name, ch[cn].name);
                 else switch (qa[q].answer_code) {
                     case 1:
-                        quiet_say(cn, "I'm %s.", ch[cn].name);
+                        quiet_say(cn, "I am %s.", ch[cn].name);
                     default:
                         return qa[q].answer_code;
                     }
@@ -373,21 +373,21 @@ void offer_missions(int cn, int co, struct military_ppd *ppd) {
 
         switch (ppd->mis[n].type) {
         case 1:
-            say(cn, "I have an \260c4%s\260c0 mission for you, %s. It is to slay %d level %d demons in the Pentagram Quest.",
+            say(cn, "I have an \260c4%s\260c0 mission for thee, %s. It is to slay %d level %d demons in the Pentagram Quest.",
                 diff_name[n],
                 ch[co].name,
                 ppd->mis[n].opt1,
                 ppd->mis[n].opt2);
             break;
         case 2:
-            say(cn, "I have an \260c4%s\260c0 mission for you, %s. It is to slay %d level %d ratlings in the Sewers.",
+            say(cn, "I have an \260c4%s\260c0 mission for thee, %s. It is to slay %d level %d ratlings in the Sewers.",
                 diff_name[n],
                 ch[co].name,
                 ppd->mis[n].opt1,
                 ppd->mis[n].opt2);
             break;
         case 3:
-            say(cn, "I have an \260c4%s\260c0 mission for you, %s. It is to find %d units of silver in the Mine.",
+            say(cn, "I have an \260c4%s\260c0 mission for thee, %s. It is to find %d units of silver in the Mine.",
                 diff_name[n],
                 ch[co].name,
                 ppd->mis[n].opt1);
@@ -399,17 +399,17 @@ void offer_missions(int cn, int co, struct military_ppd *ppd) {
 void display_mission(int cn, int co, int nr, struct military_ppd *ppd) {
     switch (ppd->mis[nr].type) {
     case 1:
-        say(cn, "Your mission is to slay %d level %d demons in the Pentagram Quest.",
+        say(cn, "Thy mission is to slay %d level %d demons in the Pentagram Quest.",
             ppd->mis[nr].opt1,
             ppd->mis[nr].opt2);
         break;
     case 2:
-        say(cn, "Your mission is to slay %d level %d ratlings in the Sewers.",
+        say(cn, "Thy mission is to slay %d level %d ratlings in the Sewers.",
             ppd->mis[nr].opt1,
             ppd->mis[nr].opt2);
         break;
     case 3:
-        say(cn, "Your mission is to find %d units of silver in the Mine.",
+        say(cn, "Thy mission is to find %d units of silver in the Mine.",
             ppd->mis[nr].opt1);
         break;
     }
@@ -463,33 +463,33 @@ void military_master_driver(int cn, int ret, int lastact) {
                     ppd->current_pts += 5;
                     dat->storage_data.clan_pts[nr] -= 12000;
                     dat->last_recom = ch[co].ID;
-                    say(cn, "Be greeted, %s. You've been recommended by your clan!", ch[co].name);
+                    say(cn, "Be greeted, %s. Thou hast been recommended by thy clan!", ch[co].name);
                 }
             }
             if (ppd->recommend != yday + 1) {
                 for (n = 0; n < MAXADVISOR; n++) {
                     if (ppd->advisor_last[n] == yday + 1) {
-                        say(cn, "Be greeted, %s. You have been recommended by my trusty advisor %d", ch[co].name, n);
+                        say(cn, "Be greeted, %s. Thou hast been recommended by my trusty advisor %d", ch[co].name, n);
                     }
                 }
                 ppd->recommend = yday + 1;
             }
             if (ppd->master_state == 0) {
                 if (ppd->took_mission) {
-                    say(cn, "Ah, hello %s. Any luck with your mission? Or would you like to \260c4hear\260c0 it again? Or have you \260c4failed\260c0 to complete it?", ch[co].name);
+                    say(cn, "Ah, hello %s. Any luck with thy mission? Or wouldst thou like to \260c4hear\260c0 it again? Or hast thou \260c4failed\260c0 to complete it?", ch[co].name);
                     ppd->master_state = 2;
                 } else if (ppd->solved_yday == yday + 1) {
-                    say(cn, "I don't have another mission for you today, %s.", ch[co].name);
+                    say(cn, "I do not have another mission for thee today, %s.", ch[co].name);
                     ppd->master_state = 2;
                 } else if (get_army_rank_int(co)) {
-                    say(cn, "Hello, %s. I might have a \260c4mission\260c0 for you.", ch[co].name);
+                    say(cn, "Hello, %s. I might have a \260c4mission\260c0 for thee.", ch[co].name);
                     ppd->master_state = 2;
                 } else {
                     say(cn, "Greetings, %s.", ch[co].name);
                     ppd->master_state = 1;
                 }
             } else if (ppd->master_state == 1 && get_army_rank_int(co)) {
-                say(cn, "Hello again, %s. I might have a \260c4mission\260c0 for you.", ch[co].name);
+                say(cn, "Hello again, %s. I might have a \260c4mission\260c0 for thee.", ch[co].name);
                 ppd->master_state = 2;
             }
             if (ppd->solved_mission) {
@@ -504,13 +504,13 @@ void military_master_driver(int cn, int ret, int lastact) {
                 if (ch[co].prof[P_MERCENARY]) {
                     ch[co].gold += ppd->mis[n].exp / 5;
                     ch[co].flags |= CF_ITEMS;
-                    say(cn, "Well done, %s. You've solved your mission! Your pay is %.2fG.", ch[co].name, ppd->mis[n].exp / 500.0);
+                    say(cn, "Well done, %s. Thou hast solved thy mission! Thy pay is %.2fG.", ch[co].name, ppd->mis[n].exp / 500.0);
 
                     pts = ppd->mis[n].pts + ppd->mis[n].pts / 2 + ppd->mis[n].pts * ch[cn].prof[P_MERCENARY] * 3 / 100 + 1;
                     ppd->military_pts += pts;
                     dat->storage_data.pts_given[n] += ppd->mis[n].pts;
                 } else {
-                    say(cn, "Well done, %s. You've solved your mission!", ch[co].name);
+                    say(cn, "Well done, %s. Thou hast solved thy mission!", ch[co].name);
 
                     pts = ppd->mis[n].pts + ppd->mis[n].pts / 2;
                     ppd->military_pts += pts;
@@ -527,7 +527,7 @@ void military_master_driver(int cn, int ret, int lastact) {
                     char buf[256];
 
                     set_army_rank(co, rank);
-                    say(cn, "You've been promoted to %s. Congratulations, %s!", get_army_rank_string(co), ch[co].name);
+                    say(cn, "Thou hast been promoted to %s. Congratulations, %s!", get_army_rank_string(co), ch[co].name);
                     if (get_army_rank_int(co) > 9) {
                         sprintf(buf, "0000000000\260c10Grats: %s is a %s now!", ch[co].name, get_army_rank_string(co));
                         server_chat(6, buf);
@@ -551,15 +551,15 @@ void military_master_driver(int cn, int ret, int lastact) {
                 break;
             case 10:
                 if (ppd->took_mission) {
-                    say(cn, "You already have a mission. Would you like to \260c4hear\260c0 it again?");
+                    say(cn, "Thou already hast a mission. Wouldst thou like to \260c4hear\260c0 it again?");
                     break;
                 }
                 if (ppd->solved_yday == yday + 1) {
-                    say(cn, "I don't have another mission for you today, %s.", ch[co].name);
+                    say(cn, "I do not have another mission for thee today, %s.", ch[co].name);
                     break;
                 }
                 if (!get_army_rank_int(co)) {
-                    say(cn, "But you don't even belong to the army, %s. Talk to Seymour about enrollment.", ch[co].name);
+                    say(cn, "But thou dost not even belong to the army, %s. Talk to Seymour about enrollment.", ch[co].name);
                     break;
                 }
                 if (ppd->mission_yday != yday + 1) generate_mission(co, ppd);
@@ -567,15 +567,15 @@ void military_master_driver(int cn, int ret, int lastact) {
                 break;
             case 11:
                 if (ppd->took_mission) {
-                    say(cn, "You already have a mission, %s. Would you like to \260c4hear\260c0 it again?", ch[co].name);
+                    say(cn, "Thou already hast a mission, %s. Wouldst thou like to \260c4hear\260c0 it again?", ch[co].name);
                     break;
                 }
                 if (ppd->solved_yday == yday + 1) {
-                    say(cn, "I don't have another mission for you today, %s.", ch[co].name);
+                    say(cn, "I do not have another mission for thee today, %s.", ch[co].name);
                     break;
                 }
                 if (ppd->mission_yday != yday + 1) {
-                    say(cn, "I haven't offered you that kind of mission today, %s.", ch[co].name);
+                    say(cn, "I have not offered you that kind of mission today, %s.", ch[co].name);
                     break;
                 }
                 display_mission(cn, co, 0, ppd);
@@ -585,11 +585,11 @@ void military_master_driver(int cn, int ret, int lastact) {
                 break;
             case 12:
                 if (ppd->took_mission) {
-                    say(cn, "You already have a mission, %s. Would you like to \260c4hear\260c0 it again?", ch[co].name);
+                    say(cn, "Thou already hast a mission, %s. Wouldst thou like to \260c4hear\260c0 it again?", ch[co].name);
                     break;
                 }
                 if (ppd->solved_yday == yday + 1) {
-                    say(cn, "I don't have another mission for you today, %s.", ch[co].name);
+                    say(cn, "I do not have another mission for thee today, %s.", ch[co].name);
                     break;
                 }
                 if (ppd->current_pts < ppd->mis[1].pts) {
@@ -597,7 +597,7 @@ void military_master_driver(int cn, int ret, int lastact) {
                     break;
                 }
                 if (ppd->mission_yday != yday + 1) {
-                    say(cn, "I haven't offered you that kind of mission today, %s.", ch[co].name);
+                    say(cn, "I have not offered you that kind of mission today, %s.", ch[co].name);
                     break;
                 }
                 display_mission(cn, co, 1, ppd);
@@ -608,11 +608,11 @@ void military_master_driver(int cn, int ret, int lastact) {
                 break;
             case 13:
                 if (ppd->took_mission) {
-                    say(cn, "You already have a mission, %s. Would you like to \260c4hear\260c0 it again?", ch[co].name);
+                    say(cn, "Thou already hast a mission, %s. Wouldst thou like to \260c4hear\260c0 it again?", ch[co].name);
                     break;
                 }
                 if (ppd->solved_yday == yday + 1) {
-                    say(cn, "I don't have another mission for you today, %s.", ch[co].name);
+                    say(cn, "I do not have another mission for thee today, %s.", ch[co].name);
                     break;
                 }
                 if (ppd->current_pts < ppd->mis[2].pts) {
@@ -620,7 +620,7 @@ void military_master_driver(int cn, int ret, int lastact) {
                     break;
                 }
                 if (ppd->mission_yday != yday + 1) {
-                    say(cn, "I haven't offered you that kind of mission today, %s.", ch[co].name);
+                    say(cn, "I have not offered you that kind of mission today, %s.", ch[co].name);
                     break;
                 }
                 display_mission(cn, co, 2, ppd);
@@ -631,11 +631,11 @@ void military_master_driver(int cn, int ret, int lastact) {
                 break;
             case 14:
                 if (ppd->took_mission) {
-                    say(cn, "You already have a mission, %s. Would you like to \260c4hear\260c0 it again?", ch[co].name);
+                    say(cn, "Thou already hast a mission, %s. Wouldst thou like to \260c4hear\260c0 it again?", ch[co].name);
                     break;
                 }
                 if (ppd->solved_yday == yday + 1) {
-                    say(cn, "I don't have another mission for you today, %s.", ch[co].name);
+                    say(cn, "I do not have another mission for thee today, %s.", ch[co].name);
                     break;
                 }
                 if (ppd->current_pts < ppd->mis[3].pts) {
@@ -643,7 +643,7 @@ void military_master_driver(int cn, int ret, int lastact) {
                     break;
                 }
                 if (ppd->mission_yday != yday + 1) {
-                    say(cn, "I haven't offered you that kind of mission today, %s.", ch[co].name);
+                    say(cn, "I have not offered you that kind of mission today, %s.", ch[co].name);
                     break;
                 }
                 display_mission(cn, co, 3, ppd);
@@ -654,11 +654,11 @@ void military_master_driver(int cn, int ret, int lastact) {
                 break;
             case 15:
                 if (ppd->took_mission) {
-                    say(cn, "You already have a mission, %s. Would you like to \260c4hear\260c0 it again?", ch[co].name);
+                    say(cn, "Thou already hast a mission, %s. Wouldst thou like to \260c4hear\260c0 it again?", ch[co].name);
                     break;
                 }
                 if (ppd->solved_yday == yday + 1) {
-                    say(cn, "I don't have another mission for you today, %s.", ch[co].name);
+                    say(cn, "I do not have another mission for thee today, %s.", ch[co].name);
                     break;
                 }
                 if (ppd->current_pts < ppd->mis[4].pts) {
@@ -666,7 +666,7 @@ void military_master_driver(int cn, int ret, int lastact) {
                     break;
                 }
                 if (ppd->mission_yday != yday + 1) {
-                    say(cn, "I haven't offered you that kind of mission today, %s.", ch[co].name);
+                    say(cn, "I have not offered you that kind of mission today, %s.", ch[co].name);
                     break;
                 }
                 display_mission(cn, co, 4, ppd);
@@ -677,7 +677,7 @@ void military_master_driver(int cn, int ret, int lastact) {
                 break;
             case 16:
                 if (!ppd->took_mission) {
-                    say(cn, "But you did not take any \260c4mission\260c0, %s.", ch[co].name);
+                    say(cn, "But thou didst not take any \260c4mission\260c0, %s.", ch[co].name);
                     break;
                 }
                 say(cn, "So, you failed? Well, %s, I'll remove that mission from your record. Would you like to get another \260c4mission\260c0?", get_army_rank_string(co));
@@ -685,13 +685,13 @@ void military_master_driver(int cn, int ret, int lastact) {
                 break;
             case 17:
                 if (!ppd->took_mission) {
-                    say(cn, "But you do not have a \260c4mission\260c0 yet, %s.", get_army_rank_string(co));
+                    say(cn, "But thou dost not have a \260c4mission\260c0 yet, %s.", get_army_rank_string(co));
                 }
                 display_mission(cn, co, ppd->took_mission - 1, ppd);
                 break;
             case 18:
                 if (!(ch[co].flags & CF_GOD)) break;
-                say(cn, "You have %d pts and you have gained %d exp.",
+                say(cn, "Thou hast %d pts and thou hast gained %d exp.",
                     ppd->military_pts,
                     ppd->normal_exp);
                 for (n = 1; n < 32; n++) {
@@ -730,7 +730,7 @@ void military_master_driver(int cn, int ret, int lastact) {
             // didnt work, let it vanish, then
             destroy_item(ch[cn].citem);
             ch[cn].citem = 0;
-            say(cn, "That's junk.");
+            say(cn, "That is junk.");
         }
 
         standard_message_driver(cn, msg, 1, 1);
@@ -913,7 +913,7 @@ void military_advisor_driver(int cn, int ret, int lastact) {
             }
             if (ppd->advisor_state == 0 || ppd->current_advisor != dat->storage_ID) {
                 if (ppd->advisor_last[idx] == yday + 1) {
-                    quiet_say(cn, "Ah, %s. I haven't forgotten you.", ch[co].name);
+                    quiet_say(cn, "Ah, %s. I have not forgotten you.", ch[co].name);
                 } else {
                     adv_introduction(cn, co, dat);
                 }
@@ -936,11 +936,11 @@ void military_advisor_driver(int cn, int ret, int lastact) {
                 ppd->advisor_state = 0;
                 break;
             case 3:
-                if (ppd->advisor_last[idx] == yday + 1) quiet_say(cn, "Mentioning your name twice a day won't accomplish much, %s.", ch[co].name);
+                if (ppd->advisor_last[idx] == yday + 1) quiet_say(cn, "Mentioning thy name twice a day will not accomplish much, %s.", ch[co].name);
                 else adv_favor_desc(cn, co, dat);
                 break;
             case 4:
-                if (ppd->advisor_last[idx] == yday + 1) quiet_say(cn, "Mentioning your name twice a day won't accomplish much, %s.", ch[co].name);
+                if (ppd->advisor_last[idx] == yday + 1) quiet_say(cn, "Mentioning thy name twice a day will not accomplish much, %s.", ch[co].name);
                 else {
                     cost = advisor_price(ch[co].level) * 1; //max(500,calc_cost(100*100,dat->storage_data+0,30));
                     quiet_say(cn, "You can get a small favor for the humble fee of %dG, %dS, %s. Say \260c4pay\260c0 if you want it.", cost / 100, cost % 100, ch[co].name);
@@ -950,7 +950,7 @@ void military_advisor_driver(int cn, int ret, int lastact) {
                 }
                 break;
             case 5:
-                if (ppd->advisor_last[idx] == yday + 1) quiet_say(cn, "Mentioning your name twice a day won't accomplish much, %s.", ch[co].name);
+                if (ppd->advisor_last[idx] == yday + 1) quiet_say(cn, "Mentioning thy name twice a day will not accomplish much, %s.", ch[co].name);
                 else {
                     cost = advisor_price(ch[co].level) * 3; //max(1500,calc_cost(200*100,dat->storage_data+1,20));
                     quiet_say(cn, "You can get a medium favor for the humble fee of %dG, %dS, %s. Say \260c4pay\260c0 if you want it.", cost / 100, cost % 100, ch[co].name);
@@ -960,7 +960,7 @@ void military_advisor_driver(int cn, int ret, int lastact) {
                 }
                 break;
             case 6:
-                if (ppd->advisor_last[idx] == yday + 1) quiet_say(cn, "Mentioning your name twice a day won't accomplish much, %s.", ch[co].name);
+                if (ppd->advisor_last[idx] == yday + 1) quiet_say(cn, "Mentioning thy name twice a day will not accomplish much, %s.", ch[co].name);
                 else {
                     cost = advisor_price(ch[co].level) * 10; //max(4000,calc_cost(400*100,dat->storage_data+2,15));
                     quiet_say(cn, "You can get a big favor for the humble fee of %dG, %dS, %s. Say \260c4pay\260c0 if you want it.", cost / 100, cost % 100, ch[co].name);
@@ -970,7 +970,7 @@ void military_advisor_driver(int cn, int ret, int lastact) {
                 }
                 break;
             case 7:
-                if (ppd->advisor_last[idx] == yday + 1) quiet_say(cn, "Mentioning your name twice a day won't accomplish much, %s.", ch[co].name);
+                if (ppd->advisor_last[idx] == yday + 1) quiet_say(cn, "Mentioning thy name twice a day will not accomplish much, %s.", ch[co].name);
                 else {
                     cost = advisor_price(ch[co].level) * 20; //max(10000,calc_cost(800*100,dat->storage_data+3,10));
                     quiet_say(cn, "You can get a huge favor for the humble fee of %dG, %dS, %s. Say \260c4pay\260c0 if you want it.", cost / 100, cost % 100, ch[co].name);
@@ -980,7 +980,7 @@ void military_advisor_driver(int cn, int ret, int lastact) {
                 }
                 break;
             case 8:
-                if (ppd->advisor_last[idx] == yday + 1) quiet_say(cn, "Mentioning your name twice a day won't accomplish much, %s.", ch[co].name);
+                if (ppd->advisor_last[idx] == yday + 1) quiet_say(cn, "Mentioning thy name twice a day will not accomplish much, %s.", ch[co].name);
                 else {
                     cost = advisor_price(ch[co].level) * 35; //max(25000,calc_cost(1600*100,dat->storage_data+4,5));
                     quiet_say(cn, "You can get a vast favor for the humble fee of %dG, %dS, %s. Say \260c4pay\260c0 if you want it.", cost / 100, cost % 100, ch[co].name);
@@ -992,12 +992,12 @@ void military_advisor_driver(int cn, int ret, int lastact) {
             case 9:
                 if (ppd->current_advisor != dat->storage_ID ||
                     ppd->advisor_state != 2) {
-                    quiet_say(cn, "Pay for what? We haven't agreed on anything yet.");
+                    quiet_say(cn, "Pay for what? We have not agreed on anything yet.");
                     ppd->advisor_state = 1;
                     break;
                 }
                 if (ch[co].gold < ppd->advisor_cost) {
-                    quiet_say(cn, "Alas, you do not have enough money.");
+                    quiet_say(cn, "Alas, thou dost not have enough money.");
                     break;
                 }
                 ch[co].gold -= ppd->advisor_cost;
@@ -1008,7 +1008,7 @@ void military_advisor_driver(int cn, int ret, int lastact) {
 
                 ppd->current_pts += 2 + ppd->advisor_storage_nr * 2;
 
-                quiet_say(cn, "Alright, I'll mention your name to the military governor, %s.", ch[co].name);
+                quiet_say(cn, "Alright, I shall mention thy name to the military governor, %s.", ch[co].name);
 
                 ppd->advisor_state = 1;
                 ppd->advisor_last[idx] = yday + 1;
@@ -1031,7 +1031,7 @@ void military_advisor_driver(int cn, int ret, int lastact) {
             // didnt work, let it vanish, then
             destroy_item(ch[cn].citem);
             ch[cn].citem = 0;
-            quiet_say(cn, "That's junk.");
+            quiet_say(cn, "That is junk.");
         }
 
         standard_message_driver(cn, msg, 1, 1);

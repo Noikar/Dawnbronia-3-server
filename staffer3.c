@@ -70,13 +70,13 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"repeat", NULL}, NULL, 2},
     {{"restart", NULL}, NULL, 2},
     {{"please", "repeat", NULL}, NULL, 2},
@@ -254,7 +254,7 @@ void aristocrat_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 2:
-                    quiet_say(cn, "Oh no, I didn't mean it that way! Please don't growl at me!");
+                    quiet_say(cn, "Oh no, I did not mean it that way! Please do not growl at me!");
                     ppd->aristocrat_state++;
                     didsay = 1;
                     break;
@@ -274,7 +274,7 @@ void aristocrat_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 6:
-                    quiet_say(cn, "I would reward you well if you could retrieve this family heirloom for me.");
+                    quiet_say(cn, "I would reward thee well if thou couldst retrieve this family heirloom for me.");
                     ppd->aristocrat_state++;
                     didsay = 1;
                     break;
@@ -448,7 +448,7 @@ void yoatin_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    quiet_say(cn, "Mayhap you could assist me with a problem I have?");
+                    quiet_say(cn, "Mayhap thou couldst assist me with a problem I have?");
                     ppd->yoatin_state++;
                     didsay = 1;
                     break;
@@ -463,7 +463,7 @@ void yoatin_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 6:
-                    quiet_say(cn, "If you could fetch me proof of the bear being slain, I would reward thee greatly.");
+                    quiet_say(cn, "If thou couldst fetch me proof of the bear being slain, I would reward thee greatly.");
                     ppd->yoatin_state++;
                     didsay = 1;
                     break;
@@ -521,7 +521,7 @@ void yoatin_driver(int cn, int ret, int lastact) {
                 ppd = set_data(co, DRD_STAFFER_PPD, sizeof(struct staffer_ppd));
 
                 if (it[in].ID == IID_STAFF_BEARHEAD && ppd && ppd->yoatin_state <= 8) {
-                    quiet_say(cn, "I thank thee %s! This will be perfect proof. Here, take my belt, you are clearly the greater hunter!", ch[co].name);
+                    quiet_say(cn, "I thank thee %s! This will be perfect proof. Here, take my belt, thou art clearly the greater hunter!", ch[co].name);
                     questlog_done(co, 39);
                     destroy_item_byID(co, IID_STAFF_BEARHEAD);
                     if ((in = create_item("WS_Hunter_Belt"))) {

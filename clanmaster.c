@@ -70,14 +70,14 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"help", NULL}, "Sorry, I'm just a merchant, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"help", NULL}, "Sorry, I am just a merchant, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"what's", "your", "name", NULL}, NULL, 1},
     {{"what", "is", "your", "name", NULL}, NULL, 1},
     {{"who", "are", "you", NULL}, NULL, 1},
@@ -154,7 +154,7 @@ int analyse_text_driver(int cn, int type, char *text, int co) {
                 if (qa[q].answer) quiet_say(cn, qa[q].answer, ch[co].name, ch[cn].name);
                 else switch (qa[q].answer_code) {
                     case 1:
-                        quiet_say(cn, "I'm %s.", ch[cn].name);
+                        quiet_say(cn, "I am %s.", ch[cn].name);
                     default:
                         return qa[q].answer_code;
                     }
@@ -241,7 +241,7 @@ void clanmaster_driver(int cn, int ret, int lastact) {
                 continue;
             }
 
-            if (!get_char_club(co) && !get_char_clan(co)) quiet_say(cn, "Hello %s! Would you like to found a \260c4clan\260c0?", ch[co].name);
+            if (!get_char_club(co) && !get_char_clan(co)) quiet_say(cn, "Hello %s! Wouldst thou like to found a \260c4clan\260c0?", ch[co].name);
             mem_add_driver(cn, co, 7);
         }
 
@@ -252,7 +252,7 @@ void clanmaster_driver(int cn, int ret, int lastact) {
             if ((msg->dat1 == 1 || msg->dat1 == 2) && (co = msg->dat3) != cn) { // talk, and not our talk
                 if ((ptr = strcasestr((char *)msg->dat2, "name:")) && (fnd = set_data(co, DRD_CLANFOUND, sizeof(struct clan_found_data)))) {
                     if (!(ch[co].flags & CF_PAID)) {
-                        quiet_say(cn, "I'm sorry, %s, but only paying players may found clans.", ch[co].name);
+                        quiet_say(cn, "I am sorry, %s, but only paying players may found clans.", ch[co].name);
                     } else if (!get_char_clan(co) && !get_char_club(co)) {
                         ptr += 5;
                         while (isspace(*ptr)) ptr++;
@@ -263,11 +263,11 @@ void clanmaster_driver(int cn, int ret, int lastact) {
                         fnd->name[n] = 0;
                         fnd->state = 1;
                         quiet_say(cn, "Your clan, %s, will be named '%s'. Try again if that is not what you want. Or hand me a Clan Jewel to proceed. You can buy them at Jeremy's", ch[co].name, fnd->name);
-                    } else quiet_say(cn, "You are already a member of a clan or club. You cannot found a new one.");
+                    } else quiet_say(cn, "Thou art already a member of a clan or club. Thou canst not found a new one.");
                 }
                 if ((ptr = strcasestr((char *)msg->dat2, "accept:"))) {
                     if (!get_char_clan(co) || ch[co].clan_rank < 2) {
-                        quiet_say(cn, "You are not a clan leader, %s.", ch[co].name);
+                        quiet_say(cn, "Thou art not a clan leader, %s.", ch[co].name);
                     } else {
                         ptr += 7;
                         while (isspace(*ptr)) ptr++;
@@ -285,7 +285,7 @@ void clanmaster_driver(int cn, int ret, int lastact) {
                 }
                 if ((ptr = strcasestr((char *)msg->dat2, "join:"))) {
                     if (get_char_clan(co) || get_char_club(co)) {
-                        quiet_say(cn, "You are already a clan member, %s.", ch[co].name);
+                        quiet_say(cn, "Thou art already a clan member, %s.", ch[co].name);
                     } else {
                         ptr += 5;
                         while (isspace(*ptr)) ptr++;
@@ -295,12 +295,12 @@ void clanmaster_driver(int cn, int ret, int lastact) {
                         }
                         tmp[n] = 0;
                         if (strcasecmp(dat->accept, ch[co].name)) {
-                            quiet_say(cn, "You have not been invited, %s.", ch[co].name);
+                            quiet_say(cn, "Thou hast not been invited, %s.", ch[co].name);
                         } else if (strcasecmp(dat->join, tmp)) {
                             quiet_say(cn, "%s has not invited you, %s.", tmp, ch[co].name);
                         } else {
                             add_member(co, dat->accept_clan, dat->join);
-                            quiet_say(cn, "%s, you are now a member of %s's clan.", ch[co].name, dat->join);
+                            quiet_say(cn, "%s, thou art now a member of %s's clan.", ch[co].name, dat->join);
                             dat->accept[0] = 0;
                             dat->accept_clan = 0;
                             dat->join[0] = 0;
@@ -309,15 +309,15 @@ void clanmaster_driver(int cn, int ret, int lastact) {
                 }
                 if ((ptr = strcasestr((char *)msg->dat2, "leave!"))) {
                     if (!get_char_clan(co)) {
-                        quiet_say(cn, "You are not a clan member, %s.", ch[co].name);
+                        quiet_say(cn, "Thou art not a clan member, %s.", ch[co].name);
                     } else {
                         remove_member(co, co);
-                        quiet_say(cn, "You are no longer a member of any clan, %s", ch[co].name);
+                        quiet_say(cn, "Thou art no longer a member of any clan, %s", ch[co].name);
                     }
                 }
                 if ((ptr = strcasestr((char *)msg->dat2, "rank:"))) {
                     if (!get_char_clan(co) || ch[co].clan_rank < 4) {
-                        quiet_say(cn, "You are not a clan leader, %s.", ch[co].name);
+                        quiet_say(cn, "Thou art not a clan leader, %s.", ch[co].name);
                     } else {
                         ptr += 6;
                         while (isspace(*ptr)) ptr++;
@@ -330,7 +330,7 @@ void clanmaster_driver(int cn, int ret, int lastact) {
                         rank = atoi(ptr);
 
                         if (rank < 0 || rank > 4) {
-                            quiet_say(cn, "You must use a rank between 0 and 4.");
+                            quiet_say(cn, "Thou must use a rank between 0 and 4.");
                             remove_message(cn, msg);
                             continue;
                         }
@@ -340,12 +340,12 @@ void clanmaster_driver(int cn, int ret, int lastact) {
                         }
                         if (cc) {
                             if (!(ch[cc].flags & CF_PAID) && rank > 1) {
-                                quiet_say(cn, "%s is not a paying player, you cannot set the rank higher than 1.", ch[cc].name);
+                                quiet_say(cn, "%s is not a paying player, thou canst not set the rank higher than 1.", ch[cc].name);
                             } else if (get_char_clan(cc) == get_char_clan(co)) {
                                 ch[cc].clan_rank = rank;
                                 add_clanlog(ch[cc].clan, clan_serial(ch[cc].clan), ch[cc].ID, 30, "%s rank was set to %d by %s", ch[cc].name, rank, ch[co].name);
                                 quiet_say(cn, "Set %s's rank to %d.", ch[cc].name, rank);
-                            } else quiet_say(cn, "You cannot change the rank of those not belonging to your clan.");
+                            } else quiet_say(cn, "Thou canst not change the rank of those not belonging to thy clan.");
                         } else {
                             int uID;
 
@@ -362,7 +362,7 @@ void clanmaster_driver(int cn, int ret, int lastact) {
                 }
                 if ((ptr = strcasestr((char *)msg->dat2, "fire:"))) {
                     if (!get_char_clan(co) || ch[co].clan_rank < 4) {
-                        quiet_say(cn, "You are not a clan leader, %s.", ch[co].name);
+                        quiet_say(cn, "Thou art not a clan leader, %s.", ch[co].name);
                     } else {
                         ptr += 6;
                         while (isspace(*ptr)) ptr++;
@@ -379,7 +379,7 @@ void clanmaster_driver(int cn, int ret, int lastact) {
                             if (get_char_clan(cc) == get_char_clan(co)) {
                                 remove_member(cc, co);
                                 quiet_say(cn, "Fired: %s.", ch[cc].name);
-                            } else quiet_say(cn, "You cannot fire those not belonging to your clan.");
+                            } else quiet_say(cn, "Thou canst not fire those not belonging to thy clan.");
                         } else {
                             int uID;
 
@@ -406,7 +406,7 @@ void clanmaster_driver(int cn, int ret, int lastact) {
                     if (fnd->state == 1) {
                         res = found_clan(fnd->name, co, &fnd->nr);
                         if (!res) {
-                            quiet_say(cn, "So be it. There will be a new clan, named '%s', and you, %s, shall be its new master. Good luck, young master!", fnd->name, ch[co].name);
+                            quiet_say(cn, "So be it. There will be a new clan, named '%s', and thou, %s, shall be its new master. Good luck, young master!", fnd->name, ch[co].name);
                             fnd->state = 0;
 
                             add_member(co, fnd->nr, ch[co].name);
@@ -417,10 +417,10 @@ void clanmaster_driver(int cn, int ret, int lastact) {
                             remove_message(cn, msg);
                             continue;
                         } else {
-                            quiet_say(cn, "There was an error creating your clan. Please try again.");
+                            quiet_say(cn, "There was an error creating thy clan. Please try again.");
                         }
                     } else {
-                        quiet_say(cn, "You must name your clan first. Say: 'name: <clan-name>'.");
+                        quiet_say(cn, "Thou must name thy clan first. Say: 'name: <clan-name>'.");
                     }
                 }
                 // try to give it back
@@ -447,7 +447,7 @@ void clanmaster_driver(int cn, int ret, int lastact) {
             murmur(cn, "My back itches.");
             break;
         case 1:
-            whisper(cn, "There's something stuck between your teeth.");
+            whisper(cn, "There is something stuck between thy teeth.");
             break;
         case 2:
             murmur(cn, "Oh yeah, those were the days.");
@@ -528,21 +528,21 @@ void clanclerk_driver(int cn, int ret, int lastact) {
                     nr = atoi(ptr) * 100;
 
                     if (nr < 1) {
-                        say(cn, "You must name a positive amount.");
+                        say(cn, "Thou must name a positive amount.");
 
                         remove_message(cn, msg);
                         continue;
                     }
 
                     if (ch[co].gold < nr) {
-                        say(cn, "You do not have that much money, %s.", ch[co].name);
+                        say(cn, "Thou dost not have that much money, %s.", ch[co].name);
                         remove_message(cn, msg);
                         continue;
                     }
                     ch[co].gold -= nr;
                     ch[co].flags |= CF_ITEMS;
                     clan_money_change(dat->clan, nr / 100, co);
-                    say(cn, "You have deposited %dG.", nr / 100);
+                    say(cn, "Thou hast deposited %dG.", nr / 100);
                     dlog(co, 0, "deposited %dG to clan %d.", nr / 100, dat->clan);
                 }
                 if ((ptr = strcasestr((char *)msg->dat2, "add potions"))) {
@@ -567,25 +567,25 @@ void clanclerk_driver(int cn, int ret, int lastact) {
                     nr = atoi(ptr);
 
                     if (nr < 1) {
-                        say(cn, "You must name a positive amount.");
+                        say(cn, "Thou must name a positive amount.");
 
                         remove_message(cn, msg);
                         continue;
                     }
 
                     if (get_clan_money(dat->clan) < nr) {
-                        say(cn, "Your clan does not have that much money, %s.", ch[co].name);
+                        say(cn, "Thy clan does not have that much money, %s.", ch[co].name);
                         remove_message(cn, msg);
                         continue;
                     }
                     clan_money_change(dat->clan, -nr, co);
                     ch[co].gold += nr * 100;
                     ch[co].flags |= CF_ITEMS;
-                    say(cn, "You have withdrawn %dG.", nr);
+                    say(cn, "Thou hast withdrawn %dG.", nr);
                     dlog(co, 0, "withdrew %dG from clan %d.", nr, dat->clan);
                 }
                 if ((ptr = strcasestr((char *)msg->dat2, "buy"))) {
-                    say(cn, "Buying has been disabled, you have infinite stock.");
+                    say(cn, "Buying has been disabled, thou hast infinite stock.");
 
                     remove_message(cn, msg);
                     continue;
@@ -613,7 +613,7 @@ void clanclerk_driver(int cn, int ret, int lastact) {
                         continue;
                     }
                     if ((tmp1 = get_clan_dungeon_cost(nr, level)) > (tmp2 = get_clan_money(dat->clan))) {
-                        say(cn, "This order amounts to %dg while your treasury only holds %dg.", tmp1, tmp2);
+                        say(cn, "This order amounts to %dg while thy treasury only holds %dg.", tmp1, tmp2);
 
                         remove_message(cn, msg);
                         continue;
@@ -662,9 +662,9 @@ void clanclerk_driver(int cn, int ret, int lastact) {
                         continue;
                     } else {
                         if (res == -1) {
-                            say(cn, "You can only use 0 to 10 guards of each kind, 0 to 25 teleport traps, 0 to 1 fake walls and 0 to 2 locked doors.");
+                            say(cn, "Thou canst only use 0 to 10 guards of each kind, 0 to 25 teleport traps, 0 to 1 fake walls and 0 to 2 locked doors.");
                         } else {
-                            say(cn, "That configuration would cost %d points, but you may only spend 400 points.", res);
+                            say(cn, "That configuration would cost %d points, but thou mayst only spend 400 points.", res);
                         }
                     }
                 }
@@ -745,7 +745,7 @@ void clanclerk_driver(int cn, int ret, int lastact) {
                     }
 
                     if (level > CS_NEUTRAL && !get_clan_raid(nr)) {
-                        say(cn, "Your clan cannot go to war or feud unless your opponent has raiding on.");
+                        say(cn, "Thy clan cannot go to war or feud unless thine opponent has raiding on.");
 
                         remove_message(cn, msg);
                         continue;
@@ -883,7 +883,7 @@ void clanclerk_driver(int cn, int ret, int lastact) {
 
             if ((in = ch[cn].citem)) { // we still have it
                 if (it[in].ID == IID_CLANJEWEL) {
-                    say(cn, "You can no longer add jewels directly.");
+                    say(cn, "Thou canst no longer add jewels directly.");
                 }
                 if (it[in].driver == IDR_FLASK) {
                     res = add_alc_potion(dat->clan, in);

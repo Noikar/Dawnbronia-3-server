@@ -71,13 +71,13 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"repeat", NULL}, NULL, 2},
     {{"restart", NULL}, NULL, 2},
     {{"please", "repeat", NULL}, NULL, 2},
@@ -518,7 +518,7 @@ void offer_mission(int cn, int co, struct mission_ppd *ppd) {
     int n;
     static char *missname[3] = {"Alpha", "Beta", "Gamma"};
 
-    quiet_say(cn, "Please choose one of the following jobs (this will display job details, you get a chance to accept or refuse the job later):");
+    quiet_say(cn, "Please choose one of the following jobs (this will display job details, thou gettest a chance to accept or refuse the job later):");
 
     for (n = 0; n < 3; n++) {
         if (!ppd->sm[n].type) {
@@ -784,7 +784,7 @@ void start_mission(int cn, int co, int idx, struct mission_ppd *ppd) {
     md = mdtab[ppd->sm[idx].mdidx];
 
     if (shutdown_at && realtime - shutdown_at < 10) {
-        quiet_say(cn, "I'm sorry, %s, but a shutdown is in progress. Please come back after the shutdown.", ch[co].name);
+        quiet_say(cn, "I am sorry, %s, but a shutdown is in progress. Please come back after the shutdown.", ch[co].name);
         return;
     }
 
@@ -990,12 +990,12 @@ void mission_give_reward(int cn, int co, int nr, struct mission_ppd *ppd) {
 
     if (nr < 0 || nr >= sizeof(mis_rew) / sizeof(mis_rew[0])) return;
     if (mis_rew[nr].value > ppd->points) {
-        quiet_say(cn, "%s costs %d points, but you only have %d points.", mis_rew[nr].code, mis_rew[nr].value, ppd->points);
+        quiet_say(cn, "%s costs %d points, but thou only hast %d points.", mis_rew[nr].code, mis_rew[nr].value, ppd->points);
         return;
     }
     if (strcmp(mis_rew[nr].itmtmp, "MEXP") == 0) {
         if (!get_army_rank_int(co)) {
-            quiet_say(cn, "I'm sorry, I can't do that. You are not part of the army.");
+            quiet_say(cn, "I am sorry, I cannot do that. Thou art not part of the army.");
             return;
         }
         give_military_pts(cn, co, mis_rew[nr].value / 40, 1);
@@ -1010,14 +1010,14 @@ void mission_give_reward(int cn, int co, int nr, struct mission_ppd *ppd) {
         ppd->statowed++;
         ppd->statcnt = 0;
         ppd->stat[0] = ppd->stat[1] = ppd->stat[2] = 0;
-        quiet_say(cn, "One custom stat potion coming up. Do you want it to hold \260c4one skill\260c0 or \260c4two skills\260c0 or \260c4three skills\260c0?");
+        quiet_say(cn, "One custom stat potion coming up. Dost thou want it to hold \260c4one skill\260c0 or \260c4two skills\260c0 or \260c4three skills\260c0?");
         dlog(co, 0, "took %s from mission offer for %d points (new total %d points)", mis_rew[nr].itmtmp, mis_rew[nr].value, ppd->points);
         return;
     } else {
         if (strcmp(mis_rew[nr].itmtmp, "RNORB") == 0) in = create_orb();
         else in = create_item(mis_rew[nr].itmtmp);
         if (!in) {
-            quiet_say(cn, "Oops. I've ran out of stock. Please choose something else.");
+            quiet_say(cn, "Oops. I have ran out of stock. Please choose something else.");
             elog("mission_give_reward: item template %s (%d) not found.", mis_rew[nr].itmtmp, nr);
             return;
         }
@@ -1026,14 +1026,14 @@ void mission_give_reward(int cn, int co, int nr, struct mission_ppd *ppd) {
         }
         if (!give_char_item(co, in)) {
             destroy_item(in);
-            quiet_say(cn, "Hey, sleepy head, there's no room in your hand or inventory to give you an item!");
+            quiet_say(cn, "Hey, sleepy head, there is no room in thy hand or inventory to give thee an item!");
             return;
         }
         ppd->points -= mis_rew[nr].value;
         dlog(co, in, "took from mission offer for %d points (new total %d points)", mis_rew[nr].value, ppd->points);
     }
 
-    quiet_say(cn, "Here you go, %s, one %s (%s) for %d points. You now have %d points left.", ch[co].name, mis_rew[nr].code, mis_rew[nr].desc, mis_rew[nr].value, ppd->points);
+    quiet_say(cn, "Here thou goest, %s, one %s (%s) for %d points. Thou now hast %d points left.", ch[co].name, mis_rew[nr].code, mis_rew[nr].desc, mis_rew[nr].value, ppd->points);
 }
 
 void mission_show_reward(int cn, int co, int nr, struct mission_ppd *ppd) {
@@ -1042,7 +1042,7 @@ void mission_show_reward(int cn, int co, int nr, struct mission_ppd *ppd) {
     if (nr < 0 || nr >= sizeof(mis_rew) / sizeof(mis_rew[0])) return;
 
     if (strcmp(mis_rew[nr].itmtmp, "CTPOT") == 0) {
-        quiet_say(cn, "A custom potion which will enhance one of your stats by 50 or two of your stats by 30 or three of your stats by 20.");
+        quiet_say(cn, "A custom potion which will enhance one of thy stats by 50 or two of thy stats by 30 or three of thy stats by 20.");
     } else if (strcmp(mis_rew[nr].itmtmp, "RNORB") == 0) {
         quiet_say(cn, "A randomly chosen orb, used to enhance one modifier on an item by one.");
     } else if (strcmp(mis_rew[nr].itmtmp, "MEXP") == 0) {
@@ -1059,7 +1059,7 @@ void mission_show_reward(int cn, int co, int nr, struct mission_ppd *ppd) {
     } else {
         in = create_item(mis_rew[nr].itmtmp);
         if (!in) {
-            quiet_say(cn, "Oops. I've run out of stock. Please choose something else.");
+            quiet_say(cn, "Oops. I have run out of stock. Please choose something else.");
             elog("mission_give_reward: item template %s (%d) not found.", mis_rew[nr].itmtmp, nr);
             return;
         }
@@ -1067,7 +1067,7 @@ void mission_show_reward(int cn, int co, int nr, struct mission_ppd *ppd) {
         destroy_item(in);
     }
 
-    quiet_say(cn, "This could be yours for %d points (you have %d points). Say \260c4ibuy %s\260c0 to buy it.", mis_rew[nr].value, ppd->points, mis_rew[nr].code);
+    quiet_say(cn, "This could be thy for %d points (thou hast %d points). Say \260c4ibuy %s\260c0 to buy it.", mis_rew[nr].value, ppd->points, mis_rew[nr].code);
 }
 
 struct mission_giver_data {
@@ -1244,7 +1244,7 @@ void mission_giver_driver(int cn, int ret, int lastact) {
                         ppd->missiongive_state = 2;
                         didsay = 1;
                     } else if (ppd->active) {
-                        quiet_say(cn, "You still have a job. Do you want to \260c4fail\260c0 it?");
+                        quiet_say(cn, "Thou still hast a job. Dost thou want to \260c4fail\260c0 it?");
                         ppd->missiongive_state = 2;
                         didsay = 1;
                     } else {
@@ -1289,39 +1289,39 @@ void mission_giver_driver(int cn, int ret, int lastact) {
                     break;
                 case 4:
                     if (!ppd->active && !ppd->solved) offer_mission_sub(cn, co, 0, ppd);
-                    else quiet_say(cn, "You still have a job. Do you want to \260c4fail\260c0 it?");
+                    else quiet_say(cn, "Thou still hast a job. Dost thou want to \260c4fail\260c0 it?");
                     break;
                 case 5:
                     if (!ppd->active && !ppd->solved) offer_mission_sub(cn, co, 1, ppd);
-                    else quiet_say(cn, "You still have a job. Do you want to \260c4fail\260c0 it?");
+                    else quiet_say(cn, "Thou still hast a job. Dost thou want to \260c4fail\260c0 it?");
                     break;
                 case 6:
                     if (!ppd->active && !ppd->solved) offer_mission_sub(cn, co, 2, ppd);
-                    else quiet_say(cn, "You still have a job. Do you want to \260c4fail\260c0 it?");
+                    else quiet_say(cn, "Thou still hast a job. Dost thou want to \260c4fail\260c0 it?");
                     break;
                 case 7:
                     if (ppd->sm[0].type && !ppd->active && !ppd->solved) start_mission(cn, co, 0, ppd);
-                    else quiet_say(cn, "I haven't offered you that job yet.");
+                    else quiet_say(cn, "I have not offered you that job yet.");
                     break;
                 case 8:
                     if (ppd->sm[1].type && !ppd->active && !ppd->solved) start_mission(cn, co, 1, ppd);
-                    else quiet_say(cn, "I haven't offered you that job yet.");
+                    else quiet_say(cn, "I have not offered you that job yet.");
                     break;
                 case 9:
                     if (ppd->sm[2].type && !ppd->active && !ppd->solved) start_mission(cn, co, 2, ppd);
-                    else quiet_say(cn, "I haven't offered you that job yet.");
+                    else quiet_say(cn, "I have not offered you that job yet.");
                     break;
                 case 10:
                     if (ppd->active) {
                         int pts;
-                        quiet_say(cn, "Don't take on things you cannot handle, kid.");
+                        quiet_say(cn, "Do not take on things thou canst not handle, kid.");
                         pts = ppd->sm[ppd->active - 1].difficulty / 10;
                         ppd->points = max(0, ppd->points - pts);
                         ppd->active = 0;
                         ppd->dif_kill = max(ppd->dif_kill - 20, 0);
                         dlog(co, 0, "failed mission, lost %d points (new total %d points)", pts, ppd->points);
                         if (pts) {
-                            quiet_say(cn, "You lost %d brownie points for a new total of %d points.", pts, ppd->points);
+                            quiet_say(cn, "Thou lost %d brownie points for a new total of %d points.", pts, ppd->points);
                         }
                         log_char(co, LOG_SYSTEM, 0, "#30");
                         log_char(co, LOG_SYSTEM, 0, "#40");
@@ -1346,9 +1346,9 @@ void mission_giver_driver(int cn, int ret, int lastact) {
                     break;
                 case 13:
                     ppd->dif_kill = max(0, ppd->dif_kill - 10);
-                    quiet_say(cn, "Alright, little girl. You'll get the easy ones now.");
+                    quiet_say(cn, "Alright, little girl. Thou shalt get the easy ones now.");
                     if (ch[co].flags & CF_FEMALE) {
-                        quiet_say(cn, "Oops. Sorry. Old habit from my military days, ma'am. Alright, lady, you'll get the easy ones now.");
+                        quiet_say(cn, "Oops. Sorry. Old habit from my military days, ma'am. Alright, lady, thou shalt get the easy ones now.");
                     }
                     break;
                 case 14:
@@ -1383,12 +1383,12 @@ void mission_giver_driver(int cn, int ret, int lastact) {
                     break;
                 case 19:
                     if (ppd->points < dat->spec_cost) {
-                        quiet_say(cn, "Sorry, you can't afford it.");
+                        quiet_say(cn, "Sorry, thou canst not afford it.");
                         break;
                     }
                     in = ch[cn].item[30];
                     if (!give_char_item(co, in)) {
-                        quiet_say(cn, "You don't have any space in your inventory, dude.");
+                        quiet_say(cn, "Thou dost not have any space in thine inventory, dude.");
                         break;
                     }
                     ch[cn].item[30] = 0;
@@ -1398,27 +1398,27 @@ void mission_giver_driver(int cn, int ret, int lastact) {
                     break;
                 case 20:
                     if (ppd->statowed < 1) {
-                        quiet_say(cn, "You did not buy a stat potion.");
+                        quiet_say(cn, "Thou didst not buy a stat potion.");
                         break;
                     }
                     ppd->statcnt = 1;
-                    quiet_say(cn, "Alright, a one-stat potion it will be. Please name the skill you'd like to have (ie. \260c4attack skill\260c0, \260c4immunity skill\260c0 etc.).");
+                    quiet_say(cn, "Alright, a one-stat potion it will be. Please name the skill thou wouldst like to have (ie. \260c4attack skill\260c0, \260c4immunity skill\260c0 etc.).");
                     break;
                 case 21:
                     if (ppd->statowed < 1) {
-                        quiet_say(cn, "You did not buy a stat potion.");
+                        quiet_say(cn, "Thou didst not buy a stat potion.");
                         break;
                     }
                     ppd->statcnt = 2;
-                    quiet_say(cn, "Alright, a two-stat potion it will be. Please name the skills you'd like to have (ie. \260c4attack skill\260c0, \260c4immunity skill\260c0 etc.), one skill per line.");
+                    quiet_say(cn, "Alright, a two-stat potion it will be. Please name the skills thou wouldst like to have (ie. \260c4attack skill\260c0, \260c4immunity skill\260c0 etc.), one skill per line.");
                     break;
                 case 22:
                     if (ppd->statowed < 1) {
-                        quiet_say(cn, "You did not buy a stat potion.");
+                        quiet_say(cn, "Thou didst not buy a stat potion.");
                         break;
                     }
                     ppd->statcnt = 3;
-                    quiet_say(cn, "Alright, a three-stat potion it will be. Please name the skills you'd like to have (ie. \260c4attack skill\260c0, \260c4immunity skill\260c0 etc.), one skill per line.");
+                    quiet_say(cn, "Alright, a three-stat potion it will be. Please name the skills thou wouldst like to have (ie. \260c4attack skill\260c0, \260c4immunity skill\260c0 etc.), one skill per line.");
                     break;
                 default:
                     if (didsay >= 2000) mission_give_reward(cn, co, didsay - 2000, ppd);
@@ -1456,7 +1456,7 @@ void mission_giver_driver(int cn, int ret, int lastact) {
                                 it[in].mod_value[2] = 20;
                             }
                             if (give_char_item(co, in)) {
-                                quiet_say(cn, "Very well, %s, here you go.", ch[co].name);
+                                quiet_say(cn, "Very well, %s, here thou goest.", ch[co].name);
                                 ppd->statowed = 0;
                             } else {
                                 quiet_say(cn, "please try again");

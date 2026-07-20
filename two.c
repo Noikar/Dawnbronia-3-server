@@ -78,13 +78,13 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"repeat", NULL}, NULL, 2},
     {{"guest", NULL}, NULL, 5},
     {{"citizen", NULL}, NULL, 6},
@@ -343,7 +343,7 @@ void guard_driver(int cn, int ret, int lastact) {
                     dat->last_y = ch[co].y;
                     dat->last_co = co;
                     if (dat->leave_state == 0) {
-                        say(cn, "Hey! %s! You have no business in there! Get out at once!", ch[co].name);
+                        say(cn, "Hey! %s! Thou hast no business in there! Get out at once!", ch[co].name);
                         dat->leave_state = 1;
                         dat->leave_timeout = ticker;
                         dat->lastsay = ticker;
@@ -356,7 +356,7 @@ void guard_driver(int cn, int ret, int lastact) {
                         else timeout = TICKS * 30;
 
                         if (dat->lastsay + TICKS * 10 < ticker) {
-                            say(cn, "Get out, %s, or I'll have to kill you!", ch[co].name);
+                            say(cn, "Get out, %s, or I shall have to kill thee!", ch[co].name);
                             dat->lastsay = ticker;
                         }
                         if (dat->leave_timeout + timeout < ticker) {
@@ -394,7 +394,7 @@ void guard_driver(int cn, int ret, int lastact) {
                     }
                     if (dat->fine_state == 1) {
                         if (dat->lastsay + TICKS * 15 < ticker) {
-                            say(cn, "Come on, %s, \260c4pay\260c0 or I'll have to kill you!", ch[co].name);
+                            say(cn, "Come on, %s, \260c4pay\260c0 or I shall have to kill thee!", ch[co].name);
                             dat->lastsay = ticker;
                         }
                         if (dat->fine_timeout + TICKS * 60 < ticker) {
@@ -523,7 +523,7 @@ void guard_driver(int cn, int ret, int lastact) {
                     if (ppd->citizen_status == CS_GUEST) {
                         say(cn, "Protect the innocent! We do not allow strangers to commit any crime here. Leave at once!");
                         ppd->citizen_status = CS_ENEMY;
-                    } else say(cn, "Protect the innocent! Stop at once and \260c4pay\260c0 your fine, %s!", ch[cc].name);
+                    } else say(cn, "Protect the innocent! Stop at once and \260c4pay\260c0 thy fine, %s!", ch[cc].name);
                     //charlog(cn,"fine for %s (2): 75G",ch[cc].name);
                 }
                 if (ticker - dat->nofight_timer > TICKS * 3) fight_driver_add_enemy(cn, cc, 1, 1);
@@ -890,7 +890,7 @@ void servant(int cn, int ret, int lastact) {
                 switch (dat->current_state) {
                 case 0:
                     if (dat->nr == 4) {
-                        say(cn, "Now, what do we have here? I do not think thine presence here is appropriate. GUARDS!");
+                        say(cn, "Now, what do we have here? I do not think thy presence here is appropriate. GUARDS!");
                         call_guard(cn, co);
                     } else say(cn, "Uh, hello, %s. Thou art not supposed to be here. (\260c4chat\260c0 \260c4bribe\260c0 \260c4threaten\260c0)", ch[co].name);
                     dat->current_state++;
@@ -904,7 +904,7 @@ void servant(int cn, int ret, int lastact) {
                 } else {
                     switch (dat->current_state) {
                     case 0:
-                        say(cn, "My greetings, %s. How may I serve you? (\260c4chat\260c0 \260c4bribe\260c0 \260c4threaten\260c0)", ch[co].name);
+                        say(cn, "My greetings, %s. How may I serve thee? (\260c4chat\260c0 \260c4bribe\260c0 \260c4threaten\260c0)", ch[co].name);
                         dat->current_state++;
                         didsay = 1;
                         break;
@@ -988,7 +988,7 @@ void servant(int cn, int ret, int lastact) {
             case 10: // threaten
                 switch (dat->nr) {
                 case 0:
-                    say(cn, "No, please, don't kill me! Please! Have mercy, I am just a poor scullery girl!");
+                    say(cn, "No, please, do not kill me! Please! Have mercy, I am just a poor scullery girl!");
                     didsay = 1;
                     break;
                 case 1:
@@ -998,7 +998,7 @@ void servant(int cn, int ret, int lastact) {
                     break;
                 case 2:
                     if (ch[co].flags & CF_MALE) {
-                        say(cn, "Uh, thou likest it rough, don't thou, %s? Well, I do not.", ch[co].name);
+                        say(cn, "Uh, thou likest it rough, do not thou, %s? Well, I do not.", ch[co].name);
                         call_guard(cn, co);
                     } else {
                         say(cn, "Uh, thou seemest most determined, lady. I shall relent to thy wishes, then. There is a secret passage to the governors private rooms. It starts in the room behind the southern door leading north-west in the corridor in front of my room. Here's the key.");
@@ -1010,7 +1010,7 @@ void servant(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    say(cn, "But, but... I'm just a cook. Why kill me? Please, have mercy!");
+                    say(cn, "But, but... I am just a cook. Why kill me? Please, have mercy!");
                     didsay = 1;
                     break;
                 case 5:
@@ -1029,7 +1029,7 @@ void servant(int cn, int ret, int lastact) {
                     break;
                 case 1:
                     if (take_money(co, 5000)) {
-                        say(cn, "The passage starts in the store room at the north-eastern end of the corridor in front of this room. Here's the key.");
+                        say(cn, "The passage starts in the store room at the north-eastern end of the corridor in front of this room. Here is the key.");
                         in = create_item("palace_key2");
                         if (in && !give_char_item(co, in)) {
                             destroy_item(in);
@@ -1051,12 +1051,12 @@ void servant(int cn, int ret, int lastact) {
                     break;
                 case 3:
                     if (take_money(co, 5000)) say(cn, "The governor, he likes to... Well... Eat strawberry pies.");
-                    else say(cn, "Uh, I'm afraid thou dost not have enough money.");
+                    else say(cn, "Uh, I am afraid thou dost not have enough money.");
                     didsay = 1;
                     break;
                 case 5:
-                    if (take_money(co, 2000)) say(cn, "Gladly I accept thine noble gift, stranger. Didst thou know that there is a secret entrance to the palace in the sewers?");
-                    else say(cn, "Uh, I'm afraid thou dost not have enough money.");
+                    if (take_money(co, 2000)) say(cn, "Gladly I accept thy noble gift, stranger. Didst thou know that there is a secret entrance to the palace in the sewers?");
+                    else say(cn, "Uh, I am afraid thou dost not have enough money.");
                     didsay = 1;
                     break;
                 }
@@ -1367,7 +1367,7 @@ void thiefguard(int cn, int ret, int lastact) {
                 case 2:
                     break; // waiting for player to pay the fee
                 case 3:
-                    say(cn, "Thou might want to talk to the guild master now, %s. He's in the room behind me.", ch[co].name);
+                    say(cn, "Thou mightst want to talk to the guild master now, %s. He's in the room behind me.", ch[co].name);
                     ppd->thief_state++;
                     didsay = 1;
                     break;
@@ -1375,12 +1375,12 @@ void thiefguard(int cn, int ret, int lastact) {
                     break;
 
                 case 50:
-                    say(cn, "Ah, %s. I have heard of you. Thou art the one who killed the old guild master.", ch[co].name);
+                    say(cn, "Ah, %s. I have heard of thee. Thou art the one who killed the old guild master.", ch[co].name);
                     ppd->thief_state++;
                     didsay = 1;
                     break;
                 case 51:
-                    say(cn, "Well, thou hast done us and our new master a favor with that. Not that we'd pay thee anything for it, but we won't hold any grudges either.");
+                    say(cn, "Well, thou hast done us and our new master a favor with that. Not that we would pay thee anything for it, but we will not hold any grudges either.");
                     ppd->thief_state = 1;
                     didsay = 1;
                     break;
@@ -1549,7 +1549,7 @@ void thiefmaster(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 7:
-                    say(cn, "The robbers section is in the eastern part of Exkordon. Thou canst not miss it - just keep going east till you get attacked.");
+                    say(cn, "The robbers section is in the eastern part of Exkordon. Thou canst not miss it - just keep going east till thou gettest attacked.");
                     ppd->thief_state++;
                     didsay = 1;
                     break;
@@ -1578,7 +1578,7 @@ void thiefmaster(int cn, int ret, int lastact) {
                         break;
                     }
                     if (score < 50) {
-                        say(cn, "Well, thou didst what thine limited abilities allowed.");
+                        say(cn, "Well, thou didst what thy limited abilities allowed.");
                         val = 5000;
                     } else if (score < 200) {
                         say(cn, "Nicely done, %s.", ch[co].name);
@@ -1606,7 +1606,7 @@ void thiefmaster(int cn, int ret, int lastact) {
                     break;
                 case 11: // start of next mission
                     if (!has_item(co, IID_AREA17_LOCKPICK)) {
-                        say(cn, "What? Thou hast lost thine lockpick? Here we go again...");
+                        say(cn, "What? Thou hast lost thy lockpick? Here we go again...");
                         ppd->thief_state = 5;
                         didsay = 1;
                         break;
@@ -1632,7 +1632,7 @@ void thiefmaster(int cn, int ret, int lastact) {
                 case 14:
                     score = ppd->thief_killed[0];
                     if (score < 10) {
-                        say(cn, "Ah, %s. I've heard about thine efforts burning down those barrels.", ch[co].name);
+                        say(cn, "Ah, %s. I have heard about thine efforts burning down those barrels.", ch[co].name);
                         val = 5000;
                     } else {
                         say(cn, "Thou made a nice fire, indeed, %s.", ch[co].name);
@@ -1655,7 +1655,7 @@ void thiefmaster(int cn, int ret, int lastact) {
                     break;
                 case 15: // start of next mission
                     if (!has_item(co, IID_AREA17_LOCKPICK)) {
-                        say(cn, "What? Thou hast lost thine lockpick? Here we go again...");
+                        say(cn, "What? Thou hast lost thy lockpick? Here we go again...");
                         ppd->thief_state = 5;
                         didsay = 1;
                         break;
@@ -1676,7 +1676,7 @@ void thiefmaster(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 16:
-                    say(cn, "One of those merchants is Culd. His shop is fairly close to the governors palace. I'd suggest thou try to sneak in at night and search his shop.");
+                    say(cn, "One of those merchants is Culd. His shop is fairly close to the governors palace. I would suggest thou try to sneak in at night and search his shop.");
                     ppd->thief_state++;
                     didsay = 1;
                     break;
@@ -1684,7 +1684,7 @@ void thiefmaster(int cn, int ret, int lastact) {
                     break; // waiting for player to deliver item
                 case 18: // start of next mission
                     if (!has_item(co, IID_AREA17_LOCKPICK)) {
-                        say(cn, "What? Thou hast lost thine lockpick? Here we go again...");
+                        say(cn, "What? Thou hast lost thy lockpick? Here we go again...");
                         ppd->thief_state = 5;
                         didsay = 1;
                         break;
@@ -1695,7 +1695,7 @@ void thiefmaster(int cn, int ret, int lastact) {
                         break;
                     }
                     if (!has_item(co, IID_AREA17_SEWERKEY2)) {
-                        say(cn, "What? Thou hast lost the second sewer key? You're lucky I lost that agreement too...");
+                        say(cn, "What? Thou hast lost the second sewer key? Thou art lucky I lost that agreement too...");
                         ppd->thief_state = 15;
                         break;
                     }
@@ -1703,7 +1703,7 @@ void thiefmaster(int cn, int ret, int lastact) {
                         ppd->thief_state = 20;
                         break;
                     }
-                    say(cn, "One last job for thee, %s. One of my thieves has lost his lockpick in the sewers, close to the Greenling King. This is a special lockpick, quite valuable, so I'd like thee to find it for me.", ch[co].name);
+                    say(cn, "One last job for thee, %s. One of my thieves has lost his lockpick in the sewers, close to the Greenling King. This is a special lockpick, quite valuable, so I would like thee to find it for me.", ch[co].name);
                     questlog_open(co, 28);
                     ppd->thief_state++;
                     didsay = 1;
@@ -1712,7 +1712,7 @@ void thiefmaster(int cn, int ret, int lastact) {
                     break; // waiting for player to deliver item
                 case 20:
                     if (!has_item(co, IID_AREA17_LOCKPICK)) {
-                        say(cn, "What? Thou hast lost thine lockpick? Here we go again...");
+                        say(cn, "What? Thou hast lost thy lockpick? Here we go again...");
                         ppd->thief_state = 5;
                         didsay = 1;
                         break;
@@ -1723,7 +1723,7 @@ void thiefmaster(int cn, int ret, int lastact) {
                         break;
                     }
                     if (!has_item(co, IID_AREA17_SEWERKEY2)) {
-                        say(cn, "What? Thou hast lost the second sewer key? You're lucky I lost that agreement too...");
+                        say(cn, "What? Thou hast lost the second sewer key? Thou art lucky I lost that agreement too...");
                         ppd->thief_state = 15;
                         break;
                     }
@@ -1732,7 +1732,7 @@ void thiefmaster(int cn, int ret, int lastact) {
                         ppd->thief_state = 18;
                         break;
                     }
-                    say(cn, "I hope thou art enjoying thine stay here in Exkordon. I do not have any jobs for thee at the moment.");
+                    say(cn, "I hope thou art enjoying thy stay here in Exkordon. I do not have any jobs for thee at the moment.");
                     ppd->thief_state++;
                     didsay = 1;
                     break;
@@ -1787,7 +1787,7 @@ void thiefmaster(int cn, int ret, int lastact) {
                 ppd = set_data(co, DRD_TWOCITY_PPD, sizeof(struct twocity_ppd));
                 if (ppd->thief_state == 9) {
                     ppd->thief_state = 10;
-                    say(cn, "Thou art done? Now, let's see...");
+                    say(cn, "Thou art done? Now, let us see...");
                 } else say(cn, "Hu?");
                 break;
             }
@@ -1974,22 +1974,22 @@ void sanwyn(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    say(cn, "They are so noble and honorable that they decided to defect from the Empire. Exkordon is, for all we care, a lawless town, %s. Be careful in there, but be aware that thou canst do as thou wilt in Exkordon - we don't care.", get_army_rank_string(co));
+                    say(cn, "They are so noble and honorable that they decided to defect from the Empire. Exkordon is, for all we care, a lawless town, %s. Be careful in there, but be aware that thou canst do as thou wilt in Exkordon - we do not care.", get_army_rank_string(co));
                     ppd->sanwyn_state++;
                     didsay = 1;
                     break;
                 case 2:
-                    say(cn, "Inofficially, if thou wert to burn the whole city down, the whole Imperial army would applaud thee, even though we'd have to apologize, officially. Anyway.");
+                    say(cn, "Inofficially, if thou wert to burn the whole city down, the whole Imperial army would applaud thee, even though we would have to apologize, officially. Anyway.");
                     ppd->sanwyn_state++;
                     didsay = 1;
                     break;
                 case 3:
-                    say(cn, "The Imperial army suspects that the current governor of Exkordon - the one who decided to defect from the Empire - has dirty hands. Shouldst thou happen to find any incriminating documents, %s, I'd be very grateful if thou wouldst bring them to me.", ch[co].name);
+                    say(cn, "The Imperial army suspects that the current governor of Exkordon - the one who decided to defect from the Empire - has dirty hands. Shouldst thou happen to find any incriminating documents, %s, I would be very grateful if thou wouldst bring them to me.", ch[co].name);
                     ppd->sanwyn_state++;
                     didsay = 1;
                     break;
                 case 4:
-                    say(cn, "The thieves guild might be helpful in thy search, %s. Thou canst find their headquarter in the sewers. One entrance is a bit east of the city gate, behind a guard house. They won't have those documents, of course, but they might be able to help thee enter the palace.", ch[co].name);
+                    say(cn, "The thieves guild might be helpful in thy search, %s. Thou canst find their headquarter in the sewers. One entrance is a bit east of the city gate, behind a guard house. They will not have those documents, of course, but they might be able to help thee enter the palace.", ch[co].name);
                     ppd->sanwyn_state++;
                     didsay = 1;
                     break;
@@ -2001,7 +2001,7 @@ void sanwyn(int cn, int ret, int lastact) {
                 case 6:
                     break; // waiting for documents
                 case 7:
-                    say(cn, "Dirty hands indeed! Well, well, well. We'll be able to stir up quite a bit of trouble with these.");
+                    say(cn, "Dirty hands indeed! Well, well, well. We shall be able to stir up quite a bit of trouble with these.");
                     ppd->sanwyn_state++;
                     didsay = 1;
                     questlog_done(co, 29);
@@ -2610,7 +2610,7 @@ void alchemist(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    say(cn, "If thou art not too busy, %s, thou couldst do me a favor. I need spider poison for my experiments, but I am too busy to go looking for it. If thou wouldst bring me some, I'd reward thee.", ch[co].name);
+                    say(cn, "If thou art not too busy, %s, thou couldst do me a favor. I need spider poison for my experiments, but I am too busy to go looking for it. If thou wouldst bring me some, I would reward thee.", ch[co].name);
                     ppd->alchemist_state++;
                     didsay = 1;
                     break;

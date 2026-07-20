@@ -70,14 +70,14 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"help", NULL}, "Sorry, I'm just a merchant, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"help", NULL}, "Sorry, I am just a merchant, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"club", NULL}, "Say 'found: <club name>' to found a club. The first weekly payment of 10000g is due immediately.", 0},
     {{"what's", "your", "name", NULL}, NULL, 1},
     {{"what", "is", "your", "name", NULL}, NULL, 1},
@@ -149,7 +149,7 @@ int analyse_text_driver(int cn, int type, char *text, int co) {
                 if (qa[q].answer) quiet_say(cn, qa[q].answer, ch[co].name, ch[cn].name);
                 else switch (qa[q].answer_code) {
                     case 1:
-                        quiet_say(cn, "I'm %s.", ch[cn].name);
+                        quiet_say(cn, "I am %s.", ch[cn].name);
                     default:
                         return qa[q].answer_code;
                     }
@@ -231,7 +231,7 @@ void clubmaster_driver(int cn, int ret, int lastact) {
                 continue;
             }
 
-            if (!get_char_club(cn) && !get_char_clan(cn)) quiet_say(cn, "Hello %s! Would you like to found a \260c4club\260c0?", ch[co].name);
+            if (!get_char_club(cn) && !get_char_clan(cn)) quiet_say(cn, "Hello %s! Wouldst thou like to found a \260c4club\260c0?", ch[co].name);
             mem_add_driver(cn, co, 7);
         }
 
@@ -242,7 +242,7 @@ void clubmaster_driver(int cn, int ret, int lastact) {
             if ((msg->dat1 == 1 || msg->dat1 == 2) && (co = msg->dat3) != cn) { // talk, and not our talk
                 if ((ptr = strcasestr((char *)msg->dat2, "found:"))) {
                     if (!(ch[co].flags & CF_PAID)) {
-                        quiet_say(cn, "I'm sorry, %s, but only paying players may found clubs.", ch[co].name);
+                        quiet_say(cn, "I am sorry, %s, but only paying players may found clubs.", ch[co].name);
                     } else if (!get_char_clan(co) && !get_char_club(co)) {
                         if (ch[co].gold >= 10000 * 100) {
                             ptr += 6;
@@ -258,15 +258,15 @@ void clubmaster_driver(int cn, int ret, int lastact) {
                                 ch[co].clan = n + CLUBOFFSET;
                                 ch[co].clan_serial = club[n].serial;
                                 ch[co].clan_rank = 2;
-                                quiet_say(cn, "Congratulations, %s, you are now the leader of the club %s.", ch[co].name, club[n].name);
+                                quiet_say(cn, "Congratulations, %s, thou art now the leader of the club %s.", ch[co].name, club[n].name);
                                 dlog(co, 0, "created club %d %s", n, club[n].name);
                             } else quiet_say(cn, "Something's wrong with the name.");
-                        } else quiet_say(cn, "You cannot pay the fee of 10,000 gold.");
-                    } else quiet_say(cn, "You are already a member of a clan or club. You cannot found a new one.");
+                        } else quiet_say(cn, "Thou canst not pay the fee of 10,000 gold.");
+                    } else quiet_say(cn, "Thou art already a member of a clan or club. Thou canst not found a new one.");
                 }
                 if ((ptr = strcasestr((char *)msg->dat2, "accept:"))) {
                     if (!get_char_club(co) || ch[co].clan_rank < 1) {
-                        quiet_say(cn, "You are not a club leader, %s.", ch[co].name);
+                        quiet_say(cn, "Thou art not a club leader, %s.", ch[co].name);
                     } else {
                         ptr += 7;
                         while (isspace(*ptr)) ptr++;
@@ -284,7 +284,7 @@ void clubmaster_driver(int cn, int ret, int lastact) {
                 }
                 if ((ptr = strcasestr((char *)msg->dat2, "join:"))) {
                     if (get_char_clan(co) || get_char_club(co)) {
-                        quiet_say(cn, "You are already a clan or club member, %s.", ch[co].name);
+                        quiet_say(cn, "Thou art already a clan or club member, %s.", ch[co].name);
                     } else {
                         ptr += 5;
                         while (isspace(*ptr)) ptr++;
@@ -294,7 +294,7 @@ void clubmaster_driver(int cn, int ret, int lastact) {
                         }
                         tmp[n] = 0;
                         if (strcasecmp(dat->accept, ch[co].name)) {
-                            quiet_say(cn, "You have not been invited, %s.", ch[co].name);
+                            quiet_say(cn, "Thou hast not been invited, %s.", ch[co].name);
                         } else if (strcasecmp(dat->join, tmp)) {
                             quiet_say(cn, "%s has not invited you, %s.", tmp, ch[co].name);
                         } else {
@@ -302,7 +302,7 @@ void clubmaster_driver(int cn, int ret, int lastact) {
                             ch[co].clan = dat->accept_clan + CLUBOFFSET;
                             ch[co].clan_serial = club[dat->accept_clan].serial;
                             ch[co].clan_rank = 0;
-                            quiet_say(cn, "%s, you are now a member of %s's club.", ch[co].name, dat->join);
+                            quiet_say(cn, "%s, thou art now a member of %s's club.", ch[co].name, dat->join);
                             dat->accept[0] = 0;
                             dat->accept_clan = 0;
                             dat->join[0] = 0;
@@ -311,15 +311,15 @@ void clubmaster_driver(int cn, int ret, int lastact) {
                 }
                 if ((ptr = strcasestr((char *)msg->dat2, "leave!"))) {
                     if (!get_char_club(co)) {
-                        quiet_say(cn, "You are not a club member, %s.", ch[co].name);
+                        quiet_say(cn, "Thou art not a club member, %s.", ch[co].name);
                     } else {
                         remove_member(co, co);
-                        quiet_say(cn, "You are no longer a member of any club, %s", ch[co].name);
+                        quiet_say(cn, "Thou art no longer a member of any club, %s", ch[co].name);
                     }
                 }
                 if ((ptr = strcasestr((char *)msg->dat2, "rank:"))) {
                     if (!get_char_club(co) || ch[co].clan_rank < 2) {
-                        quiet_say(cn, "You are not a club founder, %s.", ch[co].name);
+                        quiet_say(cn, "Thou art not a club founder, %s.", ch[co].name);
                     } else {
                         ptr += 6;
                         while (isspace(*ptr)) ptr++;
@@ -332,7 +332,7 @@ void clubmaster_driver(int cn, int ret, int lastact) {
                         rank = atoi(ptr);
 
                         if (rank < 0 || rank > 1) {
-                            quiet_say(cn, "You must use a rank between 0 and 1.");
+                            quiet_say(cn, "Thou must use a rank between 0 and 1.");
                             remove_message(cn, msg);
                             continue;
                         }
@@ -342,13 +342,13 @@ void clubmaster_driver(int cn, int ret, int lastact) {
                         }
                         if (cc) {
                             if (!(ch[cc].flags & CF_PAID) && rank > 0) {
-                                quiet_say(cn, "%s is not a paying player, you cannot set the rank higher than 0.", ch[cc].name);
+                                quiet_say(cn, "%s is not a paying player, thou canst not set the rank higher than 0.", ch[cc].name);
                             } else if (ch[cc].clan_rank == 2) {
                                 quiet_say(cn, "%s is the club's founder, cannot change rank.", ch[cc].name);
                             } else if (get_char_club(cc) == get_char_club(co)) {
                                 ch[cc].clan_rank = rank;
                                 quiet_say(cn, "Set %s's rank to %d.", ch[cc].name, rank);
-                            } else quiet_say(cn, "You cannot change the rank of those not belonging to your club.");
+                            } else quiet_say(cn, "Thou canst not change the rank of those not belonging to thy club.");
                         } else {
                             int uID;
 
@@ -365,7 +365,7 @@ void clubmaster_driver(int cn, int ret, int lastact) {
                 }
                 if ((ptr = strcasestr((char *)msg->dat2, "fire:"))) {
                     if (!get_char_club(co) || ch[co].clan_rank < 1) {
-                        quiet_say(cn, "You are not a club leader, %s.", ch[co].name);
+                        quiet_say(cn, "Thou art not a club leader, %s.", ch[co].name);
                     } else {
                         ptr += 6;
                         while (isspace(*ptr)) ptr++;
@@ -383,8 +383,8 @@ void clubmaster_driver(int cn, int ret, int lastact) {
                                 if (ch[cc].clan_rank < 2) {
                                     remove_member(cc, co);
                                     quiet_say(cn, "Fired: %s.", ch[cc].name);
-                                } else quiet_say(cn, "You cannot fire the founder of the club.");
-                            } else quiet_say(cn, "You cannot fire those not belonging to your club.");
+                                } else quiet_say(cn, "Thou canst not fire the founder of the club.");
+                            } else quiet_say(cn, "Thou canst not fire those not belonging to thy club.");
                         } else {
                             int uID;
 
@@ -402,29 +402,29 @@ void clubmaster_driver(int cn, int ret, int lastact) {
 
                 if ((ptr = strcasestr((char *)msg->dat2, "deposit:"))) {
                     if (!(n = get_char_club(co))) {
-                        quiet_say(cn, "You are not a club member, %s.", ch[co].name);
+                        quiet_say(cn, "Thou art not a club member, %s.", ch[co].name);
                     } else {
                         val = atoi(ptr + 8) * 100;
 
                         if (val > 0 && ch[co].gold >= val) {
                             club[n].money += val;
                             take_money(co, val);
-                            quiet_say(cn, "You have deposited %dG, for a total of %dG, %s.", val / 100, club[n].money / 100, ch[co].name);
+                            quiet_say(cn, "Thou hast deposited %dG, for a total of %dG, %s.", val / 100, club[n].money / 100, ch[co].name);
                             dlog(co, 0, "Deposited %dG into club %d, for a new total of %dG", val / 100, n, club[n].money / 100);
                             db_update_club(n);
-                        } else quiet_say(cn, "You do not have that much gold, %s.", ch[co].name);
+                        } else quiet_say(cn, "Thou dost not have that much gold, %s.", ch[co].name);
                     }
                 }
                 if ((ptr = strcasestr((char *)msg->dat2, "withdraw:"))) {
                     if (!(n = get_char_club(co)) || ch[co].clan_rank < 2) {
-                        quiet_say(cn, "You are not a club founder, %s.", ch[co].name);
+                        quiet_say(cn, "Thou art not a club founder, %s.", ch[co].name);
                     } else {
                         val = atoi(ptr + 9) * 100;
 
                         if (val > 0 && club[n].money >= val) {
                             club[n].money -= val;
                             give_money(co, val, "club withdrawal");
-                            quiet_say(cn, "You have withdrawn %dG, money left in club %dG, %s.", val / 100, club[n].money / 100, ch[co].name);
+                            quiet_say(cn, "Thou hast withdrawn %dG, money left in club %dG, %s.", val / 100, club[n].money / 100, ch[co].name);
                             dlog(co, 0, "Withdrew %dG from club %d, for a new total of %dG", val / 100, n, club[n].money / 100);
                             db_update_club(n);
                         } else quiet_say(cn, "The club does not have that much gold, %s.", ch[co].name);
@@ -460,7 +460,7 @@ void clubmaster_driver(int cn, int ret, int lastact) {
             murmur(cn, "My back itches.");
             break;
         case 1:
-            whisper(cn, "There's something stuck between your teeth.");
+            whisper(cn, "There is something stuck between thy teeth.");
             break;
         case 2:
             murmur(cn, "Oh yeah, those were the days.");

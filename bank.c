@@ -60,21 +60,21 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"help", NULL}, "Sorry, I'm just a merchant, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"help", NULL}, "Sorry, I am just a merchant, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"what's", "your", "name", NULL}, NULL, 1},
     {{"what", "is", "your", "name", NULL}, NULL, 1},
     {{"who", "are", "you", NULL}, NULL, 1},
     {{"account", NULL}, "If you want to open an account, you must first deposit (\260c4explain deposit\260c0) some money in it. After that, you can inquire for your balance (\260c4explain balance\260c0) or withdraw (\260c4explain withdraw\260c0) money.", 0},
     {{"explain", "deposit", NULL}, "To deposit 38 gold coins for example, just say: 'deposit 38'.", 0},
     {{"explain", "withdraw", NULL}, "To withdraw 38 gold coins for example, just say: 'withdraw 38'.", 0},
-    {{"explain", "balance", NULL}, "To inquire about the balance of your account, just say: 'balance'", 0}};
+    {{"explain", "balance", NULL}, "To inquire about the balance of thine account, just say: 'balance'", 0}};
 
 void lowerstrcpy(char *dst, char *src) {
     while (*src) *dst++ = tolower(*src++);
@@ -142,7 +142,7 @@ int analyse_text_driver(int cn, int type, char *text, int co) {
                 if (qa[q].answer) quiet_say(cn, qa[q].answer, ch[co].name, ch[cn].name);
                 else switch (qa[q].answer_code) {
                     case 1:
-                        quiet_say(cn, "I'm %s.", ch[cn].name);
+                        quiet_say(cn, "I am %s.", ch[cn].name);
                     }
                 break;
             }
@@ -258,7 +258,7 @@ void bank_driver(int cn, int ret, int lastact) {
                 continue;
             }
 
-            quiet_say(cn, "Hello %s! Would you like to open an \260c4account\260c0 with the Imperial Bank?", ch[co].name);
+            quiet_say(cn, "Hello %s! Wouldst thou like to open an \260c4account\260c0 with the Imperial Bank?", ch[co].name);
             mem_add_driver(cn, co, 7);
         }
 
@@ -326,7 +326,7 @@ void bank_driver(int cn, int ret, int lastact) {
         if (!opening_time(dat->open, dat->close)) { // we're closed
             if (dat->doorx && !is_closed(dat->doorx, dat->doory)) { // door is still open
                 if (!is_room_empty(dat->storefx, dat->storefy, dat->storetx, dat->storety)) { // store is not empty
-                    quiet_say(cn, "We're closing, please leave now!");
+                    quiet_say(cn, "We are closing, please leave now!");
                     do_idle(cn, TICKS);
                     return;
                 } else {
@@ -358,7 +358,7 @@ void bank_driver(int cn, int ret, int lastact) {
             murmur(cn, "My back itches.");
             break;
         case 1:
-            whisper(cn, "There's something stuck between your teeth.");
+            whisper(cn, "There is something stuck between thy teeth.");
             break;
         case 2:
             murmur(cn, "Oh yeah, those were the days.");

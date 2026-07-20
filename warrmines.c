@@ -69,13 +69,13 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"repeat", NULL}, NULL, 2},
     {{"restart", NULL}, NULL, 2},
     {{"please", "repeat", NULL}, NULL, 2},
@@ -228,7 +228,7 @@ void dwarfchief_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    quiet_say(cn, "Four of our miners have gone missing, one each in one of the 4 mine areas, and we can only think it's because of those bothersome golems...");
+                    quiet_say(cn, "Four of our miners have gone missing, one each in one of the 4 mine areas, and we can only think it is because of those bothersome golems...");
                     ppd->dwarfchief_state++;
                     didsay = 1;
                     break;
@@ -274,7 +274,7 @@ void dwarfchief_driver(int cn, int ret, int lastact) {
                         ppd->dwarfchief_state = 11;
                         break;
                     }
-                    quiet_say(cn, "A job well done! It's that we have enough hands already, otherwise I'd ask you to go out there and mine for us. Anyway, back to business. Go and find the next miner, and you will be rewarded again.");
+                    quiet_say(cn, "A job well done! It is that we have enough hands already, otherwise I would ask thee to go out there and mine for us. Anyway, back to business. Go and find the next miner, and thou wilt be rewarded again.");
                     questlog_open(co, 49);
                     ppd->dwarfchief_state++;
                     didsay = 1;
@@ -295,7 +295,7 @@ void dwarfchief_driver(int cn, int ret, int lastact) {
                         ppd->dwarfchief_state = 14;
                         break;
                     }
-                    quiet_say(cn, "Just in time! If you had been any later, he wouldn't have had his dinner, and trust me, you don't want to see a dwarf hungry, it's not a pretty sight. The fourth miner should be ok, he always packs more than the others, but do hurry and find him.");
+                    quiet_say(cn, "Just in time! If thou hadst been any later, he would not have had his dinner, and trust me, thou dost not want to see a dwarf hungry, it is not a pretty sight. The fourth miner should be ok, he always packs more than the others, but do hurry and find him.");
                     questlog_open(co, 50);
                     ppd->dwarfchief_state++;
                     didsay = 1;
@@ -312,7 +312,7 @@ void dwarfchief_driver(int cn, int ret, int lastact) {
                     ppd->dwarfchief_state++;
                     // fall-through intended
                 case 14:
-                    quiet_say(cn, "I thank thee for saving the last one! You have been of great help to us. Now let's hope they can stay out of the hands of those golems once and for all. Those recall scrolls aren't cheap you know!");
+                    quiet_say(cn, "I thank thee for saving the last one! Thou hast been of great help to us. Now let us hope they can stay out of the hands of those golems once and for all. Those recall scrolls are not cheap thou knowest!");
                     ppd->dwarfchief_state++;
                     didsay = 1;
                     break;
@@ -460,7 +460,7 @@ void dwarfshaman_driver(int cn, int ret, int lastact) {
             if (ppd) {
                 switch (ppd->dwarfshaman_state) {
                 case 0:
-                    quiet_say(cn, "Welcome to Grimroot stranger. To make it here you must have battled some strong foes, though they're nothing compared to what you're about to face, should you accept the quest I am about to give you.");
+                    quiet_say(cn, "Welcome to Grimroot stranger. To make it here thou must have battled some strong foes, though they are nothing compared to what thou art about to face, shouldst thou accept the quest I am about to give thee.");
                     questlog_open(co, 51);
                     ppd->dwarfshaman_state++;
                     didsay = 1;
@@ -478,7 +478,7 @@ void dwarfshaman_driver(int cn, int ret, int lastact) {
                         ppd->dwarfshaman_state = 6;
                         break;
                     }
-                    quiet_say(cn, "Ah! I see you've come back with all your teeth, and those of the lizards. I guess you are strong enough after all to do the quest I am about to give you. You see, I've seen the lizards come out with brown berries out of the water.");
+                    quiet_say(cn, "Ah! I see thee have come back with all thy teeth, and those of the lizards. I guess thou art strong enough after all to do the quest I am about to give thee. Thou seest, I have seen the lizards come out with brown berries out of the water.");
                     questlog_open(co, 52);
                     ppd->dwarfshaman_state++;
                     didsay = 1;
@@ -496,13 +496,13 @@ void dwarfshaman_driver(int cn, int ret, int lastact) {
                         ppd->dwarfshaman_state = 10;
                         break;
                     }
-                    quiet_say(cn, "It's good that you can swim, you have no idea how much I hate water. I thank thee for the berries. As I suspected, they seem to have magic properties, which I may be able to use.");
+                    quiet_say(cn, "It is good that thou canst swim, thou hast no idea how much I hate water. I thank thee for the berries. As I suspected, they seem to have magic properties, which I may be able to use.");
                     questlog_open(co, 53);
                     ppd->dwarfshaman_state++;
                     didsay = 1;
                     break;
                 case 7:
-                    quiet_say(cn, "Also, I managed to learn some of the lizard's tongue, and overheard them talking in fear of an 'elite lizard'... If you can find it and bring it's head to me, I can learn more about these lizards, and why they're so varied.");
+                    quiet_say(cn, "Also, I managed to learn some of the lizard's tongue, and overheard them talking in fear of an 'elite lizard'... If thou canst find it and bring it is head to me, I can learn more about these lizards, and why they are so varied.");
                     ppd->dwarfshaman_state++;
                     didsay = 1;
                     break;
@@ -692,7 +692,7 @@ void dwarfsmith_driver(int cn, int ret, int lastact) {
             if (ppd) {
                 switch (ppd->dwarfsmith_state) {
                 case 0:
-                    quiet_say(cn, "Welcome to my smithy! If you are in need of my services, come to me and I will see what I can do for you. For now though, I'm afraid I can't do a whole lot.");
+                    quiet_say(cn, "Welcome to my smithy! If thou art in need of my services, come to me and I will see what I can do for thee. For now though, I am afraid I cannot do a whole lot.");
                     ppd->dwarfsmith_state++;
                     didsay = 1;
                     break;
@@ -742,9 +742,9 @@ void dwarfsmith_driver(int cn, int ret, int lastact) {
                 if (it[in].ID == IID_LIZARDMOLD && ppd && ppd->dwarfsmith_state <= 1) {
                     ppd->dwarfsmith_state = 2;
                     ppd->dwarfsmith_type = it[in].drdata[0];
-                    quiet_say(cn, "What's this? A mold from the lizards? I guess I can make a key out of this, but I will need 5,000 silver to make it. You can't expect me to sacrifice my own ore for your adventuring!");
+                    quiet_say(cn, "What is this? A mold from the lizards? I guess I can make a key out of this, but I will need 5,000 silver to make it. Thou canst not expect me to sacrifice my own ore for thine adventuring!");
                 } else if (it[in].driver == IDR_ENHANCE && it[in].drdata[0] == 1 && *(unsigned int *)(it[in].drdata + 1) == 5000 && ppd && ppd->dwarfsmith_state == 2) {
-                    quiet_say(cn, "There you go, one key for the adventurer.");
+                    quiet_say(cn, "There thou goest, one key for the adventurer.");
                     switch (ppd->dwarfsmith_type) {
                     case 1:
                         in2 = create_item("lizard_elite_key1");
@@ -768,9 +768,9 @@ void dwarfsmith_driver(int cn, int ret, int lastact) {
 
                 } else if (give_char_item(co, in)) {
                     if (it[in].driver == IDR_ENHANCE) {
-                        if (it[in].drdata[0] != 1) quiet_say(cn, "I'll need silver, not any other material.");
-                        else if (*(unsigned int *)(it[in].drdata + 1) != 5000) quiet_say(cn, "I'll need exactly 5000 units of silver.");
-                        else quiet_say(cn, "I'll need a mold first.");
+                        if (it[in].drdata[0] != 1) quiet_say(cn, "I shall need silver, not any other material.");
+                        else if (*(unsigned int *)(it[in].drdata + 1) != 5000) quiet_say(cn, "I shall need exactly 5000 units of silver.");
+                        else quiet_say(cn, "I shall need a mold first.");
                     } else quiet_say(cn, "Thou hast better use for this than I do. Well, if there is use for it at all.");
                     ch[cn].citem = 0;
                 }
@@ -862,7 +862,7 @@ void lostdwarf_driver(int cn, int ret, int lastact) {
                 continue;
             }
 
-            quiet_say(cn, "I hope you have a dwarven recall scroll for me! If not, be off with you!");
+            quiet_say(cn, "I hope thou hast a dwarven recall scroll for me! If not, be off with thee!");
             dat->last_talk = ticker;
         }
 

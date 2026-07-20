@@ -479,7 +479,7 @@ void palace_islena(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 2:
-                    say(cn, "It was never my wish to continue the war of the last eon. So why don't we set the enmity aside? I will forgive thee all the trouble thou hast caused me.");
+                    say(cn, "It was never my wish to continue the war of the last eon. So why do not we set the enmity aside? I will forgive thee all the trouble thou hast caused me.");
                     ppd->islena_state++;
                     didsay = 1;
                     break;

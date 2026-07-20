@@ -74,13 +74,13 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"repeat", NULL}, NULL, 2},
     {{"restart", NULL}, NULL, 2},
     {{"please", "repeat", NULL}, NULL, 2},
@@ -406,7 +406,7 @@ void smugglecom_driver(int cn, int ret, int lastact) {
                     //break;
                     // fall through intended for now
                 case 3:
-                    quiet_say(cn, "Go now, and may Ishtar be with you.");
+                    quiet_say(cn, "Go now, and may Ishtar be with thee.");
                     ppd->smugglecom_state = 4;
                     didsay = 1;
                     break;
@@ -429,7 +429,7 @@ void smugglecom_driver(int cn, int ret, int lastact) {
                     }
                     break;
                 case 7:
-                    quiet_say(cn, "I thank thee, you are of great help in hurting the smuggler's operations.");
+                    quiet_say(cn, "I thank thee, thou art of great help in hurting the smuggler's operations.");
                     if (questlog_isdone(co, 37)) {
                         ppd->smugglecom_state = 10;
                         break;
@@ -442,7 +442,7 @@ void smugglecom_driver(int cn, int ret, int lastact) {
                 case 8:
                     break;
                 case 9:
-                    quiet_say(cn, "I thank thee for helping us, %s, you have been of great value.", ch[co].name);
+                    quiet_say(cn, "I thank thee for helping us, %s, thou hast been of great value.", ch[co].name);
                     ppd->smugglecom_state++;
                     didsay = 1;
                     questlog_done(co, 37);
@@ -648,7 +648,7 @@ void rouven_driver(int cn, int ret, int lastact) {
                         }
                         break;
                     }
-                    quiet_say(cn, "Hail, %s. Carlos sent you for a ritual? Did he mention the place is cursed? Well, I have two quests of my own for you.", ch[co].name);
+                    quiet_say(cn, "Hail, %s. Carlos sent thee for a ritual? Did he mention the place is cursed? Well, I have two quests of my own for thee.", ch[co].name);
                     ppd->rouven_state++;
                     didsay = 1;
                     questlog_open(co, 62);
@@ -677,13 +677,13 @@ void rouven_driver(int cn, int ret, int lastact) {
                     break; // waiting for player to find skull
 
                 case 6:
-                    quiet_say(cn, "You say there's demons and a pile of strange skulls? They must have burrowed in from the underground. We'll look into this immediately.");
+                    quiet_say(cn, "Thou sayest there is demons and a pile of strange skulls? They must have burrowed in from the underground. We shall look into this immediately.");
                     ppd->rouven_state++;
                     didsay = 1;
                     questlog_open(co, 63);
                     break;
                 case 7:
-                    quiet_say(cn, "Now I ask you to retrieve the chronicles of Seyan I. He kept a journal detailing many of his plans. Including those for the Aston Empire.");
+                    quiet_say(cn, "Now I ask thee to retrieve the chronicles of Seyan I. He kept a journal detailing many of his plans. Including those for the Aston Empire.");
                     ppd->rouven_state++;
                     didsay = 1;
                     break;

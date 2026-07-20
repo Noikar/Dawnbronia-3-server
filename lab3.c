@@ -153,7 +153,7 @@ void lab3_passguard_driver(int cn, int ret, int lastact) {
 
             // dont talk to someone far away (if he is, reset the talkstep)
             if (char_dist(cn, co) > 10) {
-                if (ppd->guard_talkstep == 20) say(cn, "Do not forget thine password, %s. Next time I will ask you again.", ch[co].name);
+                if (ppd->guard_talkstep == 20) say(cn, "Do not forget thy password, %s. Next time I will ask thee again.", ch[co].name);
                 else if (ppd->guard_talkstep) say(cn, "Thou art wise, %s, very wise.", ch[co].name);
                 ppd->guard_talkstep = 0;
                 remove_message(cn, msg);
@@ -182,7 +182,7 @@ void lab3_passguard_driver(int cn, int ret, int lastact) {
                 ppd->guard_talkstep++;
                 break;
             case 3:
-                say(cn, "I'll count up to three, then I will kill thee, %s. So move, or say the password!", ch[co].name);
+                say(cn, "I shall count up to three, then I will kill thee, %s. So move, or say the password!", ch[co].name);
                 didsay = 1;
                 ppd->guard_talkstep++;
                 break;
@@ -197,7 +197,7 @@ void lab3_passguard_driver(int cn, int ret, int lastact) {
                 ppd->guard_talkstep++;
                 break;
             case 6:
-                say(cn, "Three! %s, I'm coming!", ch[co].name);
+                say(cn, "Three! %s, I am coming!", ch[co].name);
                 ppd->guard_talkstep = 0;
                 fight_driver_add_enemy(cn, co, 1, 1);
                 break;
@@ -258,7 +258,7 @@ void lab3_passguard_driver(int cn, int ret, int lastact) {
                 say(cn, "What?");
                 dat->last_talk = ticker + 10 * TICKS;
             } else if (strcasestr(str, "REPEAT")) {
-                say(cn, "I'll repeat.");
+                say(cn, "I shall repeat.");
                 ppd->guard_talkstep = 0;
             }
         }
@@ -394,7 +394,7 @@ void lab3_prisoner_driver(int cn, int ret, int lastact) {
                 dat->next_talk = ticker + 3 * TICKS;
                 break;
 
-            case 3: // say(cn,"I wrote it down, so i won't forget it. Wait a moment and I'll give it to thee, %s.",ch[co].name);
+            case 3: // say(cn,"I wrote it down, so i will not forget it. Wait a moment and I shall give it to thee, %s.",ch[co].name);
                 log_area(ch[cn].x, ch[cn].y, LOG_SYSTEM, 0, DIST * 2, "Now he makes signs like giving something to thee.");
                 didsay = 1;
                 ppd->prisoner_talkstep = 255;
@@ -897,20 +897,20 @@ void lab3_special(int in, int cn) {
     if (drdata[0] == 3) {
         switch (drdata[1]) {
         case 1:
-            log_char(cn, LOG_SYSTEM, 0, "I have to find a way of holding my breath for longer.  Too bad you can’t breathe under water.");
+            log_char(cn, LOG_SYSTEM, 0, "I have to find a way of holding my breath for longer.ï¿½ Too bad you canï¿½t breathe under water.");
             break; // "Ich muss einen Weg finden, meine Luft laenger anzuhalten. Zu dumm, dass man unter Wasser nicht atmen kann."
         case 2:
             log_char(cn, LOG_SYSTEM, 0, "The yellow berries seem to release oxygen. I have finally figured out how to stay underwater for longer. Now I simply need to manage fighting these hordes of crustaceans in order to find the exit to this part of the labyrinth. The exit is supposed to be somewhere in the south.");
             break; // "Die gelben Beeren scheinen Sauerstoff freizusetzen. Endlich habe ich einen Weg gefunden, laenger unter Wasser bleiben zu koennen. Jetzt muss ich es nur noch schaffen, gegen diese Horden von crustacean zu bestehen, um den Ausgang aus diesem Labyrinthteil zu finden. Angeblich soll er irgendwo im Sueden liegen."
         case 3:
             log_char(cn, LOG_SYSTEM, 0, "Behind the southern caves I discovered a rare brown berry. Encouraged by my experience with the yellow berries I ate it. Nothing much happened, but when I expressed my disappointment, I could understand my own words. Very interesting, might even come in handy.");
-            break; // "Hinter den Höhlen im Süden habe ich eine seltene braune Beere entdeckt. Aufgrund meiner Erfahrung mit den gelben Beeren habe ich sie gegessen. Viel ist nicht passiert, doch als ich meiner Entaeuschung Ausdruck verliehen habe, konnte ich meine Worte verstehen. Sehr interresant, vielleicht sogar nuetzlich."
+            break; // "Hinter den Hï¿½hlen im Sï¿½den habe ich eine seltene braune Beere entdeckt. Aufgrund meiner Erfahrung mit den gelben Beeren habe ich sie gegessen. Viel ist nicht passiert, doch als ich meiner Entaeuschung Ausdruck verliehen habe, konnte ich meine Worte verstehen. Sehr interresant, vielleicht sogar nuetzlich."
         case 4:
             log_char(cn, LOG_SYSTEM, 0, "In the south I only discovered the entrance to some caves. I will explore them later on, for the time being I just want to find the exit to this part of the labyrinth. It must be further to the east.");
-            break; // "Im Sueden konnte Ich leider nur einen Zugang zu irgendwelchen Hoehlen finden. Ich werde sie später erforschen, jetzt will ich erst einmal den Ausgang aus diesem Labyrinth Teil finden. Er muss wohl etwas weiter im Osten liegen."
+            break; // "Im Sueden konnte Ich leider nur einen Zugang zu irgendwelchen Hoehlen finden. Ich werde sie spï¿½ter erforschen, jetzt will ich erst einmal den Ausgang aus diesem Labyrinth Teil finden. Er muss wohl etwas weiter im Osten liegen."
         case 5:
             log_char(cn, LOG_SYSTEM, 0, "These large crustaceans are too strong, but fortunately very slow.");
-            break; // "Diese large crustacean sind viel zu stark, doch zum glück sind sie auch sehr langsam."
+            break; // "Diese large crustacean sind viel zu stark, doch zum glï¿½ck sind sie auch sehr langsam."
         case 6:
             log_char(cn, LOG_SYSTEM, 0, "These berries are incredible. When you eat the white ones, you start glowing. Thus I can finally explore the darker regions.");
             break; // "Diese Beeren sind erstaunlich hier. Isst man die weissen, beginnt man zu leuchten. So kann ich nun endlich auch die dunkleren Regionen absuchen."

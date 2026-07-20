@@ -153,7 +153,7 @@ void lab2_herald_driver(int cn, int ret, int lastact) {
 
             switch (ppd->herald_talkstep) {
             case 0: // INTRO
-                say(cn, "Hello %s. I am Herald, the Keeper of this graveyard. I can't say how glad I am to see thee here. I assume thou wantst to pass this test. I need thy help urgently. Horrible things happen here, as thou hast probably noticed. I don't dare to leave the chapel since the dead are rising from their graves. \260c4Arathas\260c0 has caused this abomination, may his soul rest in peace.", ch[co].name);
+                say(cn, "Hello %s. I am Herald, the Keeper of this graveyard. I cannot say how glad I am to see thee here. I assume thou wantst to pass this test. I need thy help urgently. Horrible things happen here, as thou hast probably noticed. I do not dare to leave the chapel since the dead are rising from their graves. \260c4Arathas\260c0 has caused this abomination, may his soul rest in peace.", ch[co].name);
                 didsay = 1;
                 ppd->herald_talkstep++;
                 dat->next_talk = ticker + 10 * TICKS;
@@ -167,7 +167,7 @@ void lab2_herald_driver(int cn, int ret, int lastact) {
                 break;
 
             case 10: // ARATHAS
-                say(cn, "I don't know much about him. I just started to read what \260c4Elias\260c0, his brother, wrote in his \260c4diary\260c0 when the skeletons attacked me in my study. I'm lucky I got out alive. Now I'm hiding here in the chapel. The undeads dare not enter it.");
+                say(cn, "I do not know much about him. I just started to read what \260c4Elias\260c0, his brother, wrote in his \260c4diary\260c0 when the skeletons attacked me in my study. I am lucky I got out alive. Now I am hiding here in the chapel. The undeads dare not enter it.");
                 didsay = 1;
                 ppd->herald_talkstep++;
                 dat->next_talk = ticker + 10 * TICKS;
@@ -188,7 +188,7 @@ void lab2_herald_driver(int cn, int ret, int lastact) {
                 break;
 
             case 21:
-                say(cn, "One day he entered the family vault. But he did not return, and after a while, his relatives divided his belongings among them. By now, they are all dead, too, and rest in this graveyard. If things were different, I'd show thee their graves, but with the undeads about I do not dare. Thou couldst check the books yourself, for the locations of their tombs. They are in the \260c4administrative building\260c0. But beware, lots of skeletons and undeads are there, too.");
+                say(cn, "One day he entered the family vault. But he did not return, and after a while, his relatives divided his belongings among them. By now, they are all dead, too, and rest in this graveyard. If things were different, I would show thee their graves, but with the undeads about I do not dare. Thou couldst check the books thyself, for the locations of their tombs. They are in the \260c4administrative building\260c0. But beware, lots of skeletons and undeads are there, too.");
                 didsay = 1;
                 ppd->herald_talkstep = 255;
                 dat->next_talk = ticker + 10 * TICKS;
@@ -441,7 +441,7 @@ void lab2_deamon_driver(int cn, int ret, int lastact) {
                 if (fight_driver_add_enemy(cn, co, 1, 1)) {
                     dat->attacking = 1;
                     dat->talkstep = 255;
-                    if (dat->observing) shout(cn, "Hey! Thou are not Elias. Now thou shalt die, %s!", ch[co].name);
+                    if (dat->observing) shout(cn, "Hey! Thou art not Elias. Now thou shalt die, %s!", ch[co].name);
                     else shout(cn, "I warned thee. Now thou shalt die, %s!", ch[co].name);
                 }
             }
@@ -475,7 +475,7 @@ void lab2_deamon_driver(int cn, int ret, int lastact) {
 
     case 3:
         if (ticker < dat->talkticker) break;
-        say(cn, "Ohh. Excuse me, Master. I am ashamed not to have recognized thee immediately. So, Elias, if you might want to enter... WAIT!");
+        say(cn, "Ohh. Excuse me, Master. I am ashamed not to have recognized thee immediately. So, Elias, if thou mightst want to enter... WAIT!");
         dat->talkstep++;
         dat->talkticker = ticker + 4 * TICKS;
         if (ch[dat->co].player) player_driver_halt(ch[dat->co].player);
@@ -502,7 +502,7 @@ void lab2_deamon_driver(int cn, int ret, int lastact) {
 
     case 12:
         if (ticker < dat->talkticker) break;
-        say(cn, "Excuse me for coming out of my Dimension. I hadn't recognized thee.");
+        say(cn, "Excuse me for coming out of my Dimension. I had not recognized thee.");
         dat->talkstep++;
         dat->talkticker = ticker + 6 * TICKS;
         break;
@@ -547,7 +547,7 @@ void lab2_deamon_driver(int cn, int ret, int lastact) {
 
     case 21:
         if (ticker < dat->talkticker) break;
-        say(cn, "Ahh, it's you again, Master Elias. See You.");
+        say(cn, "Ahh, it art thou again, Master Elias. See Thee.");
         dat->talkstep++;
         dat->talkticker = ticker + 3 * TICKS;
         break;
@@ -572,14 +572,14 @@ void lab2_deamon_driver(int cn, int ret, int lastact) {
 
     case 52:
         if (ticker < dat->talkticker) break;
-        say(cn, "What kind of masquerade is that. Thou are wearing some parts of Elias stuff, but thou are not Elias.");
+        say(cn, "What kind of masquerade is that. Thou art wearing some parts of Elias stuff, but thou art not Elias.");
         dat->talkstep++;
         dat->talkticker = ticker + 4 * TICKS;
         break;
 
     case 53:
         if (ticker < dat->talkticker) break;
-        say(cn, "Do not try to get into the family vault, I won't let you in, and thou will have to die!");
+        say(cn, "Do not try to get into the family vault, I will not let thee in, and thou wilt have to die!");
         dat->talkstep = 255;
         break;
     }

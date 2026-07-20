@@ -282,7 +282,7 @@ void labgnome_driver(int cn, int ret, int lastact) {
     if (dat->usetarget) {
         if (use_and_attack_driver(cn, dat->usetarget, 0, &co)) return;
         if (co)
-            if (fight_driver_add_enemy(cn, co, 1, 1)) shout(cn, "You're in my way %s! Die!", ch[co].name);
+            if (fight_driver_add_enemy(cn, co, 1, 1)) shout(cn, "Thou art in my way %s! Die!", ch[co].name);
     }
 
     // rest of standard action

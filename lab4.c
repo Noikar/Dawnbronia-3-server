@@ -120,12 +120,12 @@ void lab4_seyan_driver(int cn, int ret, int lastact) {
                 if (it[ch[cn].citem].ID == IID_LAB4_CROWN) {
                     pd->seyan4got |= (1 << 0);
                     set_seyan_state(pd);
-                    if (dat->cv_co && (dat->cv_co != co || ch[dat->cv_co].serial != dat->cv_serial)) { say(cn, "%s, please be patient while i'm talking to others.", ch[co].name); }
+                    if (dat->cv_co && (dat->cv_co != co || ch[dat->cv_co].serial != dat->cv_serial)) { say(cn, "%s, please be patient while I am talking to others.", ch[co].name); }
                 }
                 if (it[ch[cn].citem].ID == IID_LAB4_SZEPTER) {
                     pd->seyan4got |= (1 << 1);
                     set_seyan_state(pd);
-                    if (dat->cv_co && (dat->cv_co != co || ch[dat->cv_co].serial != dat->cv_serial)) { say(cn, "%s, please be patient while i'm talking to others.", ch[co].name); }
+                    if (dat->cv_co && (dat->cv_co != co || ch[dat->cv_co].serial != dat->cv_serial)) { say(cn, "%s, please be patient while I am talking to others.", ch[co].name); }
                 }
             }
 
@@ -209,7 +209,7 @@ void lab4_seyan_driver(int cn, int ret, int lastact) {
                 pd->seyan4state++;
                 break;
             case 4:
-                say(cn, "Go ahead now, %s, and fulfil thine destiny.", ch[co].name);
+                say(cn, "Go ahead now, %s, and fulfil thy destiny.", ch[co].name);
                 didsay = 1;
                 pd->seyan4state++;
                 break;

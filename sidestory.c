@@ -528,8 +528,8 @@ int ruby_aston_char(int cn, int co, struct sidestory_ppd *ppd) {
         else ppd->ruby3.state++;
         break;
     case 1:
-        if (!bitvalue) quiet_say(cn, "Hello, %s. I'm %s, and this is my house. The door is over there...", ch[co].name, ch[cn].name);
-        else quiet_say(cn, "Hello, %s. I'm %s. Nice to see thee again. I'm kinda busy now, so if thou wouldst come by again later?", ch[co].name, ch[cn].name);
+        if (!bitvalue) quiet_say(cn, "Hello, %s. I am %s, and this is my house. The door is over there...", ch[co].name, ch[cn].name);
+        else quiet_say(cn, "Hello, %s. I am %s. Nice to see thee again. I am kinda busy now, so if thou wouldst come by again later?", ch[co].name, ch[cn].name);
         ppd->ruby3.state++;
         didsay = 1;
         break;
@@ -544,7 +544,7 @@ int ruby_aston_char(int cn, int co, struct sidestory_ppd *ppd) {
     case 4:
         if (find_weapon(co, &ppd->ruby3.skl, &ppd->ruby3.level)) ppd->ruby3.state++;
         else {
-            quiet_say(cn, "Uh, I'm confused. Please come back later.");
+            quiet_say(cn, "Uh, I am confused. Please come back later.");
             ppd->ruby3.state = 0;
             didsay = 1;
         }
@@ -666,15 +666,15 @@ int ruby_aston_char(int cn, int co, struct sidestory_ppd *ppd) {
     case 14:
         break;
     case 15:
-        quiet_say(cn, "Here you go...");
+        quiet_say(cn, "Here thou goest...");
         in = ruby_create_item(&ppd->ruby3);
         if (!in) {
-            quiet_say(cn, "Uh, I'm confused. Please come back later.");
+            quiet_say(cn, "Uh, I am confused. Please come back later.");
             ppd->ruby3.state = 0;
             didsay = 1;
         }
         if (!give_char_item(co, in)) {
-            quiet_say(cn, "Uh, try again when your inventory isn't full.");
+            quiet_say(cn, "Uh, try again when thine inventory is not full.");
             ppd->ruby3.state = 0;
             didsay = 1;
         }
