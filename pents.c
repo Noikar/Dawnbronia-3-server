@@ -173,7 +173,7 @@ static void solve_pents(int cc) {
             }
         }
 
-        log_char(cn, LOG_SYSTEM, 0, "The current record is %d pentagrammas in one run, held by %s. You have %d pentagrammas so far.", pent_record, pent_record_name, nppd->pent_cnt);
+        log_char(cn, LOG_SYSTEM, 0, "The current record is %d pentagrams in one run, held by %s. You have %d pentagrams so far.", pent_record, pent_record_name, nppd->pent_cnt);
     }
     lastsolve = ticker;
 }
@@ -193,7 +193,7 @@ static void add_pent(int cn, int in, int didsolve) {
 
     if (didsolve) nppd->bonus += value * 3;
 
-    log_char(cn, LOG_SYSTEM, 0, "You got a %s Pentagram, value %d. %d of %d Pentagrammas are active.",
+    log_char(cn, LOG_SYSTEM, 0, "You got a %s Pentagram, value %d. %d of %d Pentagrams are active.",
              colortext[color], value, active, total);
 
     // add pent to data structure
@@ -230,7 +230,7 @@ static void add_pent(int cn, int in, int didsolve) {
             }
             if (same == 5) {
                 nppd->status = 1;
-                log_char(cn, LOG_SYSTEM, 0, "You got five Pentagrammas of the same color!");
+                log_char(cn, LOG_SYSTEM, 0, "You got five Pentagrams of the same color!");
             }
         } else {
             if (nppd->pent_value[5] < value) {
