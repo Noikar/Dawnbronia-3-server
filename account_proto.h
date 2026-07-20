@@ -24,7 +24,8 @@
 #define ACC_OP_REGISTER 0x01
 #define ACC_OP_LIST 0x02
 #define ACC_OP_CREATE 0x03
-#define ACC_OP_DELETE 0x04 // reserved for a later phase
+#define ACC_OP_DELETE 0x04
+#define ACC_OP_LAST ACC_OP_DELETE // highest valid op (clients validate against this)
 
 // CREATE character flags byte.
 #define ACC_FLAG_MALE 0x01 // clear = female
@@ -40,10 +41,15 @@
 //   REGISTER / LIST : op(1) + username(ACC_NAMELEN) + pw(ACC_PWLEN)
 //   CREATE          : op(1) + username(ACC_NAMELEN) + pw(ACC_PWLEN)
 //                     + charname(ACC_NAMELEN) + flags(1)
+//   DELETE          : op(1) + username(ACC_NAMELEN) + pw(ACC_PWLEN)
+//                     + charname(ACC_NAMELEN)
 // The password field is obfuscated with the same XOR scheme login uses, keyed
-// by the account username.
+// by the account username. DELETE carries a freshly typed password (the client
+// re-prompts for it as the destructive-action confirmation), so a wrong one
+// simply comes back as ACC_ST_BADCREDS.
 #define ACC_REQ_BASE (1 + ACC_NAMELEN + ACC_PWLEN) // REGISTER / LIST
 #define ACC_REQ_CREATE (ACC_REQ_BASE + ACC_NAMELEN + 1) // CREATE
+#define ACC_REQ_DELETE (ACC_REQ_BASE + ACC_NAMELEN) // DELETE
 
 // Reply. The server writes this RAW (uncompressed) with a direct csend, so it
 // arrives right after the connection's tiny uncompressed SV_REALTIME greeting
@@ -69,5 +75,8 @@
 #define ACC_ST_INVALID 3
 #define ACC_ST_LIMIT 4
 #define ACC_ST_SERVERERR 5
+#define ACC_ST_ONLINE 6 // DELETE: the character is currently logged in
+#define ACC_ST_INCLAN 7 // DELETE: the character still belongs to a clan or club
+#define ACC_ST_LAST ACC_ST_INCLAN // highest valid status (clients validate against this)
 
 #endif

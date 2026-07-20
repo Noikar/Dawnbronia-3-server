@@ -1947,6 +1947,83 @@ static int db_acc_create(const char *username, const char *password, const char 
     return ACC_ST_OK;
 }
 
+// Delete a character owned by the authenticated account. The row is archived
+// into chars_deleted first (see migrations.sql), so a mistaken delete can still
+// be recovered by hand, then removed from chars + charinfo - which frees the
+// name for reuse immediately.
+//
+// Two safety checks protect the player from themselves; both are waived for
+// admin accounts, which need to be able to clear out junk characters without
+// hand surgery on the database:
+//   - current_area != 0 means the character is logged in right now. Deleting it
+//     underneath a live area server would have that server write the character
+//     back out on logout.
+//   - clan != 0 covers clans AND clubs (clubs live in the same field, offset by
+//     CLUBOFFSET). The clan storage blob keeps its own member list keyed by
+//     serial, so deleting a member here would leave a stale entry behind.
+static int db_acc_delete(const char *username, const char *password, const char *charname) {
+    char ename[ACC_NAMELEN * 2 + 1], buf[512];
+    MYSQL_RES *result;
+    MYSQL_ROW row;
+    int sID = 0, admin = 0, ret, ID, area, clan;
+
+    ret = db_acc_auth(username, password, &sID, &admin);
+    if (ret != ACC_ST_OK) return ret;
+
+    if (!valid_char_name(charname)) return ACC_ST_INVALID;
+
+    mysql_real_escape_string(&mysql, ename, charname, strlen(charname));
+
+    // Scoped to sID: an account may only ever delete its own characters, admin
+    // or not (the client only lists the account's own characters anyway).
+    sprintf(buf, "select ID,current_area,clan from chars where name='%s' and sID=%d", ename, sID);
+    if (mysql_query_con(&mysql, buf)) return ACC_ST_SERVERERR;
+    if (!(result = mysql_store_result_cnt(&mysql))) return ACC_ST_SERVERERR;
+    if (mysql_num_rows(result) == 0) {
+        mysql_free_result_cnt(result);
+        return ACC_ST_INVALID; // no such character on this account
+    }
+    row = mysql_fetch_row(result);
+    if (!row || !row[0]) {
+        mysql_free_result_cnt(result);
+        return ACC_ST_SERVERERR;
+    }
+    ID = atoi(row[0]);
+    area = row[1] ? atoi(row[1]) : 0;
+    clan = row[2] ? atoi(row[2]) : 0;
+    mysql_free_result_cnt(result);
+
+    if (!admin) {
+        if (area != 0) return ACC_ST_ONLINE;
+        if (clan != 0) return ACC_ST_INCLAN;
+    }
+
+    // Archive before removing. If this fails we abort rather than delete
+    // unrecoverably - a missing archive table is a server problem, not the
+    // player's, and losing the character to it would be unacceptable.
+    sprintf(buf, "insert chars_deleted select *,%d from chars where ID=%d", (int)time(NULL), ID);
+    if (mysql_query_con(&mysql, buf)) {
+        elog("db_acc_delete: archiving '%s' (ID %d) failed: %s (%d)", charname, ID, mysql_error(&mysql),
+             mysql_errno(&mysql));
+        return ACC_ST_SERVERERR;
+    }
+
+    sprintf(buf, "delete from chars where ID=%d", ID);
+    if (mysql_query_con(&mysql, buf)) return ACC_ST_SERVERERR;
+
+    sprintf(buf, "delete from charinfo where ID=%d", ID);
+    if (mysql_query_con(&mysql, buf)) {
+        // the chars row is already gone, which is what frees the name; log and
+        // report success rather than leaving the player in a half-deleted state.
+        elog("db_acc_delete: charinfo delete failed: %s (%d)", mysql_error(&mysql), mysql_errno(&mysql));
+    }
+
+    elog("db_acc_delete: account '%s' deleted character '%s' (ID %d), archived in chars_deleted", username, charname,
+         ID);
+
+    return ACC_ST_OK;
+}
+
 // runs on the DB thread: performs the account op and stores the result.
 static void db_account_op(void) {
     struct account_reply out;
@@ -1963,6 +2040,9 @@ static void db_account_op(void) {
         break;
     case ACC_OP_CREATE:
         result = db_acc_create(aq.username, aq.password, aq.charname, aq.flags);
+        break;
+    case ACC_OP_DELETE:
+        result = db_acc_delete(aq.username, aq.password, aq.charname);
         break;
     default:
         result = ACC_ST_INVALID;

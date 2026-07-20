@@ -72,6 +72,13 @@ init_database() {
     else
         echo "Database already initialized ($tables tables found)."
     fi
+
+    # Apply idempotent migrations on every boot, so databases created by an
+    # older build pick up schema added since. See migrations.sql.
+    echo "Applying migrations..."
+    mysql -h "${AS3_DBHOST}" \
+          -u "${AS3_DBUSER}" -p"${AS3_DBPASS}" \
+          "${AS3_DBNAME}" < migrations.sql
 }
 
 # Start the server processes

@@ -116,7 +116,7 @@ COPY --from=builder /build/zones/generic/weapons.itm zones/generic/
 COPY --from=builder /build/zones/generic/armor.itm zones/generic/
 
 # Copy SQL files for database initialization
-COPY create_tables.sql merc.sql ./
+COPY create_tables.sql merc.sql migrations.sql ./
 
 # Copy entrypoint script
 COPY docker-entrypoint.sh /entrypoint.sh

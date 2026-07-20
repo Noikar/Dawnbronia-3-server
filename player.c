@@ -227,6 +227,9 @@ static void read_account_op(int nr) {
     case ACC_OP_CREATE:
         need = ACC_REQ_CREATE;
         break;
+    case ACC_OP_DELETE:
+        need = ACC_REQ_DELETE;
+        break;
     default:
         player_client_exit(nr, "Unsupported request.");
         return;
@@ -240,10 +243,14 @@ static void read_account_op(int nr) {
     decrypt(username, password); // deobfuscate, keyed by the account username
     password[ACC_PWLEN - 1] = 0;
 
+    // CREATE and DELETE both carry a character name at the same offset; only
+    // CREATE has the trailing flags byte.
     charname[0] = 0;
-    if (op == ACC_OP_CREATE) {
+    if (op == ACC_OP_CREATE || op == ACC_OP_DELETE) {
         memcpy(charname, player[nr]->inbuf + 1 + ACC_NAMELEN + ACC_PWLEN, ACC_NAMELEN);
         charname[ACC_NAMELEN - 1] = 0;
+    }
+    if (op == ACC_OP_CREATE) {
         flags = player[nr]->inbuf[1 + ACC_NAMELEN + ACC_PWLEN + ACC_NAMELEN];
     }
 
