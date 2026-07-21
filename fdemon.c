@@ -1397,7 +1397,7 @@ void fdemon_boss(int cn, int ret, int lastact) {
                     ppd->boss_timer = realtime;
                     break;
                 case 2:
-                    say(cn, "These soldiers have been trained to obey some easy commands: 'Follow' makes them follow thee. 'Front' makes them walk in front of thee. With 'Back', they shall take one step back. They follow thee more closely if thou orderest a 'retreat'. And thou canst make them attack thine enemy from 'behind'.");
+                    say(cn, "These soldiers have been trained to obey some easy commands: 'Follow' maketh them follow thee. 'Front' maketh them walk in front of thee. With 'Back', they shall take one step back. They follow thee more closely if thou orderest a 'retreat'. And thou canst make them attack thine enemy from 'behind'.");
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     break;

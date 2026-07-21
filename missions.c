@@ -990,7 +990,7 @@ void mission_give_reward(int cn, int co, int nr, struct mission_ppd *ppd) {
 
     if (nr < 0 || nr >= sizeof(mis_rew) / sizeof(mis_rew[0])) return;
     if (mis_rew[nr].value > ppd->points) {
-        quiet_say(cn, "%s costs %d points, but thou only hast %d points.", mis_rew[nr].code, mis_rew[nr].value, ppd->points);
+        quiet_say(cn, "%s costeth %d points, but thou only hast %d points.", mis_rew[nr].code, mis_rew[nr].value, ppd->points);
         return;
     }
     if (strcmp(mis_rew[nr].itmtmp, "MEXP") == 0) {

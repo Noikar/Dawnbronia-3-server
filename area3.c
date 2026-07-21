@@ -1202,7 +1202,7 @@ void thomas_driver(int cn, int ret, int lastact) {
                 switch (ppd->crypt_state) {
                 case 0:
                     if (ch[co].level > 18) {
-                        say(cn, "Be greeted, %s. Please go inside, my master wishes to talk to thee.", ch[co].name);
+                        say(cn, "Be greeted, %s. Please go inside, my master wisheth to talk to thee.", ch[co].name);
                         ppd->crypt_state++;
                         didsay = 1;
                     }
@@ -1907,7 +1907,7 @@ void supermax_driver(int cn, int ret, int lastact) {
                 break;
             case 6:
                 ppd = set_data(co, DRD_MISC_PPD, sizeof(struct misc_ppd));
-                if (ppd && ppd->supermax_gold > 0) say(cn, "Thou spentest %d gold already. The Astonian Wildlife Fund says: 'We thank thee!'", ppd->supermax_gold / 100);
+                if (ppd && ppd->supermax_gold > 0) say(cn, "Thou spentest %d gold already. The Astonian Wildlife Fund saith: 'We thank thee!'", ppd->supermax_gold / 100);
                 break;
             }
             if (didsay > 100 && didsay < 200) supermax_raise(cn, co, didsay - 100);

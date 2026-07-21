@@ -282,7 +282,7 @@ void monk_gatama_driver(int cn, int ret, int lastact) {
 
                 // Intro
             case 10:
-                say(cn, "Welcome %s. The Monastery of Kir Laka needs thy help. We live from the salt we get from the saltmine thou canst find to the west. But now many golems appeared in the mine and we had to run for our lives, and all the salt we had already mined is lost there.", ch[co].name);
+                say(cn, "Welcome %s. The Monastery of Kir Laka needeth thy help. We live from the salt we get from the saltmine thou canst find to the west. But now many golems appeared in the mine and we had to run for our lives, and all the salt we had already mined is lost there.", ch[co].name);
                 didsay = 1;
                 ppd->gatamastate++;
                 break;

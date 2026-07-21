@@ -231,7 +231,7 @@ void add_contender(int cn, int co, struct master_data *dat, struct arena_ppd *pp
             dat->ct[n].cn = co;
             dat->ct[n].score = ppd->score;
             dat->ct[n].reg_time = ticker;
-            say(cn, "Good luck, %s. I will call thee when thy fight starts.", ch[co].name);
+            say(cn, "Good luck, %s. I will call thee when thy fight starteth.", ch[co].name);
             notify_char(co, NT_NPC, NTID_ARENA, 3, 0);
             return;
         }

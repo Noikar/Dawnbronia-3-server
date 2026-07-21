@@ -819,7 +819,7 @@ void terion_driver(int cn, int ret, int lastact) {
 
                 case 4:
                     if (ppd->gwendy_state >= 10 && ppd->gwendy_state <= 12) {
-                        quiet_say(cn, "Be greeted again, %s. I hope this day finds thee well.", ch[co].name);
+                        quiet_say(cn, "Be greeted again, %s. I hope this day findeth thee well.", ch[co].name);
                         ppd->terion_state++;
                         didsay = 1;
                     }

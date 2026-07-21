@@ -84,17 +84,17 @@ struct qa qa[] = {
     {{"who", "are", "you", NULL}, NULL, 1},
     {{"play", NULL}, "I only play for bronze chips. Thou canst \260c4bet one\260c0 or \260c4bet two\260c0 or \260c4bet five\260c0 of them. Then thou shalt roll three dice and depending on the \260c4results\260c0 thou shalt win the most fantastic stuff possible!", 0},
     {{"results", NULL}, "The dice are twenty-sided and the numbers are added up. If thou rollest 3 to 20 thou winnest and if thou rollest 43 to 60 thou winnest, too. Want to hear about the \260c4prizes\260c0?", 0},
-    {{"prizes", NULL}, "A 3 gets thee a Cape of the Warrior. A 60 a Cape of the Mage. +7 if thou bettest one chip, +14 if thou bettest two, +21 if thou bettest all five. Want to hear \260c4 more prizes\260c0?", 0},
+    {{"prizes", NULL}, "A 3 getteth thee a Cape of the Warrior. A 60 a Cape of the Mage. +7 if thou bettest one chip, +14 if thou bettest two, +21 if thou bettest all five. Want to hear \260c4 more prizes\260c0?", 0},
     {{"more", "prizes", NULL}, "With a 4 or a 59 thou shalt win 100,000 gold (when betting 5 chips, 20,000 for 1 chip, 40,000 for 2 chips). And there are many, many more prizes...", 0},
 
     {{"play2", NULL}, "I only play for silver chips. Thou canst \260c4bet one\260c0 or \260c4bet two\260c0 or \260c4bet five\260c0 of them. Then thou shalt roll three dice and depending on the \260c4results2\260c0 thou shalt win the most fantastic stuff possible!", 0},
     {{"results2", NULL}, "The dice are twenty-sided and the numbers are added up. If thou rollest 3 to 20 thou winnest and if thou rollest 43 to 60 thou winnest, too. Want to hear about the \260c4prizes2\260c0?", 0},
-    {{"prizes2", NULL}, "A 3 gets thee boots of the Warrior. A 60 boots of the Mage. +8 if thou bettest one chip, +15 if thou bettest two, +22 if thou bettest all five. Want to hear \260c4 more prizes2\260c0?", 0},
+    {{"prizes2", NULL}, "A 3 getteth thee boots of the Warrior. A 60 boots of the Mage. +8 if thou bettest one chip, +15 if thou bettest two, +22 if thou bettest all five. Want to hear \260c4 more prizes2\260c0?", 0},
     {{"more", "prizes2", NULL}, "With a 4 or a 59 thou shalt win 150,000 gold (when betting 5 chips, 30,000 for 1 chip, 60,000 for 2 chips). And there are many, many more prizes...", 0},
 
     {{"play3", NULL}, "I only play for gold chips. Thou canst \260c4bet one\260c0 or \260c4bet two\260c0 or \260c4bet five\260c0 of them. Then thou shalt roll three dice and depending on the \260c4results3\260c0 thou shalt win the most fantastic stuff possible!", 0},
     {{"results3", NULL}, "The dice are twenty-sided and the numbers are added up. If thou rollest 3 to 20 thou winnest and if thou rollest 43 to 60 thou winnest, too. Want to hear about the \260c4prizes3\260c0?", 0},
-    {{"prizes3", NULL}, "A 3 gets thee a helmet of the Warrior. A 60 a hat of the Mage. +9 if thou bettest one chip, +16 if thou bettest two, +23 if thou bettest all five. Want to hear \260c4 more prizes3\260c0?", 0},
+    {{"prizes3", NULL}, "A 3 getteth thee a helmet of the Warrior. A 60 a hat of the Mage. +9 if thou bettest one chip, +16 if thou bettest two, +23 if thou bettest all five. Want to hear \260c4 more prizes3\260c0?", 0},
     {{"more", "prizes3", NULL}, "With a 4 or a 59 thou shalt win 200,000 gold (when betting 5 chips, 40,000 for 1 chip, 80,000 for 2 chips). And there are many, many more prizes...", 0},
 
     {{"bet", "one", NULL}, NULL, 2},
@@ -103,7 +103,7 @@ struct qa qa[] = {
 
     {{"repeat", NULL}, "Hello, %s! We have a slight rat problem in the caverns to the north. There is a nice \260c4reward\260c0 for killing some rats.", 0},
     {{"reward", NULL}, "Yeah. Go kill some rats. The more and bigger the rats thou killest, the more points thou gettest in my book. The more points thou hast, the better the rewards thou gettest. Thou knowest, \260c4experience\260c0, \260c4military\260c0 knowledge or just plain \260c4money\260c0 if that is what thou wantest.", 0},
-    {{"experience", NULL}, "Exactly. Experience. The fire-is-hot-so-don't-touch-it kind of experience. \260c4Give experience\260c0 will exchange thy points for experience.", 0},
+    {{"experience", NULL}, "Exactly. Experience. The fire-is-hot-so-do not-touch-it kind of experience. \260c4Give experience\260c0 will exchange thy points for experience.", 0},
     {{"military", NULL}, "That is right. Everything thy drill sergeant told thee and thou canst not remember. \260c4Give military\260c0 will exchange thy points for military knowledge.", 0},
     {{"money", NULL}, "Thou knowest, them greenbacks. Oh, wait. Wrong dimension. Money... Ah, right. Round, flat and shiny... Coins! That is it. \260c4Give money\260c0 will exchange thy points for greenbacks. Err, gold coins.", 0},
 

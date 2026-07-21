@@ -281,7 +281,7 @@ void rammy_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    say(cn, "Oh... I see that thou art a messenger from the Count Brannington, that is a most pleasant surprise to learn that he still holds the city.");
+                    say(cn, "Oh... I see that thou art a messenger from the Count Brannington, that is a most pleasant surprise to learn that he still holdeth the city.");
                     ppd->rammy_state++;
                     didsay = 1;
                     break;
@@ -1218,7 +1218,7 @@ void ramin_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 5:
-                    say(cn, "I would have sent a soldier for this but Rammy says he doth not have any to spare from the fortress. Mayst thou go instead, explore this hole and destroy any dangers within it?");
+                    say(cn, "I would have sent a soldier for this but Rammy saith he doth not have any to spare from the fortress. Mayst thou go instead, explore this hole and destroy any dangers within it?");
                     ppd->ramin_state++;
                     didsay = 1;
                     break;
