@@ -476,7 +476,7 @@ void military_master_driver(int cn, int ret, int lastact) {
             }
             if (ppd->master_state == 0) {
                 if (ppd->took_mission) {
-                    say(cn, "Ah, hello %s. Any luck with thy mission? Or wouldst thou like to \260c4hear\260c0 it again? Or hast thou \260c4failed\260c0 to complete it?", ch[co].name);
+                    say(cn, "Ah, hello %s. Hast thou had any luck with thy mission? Or wouldst thou like to \260c4hear\260c0 it again? Or hast thou \260c4failed\260c0 to complete it?", ch[co].name);
                     ppd->master_state = 2;
                 } else if (ppd->solved_yday == yday + 1) {
                     say(cn, "I do not have another mission for thee today, %s.", ch[co].name);
