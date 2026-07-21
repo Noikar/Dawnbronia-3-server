@@ -938,7 +938,7 @@ void servant(int cn, int ret, int lastact) {
             case 8: //chat
                 switch (dat->nr) {
                 case 0:
-                    say(cn, "I spend my days scrubbing pots and pans. Thou wouldst believe not how dirty they can get. Sometimes it takes me an hour to clean one of the pans.");
+                    say(cn, "I spend my days scrubbing pots and pans. Thou wouldst believe not how dirty they can get. Sometimes it taketh me an hour to clean one of the pans.");
                     didsay = 1;
                     break;
                 case 1:
@@ -950,7 +950,7 @@ void servant(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    say(cn, "It looks like it'll rain soon, doesn't it? The farmers sure could use a good rain.");
+                    say(cn, "It looketh like it'll rain soon, does not it? The farmers sure could use a good rain.");
                     didsay = 1;
                     break;
                 case 5:
@@ -1001,7 +1001,7 @@ void servant(int cn, int ret, int lastact) {
                         say(cn, "Uh, thou likest it rough, do not thou, %s? Well, I do not.", ch[co].name);
                         call_guard(cn, co);
                     } else {
-                        say(cn, "Uh, thou seemest most determined, lady. I shall relent to thy wishes, then. There is a secret passage to the governors private rooms. It starts in the room behind the southern door leading north-west in the corridor in front of my room. Here's the key.");
+                        say(cn, "Uh, thou seemest most determined, lady. I shall relent to thy wishes, then. There is a secret passage to the governors private rooms. It starteth in the room behind the southern door leading north-west in the corridor in front of my room. Here is the key.");
                         in = create_item("palace_key1");
                         if (in && !give_char_item(co, in)) {
                             destroy_item(in);
@@ -1039,7 +1039,7 @@ void servant(int cn, int ret, int lastact) {
                     break;
                 case 2:
                     if (ch[co].flags & CF_MALE) {
-                        say(cn, "Ooh, thou art so cute. I shall relent to thy wishes, then. There is a secret passage to the governors private rooms. It starts in the room behind the southern door leading north-west in the corridor in front of my room. Here's the key.");
+                        say(cn, "Ooh, thou art so cute. I shall relent to thy wishes, then. There is a secret passage to the governors private rooms. It starteth in the room behind the southern door leading north-west in the corridor in front of my room. Here is the key.");
                         in = create_item("palace_key1");
                         if (in && !give_char_item(co, in)) {
                             destroy_item(in);
@@ -1050,7 +1050,7 @@ void servant(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    if (take_money(co, 5000)) say(cn, "The governor, he likes to... Well... Eat strawberry pies.");
+                    if (take_money(co, 5000)) say(cn, "The governor, he liketh to... Well... Eat strawberry pies.");
                     else say(cn, "Uh, I am afraid thou dost not have enough money.");
                     didsay = 1;
                     break;
@@ -1535,7 +1535,7 @@ void thiefmaster(int cn, int ret, int lastact) {
                         ppd->thief_state = 11;
                         break;
                     }
-                    say(cn, "Now, lets see... What jobs do I have for a young thief who hasn't earned his lockpick yet...");
+                    say(cn, "Now, lets see... What jobs do I have for a young thief who hath not earned his lockpick yet...");
                     ppd->thief_state++;
                     didsay = 1;
                     questlog_open(co, 25);
@@ -1623,7 +1623,7 @@ void thiefmaster(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 12:
-                    say(cn, "Next to the governor's palace is a barrel store. It belongs to this merchant. The name does not matter. Just go there, and burn those barrels down.");
+                    say(cn, "Next to the governor's palace is a barrel store. It belongeth to this merchant. The name does not matter. Just go there, and burn those barrels down.");
                     ppd->thief_state++;
                     didsay = 1;
                     break;
@@ -1638,7 +1638,7 @@ void thiefmaster(int cn, int ret, int lastact) {
                         say(cn, "Thou madest a nice fire, indeed, %s.", ch[co].name);
                         val = 10000;
                     }
-                    say(cn, "Here's a key that might come in handy. It opens most of the doors in the sewers.");
+                    say(cn, "Here is a key that might come in handy. It openeth most of the doors in the sewers.");
                     ppd->thief_killed[0] = ppd->thief_killed[1] = ppd->thief_killed[2] = ppd->thief_killed[3] = ppd->thief_killed[4] = ppd->thief_killed[5] = 0;
 
                     tmp = val;

@@ -536,12 +536,12 @@ void jaz_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    say(cn, "I had to run for my life, but accidently, my bracelet fell off my hand. It holds the insignia of Ishtar and has been passed down through generations in my family.");
+                    say(cn, "I had to run for my life, but accidently, my bracelet fell off my hand. It holdeth the insignia of Ishtar and has been passed down through generations in my family.");
                     ppd->jaz_state++;
                     didsay = 1;
                     break;
                 case 4:
-                    say(cn, "Now, dear fellow, I'll ask thee to cross bridge to the north-east and go into the hut. Defeat the Knoger who has my bracelet and return it to me.");
+                    say(cn, "Now, dear fellow, I shall ask thee to cross bridge to the north-east and go into the hut. Defeat the Knoger who hath my bracelet and return it to me.");
                     ppd->jaz_state++;
                     didsay = 1;
                     break;
@@ -673,7 +673,7 @@ void fight_student(int cc, int cn, int nr) {
 
 int fiona_raise(int cn, int co, int v) {
     if (ch[co].gold < 10000 * 100) {
-        quiet_say(cn, "Sorry, it seems you cannot pay me.");
+        quiet_say(cn, "Sorry, it seemeth thou canst not pay me.");
         return 0;
     }
     if (raise_value_exp(co, v)) {
@@ -1213,12 +1213,12 @@ void ramin_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 4:
-                    say(cn, "It seems it appeared out of nowhere and he is now afraid to even enter his own bedroom.");
+                    say(cn, "It seemeth it appeared out of nowhere and he is now afraid to even enter his own bedroom.");
                     ppd->ramin_state++;
                     didsay = 1;
                     break;
                 case 5:
-                    say(cn, "I would have sent a soldier for this but Rammy says he doesn't have any to spare from the fortress. May you go instead, explore this hole and destroy any dangers within it?");
+                    say(cn, "I would have sent a soldier for this but Rammy says he doth not have any to spare from the fortress. Mayst thou go instead, explore this hole and destroy any dangers within it?");
                     ppd->ramin_state++;
                     didsay = 1;
                     break;
@@ -1491,7 +1491,7 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                     break;
                 case 3:
                     if (nr == 1) {
-                        say(cn, "Twice a week have a bath in water with 1 teaspoon of coconut oil and scrub your skin with a saltwater spunge untill it turns red to maintain a soft and youthful skin.");
+                        say(cn, "Twice a week have a bath in water with 1 teaspoon of coconut oil and scrub thy skin with a saltwater spunge untill it turneth red to maintain a soft and youthful skin.");
                         ppd->monk_state++;
                         didsay = 1;
                     }
@@ -1579,7 +1579,7 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                     break;
                 case 16:
                     if (nr == 4) {
-                        say(cn, "There is a hidden backroom down in the southern corner of the library, it seems like a huge book eater has occupied the basement floor there, and is chewing up my most precious novels.");
+                        say(cn, "There is a hidden backroom down in the southern corner of the library, it seemeth like a huge book eater has occupied the basement floor there, and is chewing up my most precious novels.");
                         ppd->monk_state++;
                         didsay = 1;
                     }
@@ -1646,7 +1646,7 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                     break;
                 case 26:
                     if (nr == 3) {
-                        say(cn, "If you have seen anyone above ground who forges metal items or weapons for a rather ridiculus salary, he is most likely of dwarf blood.");
+                        say(cn, "If thou hast seen anyone above ground who forgeth metal items or weapons for a rather ridiculus salary, he is most likely of dwarf blood.");
                         ppd->monk_state++;
                         didsay = 1;
                     }
@@ -1857,7 +1857,7 @@ void captain_driver(int cn, int ret, int lastact) {
                 case 0:
                     break;
                 case 1:
-                    say(cn, "I see, so Rammy sent thee. Well if he trusts in thee then so shall I!");
+                    say(cn, "I see, so Rammy sent thee. Well if he trusteth in thee then so shall I!");
                     ppd->captain_state++;
                     didsay = 1;
                     break;
@@ -1867,7 +1867,7 @@ void captain_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    say(cn, "I need you to speak with the judge so that he can write the formal authorization letters for this. He will also tell you who needs a copy.");
+                    say(cn, "I need thee to speak with the judge so that he can write the formal authorization letters for this. He will also tell thee who needeth a copy.");
                     ppd->captain_state++;
                     didsay = 1;
                     break;
@@ -2488,7 +2488,7 @@ void jada_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 2:
-                    say(cn, "I have discovered that the source of this evil that seems to penetrate our fortress is placed somewhere below it, in the cave system.");
+                    say(cn, "I have discovered that the source of this evil that seemeth to penetrate our fortress is placed somewhere below it, in the cave system.");
                     ppd->jada_state++;
                     didsay = 1;
                     break;
@@ -2692,7 +2692,7 @@ void potmaker_driver(int cn, int ret, int lastact) {
                     destroy_item_byID(co, IID_ARKHATA_IRONPOT);
                     questlog_done(co, 73);
                     ppd->pot_state = 4;
-                    say(cn, "May you be blessed by all that is good in this world, I'm in your debt. Here, take this smaller pot which holds the same holy water. You might find need for it some time.");
+                    say(cn, "Mayst thou be blessed by all that is good in this world, I am in thy debt. Here, take this smaller pot which holdeth the same holy water. Thou mightst find need for it some time.");
 
                     in2 = create_item("infravision_pot");
                     if (in2 && !give_char_item(co, in2)) destroy_item(in2);
@@ -3368,7 +3368,7 @@ void trainer_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 2:
-                    say(cn, "And I'm in need of thine services. One of my students has been kidnapped by the gang who has their guild east of our fine establishment.");
+                    say(cn, "And I am in need of thy services. One of my students has been kidnapped by the gang who hath their guild east of our fine establishment.");
                     ppd->trainer_state++;
                     didsay = 1;
                     break;
@@ -3541,7 +3541,7 @@ void kidnappee_driver(int cn, int ret, int lastact) {
                         destroy_item(in);
                         ppd->kid_state = 4;
                     } else {
-                        say(cn, "Only their leader could seal my cage, only he gets close to me. He must have the secret to open this cage.");
+                        say(cn, "Only their leader could seal my cage, only he getteth close to me. He must have the secret to open this cage.");
                         ppd->kid_state = 3;
                     }
                     didsay = 1;

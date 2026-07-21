@@ -634,7 +634,7 @@ void count_brannington_driver(int cn, int ret, int lastact) {
                 ppd2 = set_data(co, DRD_ARKHATA_PPD, sizeof(struct arkhata_ppd));
 
                 if (it[in].ID == IID_STAFF_COUNTJEWEL && ppd && !(ppd->countbran_bits & 1)) {
-                    quiet_say(cn, "I thank thee so much for bringing this back, %s. It has been in the family for generations. Here is your reward.", ch[co].name);
+                    quiet_say(cn, "I thank thee so much for bringing this back, %s. It hath been in the family for generations. Here is thy reward.", ch[co].name);
                     destroy_item_byID(co, IID_STAFF_COUNTJEWEL);
                     destroy_item_byID(co, IID_STAFF_THIEFKEY1);
                     destroy_item_byID(co, IID_STAFF_REDKEY1);
@@ -676,7 +676,7 @@ void count_brannington_driver(int cn, int ret, int lastact) {
                     countbran_give_keys(cn, co, ppd);
                     if ((ppd->countbran_bits & (1 | 2 | 4)) == (1 | 2 | 4)) questlog_done(co, 40);
                 } else if (it[in].ID == IID_STAFF_DAUGHTERJEWEL && ppd && !(ppd->countbran_bits & 4)) {
-                    quiet_say(cn, "Returning this will heal my daughter's heart. She has been so upset about losing it. Let me reward you now, %s, and if you go to my daughter, she will further reward you.", ch[co].name);
+                    quiet_say(cn, "Returning this will heal my daughter's heart. She hath been so upset about losing it. Let me reward thee now, %s, and if thou goest to my daughter, she will further reward thee.", ch[co].name);
                     destroy_item_byID(co, IID_STAFF_DAUGHTERJEWEL);
                     destroy_item_byID(co, IID_STAFF_THIEFKEY3);
                     destroy_item_byID(co, IID_STAFF_GREENKEY1);
@@ -798,7 +798,7 @@ void brenneth_brannington_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    quiet_say(cn, "Perhaps you can help me, though I do not wish to burden you... You see, it appears that I have lost my memory due to being attacked by something...");
+                    quiet_say(cn, "Perhaps thou canst help me, though I do not wish to burden thou... Thou seest, it appeareth that I have lost my memory due to being attacked by something...");
                     ppd->brennethbran_state++;
                     didsay = 1;
                     break;
@@ -819,7 +819,7 @@ void brenneth_brannington_driver(int cn, int ret, int lastact) {
                         ppd->brennethbran_state = 9;
                         break;
                     }
-                    quiet_say(cn, "It does have my name on it, but I don't recall anything of being a fighter...");
+                    quiet_say(cn, "It doth have my name on it, but I do not recall anything of being a fighter...");
                     questlog_open(co, 42);
                     ppd->brennethbran_state++;
                     didsay = 1;
@@ -1398,7 +1398,7 @@ void countessa_brannington_driver(int cn, int ret, int lastact) {
                         ppd->countessabran_state = 1;
                         // fall through intended
                     } else {
-                        quiet_say(cn, "Have you come here to return to us the jewelry that has been handed down from generation to generation? We would be so thankful if you did kind %s!", (ch[co].flags & CF_MALE) ? "Sir" : "Lady");
+                        quiet_say(cn, "Hast thou come here to return to us the jewelry that hath been handed down from generation to generation? We would be so thankful if thou didst kind %s!", (ch[co].flags & CF_MALE) ? "Sir" : "Lady");
                         ppd->countessabran_state++;
                         didsay = 1;
                         break;
@@ -1712,7 +1712,7 @@ void guard_brannington_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 4:
-                    quiet_say(cn, "However my cousin is not an easily fooled man, and this must be investigated. I have discussed this with the Count and he agrees that I should send you as we are most convinced there actually is someone up there.");
+                    quiet_say(cn, "However my cousin is not an easily fooled man, and this must be investigated. I have discussed this with the Count and he agreeth that I should send thee as we are most convinced there actually is someone up there.");
                     ppd->guardbran_state++;
                     didsay = 1;
                     break;
@@ -2204,7 +2204,7 @@ void grinnich_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    quiet_say(cn, "Oh no, I'm not crazy dear %s! It is! It's just buried into the ground. Find the entrance that leads to the tower, and venture deep into the earth. I tell you, you will not regret it at all!", Sirname(co));
+                    quiet_say(cn, "Oh no, I am not crazy dear %s! It is! It is just buried into the ground. Find the entrance that leadeth to the tower, and venture deep into the earth. I tell thee, thou wilt not regret it at all!", Sirname(co));
                     ppd->grinnich_state++;
                     didsay = 1;
                     break;

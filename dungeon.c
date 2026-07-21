@@ -1210,11 +1210,11 @@ void create_dungeon(int cn, int co, int target, struct master_data *dat) {
             return;
         }
         if (dat->created_by_clan[n] == get_char_clan(co)) {
-            say(cn, "Your clan has created a catacomb already, you may not create another one before the first one has collapsed.");
+            say(cn, "Thy clan has created a catacomb already, thou mayst not create another one before the first one hath collapsed.");
             return;
         }
         if (dat->owner[n] == ch[co].ID) {
-            say(cn, "You have created a catacomb already, you may not create another one before the first one has collapsed.");
+            say(cn, "Thou hast created a catacomb already, thou mayst not create another one before the first one hath collapsed.");
             return;
         }
     }

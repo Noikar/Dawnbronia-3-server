@@ -510,7 +510,7 @@ void dwarfshaman_driver(int cn, int ret, int lastact) {
                     break; // waiting for elite head
 
                 case 9:
-                    quiet_say(cn, "This is quite amazing! The reason these lizards are so varied is due to them being able to somehow absorb magical energy. To much of it seems to affect their mind however, as was the case with this elite lizard.");
+                    quiet_say(cn, "This is quite amazing! The reason these lizards are so varied is due to them being able to somehow absorb magical energy. To much of it seemeth to affect their mind however, as was the case with this elite lizard.");
                     ppd->dwarfshaman_state++;
                     didsay = 1;
                     break;

@@ -338,19 +338,19 @@ void professor_driver(int cn, int ret, int lastact) {
                     say(cn, "The alchemist can create better potions, calling on the powers of the moons and the seasons at any time.");
                     break;
                 case P_MINER:
-                    say(cn, "A skilled miner will make better use of every vein of precious metal he finds. He will also not exhaust as fast as an unskilled miner.");
+                    say(cn, "A skilled miner will make better use of every vein of precious metal he findeth. He will also not exhaust as fast as an unskilled miner.");
                     break;
                 case P_ASSASSIN:
                     say(cn, "The assassin is especially skilled at attacking an enemy from the side or behind, and he can backstab an unware opponent from behind.");
                     break;
                 case P_THIEF:
-                    say(cn, "A skilled thief can remain unseen even when next to another person. But when he uses this skill of stealth he cannot do anything but wait or walk, and the effort of remaining unseen will drain his endurance.");
+                    say(cn, "A skilled thief can remain unseen even when next to another person. But when he useth this skill of stealth he cannot do anything but wait or walk, and the effort of remaining unseen will drain his endurance.");
                     break;
                 case P_LIGHT:
-                    say(cn, "A master of light will receive a bonus to his basic abilities during the day. If he masters this skill he will also be able to see all undead creatures in the dark.");
+                    say(cn, "A master of light will receive a bonus to his basic abilities during the day. If he mastereth this skill he will also be able to see all undead creatures in the dark.");
                     break;
                 case P_DARK:
-                    say(cn, "A master of dark will receive a bonus to his basic abilities during the night. If he masters this skill he will also be able to see all living creatures in the dark.");
+                    say(cn, "A master of dark will receive a bonus to his basic abilities during the night. If he mastereth this skill he will also be able to see all living creatures in the dark.");
                     break;
                 case P_TRADER:
                     say(cn, "A skilled trader will get better prices when dealing with merchants.");
@@ -362,7 +362,7 @@ void professor_driver(int cn, int ret, int lastact) {
                     say(cn, "A clan master has received special training in the art of clan warfare. He will be at an advantage in any fight in the clan catacombs.");
                     break;
                 case P_HERBALIST:
-                    say(cn, "A herbalist knows the art of making plants ripe faster. Any flower, berry or mushroom he picks will grow back in less time.");
+                    say(cn, "A herbalist knows the art of making plants ripe faster. Any flower, berry or mushroom he picketh will grow back in less time.");
                     break;
 
                 default:

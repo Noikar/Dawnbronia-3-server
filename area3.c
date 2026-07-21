@@ -343,7 +343,7 @@ void seymour_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 7:
-                    say(cn, "It seems he lived in Cameron for a while and moved here a few weeks later. After he left Cameron, skeletons have been haunting that place. Now, he has left Aston, and we're having trouble with zombies.");
+                    say(cn, "It seemeth he lived in Cameron for a while and moved here a few weeks later. After he left Cameron, skeletons have been haunting that place. Now, he hath left Aston, and we are having trouble with zombies.");
                     ppd->seymour_state++;
                     didsay = 1;
                     break;
@@ -383,7 +383,7 @@ void seymour_driver(int cn, int ret, int lastact) {
                 case 15:
                     break;
                 case 16:
-                    say(cn, "Kelly, my superior, mentioned that she needs some fighters. Please go to her and offer your service. And do not forget to report to the Governor from time to time.");
+                    say(cn, "Kelly, my superior, mentioned that she needeth some fighters. Please go to her and offer thy service. And do not forget to report to the Governor from time to time.");
                     ppd->seymour_state++;
                     didsay = 1;
                     break;
@@ -1379,7 +1379,7 @@ void sir_jones_driver(int cn, int ret, int lastact) {
                 case 9:
                     break; // waiting for player to solve quest
                 case 10:
-                    say(cn, "It seems thou foundst quite a challenge down there. Well done, %s.", ch[co].name);
+                    say(cn, "It seemeth thou foundst quite a challenge down there. Well done, %s.", ch[co].name);
                     ppd->crypt_state++;
                     didsay = 1;
                     if (ppd->crypt_bonus && questlog_count(co, 18) == 1) {
@@ -1602,7 +1602,7 @@ void carlos_driver(int cn, int ret, int lastact) {
                         didsay = 1;
                         break;
                     case 3:
-                        quiet_say(cn, "My army captured the head creature and brought his staff to me. It has been brought to my attention that the staff has gone missing.");
+                        quiet_say(cn, "My army captured the head creature and brought his staff to me. It hath been brought to my attention that the staff has gone missing.");
                         ppd->carlos_state++;
                         didsay = 1;
                         break;
@@ -1872,7 +1872,7 @@ void supermax_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    say(cn, "To raise a skill, say: \"raise SKILLNAME\". This costs 2000g, and a lot of experience. To lower a skill, say: \"lower SKILLNAME\". You'll get the experience back, but not the gold. To see the list again, say: \"list\".");
+                    say(cn, "To raise a skill, say: \"raise SKILLNAME\". This costeth 2000g, and a lot of experience. To lower a skill, say: \"lower SKILLNAME\". Thou shalt get the experience back, but not the gold. To see the list again, say: \"list\".");
                     ppd->supermax_state++;
                     didsay = 1;
                     break;

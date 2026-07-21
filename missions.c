@@ -811,7 +811,7 @@ void start_mission(int cn, int co, int idx, struct mission_ppd *ppd) {
         if (!busy) break;
     }
     if (busy) {
-        quiet_say(cn, "I'm sorry, %s, but it appears that this job is unavailable right now. Please choose a different one.", ch[co].name);
+        quiet_say(cn, "I am sorry, %s, but it appeareth that this job is unavailable right now. Please choose a different one.", ch[co].name);
         return;
     }
 

@@ -352,7 +352,7 @@ int nomad_4(int cn, int co, struct nomad_ppd *ppd, int nr) {
         ppd->nomad_state[nr]++;
         return 1;
     case 1:
-        say(cn, "It is seldom indeed that we have visitors in these sad times. The mountains have never been friendly, but only a short while ago all one had to fear was the cold, or losing one's way. Now one has to fear being eaten alive by Harpies. Welcome again, %s. It is good to see that there are %s brave enough to visit us.", ch[co].name, (ch[co].flags & CF_MALE) ? "men" : "women");
+        say(cn, "It is seldom indeed that we have visitors in these sad times. The mountains have never been friendly, but only a short while ago all one had to fear was the cold, or losing one's way. Now one hath to fear being eaten alive by Harpies. Welcome again, %s. It is good to see that there are %s brave enough to visit us.", ch[co].name, (ch[co].flags & CF_MALE) ? "men" : "women");
         ppd->nomad_state[nr]++;
         return 1;
     case 2:

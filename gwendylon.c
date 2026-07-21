@@ -322,7 +322,7 @@ void gwendylon_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 15:
-                    quiet_say(cn, "If thou dost find that foul magician, make certain thou killest him. I am certain he does have a fourth skull. Please bring it to me so I can destroy it.");
+                    quiet_say(cn, "If thou dost find that foul magician, make certain thou killest him. I am certain he doth have a fourth skull. Please bring it to me so I can destroy it.");
                     ppd->gwendy_state++;
                     didsay = 1;
                     break;
@@ -483,7 +483,7 @@ void gwendylon_driver(int cn, int ret, int lastact) {
                     if (!give_char_item(co, ch[cn].citem)) destroy_item(ch[cn].citem);
                     ch[cn].citem = 0;
 
-                    if (!change_area(co, 36, 240, 10)) quiet_say(cn, "Uh-Oh. There seems to be a rift in the space-time continuum. Please come again later so we can try again.");
+                    if (!change_area(co, 36, 240, 10)) quiet_say(cn, "Uh-Oh. There seemeth to be a rift in the space-time continuum. Please come again later so we can try again.");
                 } else {
                     quiet_say(cn, "Thou hast better use for this than I do. Well, if there is use for it at all.");
 
@@ -801,7 +801,7 @@ void terion_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    quiet_say(cn, "I have heard some stories about skeletons walking around in the western part of the forest lately. They were close to that small path which leads west directly behind the tavern.");
+                    quiet_say(cn, "I have heard some stories about skeletons walking around in the western part of the forest lately. They were close to that small path which leadeth west directly behind the tavern.");
                     ppd->terion_state = 2;
                     didsay = 1;
                     break;
@@ -825,7 +825,7 @@ void terion_driver(int cn, int ret, int lastact) {
                     }
                     break;
                 case 5:
-                    quiet_say(cn, "I've been thinking about the skeletons, and the skulls Gwendylon is researching. It seems these skeletons are always seen near old ruins. And I remembered that Yoakin the Hunter once told me that his house was built on top of an old ruin.");
+                    quiet_say(cn, "I have been thinking about the skeletons, and the skulls Gwendylon is researching. It seemeth these skeletons are always seen near old ruins. And I remembered that Yoakin the Hunter once told me that his house was built on top of an old ruin.");
                     notify_area(ch[cn].x, ch[cn].y, NT_NPC, NTID_TERION, cn, 3);
                     ppd->terion_state++;
                     didsay = 1;
@@ -833,13 +833,13 @@ void terion_driver(int cn, int ret, int lastact) {
 
                 case 6:
                     if (ppd->gwendy_state >= 13) {
-                        quiet_say(cn, "Ah, %s. 'Tis good to see there are brave %s about who will fight the evil which has been invading our lives lately.", ch[co].name, (ch[co].flags & CF_MALE) ? "men" : "women");
+                        quiet_say(cn, "Ah, %s. 'Tis good to see there are brave %s about who will fight the evil which hath been invading our lives lately.", ch[co].name, (ch[co].flags & CF_MALE) ? "men" : "women");
                         ppd->terion_state++;
                         didsay = 1;
                     }
                     break;
                 case 7:
-                    quiet_say(cn, "Ever since the dark hordes attacked Aston, things have been going downhill. Some years ago, we frequently had visitors from Aston and beyond. But today no one dares to travel unless he must.");
+                    quiet_say(cn, "Ever since the dark hordes attacked Aston, things have been going downhill. Some years ago, we frequently had visitors from Aston and beyond. But today no one dareth to travel unless he must.");
                     ppd->terion_state++;
                     didsay = 1;
                     break;
@@ -1048,7 +1048,7 @@ void james_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 2:
-                    quiet_say(cn, "She lives with her father, Gwendylon the Mage. Thou canst find her in the mage's tower, north of here, %s.", ch[co].name);
+                    quiet_say(cn, "She liveth with her father, Gwendylon the Mage. Thou canst find her in the mage's tower, north of here, %s.", ch[co].name);
                     ppd->james_state++;
                     didsay = 1;
                     break;
@@ -1510,7 +1510,7 @@ void lydia_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 6:
-                    quiet_say(cn, "Gwendylon, my father, is currently looking for help. If thou art looking for adventures, it might be wise to visit him. He lives next door.");
+                    quiet_say(cn, "Gwendylon, my father, is currently looking for help. If thou art looking for adventures, it might be wise to visit him. He liveth next door.");
                     ppd->lydia_state++;
                     didsay = 1;
                     break;
@@ -1565,7 +1565,7 @@ void lydia_driver(int cn, int ret, int lastact) {
                 ppd = set_data(co, DRD_AREA1_PPD, sizeof(struct area1_ppd));
 
                 if (it[in].ID == IID_AREA1_WOODPOTION && ppd && ppd->lydia_state <= 4) {
-                    quiet_say(cn, "Ah. That feels so much better. I thank thee, %s.", ch[co].name);
+                    quiet_say(cn, "Ah. That feeleth so much better. I thank thee, %s.", ch[co].name);
                     questlog_done(co, 0);
                     destroy_item_byID(co, IID_AREA1_WOODPOTION);
                     destroy_item_byID(co, IID_AREA1_WOODKEY2);
@@ -2350,7 +2350,7 @@ void guiwynn_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    quiet_say(cn, "I could barely escape with my life. It seems they've all gone mad. I do not dare go back there, but I must know what is going on in the Order.");
+                    quiet_say(cn, "I could barely escape with my life. It seemeth they have all gone mad. I do not dare go back there, but I must know what is going on in the Order.");
                     ppd->guiwynn_state++;
                     didsay = 1;
                     break;
@@ -2376,7 +2376,7 @@ void guiwynn_driver(int cn, int ret, int lastact) {
                         ppd->guiwynn_state = 11;
                         break;
                     }
-                    quiet_say(cn, "A Potion of Happiness? I have never heard of such a thing before. It does seem to induce madness in those who drink it. But alas, I cannot tell what it is made of.");
+                    quiet_say(cn, "A Potion of Happiness? I have never heard of such a thing before. It doth seem to induce madness in those who drink it. But alas, I cannot tell what it is made of.");
                     questlog_open(co, 8);
                     ppd->guiwynn_state++;
                     didsay = 1;

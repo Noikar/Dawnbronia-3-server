@@ -485,7 +485,7 @@ void glori_driver(int cn, int ret, int lastact) {
                 didsay = 1;
                 break;
             case 3:
-                quiet_say(cn, "We are currently working in secrecy with the guard outside of this library. He has informed me that the mages have set up three training facilities to train their minions.");
+                quiet_say(cn, "We are currently working in secrecy with the guard outside of this library. He hath informed me that the mages have set up three training facilities to train their minions.");
                 ppd->glori_last_talk = realtime;
                 ppd->glori_state++;
                 didsay = 1;
@@ -538,7 +538,7 @@ void glori_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                 } else break;
             case 11:
-                quiet_say(cn, "Wow, these are most interesting. I suggest you speak with the guard outside and ask if he knows of anyone that may be able to tell you what these are for.");
+                quiet_say(cn, "Wow, these are most interesting. I suggest thou speak with the guard outside and ask if he knoweth of anyone that may be able to tell thee what these are for.");
                 ppd->glori_last_talk = realtime;
                 ppd->glori_state++;
                 didsay = 1;
@@ -955,7 +955,7 @@ void smith_driver(int cn, int ret, int lastact) {
             case 3:
                 if (has_item(co, IID_CALIGARKEYP1) && has_item(co, IID_CALIGARKEYP2) && has_item(co, IID_CALIGARKEYP3)) {
                     if (ch[co].gold < 5000 * 100) {
-                        quiet_say(cn, "Sorry, it seems you cannot pay me.");
+                        quiet_say(cn, "Sorry, it seemeth thou canst not pay me.");
                         break;
                     }
                     in = create_item("caligar_underground_key");
@@ -983,7 +983,7 @@ void smith_driver(int cn, int ret, int lastact) {
                     break;
                 }
                 if (ch[co].gold < 10000 * 100) {
-                    quiet_say(cn, "Sorry, it seems you cannot pay me.");
+                    quiet_say(cn, "Sorry, it seemeth thou canst not pay me.");
                     break;
                 }
                 in = create_item("dictionary");
@@ -1102,7 +1102,7 @@ void homden_driver(int cn, int ret, int lastact) {
                 didsay = 1;
                 break;
             case 7:
-                quiet_say(cn, "Once that happens, they will slowly begin destroying the town, and have said their first target would be the Labyrinths that Ishtar made to strengthen his army.");
+                quiet_say(cn, "Once that happeneth, they will slowly begin destroying the town, and have said their first target would be the Labyrinths that Ishtar made to strengthen his army.");
                 ppd->homden_last_talk = realtime;
                 ppd->homden_state++;
                 didsay = 1;

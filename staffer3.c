@@ -443,7 +443,7 @@ void yoatin_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 2:
-                    quiet_say(cn, "My brother's name is Yoakin. It seems you did him a great service slaying the bears of Cameron.");
+                    quiet_say(cn, "My brother's name is Yoakin. It seemeth thou didst him a great service slaying the bears of Cameron.");
                     ppd->yoatin_state++;
                     didsay = 1;
                     break;

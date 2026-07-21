@@ -1531,7 +1531,7 @@ void fdemon_boss(int cn, int ret, int lastact) {
                     ppd->boss_reported = ppd->boss_counter;
                     break;
                 case 31:
-                    say(cn, "It seems we know all stations here now. Thou wert most helpful, %s.", ch[co].name);
+                    say(cn, "It seemeth we know all stations here now. Thou wert most helpful, %s.", ch[co].name);
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     break;

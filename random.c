@@ -1221,7 +1221,7 @@ void create_dungeon(int cn, int co, int level, struct master_data *dat) {
 
     for (n = 0; n < 16; n++) {
         if (dat->owner[n] == ch[co].ID) {
-            say(cn, "You have created a dungeon already, you may not create another one before the first one has collapsed. You can use \260c4destroy %d\260c0 to collapse it now.", n + 1);
+            say(cn, "Thou hast created a dungeon already, thou mayst not create another one before the first one hath collapsed. Thou canst use \260c4destroy %d\260c0 to collapse it now.", n + 1);
             return;
         }
     }

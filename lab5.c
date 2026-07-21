@@ -349,7 +349,7 @@ void lab5_seyan_driver(int cn, int ret, int lastact) {
             switch (pd->seyanstate) {
             // INTRO
             case 0:
-                say(cn, "Hello %s. I am here to introduce thee to the quest that has to be done here.", ch[co].name);
+                say(cn, "Hello %s. I am here to introduce thee to the quest that hath to be done here.", ch[co].name);
                 didsay = 1;
                 pd->seyanstate++;
                 break;
