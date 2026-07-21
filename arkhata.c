@@ -979,7 +979,7 @@ void gladiator_driver(int cn, int ret, int lastact) {
     if (ticker - dat->last_talk > TICKS * 60 * 3) {
         int x, y;
 
-        say(cn, "That's all folks!");
+        say(cn, "That is all folks!");
         for (x = 9; x <= 24; x++) {
             for (y = 238; y <= 252; y++) {
                 if ((co = map[x + y * MAXMAP].ch) && (ch[co].flags & CF_PLAYER)) {
@@ -2813,7 +2813,7 @@ void hunter_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 7:
-                    say(cn, "Following hints from people who's seen it. Yet I have failed to seek out and slay the beast, it appears to move across a vast territory.");
+                    say(cn, "Following hints from people who's seen it. Yet I have failed to seek out and slay the beast, it appeareth to move across a vast territory.");
                     ppd->hunter_state++;
                     didsay = 1;
                     break;

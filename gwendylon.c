@@ -1977,7 +1977,7 @@ void reskin_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 2:
-                    quiet_say(cn, "In spite of the beer shortage, people still visit my tavern, so I can't go out to find ingredients as often as I'd like. If thou happenst to come across any new flower, berry or mushroom and bring it to me, I'd pay thee handsomely.");
+                    quiet_say(cn, "In spite of the beer shortage, people still visit my tavern, so I cannot go out to find ingredients as often as I would like. If thou happenst to come across any new flower, berry or mushroom and bring it to me, I would pay thee handsomely.");
                     ppd->reskin_state++;
                     didsay = 1;
                     break;

@@ -341,7 +341,7 @@ void monk_gatama_driver(int cn, int ret, int lastact) {
 
                 // ...
             case 40:
-                say(cn, "Let us wait until all thine Monks are resting. Either in the rest room, or in peace.");
+                say(cn, "Let us wait until all thy Monks are resting. Either in the rest room, or in peace.");
                 didsay = 1;
                 ppd->gatamastate++;
             case 41:

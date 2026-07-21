@@ -356,7 +356,7 @@ int nomad_4(int cn, int co, struct nomad_ppd *ppd, int nr) {
         ppd->nomad_state[nr]++;
         return 1;
     case 2:
-        say(cn, "Unfortunately, the Harpies are not our only problem. Brother Sarkilar has left the monastery with a few of the younger brothers. We haven't heard from him since he left, and I am worried. Neither the nomads nor the valkyries have seen him, so he must still be in this mountain. If thou couldst find out what happened to him?");
+        say(cn, "Unfortunately, the Harpies are not our only problem. Brother Sarkilar has left the monastery with a few of the younger brothers. We have not heard from him since he left, and I am worried. Neither the nomads nor the valkyries have seen him, so he must still be in this mountain. If thou couldst find out what happened to him?");
         ppd->nomad_state[nr]++;
         return 1;
     case 3:
