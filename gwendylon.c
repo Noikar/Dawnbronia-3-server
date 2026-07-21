@@ -238,7 +238,7 @@ void gwendylon_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 2:
-                    quiet_say(cn, "I am trying to understand this magic. But I am too old to travel there, so I couldst use thy help, %s. Wouldst thou go thither and look for magical items?", ch[co].name);
+                    quiet_say(cn, "I am trying to understand this magic. But I am too old to travel there, so I could use thy help, %s. Wouldst thou go thither and look for magical items?", ch[co].name);
                     ppd->gwendy_state = 3;
                     didsay = 1;
                     break;
@@ -872,7 +872,7 @@ void terion_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 13:
-                    quiet_say(cn, "Hey! Reskin! Art thou certain that thou dost not have any beer? I couldst use a drink now.");
+                    quiet_say(cn, "Hey! Reskin! Art thou certain that thou dost not have any beer? I could use a drink now.");
                     notify_area(ch[cn].x, ch[cn].y, NT_NPC, NTID_TERION, cn, 5);
                     ppd->terion_state++;
                     didsay = 1;
@@ -1122,7 +1122,7 @@ void james_driver(int cn, int ret, int lastact) {
             case 11:
                 quiet_say(cn, "Hardcore is an option only available to paying players. A hardcore character does not earn saves when he leveleth, and he loseth a lot more experience on death than a normal character. But he can train his skills higher than any other character.");
                 quiet_say(cn, "Since death is a lot harder on hardcore characters, thou must be aware that the gods (game management) will ignore any complaints about deaths caused by lag, other players luring monsters to thee or other reasons which are not entirely fair, but not real bugs either.");
-                quiet_say(cn, "So, the rule is: It is thy choice to become a hardcore character, and thou must live with the consequences of that choice. The gods wilt not help thee. Dost thou accept these rules? [ \260c4I accept the rules and wish to become a hardcore character\260c0 ]");
+                quiet_say(cn, "So, the rule is: It is thy choice to become a hardcore character, and thou must live with the consequences of that choice. The gods will not help thee. Dost thou accept these rules? [ \260c4I accept the rules and wish to become a hardcore character\260c0 ]");
                 break;
             case 12:
                 if (!(ch[co].flags & CF_PAID)) {
@@ -2526,7 +2526,7 @@ void guiwynn_driver(int cn, int ret, int lastact) {
                     dat->last_talk = ticker;
                 }
                 if (msg->dat3 == 4) { // yoakins nightmares
-                    quiet_say(cn, "Yes, he's been here drinking a lot a few weeks ago. Told us that the floor in his back room collapsed, and that he was having scary dreams for several nights.");
+                    quiet_say(cn, "Yes, he hath been here drinking a lot a few weeks ago. Told us that the floor in his back room collapsed, and that he was having scary dreams for several nights.");
 
                     talkdir = offset2dx(ch[cn].x, ch[cn].y, ch[co].x, ch[co].y);
                     dat->last_talk = ticker;
@@ -2783,7 +2783,7 @@ void logain_driver(int cn, int ret, int lastact) {
                     dat->last_talk = ticker;
                 }
                 if (msg->dat3 == 3) { // yoakin mentioned
-                    quiet_say(cn, "Ah, Terion, thou art right! I remember Yoakin telling me about nightmares he's been having lately. Something about skeletons hunting him in a dark, moist place.");
+                    quiet_say(cn, "Ah, Terion, thou art right! I remember Yoakin telling me about nightmares he hath been having lately. Something about skeletons hunting him in a dark, moist place.");
                     notify_area(ch[cn].x, ch[cn].y, NT_NPC, NTID_TERION, cn, 4);
                     talkdir = offset2dx(ch[cn].x, ch[cn].y, ch[co].x, ch[co].y);
                     dat->last_talk = ticker;

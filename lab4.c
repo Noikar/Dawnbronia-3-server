@@ -219,7 +219,7 @@ void lab4_seyan_driver(int cn, int ret, int lastact) {
 
                 // received crown (szepter missing)
             case 10:
-                say(cn, "Thou broughtst me the Kings Crown. Now, %s, seek for the Mage's Szepter.", ch[co].name);
+                say(cn, "Thou broughtst me the King's Crown. Now, %s, seek for the Mage's Szepter.", ch[co].name);
                 didsay = 1;
                 pd->seyan4state++;
                 break;
@@ -229,7 +229,7 @@ void lab4_seyan_driver(int cn, int ret, int lastact) {
 
                 // received szepter (corwn missing)
             case 20:
-                say(cn, "Thou broughtst me the Mages Szepter. Now, %s, seek for the King's Crown.", ch[co].name);
+                say(cn, "Thou broughtst me the Mage's Szepter. Now, %s, seek for the King's Crown.", ch[co].name);
                 didsay = 1;
                 pd->seyan4state++;
                 break;
@@ -250,7 +250,7 @@ void lab4_seyan_driver(int cn, int ret, int lastact) {
                 break;
             case 32:
                 create_lab_exit(co, 10);
-                say(cn, "Mayest Thou Past The Last Gate, %s", ch[co].name);
+                say(cn, "Mayest thou pass the last gate, %s", ch[co].name);
                 didsay = 1;
                 pd->seyan4state++;
                 break;

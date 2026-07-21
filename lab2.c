@@ -483,7 +483,7 @@ void lab2_deamon_driver(int cn, int ret, int lastact) {
 
     case 4:
         if (ticker < dat->talkticker) break;
-        say(cn, "My eyes tricked me again. Thou art not Elias. I remember excatly his black hat and cape, and also his belt and boots. So, again, go away or I will kill thee!");
+        say(cn, "My eyes tricked me again. Thou art not Elias. I remember exactly his black hat and cape, and also his belt and boots. So, again, go away or I will kill thee!");
         if (ch[dat->co].player) player_driver_halt(ch[dat->co].player);
         dat->talkstep = 255;
         break;

@@ -256,7 +256,7 @@ int nomad_1(int cn, int co, struct nomad_ppd *ppd, int nr) {
         ppd->nomad_state[nr]++;
         return 1;
     case 1:
-        say(cn, "Welcome to the plains of the Vana Laka. Thou wouldst best learn about our customs, before thou venturest further north, %s.", ch[co].name);
+        say(cn, "Welcome to the plains of the Vana Laka. Thou hadst best learn about our customs, before thou venturest further north, %s.", ch[co].name);
         ppd->nomad_state[nr]++;
         return 1;
     case 2:
@@ -598,7 +598,7 @@ int nomad_1_give(int cn, int co, int in, struct nomad_ppd *ppd, int nr) {
             return 0;
         }
         if (*(unsigned int *)(it[in].drdata) > 100) {
-            say(cn, "This is most generous, but I wilt not accept more than 100 ounces for thy membership.");
+            say(cn, "This is most generous, but I will not accept more than 100 ounces for thy membership.");
             return 0;
         }
         say(cn, "Welcome to the tribe of the Vana Kiru, %s.", ch[co].name);
@@ -663,7 +663,7 @@ int nomad_5_give(int cn, int co, int in, struct nomad_ppd *ppd, int nr) {
     if (it[in].ID == IID_AREA19_KIR) {
         if (ppd->nomad_state[nr] > 3) {
             if (ch[co].exp > ch[co].exp_used) {
-                say(cn, "But thou dost not have lost any experience.");
+                say(cn, "But thou hast not lost any experience.");
                 return 0;
             }
             say(cn, "There, some of the memories are back. I can work with thee further, if thou bringst me another of these statues.");

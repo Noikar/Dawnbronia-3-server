@@ -332,7 +332,7 @@ void professor_driver(int cn, int ret, int lastact) {
             case 3:
                 switch (dat->nr) {
                 case P_ATHLETE:
-                    say(cn, "The art of the athlete are fast, precise movements. Skilled athletes make better use of their endurance and move faster than untrained humans.");
+                    say(cn, "The art of the athlete is fast, precise movements. Skilled athletes make better use of their endurance and move faster than untrained humans.");
                     break;
                 case P_ALCHEMIST:
                     say(cn, "The alchemist can create better potions, calling on the powers of the moons and the seasons at any time.");
@@ -341,7 +341,7 @@ void professor_driver(int cn, int ret, int lastact) {
                     say(cn, "A skilled miner will make better use of every vein of precious metal he findeth. He will also not exhaust as fast as an unskilled miner.");
                     break;
                 case P_ASSASSIN:
-                    say(cn, "The assassin is especially skilled at attacking an enemy from the side or behind, and he can backstab an unware opponent from behind.");
+                    say(cn, "The assassin is especially skilled at attacking an enemy from the side or behind, and he can backstab an unaware opponent from behind.");
                     break;
                 case P_THIEF:
                     say(cn, "A skilled thief can remain unseen even when next to another person. But when he useth this skill of stealth he cannot do anything but wait or walk, and the effort of remaining unseen will drain his endurance.");

@@ -222,7 +222,7 @@ void dwarfchief_driver(int cn, int ret, int lastact) {
             if (ppd) {
                 switch (ppd->dwarfchief_state) {
                 case 0:
-                    quiet_say(cn, "Welcome, stranger, to Grimroot, home of the dwarves. I would introduce you to our town further, but I have urgent matters to attend to.");
+                    quiet_say(cn, "Welcome, stranger, to Grimroot, home of the dwarves. I would introduce thee to our town further, but I have urgent matters to attend to.");
                     questlog_open(co, 47);
                     ppd->dwarfchief_state++;
                     didsay = 1;

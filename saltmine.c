@@ -332,7 +332,7 @@ void monk_gatama_driver(int cn, int ret, int lastact) {
                 create_worker(co, ppd);
                 break;
             case 32:
-                say(cn, "Lead them wise and carfully, %s. Mayest thou all return safe.", ch[co].name);
+                say(cn, "Lead them wisely and carefully, %s. Mayest thou all return safe.", ch[co].name);
                 didsay = 1;
                 ppd->gatamastate++;
             case 33:

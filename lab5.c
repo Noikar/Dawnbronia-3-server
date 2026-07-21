@@ -597,7 +597,7 @@ void lab5_mage_driver(int cn, int ret, int lastact) {
                 pd->magestate++;
                 break;
             case 21:
-                say(cn, "I have heard that those weapon might be found somewhere in the section behind the south western door of this room.");
+                say(cn, "I have heard that those weapons might be found somewhere in the section behind the south western door of this room.");
                 didsay = 1;
                 pd->magestate++;
                 break;
@@ -626,12 +626,12 @@ void lab5_mage_driver(int cn, int ret, int lastact) {
                 pd->magestate++;
                 break;
             case 34:
-                say(cn, "Then place thineself in the center, and shout the real name of the Master.");
+                say(cn, "Then place thyself in the center, and shout the real name of the Master.");
                 didsay = 1;
                 pd->magestate++;
                 break;
             case 35:
-                say(cn, "Well, thats it. Prepare to fight him then.");
+                say(cn, "Well, that is it. Prepare to fight him then.");
                 didsay = 1;
                 pd->magestate++;
                 break;

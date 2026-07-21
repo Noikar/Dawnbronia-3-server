@@ -1954,7 +1954,7 @@ void broklin_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    quiet_say(cn, "I suspect that one of the towns shopkeepers is involved with the robbers.");
+                    quiet_say(cn, "I suspect that one of the town's shopkeepers is involved with the robbers.");
                     ppd->broklin_state++;
                     didsay = 1;
                     break;

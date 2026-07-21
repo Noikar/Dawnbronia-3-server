@@ -554,7 +554,7 @@ void gate_fight_driver(int cn, int ret, int lastact) {
 
     // self destruct eventually
     if (ticker - dat->creation_time > TICKS * 60 * 10) {
-        say(cn, "Thats all folks!");
+        say(cn, "That is all folks!");
         remove_destroy_char(cn);
         return;
     }

@@ -281,7 +281,7 @@ void rammy_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    say(cn, "Oh... I see that thou art a messenger from the Count Brannington, that is a most pleasent surprise to learn that he still holds the city.");
+                    say(cn, "Oh... I see that thou art a messenger from the Count Brannington, that is a most pleasant surprise to learn that he still holds the city.");
                     ppd->rammy_state++;
                     didsay = 1;
                     break;
@@ -344,7 +344,7 @@ void rammy_driver(int cn, int ret, int lastact) {
                         ppd->rammy_state++;
                     } else break;
                 case 14:
-                    say(cn, "Hello again, %s! We have a problem with the guards in the fortress. They wont let people just pass through of course, but they are attacking everyone!", ch[co].name);
+                    say(cn, "Hello again, %s! We have a problem with the guards in the fortress. They will not let people just pass through of course, but they are attacking everyone!", ch[co].name);
                     ppd->rammy_state++;
                     didsay = 1;
                     break;
@@ -1203,7 +1203,7 @@ void ramin_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 2:
-                    say(cn, "As a direct ancestor of High Counsellor Regnior who brough us here, I am in charge of the civil life of the city.");
+                    say(cn, "As a direct ancestor of High Counsellor Regnior who brought us here, I am in charge of the civil life of the city.");
                     ppd->ramin_state++;
                     didsay = 1;
                     break;
@@ -1484,7 +1484,7 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                     break;
                 case 2:
                     if (nr == 1) {
-                        say(cn, "Sleep on a pillow filled with acorns of wheat and drink a glass of milk before going to bed for a good nights sleep with calm dreams.");
+                        say(cn, "Sleep on a pillow filled with acorns of wheat and drink a glass of milk before going to bed for a good night's sleep with calm dreams.");
                         ppd->monk_state++;
                         didsay = 1;
                     }
@@ -1625,7 +1625,7 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                     break;
                 case 23:
                     if (nr == 3) {
-                        say(cn, "I believe they are related to the dwarfs, but the languages are less similar then deers and fire snails.");
+                        say(cn, "I believe they are related to the dwarfs, but the languages are less similar than deer and fire snails.");
                         ppd->monk_state++;
                         didsay = 1;
                     }
@@ -2043,7 +2043,7 @@ void judge_driver(int cn, int ret, int lastact) {
                     if (ppd->captain_state > 0) ppd->judge_state++;
                     else break;
                 case 1:
-                    say(cn, "A, hello %s! So the captain needs a system of authorization letters for people to pass through the fortress?", get_army_rank_string(co));
+                    say(cn, "Ah, hello %s! So the captain needs a system of authorization letters for people to pass through the fortress?", get_army_rank_string(co));
                     ppd->judge_state++;
                     didsay = 1;
                     break;
@@ -2971,7 +2971,7 @@ void thaipan_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    say(cn, "It is said that the ruins on the shore right north-west of here was once a sanctuary for scholars of my order.");
+                    say(cn, "It is said that the ruins on the shore right north-west of here were once a sanctuary for scholars of my order.");
                     ppd->thai_state++;
                     didsay = 1;
                     break;
@@ -2981,7 +2981,7 @@ void thaipan_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 5:
-                    say(cn, "But their search was powered by greed, not by the will to do good. And as they discovered some of the ancient secrets it corrupted their minds and lead do their downfall.");
+                    say(cn, "But their search was powered by greed, not by the will to do good. And as they discovered some of the ancient secrets it corrupted their minds and led to their downfall.");
                     ppd->thai_state++;
                     didsay = 1;
                     break;
@@ -3066,7 +3066,7 @@ void thaipan_driver(int cn, int ret, int lastact) {
                     ch[cn].citem = 0;
                 } else {
                     if (ppd && it[in].ID == IID_ARKHATA_BUDDA && ppd->thai_state > 0) {
-                        if (ch[co].exp_used <= ch[co].exp) say(cn, "Thou doest not have any negative experience.");
+                        if (ch[co].exp_used <= ch[co].exp) say(cn, "Thou dost not have any negative experience.");
                         else if (realtime - ppd->last_budda <= 60 * 60 * 24) say(cn, "Thou canst only do this once per day.");
                     } else say(cn, "Thou hast better use for this than I do. Well, if there is a use for it at all.");
                     if (!give_char_item(co, ch[cn].citem)) destroy_item(ch[cn].citem);
@@ -3159,7 +3159,7 @@ void clerk_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 2:
-                    say(cn, "Three notes containing information about a transport from Brannington to Arkhata due tomorow night are missing. Most likely the traitors will pass these notes to the robbers tonight.");
+                    say(cn, "Three notes containing information about a transport from Brannington to Arkhata due tomorrow night are missing. Most likely the traitors will pass these notes to the robbers tonight.");
                     ppd->clerk_state++;
                     didsay = 1;
                     break;
