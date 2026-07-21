@@ -106,11 +106,11 @@ struct qa {
 #define QA_COWARD 49
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 1, 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 1, 0},
     {{"hello", NULL}, "Hello, %s!", 0, 0},
     {{"hi", NULL}, "Hi, %s!", 0, 0},
     {{"greetings", NULL}, "Greetings, %s!", 0, 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0, 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0, 0},
     {{"what's", "your", "name", NULL}, NULL, 0, 1},
     {{"what", "is", "your", "name", NULL}, NULL, 0, 1},
     {{"who", "are", "you", NULL}, NULL, 0, 1},
@@ -235,7 +235,7 @@ int analyse_text_driver(int cn, int type, char *text, int co) {
                 if (qa[q].answer) say(cn, qa[q].answer, ch[co].name, ch[cn].name);
                 else switch (qa[q].answer_code) {
                     case 1:
-                        say(cn, "I'm %s.", ch[cn].name);
+                        say(cn, "I am %s.", ch[cn].name);
                     default:
                         return qa[q].answer_code;
                     }
@@ -652,7 +652,7 @@ void platoon_exp(int cn, int cm, int amount, int pts, struct farmy_ppd *ppd) {
             set_army_rank(co, rank);
             ppd->soldier[n].rank = rank;
             update_soldier(co, n, ppd);
-            say(cn, "You've been promoted to %s. Congratulations, %s!", get_army_rank_string(co), ch[co].name);
+            say(cn, "Thou hast been promoted to %s. Congratulations, %s!", get_army_rank_string(co), ch[co].name);
         }
     }
 
@@ -665,7 +665,7 @@ void platoon_exp(int cn, int cm, int amount, int pts, struct farmy_ppd *ppd) {
     rank = cbrt(ppd2->military_pts);
     if (rank < 24 && rank > get_army_rank_int(cm)) {
         set_army_rank(cm, rank);
-        say(cn, "You've been promoted to %s. Congratulations, %s!", get_army_rank_string(cm), ch[cm].name);
+        say(cn, "Thou hast been promoted to %s. Congratulations, %s!", get_army_rank_string(cm), ch[cm].name);
     }
 }
 
@@ -700,9 +700,9 @@ void do_emote(int cn, struct farmy_data *dat) {
 
         if (dat->emote.likes[n] < 10) {
             if (hour > 6 && hour < 20) {
-                say(cn, "Oh, what a nice day it is, %s, isn't it?", ch[co].name);
+                say(cn, "Oh, what a nice day it is, %s, is it not?", ch[co].name);
             } else {
-                say(cn, "The nights here are scary, %s, aren't they?", ch[co].name);
+                say(cn, "The nights here are scary, %s, are they not?", ch[co].name);
             }
             if (dat->emote.talked[n] > -2) dat->emote.likes[n]++;
             dat->emote.talked[n]--;
@@ -710,7 +710,7 @@ void do_emote(int cn, struct farmy_data *dat) {
             dat->emote.answer_cn = co;
             dat->emote.answer_type = AT_YESNO;
         } else if (dat->emote.likes[n] < 20) {
-            say(cn, "I like the way you smile, %s.", ch[co].name);
+            say(cn, "I like the way thou smilest, %s.", ch[co].name);
             if (dat->emote.talked[n] > -2) dat->emote.likes[n]++;
             dat->emote.talked[n]--;
             dat->emote.answer_timer = ticker;
@@ -741,14 +741,14 @@ void do_emote(int cn, struct farmy_data *dat) {
         //say(cn,"bored: score=%d, co=%d, n=%d",bestscore,bestco,n);
 
         if (dat->emote.likes[n] < 0) {
-            say(cn, "You stink, %s.", ch[co].name);
+            say(cn, "Thou stinkest, %s.", ch[co].name);
             if (dat->emote.talked[n] > -2) dat->emote.likes[n]--;
             dat->emote.talked[n]--;
             dat->emote.answer_timer = ticker;
             dat->emote.answer_cn = co;
             dat->emote.answer_type = AT_INSULT;
         } else if (dat->emote.likes[n] < 0) {
-            say(cn, "Why don't you go away, %s?", ch[co].name);
+            say(cn, "Why dost thou not go away, %s?", ch[co].name);
             if (dat->emote.talked[n] > -2) dat->emote.likes[n]--;
             dat->emote.talked[n]--;
             dat->emote.answer_timer = ticker;
@@ -762,7 +762,7 @@ void do_emote(int cn, struct farmy_data *dat) {
             dat->emote.answer_cn = co;
             dat->emote.answer_type = AT_RELAX;
         } else if (dat->emote.likes[n] < 20) {
-            say(cn, "You have a funny face, %s.", ch[co].name);
+            say(cn, "Thou hast a funny face, %s.", ch[co].name);
             if (dat->emote.talked[n] > -2) dat->emote.likes[n]--;
             dat->emote.talked[n]--;
             dat->emote.answer_timer = ticker;
@@ -793,14 +793,14 @@ void do_emote(int cn, struct farmy_data *dat) {
         //say(cn,"afraid: score=%d, co=%d, n=%d",bestscore,bestco,n);
 
         if (dat->emote.likes[n] < 10) {
-            say(cn, "Shouldn't we turn back? What do you think, %s?", ch[co].name);
+            say(cn, "Should we not turn back? What dost thou think, %s?", ch[co].name);
             if (dat->emote.talked[n] > -2) dat->emote.likes[n]++;
             dat->emote.talked[n]--;
             dat->emote.answer_timer = ticker;
             dat->emote.answer_cn = co;
             dat->emote.answer_type = AT_ENCOURAGE;
         } else if (dat->emote.likes[n] < 20) {
-            say(cn, "I'm afraid, %s.", ch[co].name);
+            say(cn, "I am afraid, %s.", ch[co].name);
             if (dat->emote.talked[n] > -2) dat->emote.likes[n]++;
             dat->emote.talked[n]--;
             dat->emote.answer_timer = ticker;
@@ -831,14 +831,14 @@ void do_emote(int cn, struct farmy_data *dat) {
         //say(cn,"praise: score=%d, co=%d, n=%d",bestscore,bestco,n);
 
         if (dat->emote.likes[n] < 10) {
-            say(cn, "Ha! I'm the greatest, right, %s?", ch[co].name);
+            say(cn, "Ha! I am the greatest, right, %s?", ch[co].name);
             if (dat->emote.talked[n] > -2) dat->emote.likes[n]++;
             dat->emote.talked[n]--;
             dat->emote.answer_timer = ticker;
             dat->emote.answer_cn = co;
             dat->emote.answer_type = AT_AFFIRM;
         } else if (dat->emote.likes[n] < 20) {
-            say(cn, "I'm becoming a great soldier, %s.", ch[co].name);
+            say(cn, "I am becoming a great soldier, %s.", ch[co].name);
             if (dat->emote.talked[n] > -2) dat->emote.likes[n]++;
             dat->emote.talked[n]--;
             dat->emote.answer_timer = ticker;
@@ -896,7 +896,7 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
             say(cn, "Why are you so mean to me, %s?", ch[co].name);
             dat->emote.likes[slot] -= 5;
         } else {
-            say(cn, "And you smell like a ratling, %s!", ch[co].name);
+            say(cn, "And thou smellest like a ratling, %s!", ch[co].name);
             dat->emote.likes[slot]--;
         }
         dat->emote.talked[slot]++;
@@ -904,7 +904,7 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
         break;
     case QA_GOAWAY:
         if (dat->emote.likes[slot] > 0) {
-            say(cn, "What's up with you, %s?", ch[co].name);
+            say(cn, "What is up with thee, %s?", ch[co].name);
             dat->emote.likes[slot] -= 2;
         } else {
             say(cn, "Shut up, %s!", ch[co].name);
@@ -915,7 +915,7 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
         break;
     case QA_DOSOMETHING:
         if (dat->emote.likes[slot] > 0) {
-            say(cn, "Yeah, I hope we'll do something soon, %s.", ch[co].name);
+            say(cn, "Yeah, I hope we shall do something soon, %s.", ch[co].name);
         } else {
             say(cn, "Stop bothering me, %s!", ch[co].name);
             dat->emote.likes[slot]--;
@@ -925,7 +925,7 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
         break;
     case QA_FUNNYFACE:
         if (dat->emote.likes[slot] > 0) {
-            say(cn, "I'm bored too, %s, let's not fight.", ch[co].name);
+            say(cn, "I am bored too, %s, let us not fight.", ch[co].name);
         } else {
             say(cn, "Oh boy! Please be quiet, %s.", ch[co].name);
             dat->emote.likes[slot]--;
@@ -935,7 +935,7 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
         break;
     case QA_LIKESMILE:
         if (dat->emote.likes[slot] > 5) {
-            say(cn, "Why, thank you, %s.", ch[co].name);
+            say(cn, "Why, I thank thee, %s.", ch[co].name);
             dat->emote.likes[slot]++;
         } else {
             say(cn, "Is that so, %s?", ch[co].name);
@@ -945,10 +945,10 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
         break;
     case QA_TURNBACK:
         if (dat->emote.likes[slot] > -5) {
-            say(cn, "It's not that bad, %s.", ch[co].name);
+            say(cn, "It is not that bad, %s.", ch[co].name);
             dat->emote.likes[slot]++;
         } else {
-            say(cn, "Are you afraid, %s?", ch[co].name);
+            say(cn, "Art thou afraid, %s?", ch[co].name);
             dat->emote.likes[slot]--;
         }
         dat->emote.talked[slot]++;
@@ -956,9 +956,9 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
         break;
     case QA_GREATEST:
         if (dat->emote.likes[slot] > 5) {
-            say(cn, "You're a tough fellow, %s!", ch[co].name);
+            say(cn, "Thou art a tough fellow, %s!", ch[co].name);
         } else {
-            say(cn, "Oh, be quiet, %s, you bigmouth!", ch[co].name);
+            say(cn, "Oh, be quiet, %s, thou bigmouth!", ch[co].name);
             dat->emote.likes[slot] -= 2;
         }
         dat->emote.talked[slot]++;
@@ -966,9 +966,9 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
         break;
     case QA_GREATSOLDIER:
         if (dat->emote.likes[slot] > 0) {
-            say(cn, "One day you'll be a great soldier, %s.", ch[co].name);
+            say(cn, "One day thou shalt be a great soldier, %s.", ch[co].name);
         } else {
-            say(cn, "I don't think so, %s.", ch[co].name);
+            say(cn, "I do not think so, %s.", ch[co].name);
             dat->emote.likes[slot] -= 2;
         }
         dat->emote.talked[slot]++;
@@ -976,10 +976,10 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
         break;
     case QA_AFRAID:
         if (dat->emote.likes[slot] > 0) {
-            say(cn, "There's no need to be afraid, %s.", ch[co].name);
+            say(cn, "There is no need to be afraid, %s.", ch[co].name);
             dat->emote.likes[slot] += 2;
         } else {
-            say(cn, "Shut up you, %s, you coward!", ch[co].name);
+            say(cn, "Shut up thou, %s, thou coward!", ch[co].name);
             dat->emote.likes[slot] -= 2;
         }
         dat->emote.talked[slot]++;
@@ -1017,7 +1017,7 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
         break;
     case QA_SHUTUP:
         if (dat->emote.answer_type != AT_INSULT || dat->emote.answer_cn != co || ticker - dat->emote.answer_timer > TICKS * 30) {
-            say(cn, "Why? I didn't say anything, %s.", ch[co].name);
+            say(cn, "Why? I did not say anything, %s.", ch[co].name);
             break;
         }
         dat->emote.talked[slot]++;
@@ -1027,7 +1027,7 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
         break;
     case QA_DOSOON:
         if (dat->emote.answer_type != AT_RELAX || dat->emote.answer_cn != co || ticker - dat->emote.answer_timer > TICKS * 30) {
-            say(cn, "Oh? Oh, that's fine, %s.", ch[co].name);
+            say(cn, "Oh? Oh, that is fine, %s.", ch[co].name);
             break;
         }
         dat->emote.talked[slot]++;
@@ -1037,7 +1037,7 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
         break;
     case QA_STOPBOTHER:
         if (dat->emote.answer_type != AT_RELAX || dat->emote.answer_cn != co || ticker - dat->emote.answer_timer > TICKS * 30) {
-            say(cn, "I am not bothering you, %s.", ch[co].name);
+            say(cn, "I am not bothering thee, %s.", ch[co].name);
             break;
         }
         dat->emote.talked[slot]++;
@@ -1047,7 +1047,7 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
         break;
     case QA_NOTFIGHT:
         if (dat->emote.answer_type != AT_RELAX || dat->emote.answer_cn != co || ticker - dat->emote.answer_timer > TICKS * 30) {
-            say(cn, "I wasn't trying to pick a fight, %s.", ch[co].name);
+            say(cn, "I was not trying to pick a fight, %s.", ch[co].name);
             break;
         }
         dat->emote.talked[slot]++;
@@ -1077,7 +1077,7 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
         break;
     case QA_NOTTHATBAD:
         if (dat->emote.answer_type != AT_ENCOURAGE || dat->emote.answer_cn != co || ticker - dat->emote.answer_timer > TICKS * 30) {
-            say(cn, "I didn't say it is, %s.", ch[co].name);
+            say(cn, "I did not say it is, %s.", ch[co].name);
             break;
         }
         dat->emote.talked[slot]++;
@@ -1087,7 +1087,7 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
         break;
     case QA_YOUAFRAID:
         if (dat->emote.answer_type != AT_ENCOURAGE || dat->emote.answer_cn != co || ticker - dat->emote.answer_timer > TICKS * 30) {
-            say(cn, "Afraid? Me? That's silly, %s.", ch[co].name);
+            say(cn, "Afraid? Me? That is silly, %s.", ch[co].name);
             break;
         }
         dat->emote.talked[slot]++;
@@ -1097,7 +1097,7 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
         break;
     case QA_NONEED:
         if (dat->emote.answer_type != AT_ENCOURAGE || dat->emote.answer_cn != co || ticker - dat->emote.answer_timer > TICKS * 30) {
-            say(cn, "Afraid? Me? That's silly, %s.", ch[co].name);
+            say(cn, "Afraid? Me? That is silly, %s.", ch[co].name);
             break;
         }
         dat->emote.talked[slot]++;
@@ -1107,7 +1107,7 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
         break;
     case QA_COWARD:
         if (dat->emote.answer_type != AT_ENCOURAGE || dat->emote.answer_cn != co || ticker - dat->emote.answer_timer > TICKS * 30) {
-            say(cn, "Why are you calling me a coward, %s?", ch[co].name);
+            say(cn, "Why art thou calling me a coward, %s?", ch[co].name);
             break;
         }
         dat->emote.talked[slot]++;
@@ -1117,7 +1117,7 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
         break;
     case QA_TOUGHFELLOW:
         if (dat->emote.answer_type != AT_AFFIRM || dat->emote.answer_cn != co || ticker - dat->emote.answer_timer > TICKS * 30) {
-            say(cn, "That's nice to hear, %s.", ch[co].name);
+            say(cn, "That is nice to hear, %s.", ch[co].name);
             break;
         }
         dat->emote.talked[slot]++;
@@ -1127,7 +1127,7 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
         break;
     case QA_QUIETBIGMOUTH:
         if (dat->emote.answer_type != AT_AFFIRM || dat->emote.answer_cn != co || ticker - dat->emote.answer_timer > TICKS * 30) {
-            say(cn, "What? But I didn't say anything, %s.", ch[co].name);
+            say(cn, "What? But I did not say anything, %s.", ch[co].name);
             break;
         }
         dat->emote.talked[slot]++;
@@ -1137,7 +1137,7 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
         break;
     case QA_ONEDAY:
         if (dat->emote.answer_type != AT_AFFIRM || dat->emote.answer_cn != co || ticker - dat->emote.answer_timer > TICKS * 30) {
-            say(cn, "That's very nice to hear, %s.", ch[co].name);
+            say(cn, "That is very nice to hear, %s.", ch[co].name);
             break;
         }
         dat->emote.talked[slot]++;
@@ -1147,7 +1147,7 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
         break;
     case QA_DONTTHINKSO:
         if (dat->emote.answer_type != AT_AFFIRM || dat->emote.answer_cn != co || ticker - dat->emote.answer_timer > TICKS * 30) {
-            say(cn, "You don't think what, %s?", ch[co].name);
+            say(cn, "Thou dost not think what, %s?", ch[co].name);
             break;
         }
         dat->emote.talked[slot]++;
@@ -1240,7 +1240,7 @@ void fdemon_army(int cn, int ret, int lastact) {
                 dat->mission = MIS_FRONT;
                 break;
             case 6:
-                say(cn, "I'll go rub his back, %s.", get_army_rank_string(co));
+                say(cn, "I shall go rub his back, %s.", get_army_rank_string(co));
                 dat->mission = MIS_BEHIND;
                 break;
             case 7:
@@ -1384,7 +1384,7 @@ void fdemon_boss(int cn, int ret, int lastact) {
                 switch (ppd->boss_stage) {
                 case 0:
                     if (get_army_rank_int(co) < 2) {
-                        say(cn, "Ah, %s. The governer of Aston has some missions for you. You'd better head back there and do those first.", ch[co].name);
+                        say(cn, "Ah, %s. The governer of Aston has some missions for thee. Thou hadst better head back there and do those first.", ch[co].name);
                     } else {
                         say(cn, "Welcome, %s, to our underground headquarters. I am the commander of the underground army. We are trying to stop the demon's progress here, before they invade Aston again.", ch[co].name);
                         ppd->boss_stage++;
@@ -1392,22 +1392,22 @@ void fdemon_boss(int cn, int ret, int lastact) {
                     ppd->boss_timer = realtime;
                     break;
                 case 1:
-                    say(cn, "Unfortunately, I have a lack of good leaders. But you can \260c4take\260c0 some men to explore the underground and solve your missions. Just be sure to \260c4drop\260c0 them off here again before you leave.");
+                    say(cn, "Unfortunately, I have a lack of good leaders. But thou canst \260c4take\260c0 some men to explore the underground and solve thy missions. Just be sure to \260c4drop\260c0 them off here again before thou leavest.");
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     break;
                 case 2:
-                    say(cn, "These soldiers have been trained to obey some easy commands: 'Follow' makes them follow you. 'Front' makes them walk in front of you. With 'Back', they'll take one step back. They follow you more closely if you order a 'retreat'. And you can make them attack your enemy from 'behind'.");
+                    say(cn, "These soldiers have been trained to obey some easy commands: 'Follow' makes them follow thee. 'Front' makes them walk in front of thee. With 'Back', they shall take one step back. They follow thee more closely if thou orderest a 'retreat'. And thou canst make them attack thine enemy from 'behind'.");
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     break;
                 case 3:
-                    say(cn, "It is up to you if you want their help on your missions. I recommend you take them along, the enemies are numerous, and some are quite dangerous.");
+                    say(cn, "It is up to thee if thou wantest their help on thy missions. I recommend thou takest them along, the enemies are numerous, and some are quite dangerous.");
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     break;
                 case 4:
-                    say(cn, "Alright, %s, your first mission is to reach the Ancient Defense Station number 1, and refuel it. You can find some of the power-crystals of the ancients in the big hall to the south-east. Take plenty, they're growing fast.", get_army_rank_string(co));
+                    say(cn, "Alright, %s, thy first mission is to reach the Ancient Defense Station number 1, and refuel it. Thou canst find some of the power-crystals of the ancients in the big hall to the south-east. Take plenty, they are growing fast.", get_army_rank_string(co));
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     break;
@@ -1419,7 +1419,7 @@ void fdemon_boss(int cn, int ret, int lastact) {
                     ppd->boss_timer = realtime;
                     break;
                 case 7:
-                    say(cn, "Your next mission is to activate Defense Station 3. That is the next station north-west of the one you activated in your last mission.");
+                    say(cn, "Thy next mission is to activate Defense Station 3. That is the next station north-west of the one thou activatedst in thy last mission.");
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     break;
@@ -1431,7 +1431,7 @@ void fdemon_boss(int cn, int ret, int lastact) {
                     ppd->boss_timer = realtime;
                     break;
                 case 10:
-                    say(cn, "I know, %s, you're tired of doing these simple missions, but they have to be done. We can't hold the demons back without those Defense Stations. %s, your mission is to activate Defense Station 2. It is located north-east of station 1.", ch[co].name, get_army_rank_string(co));
+                    say(cn, "I know, %s, thou art tired of doing these simple missions, but they have to be done. We cannot hold the demons back without those Defense Stations. %s, thy mission is to activate Defense Station 2. It is located north-east of station 1.", ch[co].name, get_army_rank_string(co));
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     break;
@@ -1443,7 +1443,7 @@ void fdemon_boss(int cn, int ret, int lastact) {
                     ppd->boss_timer = realtime;
                     break;
                 case 13:
-                    say(cn, "Our knowledge of the underground system here is pretty limited, %s. Your next mission is to find and activate the Defense Stations 4 and 5. I assume that these are pretty close to number 2 and 3.", ch[co].name);
+                    say(cn, "Our knowledge of the underground system here is pretty limited, %s. Thy next mission is to find and activate the Defense Stations 4 and 5. I assume that these are pretty close to number 2 and 3.", ch[co].name);
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     ppd->boss_counter = 0;
@@ -1456,7 +1456,7 @@ void fdemon_boss(int cn, int ret, int lastact) {
                     ppd->boss_timer = realtime;
                     break;
                 case 16:
-                    say(cn, "I've been getting reports about some beings we called 'Fire Golems', %s. It seems these beasts are very hard to kill. I've lost many good men to them. The few who made it back reported that only an attack in the back had any success. Your next mission is to slay one of those 'Fire Golems'. You can find them north-west of Defense Station 3. Oh, %s, may I remind you, that our soldiers have been trained to obey the commands 'follow', 'retreat', 'behind', 'front' and 'back'?", ch[co].name, get_army_rank_string(co));
+                    say(cn, "I have been getting reports about some beings we called 'Fire Golems', %s. It seemeth these beasts are very hard to kill. I have lost many good men to them. The few who made it back reported that only an attack in the back had any success. Thy next mission is to slay one of those 'Fire Golems'. Thou canst find them north-west of Defense Station 3. Oh, %s, may I remind thee, that our soldiers have been trained to obey the commands 'follow', 'retreat', 'behind', 'front' and 'back'?", ch[co].name, get_army_rank_string(co));
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     ppd->boss_counter = 0;
@@ -1469,7 +1469,7 @@ void fdemon_boss(int cn, int ret, int lastact) {
                     ppd->boss_timer = realtime;
                     break;
                 case 19:
-                    say(cn, "Scouts have found a room made by the ancients where a lot of small containers are stored. It is located in the north-western part of the underground. I want you to go there, aquire some of these containers and find out what they do. Good luck, %s.", ch[co].name);
+                    say(cn, "Scouts have found a room made by the ancients where a lot of small containers are stored. It is located in the north-western part of the underground. I would have thee go there, acquire some of these containers and find out what they do. Good luck, %s.", ch[co].name);
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     ppd->boss_counter = 0;
@@ -1482,7 +1482,7 @@ void fdemon_boss(int cn, int ret, int lastact) {
                     ppd->boss_timer = realtime;
                     break;
                 case 22:
-                    say(cn, "Now that we know what these containers can hold, we need to find out what to do with that golem blood, %s. Your mission, %s, is to find a use for it.", ch[co].name, get_army_rank_string(co));
+                    say(cn, "Now that we know what these containers can hold, we need to find out what to do with that golem blood, %s. Thy mission, %s, is to find a use for it.", ch[co].name, get_army_rank_string(co));
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     ppd->boss_counter = 0;
@@ -1495,7 +1495,7 @@ void fdemon_boss(int cn, int ret, int lastact) {
                     ppd->boss_timer = realtime;
                     break;
                 case 25:
-                    say(cn, "So that's how we can pass those lava fields. Well, since you can cross them now, %s, I want you to activate Defense Station 6. It is located north-east of number 5.", ch[co].name);
+                    say(cn, "So that is how we can pass those lava fields. Well, since thou canst cross them now, %s, I would have thee activate Defense Station 6. It is located north-east of number 5.", ch[co].name);
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     ppd->boss_counter = 0;
@@ -1511,7 +1511,7 @@ void fdemon_boss(int cn, int ret, int lastact) {
                     ppd->boss_stage++;
                     ppd->boss_counter = 0; // fall thru intended
                 case 29:
-                    say(cn, "I do not have a specific mission for you at the moment, %s, but I want you to scout the whole underground and find all the Defense Stations. When you find one, activate it, and report back from time to time. You don't have to come back for every single new station you find, though.", ch[co].name);
+                    say(cn, "I do not have a specific mission for thee at the moment, %s, but I would have thee scout the whole underground and find all the Defense Stations. When thou findest one, activate it, and report back from time to time. Thou dost not have to come back for every single new station thou findest, though.", ch[co].name);
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     break;
@@ -1525,18 +1525,18 @@ void fdemon_boss(int cn, int ret, int lastact) {
                     }
                     if (cnt2 >= 26) ppd->boss_stage++;
                     if (!cnt) break;
-                    say(cn, "Ah, %s. I hear you have found %d new Defense Stations. So you've found %d stations now.", ch[co].name, cnt, cnt2);
+                    say(cn, "Ah, %s. I hear thou hast found %d new Defense Stations. So thou hast found %d stations now.", ch[co].name, cnt, cnt2);
                     platoon_exp(cn, co, 2000 * cnt, 2 * cnt, ppd);
                     ppd->boss_timer = realtime;
                     ppd->boss_reported = ppd->boss_counter;
                     break;
                 case 31:
-                    say(cn, "It seems we know all stations here now. Thou wert most helpful, %s.", ch[co].name);
+                    say(cn, "It seemeth we know all stations here now. Thou wert most helpful, %s.", ch[co].name);
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     break;
                 case 32:
-                    say(cn, "I do not have any more missions for thee. But thou might want to explore the underworld further. This is but one part of it, and I feel that the cause of all this evil lies further to the north.");
+                    say(cn, "I do not have any more missions for thee. But thou mightst want to explore the underworld further. This is but one part of it, and I feel that the cause of all this evil lies further to the north.");
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     break;

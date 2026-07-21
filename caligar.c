@@ -72,13 +72,13 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"repeat", NULL}, NULL, 2},
     {{"restart", NULL}, NULL, 2},
     {{"please", "repeat", NULL}, NULL, 2},
@@ -254,7 +254,7 @@ void guard_driver(int cn, int ret, int lastact) {
                 break;
             case 2:
                 if (me != 0) break;
-                quiet_say(cn, "Quiet you fool!");
+                quiet_say(cn, "Quiet thou fool!");
                 ppd->guard_last_talk = realtime;
                 ppd->guard_state++;
                 break;
@@ -266,7 +266,7 @@ void guard_driver(int cn, int ret, int lastact) {
                 break;
             case 4:
                 if (me != 0) break;
-                quiet_say(cn, "Ugh, I said quiet! We aren't supposed to let humans in!");
+                quiet_say(cn, "Ugh, I said quiet! We are not supposed to let humans in!");
                 ppd->guard_last_talk = realtime;
                 ppd->guard_state++;
                 break;
@@ -355,7 +355,7 @@ void guard2_driver(int cn, int ret, int lastact) {
 
             if (realtime - ppd->guard2_last_talk < 15) { continue; }
 
-            say(cn, "Halt! You will die where you stand!");
+            say(cn, "Halt! Thou wilt die where thou standest!");
             ppd->guard2_last_talk = realtime;
         }
     }
@@ -465,7 +465,7 @@ void glori_driver(int cn, int ret, int lastact) {
 
             switch (ppd->glori_state) {
             case 0:
-                quiet_say(cn, "Thank you for coming %s!", ch[co].name);
+                quiet_say(cn, "I thank thee for coming %s!", ch[co].name);
                 questlog_done(co, 54);
                 questlog_open(co, 55);
                 ppd->glori_last_talk = realtime;
@@ -485,13 +485,13 @@ void glori_driver(int cn, int ret, int lastact) {
                 didsay = 1;
                 break;
             case 3:
-                quiet_say(cn, "We are currently working in secrecy with the guard outside of this library. He has informed me that the mages have set up three training facilities to train their minions.");
+                quiet_say(cn, "We are currently working in secrecy with the guard outside of this library. He hath informed me that the mages have set up three training facilities to train their minions.");
                 ppd->glori_last_talk = realtime;
                 ppd->glori_state++;
                 didsay = 1;
                 break;
             case 4:
-                quiet_say(cn, "Travel to the three training facilities to the east and examine the minions fighting styles. Come back to me with your findings.");
+                quiet_say(cn, "Travel to the three training facilities to the east and examine the minions fighting styles. Come back to me with thy findings.");
                 ppd->glori_last_talk = realtime;
                 ppd->glori_state++;
                 didsay = 1;
@@ -524,7 +524,7 @@ void glori_driver(int cn, int ret, int lastact) {
                 didsay = 1;
                 break;
             case 9:
-                quiet_say(cn, "Please go and investigate this and report back with your findings, if any.");
+                quiet_say(cn, "Please go and investigate this and report back with thy findings, if any.");
                 ppd->glori_last_talk = realtime;
                 ppd->glori_state++;
                 didsay = 1;
@@ -538,7 +538,7 @@ void glori_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                 } else break;
             case 11:
-                quiet_say(cn, "Wow, these are most interesting. I suggest you speak with the guard outside and ask if he knows of anyone that may be able to tell you what these are for.");
+                quiet_say(cn, "Wow, these are most interesting. I suggest thou speak with the guard outside and ask if he knoweth of anyone that may be able to tell thee what these are for.");
                 ppd->glori_last_talk = realtime;
                 ppd->glori_state++;
                 didsay = 1;
@@ -564,7 +564,7 @@ void glori_driver(int cn, int ret, int lastact) {
                 didsay = 1;
                 break;
             case 15:
-                quiet_say(cn, "If he can make a complete key from these, he'll probably need some sort of payment. Once the key is made, take it Arquin out front. He should be able to tell you where to go with it.");
+                quiet_say(cn, "If he can make a complete key from these, he'll probably need some sort of payment. Once the key is made, take it Arquin out front. He should be able to tell thee where to go with it.");
                 ppd->glori_last_talk = realtime;
                 ppd->glori_state++;
                 didsay = 1;
@@ -577,7 +577,7 @@ void glori_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                 } else break;
             case 17:
-                quiet_say(cn, "Well done, %s. Did you talk to Homden yet?", ch[co].name);
+                quiet_say(cn, "Well done, %s. Didst thou talk to Homden yet?", ch[co].name);
                 ppd->glori_last_talk = realtime;
                 ppd->glori_state++;
                 didsay = 1;
@@ -596,9 +596,9 @@ void glori_driver(int cn, int ret, int lastact) {
             co = msg->dat1;
             if ((in = ch[cn].citem)) { // we still have it
                 if (it[in].ID == IID_CALIGAROBELISK1 || it[in].ID == IID_CALIGAROBELISK2 || it[in].ID == IID_CALIGAROBELISK3) {
-                    if (!has_item(co, IID_CALIGAROBELISK3) && it[in].ID != IID_CALIGAROBELISK3) quiet_say(cn, "You will need all three of them. I've heard a heavy drinker tell about another dungeon being hidden in his favorite place.");
-                    else if (!has_item(co, IID_CALIGAROBELISK1) && it[in].ID != IID_CALIGAROBELISK1) quiet_say(cn, "You will need all three of them. One of them, so rumor has it, is behind a large building.");
-                    else if (!has_item(co, IID_CALIGAROBELISK2) && it[in].ID != IID_CALIGAROBELISK2) quiet_say(cn, "You will need all three of them. As I said before, one should be accessible through a shop.");
+                    if (!has_item(co, IID_CALIGAROBELISK3) && it[in].ID != IID_CALIGAROBELISK3) quiet_say(cn, "Thou wilt need all three of them. I have heard a heavy drinker tell about another dungeon being hidden in his favorite place.");
+                    else if (!has_item(co, IID_CALIGAROBELISK1) && it[in].ID != IID_CALIGAROBELISK1) quiet_say(cn, "Thou wilt need all three of them. One of them, so rumor has it, is behind a large building.");
+                    else if (!has_item(co, IID_CALIGAROBELISK2) && it[in].ID != IID_CALIGAROBELISK2) quiet_say(cn, "Thou wilt need all three of them. As I said before, one should be accessible through a shop.");
                 }
                 if (!give_char_item(co, in)) destroy_item(ch[cn].citem);
                 ch[cn].citem = 0;
@@ -723,7 +723,7 @@ void arquin_driver(int cn, int ret, int lastact) {
                 didsay = 1;
                 break;
             case 2:
-                quiet_say(cn, "If you can get into them you can kill the minions being trained there. Bring anything you might find to Glori.");
+                quiet_say(cn, "If thou canst get into them thou canst kill the minions being trained there. Bring anything thou mightst find to Glori.");
                 ppd->arquin_last_talk = realtime;
                 ppd->arquin_state++;
                 didsay = 1;
@@ -733,7 +733,7 @@ void arquin_driver(int cn, int ret, int lastact) {
                     ppd->arquin_state++;
                 } else break;
             case 4:
-                quiet_say(cn, "Aha, I see you have gotten a hold of the key. I know of someone who may be able to tell you what it unlocks. He is a brother of the Carmin Clan, named Homden.");
+                quiet_say(cn, "Aha, I see thou hast gotten a hold of the key. I know of someone who may be able to tell thee what it unlocketh. He is a brother of the Carmin Clan, named Homden.");
                 ppd->arquin_last_talk = realtime;
                 ppd->arquin_state++;
                 didsay = 1;
@@ -866,7 +866,7 @@ void smith_driver(int cn, int ret, int lastact) {
                     has_item(co, IID_CALIGARKEYP3)) ppd->smith_state++; // fall thru
                 else break;
             case 1:
-                quiet_say(cn, "Hello there. I hear you need a key made. Well, for a small fee of 5000 gold I would be more than willing to do it. \260c4Yes, Okay\260c0 / \260c4No, not today\260c0");
+                quiet_say(cn, "Hello there. I hear thou needest a key made. Well, for a small fee of 5000 gold I would be more than willing to do it. \260c4Yes, Okay\260c0 / \260c4No, not today\260c0");
                 ppd->smith_last_talk = realtime;
                 ppd->smith_state++;
                 didsay = 1;
@@ -882,25 +882,25 @@ void smith_driver(int cn, int ret, int lastact) {
                 didsay = 1;
                 break;
             case 4:
-                quiet_say(cn, "I don't know much of my family's history, but I know we lived up in the mountains for a long time.");
+                quiet_say(cn, "I do not know much of my family's history, but I know we lived up in the mountains for a long time.");
                 ppd->smith_state++;
                 ppd->smith_last_talk = realtime;
                 didsay = 1;
                 break;
             case 5:
-                quiet_say(cn, "My father still lives up there somewhere. Some of us have later on built a life amongst you humans, and learned your ways and language.");
+                quiet_say(cn, "My father still lives up there somewhere. Some of us have later on built a life amongst you humans, and learned thy ways and language.");
                 ppd->smith_state++;
                 ppd->smith_last_talk = realtime;
                 didsay = 1;
                 break;
             case 6:
-                quiet_say(cn, "I even compiled a dictionary to help learning your common tounge, it should be most helpful to translate that book.");
+                quiet_say(cn, "I even compiled a dictionary to help learning thy common tounge, it should be most helpful to translate that book.");
                 ppd->smith_state++;
                 ppd->smith_last_talk = realtime;
                 didsay = 1;
                 break;
             case 7:
-                quiet_say(cn, "Well I forged you a key for 5000g, a hand written dictionary like this must be worth at least the double. So \260c04pay 10000g\260c0 must be a fair price don't you think?");
+                quiet_say(cn, "Well I forged thee a key for 5000g, a hand written dictionary like this must be worth at least the double. So \260c04pay 10000g\260c0 must be a fair price, dost thou not think?");
                 ppd->smith_state++;
                 ppd->smith_last_talk = realtime;
                 didsay = 1;
@@ -955,12 +955,12 @@ void smith_driver(int cn, int ret, int lastact) {
             case 3:
                 if (has_item(co, IID_CALIGARKEYP1) && has_item(co, IID_CALIGARKEYP2) && has_item(co, IID_CALIGARKEYP3)) {
                     if (ch[co].gold < 5000 * 100) {
-                        quiet_say(cn, "Sorry, it seems you cannot pay me.");
+                        quiet_say(cn, "Sorry, it seemeth thou canst not pay me.");
                         break;
                     }
                     in = create_item("caligar_underground_key");
                     if (!in) {
-                        quiet_say(cn, "Oops. You found bug #1635t. Please report it.");
+                        quiet_say(cn, "Oops. Thou foundest bug #1635t. Please report it.");
                         break;
                     }
                     if (!give_char_item(co, in)) {
@@ -972,10 +972,10 @@ void smith_driver(int cn, int ret, int lastact) {
                     destroy_item_byID(co, IID_CALIGARKEYP3);
                     ch[co].gold -= 5000 * 100;
                     ch[co].flags |= CF_ITEMS;
-                } else quiet_say(cn, "You do not appear to have all the neccessary parts.");
+                } else quiet_say(cn, "Thou dost not appear to have all the neccessary parts.");
                 break;
             case 4:
-                quiet_say(cn, "Okay, come back if you change your mind.");
+                quiet_say(cn, "Okay, come back if thou changest thy mind.");
                 break;
             case 5:
                 appd = set_data(co, DRD_ARKHATA_PPD, sizeof(struct arkhata_ppd));
@@ -983,12 +983,12 @@ void smith_driver(int cn, int ret, int lastact) {
                     break;
                 }
                 if (ch[co].gold < 10000 * 100) {
-                    quiet_say(cn, "Sorry, it seems you cannot pay me.");
+                    quiet_say(cn, "Sorry, it seemeth thou canst not pay me.");
                     break;
                 }
                 in = create_item("dictionary");
                 if (!in) {
-                    quiet_say(cn, "Oops. You found bug #1636t. Please report it.");
+                    quiet_say(cn, "Oops. Thou foundest bug #1636t. Please report it.");
                     break;
                 }
                 if (!give_char_item(co, in)) {
@@ -1069,7 +1069,7 @@ void homden_driver(int cn, int ret, int lastact) {
                 if (has_item(co, IID_CALIGARDUNGEONKEY)) ppd->homden_state++; // fall thru
                 else break;
             case 1:
-                quiet_say(cn, "You come seeking my help? I'd be glad to help if it means my brothers will be put to a stop. However, I need your help first.");
+                quiet_say(cn, "Thou comest seeking my help? I would be glad to help if it meaneth my brothers will be put to a stop. However, I need thy help first.");
                 questlog_open(co, 59);
                 ppd->homden_last_talk = realtime;
                 ppd->homden_state++;
@@ -1082,7 +1082,7 @@ void homden_driver(int cn, int ret, int lastact) {
                 didsay = 1;
                 break;
             case 3:
-                quiet_say(cn, "If you could please go and find it for me while I gather my thoughts on my brothers I would reward thee. There is a cave to the east, start your search there.");
+                quiet_say(cn, "If thou couldst please go and find it for me while I gather my thoughts on my brothers I would reward thee. There is a cave to the east, start thy search there.");
                 ppd->homden_last_talk = realtime;
                 ppd->homden_state++;
                 didsay = 1;
@@ -1090,19 +1090,19 @@ void homden_driver(int cn, int ret, int lastact) {
             case 4:
                 break;
             case 5:
-                quiet_say(cn, "Thank you, %s.", ch[co].name);
+                quiet_say(cn, "I thank thee, %s.", ch[co].name);
                 ppd->homden_last_talk = realtime;
                 ppd->homden_state++;
                 didsay = 1;
                 break;
             case 6:
-                quiet_say(cn, "Now, about my brothers. They are planning to resurrect the last Emporer. If they succeed, they hope to trick the citizens of Aston into thinking that the Emporer has returned and try to restore his royal status.");
+                quiet_say(cn, "Now, about my brothers. They are planning to resurrect the last Emperor. If they succeed, they hope to trick the citizens of Aston into thinking that the Emperor has returned and try to restore his royal status.");
                 ppd->homden_last_talk = realtime;
                 ppd->homden_state++;
                 didsay = 1;
                 break;
             case 7:
-                quiet_say(cn, "Once that happens, they will slowly begin destroying the town, and have said their first target would be the Labyrinths that Ishtar made to strengthen his army.");
+                quiet_say(cn, "Once that happeneth, they will slowly begin destroying the town, and have said their first target would be the Labyrinths that Ishtar made to strengthen his army.");
                 ppd->homden_last_talk = realtime;
                 ppd->homden_state++;
                 didsay = 1;
@@ -1114,13 +1114,13 @@ void homden_driver(int cn, int ret, int lastact) {
                 didsay = 1;
                 break;
             case 9:
-                quiet_say(cn, "It's a passage that leads to the palace. There will be three levels in the palace to test you. Not even I am sure how to navigate it. I do know the plaque you seek is locked in a chest on the last floor of the palace.");
+                quiet_say(cn, "It is a passage that leadeth to the palace. There will be three levels in the palace to test thee. Not even I am sure how to navigate it. I do know the plaque thou seekest is locked in a chest on the last floor of the palace.");
                 ppd->homden_last_talk = realtime;
                 ppd->homden_state++;
                 didsay = 1;
                 break;
             case 10:
-                quiet_say(cn, "If they do not have that plaque, they cannot raise the Emporer. But, I suggest you hurry. Once their army is complete, they will begin trying to raise the Emporer. Good luck adventurer!");
+                quiet_say(cn, "If they do not have that plaque, they cannot raise the Emperor. But, I suggest thou hurry. Once their army is complete, they will begin trying to raise the Emperor. Good luck adventurer!");
                 ppd->homden_last_talk = realtime;
                 ppd->homden_state++;
                 didsay = 1;

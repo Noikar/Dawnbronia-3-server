@@ -66,13 +66,13 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"repeat", NULL}, NULL, 2},
     {{"restart", NULL}, NULL, 2},
     {{"please", "repeat", NULL}, NULL, 2},
@@ -424,7 +424,7 @@ void gate_welcome_driver(int cn, int ret, int lastact) {
                         ppd->welcome_state = 6;
                         didsay = 1;
                     } else if ((ch[co].flags & CF_MAGE) && (ch[co].flags & CF_WARRIOR)) { // seyan, non-arch
-                        say(cn, "Since thou art already a Seyan'Du, thy only choice is to become Arch-Seyan'Du.");
+                        say(cn, "Since thou art already a Seyan'Du, thine only choice is to become Arch-Seyan'Du.");
                         ppd->welcome_state++;
                         didsay = 1;
                     } else {
@@ -554,7 +554,7 @@ void gate_fight_driver(int cn, int ret, int lastact) {
 
     // self destruct eventually
     if (ticker - dat->creation_time > TICKS * 60 * 10) {
-        say(cn, "Thats all folks!");
+        say(cn, "That is all folks!");
         remove_destroy_char(cn);
         return;
     }

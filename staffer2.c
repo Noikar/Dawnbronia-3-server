@@ -74,13 +74,13 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"repeat", NULL}, NULL, 2},
     {{"restart", NULL}, NULL, 2},
     {{"please", "repeat", NULL}, NULL, 2},
@@ -571,17 +571,17 @@ void count_brannington_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    quiet_say(cn, "My guards told me that you were coming, and they said you might be able to help me with my problems.");
+                    quiet_say(cn, "My guards told me that thou wert coming, and they said thou mightst be able to help me with my problems.");
                     ppd->countbran_state++;
                     didsay = 1;
                     break;
                 case 2:
-                    quiet_say(cn, "You see, my family was recently robbed by three thief mages of our most valuable jewelry, and we would like to ask for your aid.");
+                    quiet_say(cn, "Thou seest, my family was recently robbed by three thief mages of our most valuable jewelry, and we would like to ask for thine aid.");
                     ppd->countbran_state++;
                     didsay = 1;
                     break;
                 case 3:
-                    quiet_say(cn, "If you can bring back our jewelry, we would be very thankful indeed.");
+                    quiet_say(cn, "If thou canst bring back our jewelry, we would be very thankful indeed.");
                     ppd->countbran_state = 4;
                     didsay = 1;
                     break;
@@ -635,7 +635,7 @@ void count_brannington_driver(int cn, int ret, int lastact) {
                 ppd2 = set_data(co, DRD_ARKHATA_PPD, sizeof(struct arkhata_ppd));
 
                 if (it[in].ID == IID_STAFF_COUNTJEWEL && ppd && !(ppd->countbran_bits & 1)) {
-                    quiet_say(cn, "Thank you so much for bringing this back, %s. It has been in the family for generations. Here is your reward.", ch[co].name);
+                    quiet_say(cn, "I thank thee so much for bringing this back, %s. It hath been in the family for generations. Here is thy reward.", ch[co].name);
                     destroy_item_byID(co, IID_STAFF_COUNTJEWEL);
                     destroy_item_byID(co, IID_STAFF_THIEFKEY1);
                     destroy_item_byID(co, IID_STAFF_REDKEY1);
@@ -656,7 +656,7 @@ void count_brannington_driver(int cn, int ret, int lastact) {
                     if ((ppd->countbran_bits & (1 | 2 | 4)) == (1 | 2 | 4)) questlog_done(co, 40);
                     countbran_give_keys(cn, co, ppd);
                 } else if (it[in].ID == IID_STAFF_COUNTESSAJEWEL && ppd && !(ppd->countbran_bits & 2)) {
-                    quiet_say(cn, "Ah, my wife will be most pleased! Here is your reward, %s. If you go to my wife she will give you an additional reward.", ch[co].name);
+                    quiet_say(cn, "Ah, my wife will be most pleased! Here is thy reward, %s. If thou goest to my wife she will give thee an additional reward.", ch[co].name);
                     destroy_item_byID(co, IID_STAFF_COUNTESSAJEWEL);
                     destroy_item_byID(co, IID_STAFF_THIEFKEY2);
                     destroy_item_byID(co, IID_STAFF_BLUEKEY1);
@@ -677,7 +677,7 @@ void count_brannington_driver(int cn, int ret, int lastact) {
                     countbran_give_keys(cn, co, ppd);
                     if ((ppd->countbran_bits & (1 | 2 | 4)) == (1 | 2 | 4)) questlog_done(co, 40);
                 } else if (it[in].ID == IID_STAFF_DAUGHTERJEWEL && ppd && !(ppd->countbran_bits & 4)) {
-                    quiet_say(cn, "Returning this will heal my daughter's heart. She has been so upset about losing it. Let me reward you now, %s, and if you go to my daughter, she will further reward you.", ch[co].name);
+                    quiet_say(cn, "Returning this will heal my daughter's heart. She hath been so upset about losing it. Let me reward thee now, %s, and if thou goest to my daughter, she will further reward thee.", ch[co].name);
                     destroy_item_byID(co, IID_STAFF_DAUGHTERJEWEL);
                     destroy_item_byID(co, IID_STAFF_THIEFKEY3);
                     destroy_item_byID(co, IID_STAFF_GREENKEY1);
@@ -697,7 +697,7 @@ void count_brannington_driver(int cn, int ret, int lastact) {
                     if ((ppd->countbran_bits & (1 | 2 | 4)) == (1 | 2 | 4)) questlog_done(co, 40);
                     countbran_give_keys(cn, co, ppd);
                 } else if (it[in].ID == IID_ARKHATA_LETTER3 && ppd && !(ppd2->letter_bits & 4)) {
-                    quiet_say(cn, "Ahh, this is a most clever solution. Thank you once again, %s.", ch[co].name);
+                    quiet_say(cn, "Ahh, this is a most clever solution. I thank thee once again, %s.", ch[co].name);
                     destroy_item_byID(co, IID_ARKHATA_LETTER3);
 
                     ppd2->letter_bits |= 4;
@@ -793,13 +793,13 @@ void brenneth_brannington_driver(int cn, int ret, int lastact) {
             if (ppd) {
                 switch (ppd->brennethbran_state) {
                 case 0:
-                    quiet_say(cn, "Greetings stranger... I'm afraid I can't be of much help to you, as I can't recall much, except my name...");
+                    quiet_say(cn, "Greetings stranger... I am afraid I cannot be of much help to thee, as I cannot recall much, except my name...");
                     questlog_open(co, 41);
                     ppd->brennethbran_state++;
                     didsay = 1;
                     break;
                 case 1:
-                    quiet_say(cn, "Perhaps you can help me, though I do not wish to burden you... You see, it appears that I have lost my memory due to being attacked by something...");
+                    quiet_say(cn, "Perhaps thou canst help me, though I do not wish to burden thee... Thou seest, it appeareth that I have lost my memory due to being attacked by something...");
                     ppd->brennethbran_state++;
                     didsay = 1;
                     break;
@@ -809,7 +809,7 @@ void brenneth_brannington_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    quiet_say(cn, "Perhaps one of these... grolms... has taken something that may help me recall why I'm here... If you find anything, please bring it back to me...");
+                    quiet_say(cn, "Perhaps one of these... grolms... has taken something that may help me recall why I am here... If thou findest anything, please bring it back to me...");
                     ppd->brennethbran_state++;
                     didsay = 1;
                     break;
@@ -820,7 +820,7 @@ void brenneth_brannington_driver(int cn, int ret, int lastact) {
                         ppd->brennethbran_state = 9;
                         break;
                     }
-                    quiet_say(cn, "It does have my name on it, but I don't recall anything of being a fighter...");
+                    quiet_say(cn, "It doth have my name on it, but I do not recall anything of being a fighter...");
                     questlog_open(co, 42);
                     ppd->brennethbran_state++;
                     didsay = 1;
@@ -831,7 +831,7 @@ void brenneth_brannington_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 7:
-                    quiet_say(cn, "If you will, please continue looking for more items... Maybe my captor managed to hide something...");
+                    quiet_say(cn, "If thou wilt, please continue looking for more items... Maybe my captor managed to hide something...");
                     ppd->brennethbran_state++;
                     didsay = 1;
                     break;
@@ -848,24 +848,24 @@ void brenneth_brannington_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 10:
-                    quiet_say(cn, "I just can't imagine why I would want to poison... anyone or anything...");
+                    quiet_say(cn, "I just cannot imagine why I would want to poison... anyone or anything...");
                     ppd->brennethbran_state++;
                     didsay = 1;
                     break;
                 case 11:
                     break; // waiting for journal
                 case 12:
-                    quiet_say(cn, "I was to kill these thief mages were they to get out of hand... And probably even you and who knows who else...");
+                    quiet_say(cn, "I was to kill these thief mages were they to get out of hand... And probably even thee and who knoweth whom else...");
                     ppd->brennethbran_state++;
                     didsay = 1;
                     break;
                 case 13:
-                    quiet_say(cn, "But I'm going to give that life up now... This loss of memory is perhaps more of a blessing than it is a curse...");
+                    quiet_say(cn, "But I am going to give that life up now... This loss of memory is perhaps more of a blessing than it is a curse...");
                     ppd->brennethbran_state++;
                     didsay = 1;
                     break;
                 case 14:
-                    quiet_say(cn, "Thank you for helping me, I will not forget this, I hope.");
+                    quiet_say(cn, "I thank thee for helping me, I will not forget this, I hope.");
                     emote(cn, "smiles");
                     ppd->brennethbran_state++;
                     didsay = 1;
@@ -1056,12 +1056,12 @@ void spirit_brannington_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 2:
-                    quiet_say(cn, "If you can retrieve the Brannington Holy Relic which the necromancer has taken, then his army will no longer obey him, and will be trapped here forever.");
+                    quiet_say(cn, "If thou canst retrieve the Brannington Holy Relic which the necromancer has taken, then his army will no longer obey him, and will be trapped here forever.");
                     ppd->spiritbran_state++;
                     didsay = 1;
                     break;
                 case 3:
-                    quiet_say(cn, "Also, I wish for you to kill this Necromancer. However, in order to get into the crypt, you will have to ask Count Brannington about his jewelry. You will need his help to open the crypt doors.");
+                    quiet_say(cn, "Also, I wish for thee to kill this Necromancer. However, in order to get into the crypt, thou wilt have to ask Count Brannington about his jewelry. Thou wilt need his help to open the crypt doors.");
                     ppd->spiritbran_state = 4;
                     didsay = 1;
                     break;
@@ -1115,7 +1115,7 @@ void spirit_brannington_driver(int cn, int ret, int lastact) {
 
                 if (it[in].ID == IID_STAFF_HOLYRELIC && ppd && ppd->spiritbran_state < 5) {
                     int tmp;
-                    quiet_say(cn, "The Branningtons owe you much great hero. I give thee Ishtar's blessings... May your journeys be full of adventure and glory, %s!", ch[co].name);
+                    quiet_say(cn, "The Branningtons owe thee much great hero. I give thee Ishtar's blessings... May thy journeys be full of adventure and glory, %s!", ch[co].name);
                     tmp = questlog_done(co, 44);
                     destroy_item_byID(co, IID_STAFF_HOLYRELIC);
                     if (tmp == 1 && !(ch[co].flags & CF_HARDCORE) && ch[co].saves < 10) {
@@ -1216,12 +1216,12 @@ void forest_brannington_driver(int cn, int ret, int lastact) {
             if (ppd) {
                 switch (ppd->forestbran_state) {
                 case 0:
-                    quiet_say(cn, "Welcome %s, how are you today?", ch[co].name);
+                    quiet_say(cn, "Welcome %s, how art thou today?", ch[co].name);
                     ppd->forestbran_state++;
                     didsay = 1;
                     break;
                 case 1:
-                    quiet_say(cn, "I've heard of your ventures, and thought I might tell you something that might interest you.");
+                    quiet_say(cn, "I have heard of thy ventures, and thought I might tell thee something that might interest thee.");
                     ppd->forestbran_state++;
                     didsay = 1;
                     break;
@@ -1231,7 +1231,7 @@ void forest_brannington_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    quiet_say(cn, "These maps supposedly lead to treasures they have hidden in the forest. If you have one, you can give it to me, and I'll tell you where to dig to find the treasure.");
+                    quiet_say(cn, "These maps supposedly lead to treasures they have hidden in the forest. If thou hast one, thou canst give it to me, and I shall tell thee where to dig to find the treasure.");
                     ppd->forestbran_state = 4;
                     didsay = 1;
                     break;
@@ -1284,22 +1284,22 @@ void forest_brannington_driver(int cn, int ret, int lastact) {
                 if (it[in].ID == IID_STAFF_FORESTMAP && ppd) {
                     switch (ppd->forestbran_done) {
                     case 0:
-                        say(cn, "Ah, I see you have brought me a map. Let me see where this one is hidden. hhhmmm... It is beneath a dead tree...");
+                        say(cn, "Ah, I see thou hast brought me a map. Let me see where this one is hidden. hhhmmm... It is beneath a dead tree...");
                         break;
                     case 1:
-                        say(cn, "Ah, I see you have brought me a map. Let me see where this one is hidden. hhhmmm... It is under the heat of a fire...");
+                        say(cn, "Ah, I see thou hast brought me a map. Let me see where this one is hidden. hhhmmm... It is under the heat of a fire...");
                         break;
                     case 2:
-                        say(cn, "Ah, I see you have brought me a map. Let me see where this one is hidden. hhhmmm... It is next to an empty bucket...");
+                        say(cn, "Ah, I see thou hast brought me a map. Let me see where this one is hidden. hhhmmm... It is next to an empty bucket...");
                         break;
                     case 3:
-                        say(cn, "Ah, I see you have brought me a map. Let me see where this one is hidden. hhhmmm... It is inside a circle of stones...");
+                        say(cn, "Ah, I see thou hast brought me a map. Let me see where this one is hidden. hhhmmm... It is inside a circle of stones...");
                         break;
                     case 4:
-                        say(cn, "Ah, I see you have brought me a map. Let me see where this one is hidden. hhhmmm... It is next to a pair of bags...");
+                        say(cn, "Ah, I see thou hast brought me a map. Let me see where this one is hidden. hhhmmm... It is next to a pair of bags...");
                         break;
                     case 5:
-                        say(cn, "This is the first map again, I'm afraid. I think you've found all the treasures.");
+                        say(cn, "This is the first map again, I am afraid. I think thou hast found all the treasures.");
                         break;
                     }
                 } else {
@@ -1399,7 +1399,7 @@ void countessa_brannington_driver(int cn, int ret, int lastact) {
                         ppd->countessabran_state = 1;
                         // fall through intended
                     } else {
-                        quiet_say(cn, "Have you come here to return to us the jewelry that has been handed down from generation to generation? We would be so thankful if you did kind %s!", (ch[co].flags & CF_MALE) ? "Sir" : "Lady");
+                        quiet_say(cn, "Hast thou come here to return to us the jewelry that hath been handed down from generation to generation? We would be so thankful if thou didst kind %s!", (ch[co].flags & CF_MALE) ? "Sir" : "Lady");
                         ppd->countessabran_state++;
                         didsay = 1;
                         break;
@@ -1414,7 +1414,7 @@ void countessa_brannington_driver(int cn, int ret, int lastact) {
                         ppd->countessabran_state = 3;
                         // fall through intended
                     } else {
-                        quiet_say(cn, "Thank you for returning my jewelry! Let me reward you for your kindness, %s!", ch[co].name);
+                        quiet_say(cn, "I thank thee for returning my jewelry! Let me reward thee for thy kindness, %s!", ch[co].name);
                         ppd->countessabran_state++;
                         didsay = 1;
                         ppd->countbran_bits |= 8;
@@ -1563,7 +1563,7 @@ void daughter_brannington_driver(int cn, int ret, int lastact) {
                         ppd->daughterbran_state = 3;
                         // fall through intended
                     } else {
-                        quiet_say(cn, "Oh thank you great %s, you are my hero! Let me reward you for such heroism, %s!", (ch[co].flags & CF_MALE) ? "Sir" : "Lady", ch[co].name);
+                        quiet_say(cn, "Oh, I thank thee, great %s, thou art my hero! Let me reward thee for such heroism, %s!", (ch[co].flags & CF_MALE) ? "Sir" : "Lady", ch[co].name);
                         ppd->daughterbran_state++;
                         didsay = 1;
                         ppd->countbran_bits |= 16;
@@ -1695,7 +1695,7 @@ void guard_brannington_driver(int cn, int ret, int lastact) {
             if (ppd) {
                 switch (ppd->guardbran_state) {
                 case 0:
-                    if (ppd->countbran_state == 0) quiet_say(cn, "Greetings stranger, welcome to the town of Brannington. If you will, the Count would like to ask for your services. We have already informed him of your arrival, and you can find him in the mansion at the end of this street.");
+                    if (ppd->countbran_state == 0) quiet_say(cn, "Greetings stranger, welcome to the town of Brannington. If thou wilt, the Count would like to ask for thy services. We have already informed him of thine arrival, and thou canst find him in the mansion at the end of this street.");
                     ppd->guardbran_state++;
                     didsay = 1;
                     break;
@@ -1703,7 +1703,7 @@ void guard_brannington_driver(int cn, int ret, int lastact) {
                     if (ch[co].level >= 45 && (ppd->countbran_bits & (1 | 2 | 4)) == (1 | 2 | 4)) ppd->guardbran_state++;
                     else break;
                 case 2:
-                    quiet_say(cn, "Greetings! Count Brannington has told me thou helped him retrieve his family heirlooms. This time I must ask for thy help.");
+                    quiet_say(cn, "Greetings! Count Brannington has told me thou helpedst him retrieve his family heirlooms. This time I must ask for thy help.");
                     ppd->guardbran_state++;
                     didsay = 1;
                     break;
@@ -1713,12 +1713,12 @@ void guard_brannington_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 4:
-                    quiet_say(cn, "However my cousin is not an easily fooled man, and this must be investigated. I have discussed this with the Count and he agrees that I should send you as we are most convinced there actually is someone up there.");
+                    quiet_say(cn, "However my cousin is not an easily fooled man, and this must be investigated. I have discussed this with the Count and he agreeth that I should send thee as we are most convinced there actually is someone up there.");
                     ppd->guardbran_state++;
                     didsay = 1;
                     break;
                 case 5:
-                    quiet_say(cn, "Your mission, %s is to find out who is up there, and if they are friendly or hostile.", get_army_rank_string(co));
+                    quiet_say(cn, "Thy mission, %s is to find out who is up there, and if they are friendly or hostile.", get_army_rank_string(co));
                     ppd->guardbran_state++;
                     didsay = 1;
                     questlog_open(co, 64);
@@ -1730,7 +1730,7 @@ void guard_brannington_driver(int cn, int ret, int lastact) {
                         questlog_done(co, 64);
                     } else break;
                 case 7:
-                    quiet_say(cn, "Excellent! The Count will be most pleased to hear this. Thank you, %s!", ch[co].name);
+                    quiet_say(cn, "Excellent! The Count will be most pleased to hear this. I thank thee, %s!", ch[co].name);
                     ppd->guardbran_state++;
                     didsay = 1;
                     break;
@@ -1814,7 +1814,7 @@ void broklin_trade_gold(int cn, int co) {
     if (ppd->broklin_state < 11) return;
 
     if (ch[co].citem) {
-        say(cn, "Please free your hand (mouse cursor) first.");
+        say(cn, "Please free thy hand (mouse cursor) first.");
         return;
     }
 
@@ -1836,11 +1836,11 @@ void broklin_trade_gold(int cn, int co) {
             if (in) {
                 if (!give_char_item(co, in)) destroy_item(in);
             }
-            say(cn, "Here you go, %s.", ch[co].name);
+            say(cn, "Here thou goest, %s.", ch[co].name);
             return;
         }
     }
-    say(cn, "You need to have 1000 gold units in a single spot in your inventory, %s.", ch[co].name);
+    say(cn, "Thou needest to have 1000 gold units in a single spot in thine inventory, %s.", ch[co].name);
 }
 void broklin_trade_silver(int cn, int co) {
     struct staffer_ppd *ppd;
@@ -1851,7 +1851,7 @@ void broklin_trade_silver(int cn, int co) {
     if (ppd->broklin_state < 11) return;
 
     if (ch[co].citem) {
-        say(cn, "Please free your hand (mouse cursor) first.");
+        say(cn, "Please free thy hand (mouse cursor) first.");
         return;
     }
 
@@ -1873,11 +1873,11 @@ void broklin_trade_silver(int cn, int co) {
             if (in) {
                 if (!give_char_item(co, in)) destroy_item(in);
             }
-            say(cn, "Here you go, %s.", ch[co].name);
+            say(cn, "Here thou goest, %s.", ch[co].name);
             return;
         }
     }
-    say(cn, "You need to have 5000 silver units in a single spot in your inventory, %s.", ch[co].name);
+    say(cn, "Thou needest to have 5000 silver units in a single spot in thine inventory, %s.", ch[co].name);
 }
 
 void broklin_driver(int cn, int ret, int lastact) {
@@ -1950,12 +1950,12 @@ void broklin_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 2:
-                    quiet_say(cn, "I wonder... you look like a capable adventurer - mayhaps you could take a trip to visit these robbers?");
+                    quiet_say(cn, "I wonder... thou lookest like a capable adventurer - mayhaps thou couldst take a trip to visit these robbers?");
                     ppd->broklin_state++;
                     didsay = 1;
                     break;
                 case 3:
-                    quiet_say(cn, "I suspect that one of the towns shopkeepers is involved with the robbers.");
+                    quiet_say(cn, "I suspect that one of the town's shopkeepers is involved with the robbers.");
                     ppd->broklin_state++;
                     didsay = 1;
                     break;
@@ -1967,18 +1967,18 @@ void broklin_driver(int cn, int ret, int lastact) {
                         ppd->broklin_state = 11;
                         break;
                     }
-                    quiet_say(cn, "Could I impose on your services some more? I would reward thee further.");
+                    quiet_say(cn, "Could I impose on thy services some more? I would reward thee further.");
                     questlog_open(co, 46);
                     ppd->broklin_state++;
                     didsay = 1;
                     break;
                 case 6:
-                    quiet_say(cn, "The robbers infest this city...perhaps you could kill the head robber.");
+                    quiet_say(cn, "The robbers infest this city...perhaps thou couldst kill the head robber.");
                     ppd->broklin_state++;
                     didsay = 1;
                     break;
                 case 7:
-                    quiet_say(cn, "I hear his whereabouts is a great secret, but maybe you could find him.");
+                    quiet_say(cn, "I hear his whereabouts is a great secret, but maybe thou couldst find him.");
                     ppd->broklin_state++;
                     didsay = 1;
                     break;
@@ -1988,13 +1988,13 @@ void broklin_driver(int cn, int ret, int lastact) {
                         if (in) {
                             if (!give_char_item(co, in)) destroy_item(in);
                         }
-                        quiet_say(cn, "This key lets you enter the sewers under the town.");
-                    } else quiet_say(cn, "You already have the key for the sewers...");
+                        quiet_say(cn, "This key lets thee enter the sewers under the town.");
+                    } else quiet_say(cn, "Thou already hast the key for the sewers...");
                     ppd->broklin_state++;
                     didsay = 1;
                     break;
                 case 9:
-                    quiet_say(cn, "You can begin your search there!");
+                    quiet_say(cn, "Thou canst begin thy search there!");
                     ppd->broklin_state++;
                     didsay = 1;
                     break;
@@ -2002,7 +2002,7 @@ void broklin_driver(int cn, int ret, int lastact) {
                     break; // waiting player to kill robber's head
 
                 case 11:
-                    quiet_say(cn, "If you ever have need of silver or gold for plating, I can offer reasonable trade rates.");
+                    quiet_say(cn, "If thou ever hast need of silver or gold for plating, I can offer reasonable trade rates.");
                     ppd->broklin_state++;
                     didsay = 1;
                     break;
@@ -2024,7 +2024,7 @@ void broklin_driver(int cn, int ret, int lastact) {
                 case 15:
                     break; // waiting for repeat :P
                 case 16:
-                    quiet_say(cn, "Hail %s! Nice to see you again.", ch[co].name);
+                    quiet_say(cn, "Hail %s! Nice to see thee again.", ch[co].name);
                     ppd->broklin_state++;
                     didsay = 1;
                     break;
@@ -2100,12 +2100,12 @@ void broklin_driver(int cn, int ret, int lastact) {
                     destroy_item_byID(co, IID_STAFF_ROBBERKEYAREA1);
 
                     if (tmp == 1) {
-                        quiet_say(cn, "Thank you! Take these 2,000 gu - I am sure it will be useful to you.");
+                        quiet_say(cn, "I thank thee! Take these 2,000 gu - I am sure it will be useful to thee.");
                         in = create_item("gold_2000");
                         if (in) {
                             if (!give_char_item(co, in)) destroy_item(in);
                         }
-                    } else quiet_say(cn, "Thank you!");
+                    } else quiet_say(cn, "I thank thee!");
                     ppd->broklin_state = 5;
                 } else {
                     quiet_say(cn, "Thou hast better use for this than I do. Well, if there is use for it at all.");
@@ -2200,19 +2200,19 @@ void grinnich_driver(int cn, int ret, int lastact) {
             if (ppd) {
                 switch (ppd->grinnich_state) {
                 case 0:
-                    quiet_say(cn, "Oh my! What brings the likes of you to this hermit's home? Adventure? Treasure? You sure do look like an adventurer... Well, if it's adventure you seek, then adventure you get! You see, this here is no ordinary place... It's a tower!");
+                    quiet_say(cn, "Oh my! What brings the likes of thee to this hermit's home? Adventure? Treasure? Thou sure dost look like an adventurer... Well, if it is adventure thou seekest, then adventure thou gettest! Thou seest, this here is no ordinary place... It is a tower!");
                     ppd->grinnich_state++;
                     didsay = 1;
                     break;
                 case 1:
-                    quiet_say(cn, "Oh no, I'm not crazy dear %s! It is! It's just buried into the ground. Find the entrance that leads to the tower, and venture deep into the earth. I tell you, you will not regret it at all!", Sirname(co));
+                    quiet_say(cn, "Oh no, I am not crazy dear %s! It is! It is just buried into the ground. Find the entrance that leadeth to the tower, and venture deep into the earth. I tell thee, thou wilt not regret it at all!", Sirname(co));
                     ppd->grinnich_state++;
                     didsay = 1;
                     break;
                 case 2:
                     break; // waiting for completion of quest
                 case 3:
-                    quiet_say(cn, "Didn't I tell you it was worth it? Oh, all that knowledge just makes the mind grow! Isn't Shanra wonderful? She can tell so many stories, more even than those books of her can...");
+                    quiet_say(cn, "Did I not tell thee it was worth it? Oh, all that knowledge just makes the mind grow! Is Shanra not wonderful? She can tell so many stories, more even than those books of her can...");
                     ppd->grinnich_state++;
                     didsay = 1;
                     break;
@@ -2348,12 +2348,12 @@ void shanra_driver(int cn, int ret, int lastact) {
             if (ppd) {
                 switch (ppd->shanra_state) {
                 case 0:
-                    quiet_say(cn, "Welcome adventurer, Grinnich told me you were coming. You have made it through my tower, and so I will reward you. You will have to work your way through some sentinels to find the Grimoire of Animation");
+                    quiet_say(cn, "Welcome adventurer, Grinnich told me thou wert coming. Thou hast made it through my tower, and so I will reward thee. Thou wilt have to work thy way through some sentinels to find the Grimoire of Animation");
                     ppd->shanra_state++;
                     didsay = 1;
                     break;
                 case 1:
-                    quiet_say(cn, "I will now teleport you to the basement.");
+                    quiet_say(cn, "I will now teleport thee to the basement.");
                     teleport_char_driver(co, 5, 106);
                     ppd->shanra_state++;
                     didsay = 1;
@@ -2361,7 +2361,7 @@ void shanra_driver(int cn, int ret, int lastact) {
                 case 2:
                     break;
                 case 3:
-                    quiet_say(cn, "Well done! It is good to see others learning about animation. I can't teach you how to use it though, the magic is ancient, and takes a long time to learn and control. I will now send you back to the ruins above.");
+                    quiet_say(cn, "Well done! It is good to see others learning about animation. I cannot teach thee how to use it though, the magic is ancient, and takes a long time to learn and control. I will now send thee back to the ruins above.");
                     ppd->shanra_state++;
                     didsay = 1;
                     break;

@@ -65,13 +65,13 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"repeat", NULL}, NULL, 2},
     {{"restart", NULL}, NULL, 2},
     {{"please", "repeat", NULL}, NULL, 2},
@@ -238,7 +238,7 @@ void gwendylon_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 2:
-                    quiet_say(cn, "I am trying to understand this magic. But I am too old to travel there, so I couldst use thine help, %s. Wouldst thou go thither and look for magical items?", ch[co].name);
+                    quiet_say(cn, "I am trying to understand this magic. But I am too old to travel there, so I could use thy help, %s. Wouldst thou go thither and look for magical items?", ch[co].name);
                     ppd->gwendy_state = 3;
                     didsay = 1;
                     break;
@@ -264,18 +264,18 @@ void gwendylon_driver(int cn, int ret, int lastact) {
                         ppd->gwendy_state = 10;
                         break;
                     }
-                    quiet_say(cn, "I have analyzed the item thou brought me. It seems there are more places with skeletons close by.");
+                    quiet_say(cn, "I have analyzed the item thou broughtest me. It seemeth there are more places with skeletons close by.");
                     questlog_open(co, 2);
                     ppd->gwendy_state++;
                     didsay = 1;
                     break;
                 case 7:
-                    quiet_say(cn, "Maybe the villagers know something about it. Some of them go hunting in the forest, they might have seen something. Thou might inquire in the tavern.");
+                    quiet_say(cn, "Maybe the villagers know something about it. Some of them go hunting in the forest, they might have seen something. Thou mightst inquire in the tavern.");
                     ppd->gwendy_state++;
                     didsay = 1;
                     break;
                 case 8:
-                    quiet_say(cn, "Somewhere in that place, there must be another magical item. Couldst thou bring me that one as well? I would double thine reward.");
+                    quiet_say(cn, "Somewhere in that place, there must be another magical item. Couldst thou bring me that one as well? I would double thy reward.");
                     ppd->gwendy_state++;
                     didsay = 1;
                     break;
@@ -322,7 +322,7 @@ void gwendylon_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 15:
-                    quiet_say(cn, "If thou dost find that foul magician, make certain thou killest him. I am certain he does have a fourth skull. Please bring it to me so I can destroy it.");
+                    quiet_say(cn, "If thou dost find that foul magician, make certain thou killest him. I am certain he doth have a fourth skull. Please bring it to me so I can destroy it.");
                     ppd->gwendy_state++;
                     didsay = 1;
                     break;
@@ -339,7 +339,7 @@ void gwendylon_driver(int cn, int ret, int lastact) {
                     break;
                 case 18:
                     if (realtime - ppd->gwendy_seen_timer > 60) {
-                        quiet_say(cn, "Nice to see you, %s.", ch[co].name);
+                        quiet_say(cn, "Nice to see thee, %s.", ch[co].name);
                         if (may_add_spell(co, IDR_BLESS) && do_bless(cn, co)) {
                             ppd->gwendy_seen_timer = realtime;
                             return;
@@ -410,7 +410,7 @@ void gwendylon_driver(int cn, int ret, int lastact) {
                 if (it[in].ID == IID_AREA1_SKELSKULL && ppd && ppd->gwendy_state <= 5) {
                     int tmp;
 
-                    quiet_say(cn, "Ahh, yes, that might be the thing I was looking for. Thank thee, %s.", ch[co].name);
+                    quiet_say(cn, "Ahh, yes, that might be the thing I was looking for. I thank thee, %s.", ch[co].name);
                     tmp = questlog_done(co, 1);
                     destroy_item_byID(co, IID_AREA1_SKELSKULL);
                     destroy_item_byID(co, IID_AREA1_SKELKEY1);
@@ -429,7 +429,7 @@ void gwendylon_driver(int cn, int ret, int lastact) {
                 } else if (it[in].ID == IID_AREA1_WOODSKULL && ppd && ppd->gwendy_state >= 6 && ppd->gwendy_state <= 9) {
                     int tmp;
 
-                    quiet_say(cn, "Ahh, yes, this is the thing I was looking for. Thank thee, %s.", ch[co].name);
+                    quiet_say(cn, "Ahh, yes, this is the thing I was looking for. I thank thee, %s.", ch[co].name);
                     tmp = questlog_done(co, 2);
                     destroy_item_byID(co, IID_AREA1_WOODSKULL);
                     destroy_item_byID(co, IID_AREA1_WOODKEY);
@@ -446,7 +446,7 @@ void gwendylon_driver(int cn, int ret, int lastact) {
                 } else if (it[in].ID == IID_AREA1_MAGESKULL && ppd && ppd->gwendy_state >= 10 && ppd->gwendy_state <= 12) {
                     int tmp;
 
-                    quiet_say(cn, "Ahh, yes, this is the third skull. Thank thee, %s, I appreciate thine efforts.", ch[co].name);
+                    quiet_say(cn, "Ahh, yes, this is the third skull. I thank thee, %s, I appreciate thine efforts.", ch[co].name);
                     tmp = questlog_done(co, 3);
                     destroy_item_byID(co, IID_AREA1_MAGESKULL);
                     ppd->gwendy_state = 13;
@@ -477,13 +477,13 @@ void gwendylon_driver(int cn, int ret, int lastact) {
                         if (!give_char_item(co, in)) destroy_item(in);
                     }
                 } else if (it[in].ID == IID_CALIGARLETTER) {
-                    quiet_say(cn, "Hmm, I see. Well, I can teleport you to the area but I am uncertain of what will be there waiting for you. Be prepared adventurer. I would not trust those mages as far as I could throw them!");
+                    quiet_say(cn, "Hmm, I see. Well, I can teleport thee to the area but I am uncertain of what will be there waiting for thee. Be prepared adventurer. I would not trust those mages as far as I could throw them!");
                     log_char(co, LOG_SYSTEM, 0, "While you are still trying to figure out how far Gwendylon might be able to throw those mages he quickly mutters a spell and teleports you.");
 
                     if (!give_char_item(co, ch[cn].citem)) destroy_item(ch[cn].citem);
                     ch[cn].citem = 0;
 
-                    if (!change_area(co, 36, 240, 10)) quiet_say(cn, "Uh-Oh. There seems to be a rift in the space-time continuum. Please come again later so we can try again.");
+                    if (!change_area(co, 36, 240, 10)) quiet_say(cn, "Uh-Oh. There seemeth to be a rift in the space-time continuum. Please come again later so we can try again.");
                 } else {
                     quiet_say(cn, "Thou hast better use for this than I do. Well, if there is use for it at all.");
 
@@ -602,7 +602,7 @@ void yoakin_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    quiet_say(cn, "This bear has been killing several travellers, and I put a price on its head. So if thou happen to kill it, bring me its teeth as proof.");
+                    quiet_say(cn, "This bear has been killing several travellers, and I put a price on its head. So if thou happenest to kill it, bring me its teeth as proof.");
                     ppd->yoakin_state = 4;
                     didsay = 1;
                     break;
@@ -662,7 +662,7 @@ void yoakin_driver(int cn, int ret, int lastact) {
 
                 if (it[in].ID == IID_AREA1_BIGBEAR_TOOTH && ppd && ppd->yoakin_state <= 4) {
                     int tmp;
-                    quiet_say(cn, "Thank thee, %s. Travelling in the forest will be safer now.", ch[co].name);
+                    quiet_say(cn, "I thank thee, %s. Travelling in the forest will be safer now.", ch[co].name);
                     tmp = questlog_done(co, 5);
                     destroy_item_byID(co, IID_AREA1_BIGBEAR_TOOTH);
                     ppd->yoakin_state = 5;
@@ -677,7 +677,7 @@ void yoakin_driver(int cn, int ret, int lastact) {
                     }
                 } else if (it[in].ID == IID_SHRIKE_TALISMAN && ppd && ppd->shrike_state == 0) {
                     emote(cn, "turns deadly pale and starts to tremble");
-                    quiet_say(cn, "I... I thank thee, %s. I'd have never thought... Thank thee!", ch[co].name);
+                    quiet_say(cn, "I... I thank thee, %s. I would have never thought... I thank thee!", ch[co].name);
 
                     if (ppd->shrike_fails) {
                         quiet_say(cn, "And I forgive thee trying to kill me. My wounds were almost fatal, but I survived.");
@@ -801,7 +801,7 @@ void terion_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    quiet_say(cn, "I have heard some stories about skeletons walking around in the western part of the forest lately. They were close to that small path which leads west directly behind the tavern.");
+                    quiet_say(cn, "I have heard some stories about skeletons walking around in the western part of the forest lately. They were close to that small path which leadeth west directly behind the tavern.");
                     ppd->terion_state = 2;
                     didsay = 1;
                     break;
@@ -825,7 +825,7 @@ void terion_driver(int cn, int ret, int lastact) {
                     }
                     break;
                 case 5:
-                    quiet_say(cn, "I've been thinking about the skeletons, and the skulls Gwendylon is researching. It seems these skeletons are always seen near old ruins. And I remembered that Yoakin the Hunter once told me that his house was built on top of an old ruin.");
+                    quiet_say(cn, "I have been thinking about the skeletons, and the skulls Gwendylon is researching. It seemeth these skeletons are always seen near old ruins. And I remembered that Yoakin the Hunter once told me that his house was built on top of an old ruin.");
                     notify_area(ch[cn].x, ch[cn].y, NT_NPC, NTID_TERION, cn, 3);
                     ppd->terion_state++;
                     didsay = 1;
@@ -833,13 +833,13 @@ void terion_driver(int cn, int ret, int lastact) {
 
                 case 6:
                     if (ppd->gwendy_state >= 13) {
-                        quiet_say(cn, "Ah, %s. 'Tis good to see there are brave %s about who will fight the evil which has been invading our lives lately.", ch[co].name, (ch[co].flags & CF_MALE) ? "men" : "women");
+                        quiet_say(cn, "Ah, %s. 'Tis good to see there are brave %s about who will fight the evil which hath been invading our lives lately.", ch[co].name, (ch[co].flags & CF_MALE) ? "men" : "women");
                         ppd->terion_state++;
                         didsay = 1;
                     }
                     break;
                 case 7:
-                    quiet_say(cn, "Ever since the dark hordes attacked Aston, things have been going downhill. Some years ago, we frequently had visitors from Aston and beyond. But today no one dares to travel unless he must.");
+                    quiet_say(cn, "Ever since the dark hordes attacked Aston, things have been going downhill. Some years ago, we frequently had visitors from Aston and beyond. But today no one dareth to travel unless he must.");
                     ppd->terion_state++;
                     didsay = 1;
                     break;
@@ -851,7 +851,7 @@ void terion_driver(int cn, int ret, int lastact) {
 
                 case 9:
                     if (ppd->reskin_state >= 9) {
-                        quiet_say(cn, "Oh, what has become of this world? The two schools gone mad beyond cure, skeletons everywhere. And I've heard rumors that things all over the land are the same.");
+                        quiet_say(cn, "Oh, what has become of this world? The two schools gone mad beyond cure, skeletons everywhere. And I have heard rumors that things all over the land are the same.");
                         ppd->terion_state++;
                         didsay = 1;
                     }
@@ -872,7 +872,7 @@ void terion_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 13:
-                    quiet_say(cn, "Hey! Reskin! Art thou certain that thou dost not have any beer? I couldst use a drink now.");
+                    quiet_say(cn, "Hey! Reskin! Art thou certain that thou dost not have any beer? I could use a drink now.");
                     notify_area(ch[cn].x, ch[cn].y, NT_NPC, NTID_TERION, cn, 5);
                     ppd->terion_state++;
                     didsay = 1;
@@ -1048,18 +1048,18 @@ void james_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 2:
-                    quiet_say(cn, "She lives with her father, Gwendylon the Mage. Thou canst find her in the mage's tower, north of here, %s.", ch[co].name);
+                    quiet_say(cn, "She liveth with her father, Gwendylon the Mage. Thou canst find her in the mage's tower, north of here, %s.", ch[co].name);
                     ppd->james_state++;
                     didsay = 1;
                     break;
                 case 3:
                     if (ppd->lydia_state < 6) break;
-                    quiet_say(cn, "Ah, %s. I am glad that thou could help Lydia.", ch[co].name);
+                    quiet_say(cn, "Ah, %s. I am glad that thou couldst help Lydia.", ch[co].name);
                     ppd->james_state++;
                     didsay = 1;
                     break;
                 case 4:
-                    quiet_say(cn, "If you ever need \260c4advice\260c0 on how to raise your character, I'd be happy to help you - for a small fee.");
+                    quiet_say(cn, "If thou ever needest \260c4advice\260c0 on how to raise thy character, I would be happy to help thee - for a small fee.");
                     ppd->james_state++;
                     didsay = 1;
                     break;
@@ -1094,11 +1094,11 @@ void james_driver(int cn, int ret, int lastact) {
                 }
                 break;
             case 3:
-                if (ch[co].level > 70) quiet_say(cn, "I'm afraid I cannot help thee, %s. Thou art much wiser than I am.", ch[co].name);
-                else quiet_say(cn, "I'll help thee for the small fee of %.2fG, %s. Say \260c4buy advice\260c0 if thou wantst it.", ch[co].level * ch[co].level * ch[co].level / 100.0, ch[co].name);
+                if (ch[co].level > 70) quiet_say(cn, "I am afraid I cannot help thee, %s. Thou art much wiser than I am.", ch[co].name);
+                else quiet_say(cn, "I shall help thee for the small fee of %.2fG, %s. Say \260c4buy advice\260c0 if thou wantst it.", ch[co].level * ch[co].level * ch[co].level / 100.0, ch[co].name);
                 break;
             case 4:
-                if (ch[co].level > 70) quiet_say(cn, "I'm afraid I cannot help thee, %s. Thou art much wiser than I am.", ch[co].name);
+                if (ch[co].level > 70) quiet_say(cn, "I am afraid I cannot help thee, %s. Thou art much wiser than I am.", ch[co].name);
                 else if (take_money(co, ch[co].level * ch[co].level * ch[co].level)) james_raisehint(co, 0);
                 else quiet_say(cn, "Thou dost not have enough money, %s.", ch[co].name);
                 break;
@@ -1120,9 +1120,9 @@ void james_driver(int cn, int ret, int lastact) {
                     james_create_eq(co);
                 }
             case 11:
-                quiet_say(cn, "Hardcore is an option only available to paying players. A hardcore character does not earn saves when he levels, and he loses a lot more experience on death than a normal character. But he can train his skills higher than any other character.");
+                quiet_say(cn, "Hardcore is an option only available to paying players. A hardcore character does not earn saves when he leveleth, and he loseth a lot more experience on death than a normal character. But he can train his skills higher than any other character.");
                 quiet_say(cn, "Since death is a lot harder on hardcore characters, thou must be aware that the gods (game management) will ignore any complaints about deaths caused by lag, other players luring monsters to thee or other reasons which are not entirely fair, but not real bugs either.");
-                quiet_say(cn, "So, the rule is: It is thy choice to become a hardcore character, and thou must live with the consequences of that choice. The gods wilt not help thee. Dost thou accept these rules? [ \260c4I accept the rules and wish to become a hardcore character\260c0 ]");
+                quiet_say(cn, "So, the rule is: It is thy choice to become a hardcore character, and thou must live with the consequences of that choice. The gods will not help thee. Dost thou accept these rules? [ \260c4I accept the rules and wish to become a hardcore character\260c0 ]");
                 break;
             case 12:
                 if (!(ch[co].flags & CF_PAID)) {
@@ -1250,7 +1250,7 @@ void nook_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 2:
-                    quiet_say(cn, "No, that's not right either. I am Jester, the %s.", ch[cn].name);
+                    quiet_say(cn, "No, that is not right either. I am Jester, the %s.", ch[cn].name);
                     ppd->nook_state++;
                     didsay = 1;
                     break;
@@ -1260,7 +1260,7 @@ void nook_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 4:
-                    quiet_say(cn, "If thou hast news from James, the drunkard, thou'd best make haste and bring Lydia his apologies. Her daughterness wasn't too happy about James passing out at the party.");
+                    quiet_say(cn, "If thou hast news from James, the drunkard, thou hadst best make haste and bring Lydia his apologies. Her daughterness was not too happy about James passing out at the party.");
                     ppd->nook_state++;
                     didsay = 1;
                     break;
@@ -1272,7 +1272,7 @@ void nook_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 6:
-                    quiet_say(cn, "I've heard the mage is looking for a hiding place in this tower. When I started working here, before Gwendylon bought the tower, the old owner - he was a bit strange - used to murmur: 'Stand between torches, in the courtyard, stand between torches'.");
+                    quiet_say(cn, "I have heard the mage is looking for a hiding place in this tower. When I started working here, before Gwendylon bought the tower, the old owner - he was a bit strange - used to murmur: 'Stand between torches, in the courtyard, stand between torches'.");
                     ppd->nook_state++;
                     didsay = 1;
                     break;
@@ -1282,7 +1282,7 @@ void nook_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 8:
-                    quiet_say(cn, "But before thou searchest for that skull, I'd like to ask thee for a favor myself. A band of robbers has stolen my cap. It's just a normal cap, but I've inherited it from my father, and it is very dear to me.");
+                    quiet_say(cn, "But before thou searchest for that skull, I would like to ask thee for a favor myself. A band of robbers has stolen my cap. It is just a normal cap, but I have inherited it from my father, and it is very dear to me.");
                     ppd->nook_state++;
                     didsay = 1;
                     break;
@@ -1292,7 +1292,7 @@ void nook_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 10:
-                    quiet_say(cn, "Please, %s, help me. I cannot offer thee a reward, but I'd really, really appreciate thy help.", ch[co].name);
+                    quiet_say(cn, "Please, %s, help me. I cannot offer thee a reward, but I would really, really appreciate thy help.", ch[co].name);
                     ppd->nook_state++;
                     didsay = 1;
                     break;
@@ -1488,7 +1488,7 @@ void lydia_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 2:
-                    quiet_say(cn, "But on my way back, I got ambushed. Some thieves stole the potion. James that drunkard was supposed to bring me home, but he passed out. Thou wouldn't happen to have the time to hunt them down and bring me the potion, %s?", ch[co].name);
+                    quiet_say(cn, "But on my way back, I got ambushed. Some thieves stole the potion. James that drunkard was supposed to bring me home, but he passed out. Thou wouldst not happen to have the time to hunt them down and bring me the potion, %s?", ch[co].name);
                     ppd->lydia_state++;
                     didsay = 1;
                     break;
@@ -1510,7 +1510,7 @@ void lydia_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 6:
-                    quiet_say(cn, "Gwendylon, my father, is currently looking for help. If thou art looking for adventures, it might be wise to visit him. He lives next door.");
+                    quiet_say(cn, "Gwendylon, my father, is currently looking for help. If thou art looking for adventures, it might be wise to visit him. He liveth next door.");
                     ppd->lydia_state++;
                     didsay = 1;
                     break;
@@ -1565,7 +1565,7 @@ void lydia_driver(int cn, int ret, int lastact) {
                 ppd = set_data(co, DRD_AREA1_PPD, sizeof(struct area1_ppd));
 
                 if (it[in].ID == IID_AREA1_WOODPOTION && ppd && ppd->lydia_state <= 4) {
-                    quiet_say(cn, "Ah. That feels so much better. Thank thee, %s.", ch[co].name);
+                    quiet_say(cn, "Ah. That feeleth so much better. I thank thee, %s.", ch[co].name);
                     questlog_done(co, 0);
                     destroy_item_byID(co, IID_AREA1_WOODPOTION);
                     destroy_item_byID(co, IID_AREA1_WOODKEY2);
@@ -1972,12 +1972,12 @@ void reskin_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    quiet_say(cn, "We have a shortage of beer at the moment, %s, so I'm spending some of my time doing alchemistical studies. So far I've found out that only a potion brewed of at least one flower, one berry and one mushroom will have any effect.", ch[co].name);
+                    quiet_say(cn, "We have a shortage of beer at the moment, %s, so I am spending some of my time doing alchemistical studies. So far I have found out that only a potion brewed of at least one flower, one berry and one mushroom will have any effect.", ch[co].name);
                     ppd->reskin_state++;
                     didsay = 1;
                     break;
                 case 2:
-                    quiet_say(cn, "In spite of the beer shortage, people still visit my tavern, so I can't go out to find ingredients as often as I'd like. If thou happenst to come across any new flower, berry or mushroom and bring it to me, I'd pay thee handsomely.");
+                    quiet_say(cn, "In spite of the beer shortage, people still visit my tavern, so I cannot go out to find ingredients as often as I would like. If thou happenst to come across any new flower, berry or mushroom and bring it to me, I would pay thee handsomely.");
                     ppd->reskin_state++;
                     didsay = 1;
                     break;
@@ -1988,13 +1988,13 @@ void reskin_driver(int cn, int ret, int lastact) {
                     } else if (ppd->logain_state > 8) ppd->reskin_state++;
                     break;
                 case 4:
-                    quiet_say(cn, "Oh, %s, couldst thou do me another favor? I've rented the back room to some, uh, not so respectable members of the society, and they are giving me trouble.", ch[co].name);
+                    quiet_say(cn, "Oh, %s, couldst thou do me another favor? I have rented the back room to some, uh, not so respectable members of the society, and they are giving me trouble.", ch[co].name);
                     questlog_open(co, 17);
                     ppd->reskin_state++;
                     didsay = 1;
                     break;
                 case 5:
-                    quiet_say(cn, "A few days ago, a new master took over their, uh, organization, and he's been threatening me. If thou couldst talk to him, I'd appreciate it. I'd even give thee a nice reward.");
+                    quiet_say(cn, "A few days ago, a new master took over their, uh, organization, and he hath been threatening me. If thou couldst talk to him, I would appreciate it. I would even give thee a nice reward.");
                     ppd->reskin_state++;
                     didsay = 1;
                     break;
@@ -2005,7 +2005,7 @@ void reskin_driver(int cn, int ret, int lastact) {
                     break;
                 case 7:
                     if (check_first_kill(co, 16)) {
-                        quiet_say(cn, "Oh, thank you for talking to the Guild Master, %s.", ch[co].name);
+                        quiet_say(cn, "Oh, I thank thee for talking to the Guild Master, %s.", ch[co].name);
                         questlog_done(co, 17);
                         ppd->reskin_state++;
                     }
@@ -2066,28 +2066,28 @@ void reskin_driver(int cn, int ret, int lastact) {
                     if (!(ppd->reskin_got_bits & (bit = (1 << it[in].drdata[0])))) {
 
                         if (it[in].drdata[0] == 24 && ch[co].level < 80) { // earth stone
-                            quiet_say(cn, "Oh, a very nice stone, %s. But I'm afraid I cannot pay for it at the moment.", ch[co].name);
+                            quiet_say(cn, "Oh, a very nice stone, %s. But I am afraid I cannot pay for it at the moment.", ch[co].name);
                         } else if (it[in].drdata[0] == 23 && ch[co].level < 10) { // earth stone
-                            quiet_say(cn, "Oh, a very nice stone, %s. But I'm afraid I cannot pay for it at the moment.", ch[co].name);
+                            quiet_say(cn, "Oh, a very nice stone, %s. But I am afraid I cannot pay for it at the moment.", ch[co].name);
                         } else if (it[in].drdata[0] == 21 && ch[co].level < 30) { // fire stone
-                            quiet_say(cn, "Oh, a very nice stone, %s. But I'm afraid I cannot pay for it at the moment.", ch[co].name);
+                            quiet_say(cn, "Oh, a very nice stone, %s. But I am afraid I cannot pay for it at the moment.", ch[co].name);
                         } else if (it[in].drdata[0] == 22 && ch[co].level < 60) { // ice stone
-                            quiet_say(cn, "Oh, a very nice stone, %s. But I'm afraid I cannot pay for it at the moment.", ch[co].name);
+                            quiet_say(cn, "Oh, a very nice stone, %s. But I am afraid I cannot pay for it at the moment.", ch[co].name);
                         } else if (it[in].drdata[0] == 16 && ch[co].level < 25) { // shroom 9
-                            quiet_say(cn, "Oh, a very nice mushroom, %s. But I'm afraid I cannot pay for it at the moment.", ch[co].name);
+                            quiet_say(cn, "Oh, a very nice mushroom, %s. But I am afraid I cannot pay for it at the moment.", ch[co].name);
                         } else if (it[in].drdata[0] == 15 && ch[co].level < 23) { // shroom 8
-                            quiet_say(cn, "Oh, a very nice mushroom, %s. But I'm afraid I cannot pay for it at the moment.", ch[co].name);
+                            quiet_say(cn, "Oh, a very nice mushroom, %s. But I am afraid I cannot pay for it at the moment.", ch[co].name);
                         } else if (it[in].drdata[0] == 14 && ch[co].level < 20) { // shroom 7
-                            quiet_say(cn, "Oh, a very nice mushroom, %s. But I'm afraid I cannot pay for it at the moment.", ch[co].name);
+                            quiet_say(cn, "Oh, a very nice mushroom, %s. But I am afraid I cannot pay for it at the moment.", ch[co].name);
                         } else if (it[in].drdata[0] == 13 && ch[co].level < 18) { // shroom 6
-                            quiet_say(cn, "Oh, a very nice mushroom, %s. But I'm afraid I cannot pay for it at the moment.", ch[co].name);
+                            quiet_say(cn, "Oh, a very nice mushroom, %s. But I am afraid I cannot pay for it at the moment.", ch[co].name);
                         } else if (it[in].drdata[0] == 12 && ch[co].level < 16) { // shroom 5
-                            quiet_say(cn, "Oh, a very nice mushroom, %s. But I'm afraid I cannot pay for it at the moment.", ch[co].name);
+                            quiet_say(cn, "Oh, a very nice mushroom, %s. But I am afraid I cannot pay for it at the moment.", ch[co].name);
                         } else if (it[in].drdata[0] == 11 && ch[co].level < 14) { // shroom 4
-                            quiet_say(cn, "Oh, a very nice mushroom, %s. But I'm afraid I cannot pay for it at the moment.", ch[co].name);
+                            quiet_say(cn, "Oh, a very nice mushroom, %s. But I am afraid I cannot pay for it at the moment.", ch[co].name);
                         } else {
                             ppd->reskin_got_bits |= bit;
-                            quiet_say(cn, "Ah, a nice %s thou found there. Here, this is for thy trouble.", it[in].name);
+                            quiet_say(cn, "Ah, a nice %s thou foundest there. Here, this is for thy trouble.", it[in].name);
 
                             ch[co].gold += it[in].value * 5;
                             ch[co].flags |= CF_ITEMS;
@@ -2099,7 +2099,7 @@ void reskin_driver(int cn, int ret, int lastact) {
                             return;
                         }
                     } else {
-                        quiet_say(cn, "Oh, I'm sorry, %s, but thou brought me this one before.", ch[co].name);
+                        quiet_say(cn, "Oh, I am sorry, %s, but thou broughtest me this one before.", ch[co].name);
 
                         if (!give_char_item(co, ch[cn].citem)) destroy_item(ch[cn].citem);
                         ch[cn].citem = 0;
@@ -2188,11 +2188,11 @@ void asturin_driver(int cn, int ret, int lastact) {
                     }
                 } else if (ch[co].x < 118) {
                     if (ppd->asturin_state < 2) {
-                        quiet_say(cn, "Go back %s, you have no business here!", ch[co].name);
+                        quiet_say(cn, "Go back %s, thou hast no business here!", ch[co].name);
                         ppd->asturin_state = 2;
                     }
                     if (ppd->asturin_state >= 4 && ppd->asturin_state <= 5) {
-                        quiet_say(cn, "Alright, alright, %s, go ahead, just don't hit me again!", ch[co].name);
+                        quiet_say(cn, "Alright, alright, %s, go ahead, just do not hit me again!", ch[co].name);
                         ppd->asturin_state = 6;
                     }
                 } else switch (ppd->asturin_state) {
@@ -2250,7 +2250,7 @@ void asturin_dead(int cn, int co) {
 
     if ((ppd = set_data(co, DRD_AREA1_PPD, sizeof(struct area1_ppd)))) {
         ppd->asturin_state = 4;
-        quiet_say(cn, "I'll remember that, %s!", ch[co].name);
+        quiet_say(cn, "I shall remember that, %s!", ch[co].name);
     }
 }
 
@@ -2400,7 +2400,7 @@ void guiwynn_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    quiet_say(cn, "I am %s, the town mage and I need your help.", ch[cn].name);
+                    quiet_say(cn, "I am %s, the town mage and I need thy help.", ch[cn].name);
                     ppd->guiwynn_state++;
                     didsay = 1;
                     break;
@@ -2410,7 +2410,7 @@ void guiwynn_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    quiet_say(cn, "I could barely escape with my life. It seems they've all gone mad. I do not dare go back there, but I must know what is going on in the Order.");
+                    quiet_say(cn, "I could barely escape with my life. It seemeth they have all gone mad. I do not dare go back there, but I must know what is going on in the Order.");
                     ppd->guiwynn_state++;
                     didsay = 1;
                     break;
@@ -2438,13 +2438,13 @@ void guiwynn_driver(int cn, int ret, int lastact) {
                         ppd->guiwynn_state = 11;
                         break;
                     }
-                    quiet_say(cn, "A Potion of Happiness? I have never heard of such a thing before. It does seem to induce madness in those who drink it. But alas, I cannot tell what it is made of.");
+                    quiet_say(cn, "A Potion of Happiness? I have never heard of such a thing before. It doth seem to induce madness in those who drink it. But alas, I cannot tell what it is made of.");
                     questlog_open(co, 8);
                     ppd->guiwynn_state++;
                     didsay = 1;
                     break;
                 case 7:
-                    quiet_say(cn, "Couldst thou go back and try to find the recipe? I would double thine reward.");
+                    quiet_say(cn, "Couldst thou go back and try to find the recipe? I would double thy reward.");
                     ppd->guiwynn_state++;
                     didsay = 1;
                     if (!has_item(co, IID_AREA1_MADKEY1)) {
@@ -2467,7 +2467,7 @@ void guiwynn_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 10:
-                    quiet_say(cn, "I thank thee, %s, for thine help. Mayest thou find happiness in thine life.", ch[co].name);
+                    quiet_say(cn, "I thank thee, %s, for thy help. Mayest thou find happiness in thy life.", ch[co].name);
                     ppd->guiwynn_state++;
                     didsay = 1;
                     if (!has_item(co, IID_AREA1_MADKEY1)) {
@@ -2481,7 +2481,7 @@ void guiwynn_driver(int cn, int ret, int lastact) {
                 case 11:
                     if (realtime - ppd->guiwynn_seen_timer > 60) {
 
-                        quiet_say(cn, "Nice to see you, %s.", ch[co].name);
+                        quiet_say(cn, "Nice to see thee, %s.", ch[co].name);
                         didsay = 1;
                     }
                     break;
@@ -2540,7 +2540,7 @@ void guiwynn_driver(int cn, int ret, int lastact) {
 
                 if (it[in].ID == IID_AREA1_MADPOTION && ppd && ppd->guiwynn_state <= 5) {
                     int tmp;
-                    quiet_say(cn, "Ahh, yes, that might be what was looking for. Thank thee, %s.", ch[co].name);
+                    quiet_say(cn, "Ahh, yes, that might be what was looking for. I thank thee, %s.", ch[co].name);
                     tmp = questlog_done(co, 7);
                     ppd->guiwynn_state = 6;
                     destroy_item_byID(co, IID_AREA1_MADPOTION);
@@ -2556,7 +2556,7 @@ void guiwynn_driver(int cn, int ret, int lastact) {
                     }
                 } else if (it[in].ID == IID_AREA1_MADNOTE && ppd && ppd->guiwynn_state >= 6 && ppd->guiwynn_state <= 8) {
                     int tmp;
-                    quiet_say(cn, "Ahh, yes, this is the recipe I was looking for. Thank thee, %s.", ch[co].name);
+                    quiet_say(cn, "Ahh, yes, this is the recipe I was looking for. I thank thee, %s.", ch[co].name);
                     tmp = questlog_done(co, 8);
                     destroy_item_byID(co, IID_AREA1_MADNOTE);
                     destroy_item_byID(co, IID_AREA1_MADKEY2);
@@ -2592,7 +2592,7 @@ void guiwynn_driver(int cn, int ret, int lastact) {
                     dat->last_talk = ticker;
                 }
                 if (msg->dat3 == 4) { // yoakins nightmares
-                    quiet_say(cn, "Yes, he's been here drinking a lot a few weeks ago. Told us that the floor in his back room collapsed, and that he was having scary dreams for several nights.");
+                    quiet_say(cn, "Yes, he hath been here drinking a lot a few weeks ago. Told us that the floor in his back room collapsed, and that he was having scary dreams for several nights.");
 
                     talkdir = offset2dx(ch[cn].x, ch[cn].y, ch[co].x, ch[co].y);
                     dat->last_talk = ticker;
@@ -2723,14 +2723,14 @@ void logain_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 4:
-                    quiet_say(cn, "I suspect these potions have been poisoned. If thou couldst go there and find out where they got them, I'd reward thee.");
+                    quiet_say(cn, "I suspect these potions have been poisoned. If thou couldst go there and find out where they got them, I would reward thee.");
                     ppd->logain_state++;
                     didsay = 1;
                     if (!has_item(co, IID_AREA1_MADKEY6)) {
                         in = create_item("mad_key6");
                         if (in) {
                             walkup_give_start(cn, co, in, &dat->give);
-                            quiet_say(cn, "Thou willst need this key to gain entry.");
+                            quiet_say(cn, "Thou wilt need this key to gain entry.");
                         }
                     }
                     break;
@@ -2753,19 +2753,19 @@ void logain_driver(int cn, int ret, int lastact) {
                         in = create_item("mad_key9");
                         if (in) {
                             walkup_give_start(cn, co, in, &dat->give);
-                            quiet_say(cn, "Here. I won't use it. But thou might want to search his house.");
+                            quiet_say(cn, "Here. I will not use it. But thou mightst want to search his house.");
                         }
                     }
                     break;
                 case 8:
-                    quiet_say(cn, "Well, if you ever get to Aston, pay this Loisan a visit.");
+                    quiet_say(cn, "Well, if thou ever gettest to Aston, pay this Loisan a visit.");
                     ppd->logain_state++;
                     didsay = 1;
                     if (!has_item(co, IID_AREA1_MADKEY6)) {
                         in = create_item("mad_key6");
                         if (in) {
                             walkup_give_start(cn, co, in, &dat->give);
-                            quiet_say(cn, "Shouldst thou wish to visit the Brotherhood again, here's the key.");
+                            quiet_say(cn, "Shouldst thou wish to visit the Brotherhood again, here is the key.");
                         }
                     }
                     break;
@@ -2826,7 +2826,7 @@ void logain_driver(int cn, int ret, int lastact) {
 
                 if (it[in].ID == IID_AREA1_MADNOTE2 && ppd && ppd->logain_state <= 5) {
                     int tmp;
-                    quiet_say(cn, "Now let's see. Ah. I thank thee, %s.", ch[co].name);
+                    quiet_say(cn, "Now let us see. Ah. I thank thee, %s.", ch[co].name);
                     tmp = questlog_done(co, 9);
                     destroy_item_byID(co, IID_AREA1_MADNOTE2);
                     destroy_item_byID(co, IID_AREA1_MADKEY7);
@@ -2853,13 +2853,13 @@ void logain_driver(int cn, int ret, int lastact) {
             if (msg->dat1 == NTID_TERION) {
                 co = msg->dat2;
                 if (msg->dat3 == 2) { // fools to seek danger
-                    quiet_say(cn, "Fools, yes fools they are. As if we didn't have enough problems already.");
+                    quiet_say(cn, "Fools, yes fools they are. As if we did not have enough problems already.");
 
                     talkdir = offset2dx(ch[cn].x, ch[cn].y, ch[co].x, ch[co].y);
                     dat->last_talk = ticker;
                 }
                 if (msg->dat3 == 3) { // yoakin mentioned
-                    quiet_say(cn, "Ah, Terion, thou art right! I remember Yoakin telling me about nightmares he's been having lately. Something about skeletons hunting him in a dark, moist place.");
+                    quiet_say(cn, "Ah, Terion, thou art right! I remember Yoakin telling me about nightmares he hath been having lately. Something about skeletons hunting him in a dark, moist place.");
                     notify_area(ch[cn].x, ch[cn].y, NT_NPC, NTID_TERION, cn, 4);
                     talkdir = offset2dx(ch[cn].x, ch[cn].y, ch[co].x, ch[co].y);
                     dat->last_talk = ticker;

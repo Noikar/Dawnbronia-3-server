@@ -275,17 +275,17 @@ void lab5_seyan_driver(int cn, int ret, int lastact) {
                 if (it[ch[cn].citem].ID == IID_LAB5_HEAD1) {
                     pd->seyangot |= (1 << 0);
                     set_seyan_state(pd);
-                    if (dat->cv_co && (dat->cv_co != co || ch[dat->cv_co].serial != dat->cv_serial)) { say(cn, "%s, please be patient while I'm talking to others.", ch[co].name); }
+                    if (dat->cv_co && (dat->cv_co != co || ch[dat->cv_co].serial != dat->cv_serial)) { say(cn, "%s, please be patient while I am talking to others.", ch[co].name); }
                 }
                 if (it[ch[cn].citem].ID == IID_LAB5_HEAD2) {
                     pd->seyangot |= (1 << 1);
                     set_seyan_state(pd);
-                    if (dat->cv_co && (dat->cv_co != co || ch[dat->cv_co].serial != dat->cv_serial)) { say(cn, "%s, please be patient while I'm talking to others.", ch[co].name); }
+                    if (dat->cv_co && (dat->cv_co != co || ch[dat->cv_co].serial != dat->cv_serial)) { say(cn, "%s, please be patient while I am talking to others.", ch[co].name); }
                 }
                 if (it[ch[cn].citem].ID == IID_LAB5_HEAD3) {
                     pd->seyangot |= (1 << 2);
                     set_seyan_state(pd);
-                    if (dat->cv_co && (dat->cv_co != co || ch[dat->cv_co].serial != dat->cv_serial)) { say(cn, "%s, please be patient while I'm talking to others.", ch[co].name); }
+                    if (dat->cv_co && (dat->cv_co != co || ch[dat->cv_co].serial != dat->cv_serial)) { say(cn, "%s, please be patient while I am talking to others.", ch[co].name); }
                 }
             }
 
@@ -349,17 +349,17 @@ void lab5_seyan_driver(int cn, int ret, int lastact) {
             switch (pd->seyanstate) {
             // INTRO
             case 0:
-                say(cn, "Hello %s. I am here to introduce thee to the quest that has to be done here.", ch[co].name);
+                say(cn, "Hello %s. I am here to introduce thee to the quest that hath to be done here.", ch[co].name);
                 didsay = 1;
                 pd->seyanstate++;
                 break;
             case 1:
-                say(cn, "There are three Demons controlling this Labyrinth. Your mission is extremely simple: Destroy them. To prove their death, bring me their heads. Then thou art worthy to enter the next Gate.");
+                say(cn, "There are three Demons controlling this Labyrinth. Thy mission is extremely simple: Destroy them. To prove their death, bring me their heads. Then thou art worthy to enter the next Gate.");
                 didsay = 1;
                 pd->seyanstate++;
                 break;
             case 2:
-                say(cn, "But I have to tell thee, that thou shouldst not carry any healing or mana potions, nor a combo potion with thee when entering here. If thou hast some, please deposit them in thine depot at the Gatekeeper's.");
+                say(cn, "But I have to tell thee, that thou shouldst not carry any healing or mana potions, nor a combo potion with thee when entering here. If thou hast some, please deposit them in thy depot at the Gatekeeper's.");
                 didsay = 1;
                 pd->seyanstate++;
                 break;
@@ -368,7 +368,7 @@ void lab5_seyan_driver(int cn, int ret, int lastact) {
                     dat->cv_co = 0;
                     break;
                 }
-                say(cn, "Go ahead now, %s, and fulfil thine destiny.", ch[co].name);
+                say(cn, "Go ahead now, %s, and fulfil thy destiny.", ch[co].name);
                 didsay = 1;
                 pd->seyanstate++;
                 break;
@@ -384,7 +384,7 @@ void lab5_seyan_driver(int cn, int ret, int lastact) {
                 // received something
             case 10:
                 if (pd->seyangot == 1 || pd->seyangot == 2 || pd->seyangot == 4) say(cn, "Very well done, %s.", ch[co].name);
-                if (pd->seyangot == 3 || pd->seyangot == 5 || pd->seyangot == 6) say(cn, "I'm impressed, %s.", ch[co].name);
+                if (pd->seyangot == 3 || pd->seyangot == 5 || pd->seyangot == 6) say(cn, "I am impressed, %s.", ch[co].name);
                 didsay = 1;
                 pd->seyanstate++;
                 break;
@@ -394,7 +394,7 @@ void lab5_seyan_driver(int cn, int ret, int lastact) {
 
                 // received all, open gate
             case 20:
-                say(cn, "%s, thou broughtst me the three Demon's heads and proved thine worth.", ch[co].name);
+                say(cn, "%s, thou broughtst me the three Demon's heads and proved thy worth.", ch[co].name);
                 didsay = 1;
                 pd->seyanstate++;
                 break;
@@ -559,12 +559,12 @@ void lab5_mage_driver(int cn, int ret, int lastact) {
                 pd->magestate++;
                 break;
             case 1:
-                say(cn, "It is the entrance room to the Master \260c4Demons\260c0 what thou see here. Those stone plates show their names. But thou have to find their real names written on similar plates somewhere behind those doors here.");
+                say(cn, "It is the entrance room to the Master \260c4Demons\260c0 what thou seest here. Those stone plates show their names. But thou hast to find their real names written on similar plates somewhere behind those doors here.");
                 didsay = 1;
                 pd->magestate++;
                 break;
             case 2:
-                say(cn, "Once thou foundst the real name of a Master Demon, Thou can \260c4force\260c0 him to summon thee into his place, and fight him there. Thou might ask me for more details, if thou art interested.");
+                say(cn, "Once thou foundst the real name of a Master Demon, Thou canst \260c4force\260c0 him to summon thee into his place, and fight him there. Thou mightst ask me for more details, if thou art interested.");
                 didsay = 1;
                 pd->magestate++;
                 break;
@@ -578,7 +578,7 @@ void lab5_mage_driver(int cn, int ret, int lastact) {
                 break;
                 // FORCE
             case 10:
-                say(cn, "Well %s. To force a Master \260c4Demon\260c0 to summon thee into his place thou have to perform a certain \260c4ritual\260c0 first. But be very careful, %s. If thou makest only one mistake it might kill thee. The powers that are working here are strong.", ch[co].name, ch[co].name);
+                say(cn, "Well %s. To force a Master \260c4Demon\260c0 to summon thee into his place thou hast to perform a certain \260c4ritual\260c0 first. But be very careful, %s. If thou makest only one mistake it might kill thee. The powers that are working here are strong.", ch[co].name, ch[co].name);
                 didsay = 1;
                 pd->magestate++;
                 break;
@@ -592,12 +592,12 @@ void lab5_mage_driver(int cn, int ret, int lastact) {
                 break;
                 // DAEMONs
             case 20:
-                say(cn, "Well %s, unfortunetaly those Master Demons can't be hurt by normal weapons. So make sure thou art properly equipped with a sacred stone weapon when fighting the Masters.", ch[co].name);
+                say(cn, "Well %s, unfortunetaly those Master Demons cannot be hurt by normal weapons. So make sure thou art properly equipped with a sacred stone weapon when fighting the Masters.", ch[co].name);
                 didsay = 1;
                 pd->magestate++;
                 break;
             case 21:
-                say(cn, "I have heard that those weapon might be found somewhere in the section behind the south western door of this room.");
+                say(cn, "I have heard that those weapons might be found somewhere in the section behind the south western door of this room.");
                 didsay = 1;
                 pd->magestate++;
                 break;
@@ -606,7 +606,7 @@ void lab5_mage_driver(int cn, int ret, int lastact) {
                 break;
                 // RITUAL
             case 30:
-                say(cn, "Oh %s, it's a ritual of mighty powers thou art asking for. So listen carefully.", ch[co].name);
+                say(cn, "Oh %s, it is a ritual of mighty powers thou art asking for. So listen carefully.", ch[co].name);
                 didsay = 1;
                 pd->magestate++;
                 break;
@@ -626,12 +626,12 @@ void lab5_mage_driver(int cn, int ret, int lastact) {
                 pd->magestate++;
                 break;
             case 34:
-                say(cn, "Then place thineself in the center, and shout the real name of the Master.");
+                say(cn, "Then place thyself in the center, and shout the real name of the Master.");
                 didsay = 1;
                 pd->magestate++;
                 break;
             case 35:
-                say(cn, "Well, thats it. Prepare to fight him then.");
+                say(cn, "Well, that is it. Prepare to fight him then.");
                 didsay = 1;
                 pd->magestate++;
                 break;
@@ -683,16 +683,16 @@ void lab5_mage_driver(int cn, int ret, int lastact) {
                 say(cn, "I will repeat, %s", ch[co].name);
             } else if (strcasestr(str, "FORCE")) {
                 pd->magestate = 10;
-                if (dat->cv_co && (dat->cv_co != co || ch[dat->cv_co].serial != dat->cv_serial)) { say(cn, "%s, please be patient while i'm talking to others.", ch[co].name); }
+                if (dat->cv_co && (dat->cv_co != co || ch[dat->cv_co].serial != dat->cv_serial)) { say(cn, "%s, please be patient while I am talking to others.", ch[co].name); }
             } else if (strcasestr(str, "DEMON")) {
                 pd->magestate = 20;
-                if (dat->cv_co && (dat->cv_co != co || ch[dat->cv_co].serial != dat->cv_serial)) { say(cn, "%s, please be patient while i'm talking to others.", ch[co].name); }
+                if (dat->cv_co && (dat->cv_co != co || ch[dat->cv_co].serial != dat->cv_serial)) { say(cn, "%s, please be patient while I am talking to others.", ch[co].name); }
             } else if (strcasestr(str, "DEMONS")) {
                 pd->magestate = 20;
-                if (dat->cv_co && (dat->cv_co != co || ch[dat->cv_co].serial != dat->cv_serial)) { say(cn, "%s, please be patient while i'm talking to others.", ch[co].name); }
+                if (dat->cv_co && (dat->cv_co != co || ch[dat->cv_co].serial != dat->cv_serial)) { say(cn, "%s, please be patient while I am talking to others.", ch[co].name); }
             } else if (strcasestr(str, "RITUAL")) {
                 pd->magestate = 30;
-                if (dat->cv_co && (dat->cv_co != co || ch[dat->cv_co].serial != dat->cv_serial)) { say(cn, "%s, please be patient while i'm talking to others.", ch[co].name); }
+                if (dat->cv_co && (dat->cv_co != co || ch[dat->cv_co].serial != dat->cv_serial)) { say(cn, "%s, please be patient while I am talking to others.", ch[co].name); }
             } else if (ch[co].flags & CF_GOD) {
                 if (strcasestr(str, "SET 1")) {
                     pd->ritualdaemon = 1;

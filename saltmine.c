@@ -282,12 +282,12 @@ void monk_gatama_driver(int cn, int ret, int lastact) {
 
                 // Intro
             case 10:
-                say(cn, "Welcome %s. The Monastery of Kir Laka needs thine help. We live from the salt we get from the saltmine thou can find to the west. But now many golems appeared in the mine and we had to run for our lives, and all the salt we had already mined is lost there.", ch[co].name);
+                say(cn, "Welcome %s. The Monastery of Kir Laka needs thy help. We live from the salt we get from the saltmine thou canst find to the west. But now many golems appeared in the mine and we had to run for our lives, and all the salt we had already mined is lost there.", ch[co].name);
                 didsay = 1;
                 ppd->gatamastate++;
                 break;
             case 11:
-                say(cn, "Thou might want to know more \260c4details\260c0 of what thee can do for the monastery. After this, thou might \260c4begin\260c0 helping us, or not.");
+                say(cn, "Thou mightst want to know more \260c4details\260c0 of what thou canst do for the monastery. After this, thou mightst \260c4begin\260c0 helping us, or not.");
                 didsay = 1;
                 ppd->gatamastate++;
                 break;
@@ -297,12 +297,12 @@ void monk_gatama_driver(int cn, int ret, int lastact) {
 
                 // Details
             case 20:
-                say(cn, "Thou will have to lead group of monks safely to certain ladders in the saltmine. Once reached, thou \"use\" the ladder, and one of the monks will get the salt out of that place. Every ladder can be used only once every 12 astonian days, and every monk can only carry one bag of salt.");
+                say(cn, "Thou wilt have to lead a group of monks safely to certain ladders in the saltmine. Once reached, thou must \"use\" the ladder, and one of the monks will get the salt out of that place. Every ladder can be used only once every 12 astonian days, and every monk can only carry one bag of salt.");
                 didsay = 1;
                 ppd->gatamastate++;
                 break;
             case 21:
-                say(cn, "The monks will follow thee, and help thee against the golems. Once left, thou canst return to the monastery any time you like, the monks will then deposit their salt, if they have any, and will rest then. Thou can give some commands to the monks by simply speaking to them. Those commands are:");
+                say(cn, "The monks will follow thee, and help thee against the golems. Once left, thou canst return to the monastery any time thou likest, the monks will then deposit their salt, if they have any, and will rest then. Thou canst give some commands to the monks by simply speaking to them. Those commands are:");
                 say(cn, "wait - and they will wait a short while.");
                 say(cn, "come - and they will come to thee.");
                 say(cn, "salt - and they will show thee if they carry salt, or not.");
@@ -310,7 +310,7 @@ void monk_gatama_driver(int cn, int ret, int lastact) {
                 ppd->gatamastate++;
                 break;
             case 22:
-                say(cn, "Hopefully thou now decide to \260c4begin\260c0 helping us.");
+                say(cn, "Hopefully thou now decidest to \260c4begin\260c0 helping us.");
                 didsay = 1;
                 ppd->gatamastate++;
                 break;
@@ -324,7 +324,7 @@ void monk_gatama_driver(int cn, int ret, int lastact) {
                 else ppd->gatamastate++;
                 break;
             case 31:
-                say(cn, "Come here, Monks. The mighty %s offers %s help. I want to see and hear quick feet now!", ch[co].name, hisname(co));
+                say(cn, "Come here, Monks. The mighty %s offers %s help. I would see and hear quick feet now!", ch[co].name, hisname(co));
                 didsay = 1;
                 ppd->gatamastate++;
                 create_worker(co, ppd);
@@ -332,7 +332,7 @@ void monk_gatama_driver(int cn, int ret, int lastact) {
                 create_worker(co, ppd);
                 break;
             case 32:
-                say(cn, "Lead them wise and carfully, %s. Mayest thou all return safe.", ch[co].name);
+                say(cn, "Lead them wisely and carefully, %s. Mayest thou all return safe.", ch[co].name);
                 didsay = 1;
                 ppd->gatamastate++;
             case 33:
@@ -341,7 +341,7 @@ void monk_gatama_driver(int cn, int ret, int lastact) {
 
                 // ...
             case 40:
-                say(cn, "Let us wait until all thine Monks are resting. Either in the rest room, or in peace.");
+                say(cn, "Let us wait until all thy Monks are resting. Either in the rest room, or in peace.");
                 didsay = 1;
                 ppd->gatamastate++;
             case 41:
@@ -350,7 +350,7 @@ void monk_gatama_driver(int cn, int ret, int lastact) {
 
                 // Reward
             case 50:
-                say(cn, "Thanks thee %s for thine help. Thou canst use the saltbag in the store room, to take thee thine reward. I trust thee, that thou wilt take the right amount.", ch[co].name);
+                say(cn, "I thank thee, %s, for thy help. Thou canst use the saltbag in the store room to take thy reward. I trust thee, that thou wilt take the right amount.", ch[co].name);
                 ppd->gatamastate++;
             case 51:
                 talkdat->cv_co = 0;

@@ -75,18 +75,18 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"warped", "world", NULL}, "This world has been created by Rodney, the Mighty Mage. Well, actually, Ishtar created it while he was trying out designs for his Labyrinth, but Rodney added the final touches. He tried to create a Labyrinth, just like Ishtar. Anyway. Do you want to buy some \260c4keys\260c0 and \260c4explore\260c0 it?", 0},
-    {{"keys", NULL}, "You need keys to open the various doors here. Each key will only work once, so you'll need plenty of them. I'll trade one key for an earth \260c4stone\260c0, two keys for a fire stone, three keys for an ice stone and four keys for a hell stone. Just hand me the stones if you want to trade.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"warped", "world", NULL}, "This world has been created by Rodney, the Mighty Mage. Well, actually, Ishtar created it while he was trying out designs for his Labyrinth, but Rodney added the final touches. He tried to create a Labyrinth, just like Ishtar. Anyway. Dost thou want to buy some \260c4keys\260c0 and \260c4explore\260c0 it?", 0},
+    {{"keys", NULL}, "Thou needest keys to open the various doors here. Each key will only work once, so thou shalt need plenty of them. I shall trade one key for an earth \260c4stone\260c0, two keys for a fire stone, three keys for an ice stone and four keys for a hell stone. Just hand me the stones if thou wantest to trade.", 0},
     {{"stone", NULL}, "I need the stones to power the \260c4Warped World\260c0. Rodney created a device that will draw power from them.", 0},
-    {{"explore", NULL}, "It might be worth the trouble. Adventurers report that \260c4dangers\260c0 and rewards are to be found inside. Oh, and one word of warning: Don't venture into the blue area before you're level 70.", 0},
-    {{"dangers", NULL}, "It is said that enemies hide behind red doors. I've also heard that people can get stuck, with no way to progress. Should that happen to you, ask me to \260c4reset\260c0 your current points. You will not lose the level reached.", 0},
+    {{"explore", NULL}, "It might be worth the trouble. Adventurers report that \260c4dangers\260c0 and rewards are to be found inside. Oh, and one word of warning: Do not venture into the blue area before thou art level 70.", 0},
+    {{"dangers", NULL}, "It is said that enemies hide behind red doors. I have also heard that people can get stuck, with no way to progress. Should that happen to thee, ask me to \260c4reset\260c0 thy current points. Thou wilt not lose the level reached.", 0},
     {{"reset", NULL}, NULL, 2}
 
 };
@@ -884,8 +884,8 @@ void warpmaster(int cn, int ret, int lastact) {
                 continue;
             }
 
-            if (ch[co].level < 30) say(cn, "Hello %s! You'd better leave this area - it is too dangerous for you.", ch[co].name);
-            else say(cn, "Hello %s! Welcome to Rodney's \260c4Warped World\260c0! Would you like to buy some \260c4keys\260c0?", ch[co].name);
+            if (ch[co].level < 30) say(cn, "Hello %s! Thou hadst better leave this area - it is too dangerous for thee.", ch[co].name);
+            else say(cn, "Hello %s! Welcome to Rodney's \260c4Warped World\260c0! Wouldst thou like to buy some \260c4keys\260c0?", ch[co].name);
             mem_add_driver(cn, co, 7);
         }
 
@@ -919,7 +919,7 @@ void warpmaster(int cn, int ret, int lastact) {
                         in2 = create_item("warped_door_key");
                         if (give_char_item(co, in2)) flag = 1;
                         else destroy_item(in2);
-                        say(cn, "Here you go, one key.");
+                        say(cn, "Here thou goest, one key.");
                     }
                     if (type == 21) {
                         in2 = create_item("warped_door_key");
@@ -928,7 +928,7 @@ void warpmaster(int cn, int ret, int lastact) {
                         in2 = create_item("warped_door_key");
                         if (give_char_item(co, in2)) flag = 1;
                         else destroy_item(in2);
-                        say(cn, "Here you go, two keys.");
+                        say(cn, "Here thou goest, two keys.");
                     }
                     if (type == 22) {
                         in2 = create_item("warped_door_key");
@@ -940,7 +940,7 @@ void warpmaster(int cn, int ret, int lastact) {
                         in2 = create_item("warped_door_key");
                         if (give_char_item(co, in2)) flag = 1;
                         else destroy_item(in2);
-                        say(cn, "Here you go, three keys.");
+                        say(cn, "Here thou goest, three keys.");
                     }
                     if (type == 24) {
                         in2 = create_item("warped_door_key");
@@ -955,7 +955,7 @@ void warpmaster(int cn, int ret, int lastact) {
                         in2 = create_item("warped_door_key");
                         if (give_char_item(co, in2)) flag = 1;
                         else destroy_item(in2);
-                        say(cn, "Here you go, four keys.");
+                        say(cn, "Here thou goest, four keys.");
                     }
                 }
                 if (flag || !give_char_item(co, in)) {

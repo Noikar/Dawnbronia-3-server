@@ -75,13 +75,13 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"imp", NULL}, "A nice little guy. He's got a peculiar sense of humor, but he's very helpful.", 0},
     {{"repeat", NULL}, NULL, 2}};
 
@@ -231,14 +231,14 @@ void imp_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    say(cn, "Should I tell him about the treasure? Ah, let's wait and see.");
+                    say(cn, "Should I tell him about the treasure? Ah, let us wait and see.");
                     ppd->imp_state++;
                     didsay = 1;
                     break;
                 case 2:
                     break;
                 case 3:
-                    say(cn, "Nicely done, %s. Thou might not be bright, but at least thou knowest how to fight.", ch[co].name);
+                    say(cn, "Nicely done, %s. Thou mightst not be bright, but at least thou knowest how to fight.", ch[co].name);
                     ppd->imp_state++;
                     didsay = 1;
                     ppd->imp_kills = 0;
@@ -257,7 +257,7 @@ void imp_driver(int cn, int ret, int lastact) {
                     }
                     break;
                 case 6:
-                    say(cn, "Hullo human! There is more to be done here I know thine worth. Find him who is old and in need of thy help.");
+                    say(cn, "Hullo human! There is more to be done here I know thy worth. Find him who is old and in need of thy help.");
                     ppd->imp_state++;
                     didsay = 1;
                     break;
@@ -266,8 +266,8 @@ void imp_driver(int cn, int ret, int lastact) {
                     else break;
                 case 8:
                     if (ppd->hermit_state == 4 && (!(in = has_item(co, IID_HARDKILL)) || it[in].drdata[37] < 38)) {
-                        if (in) say(cn, "Listen, human, for this might save thine life: The spider queen is beyond the strength of thine holy weapon. Thou needst find another stone circle. Find the skeleton ruin and go eastward.");
-                        else say(cn, "Listen, human, for this might save thine life: Thou needst a holy weapon, otherwise thine task will remain unfulfilled.");
+                        if (in) say(cn, "Listen, human, for this might save thy life: The spider queen is beyond the strength of thy holy weapon. Thou needst find another stone circle. Find the skeleton ruin and go eastward.");
+                        else say(cn, "Listen, human, for this might save thy life: Thou needst a holy weapon, otherwise thy task will remain unfulfilled.");
                         didsay = 1;
                     }
                     ppd->imp_state++;
@@ -311,7 +311,7 @@ void imp_driver(int cn, int ret, int lastact) {
                 set_sector(ch[cn].x, ch[cn].y);
                 dat->mode = 1;
                 dat->backtime = ticker + TICKS * 3;
-                say(cn, "Ooh. Don't die, dear human.");
+                say(cn, "Ooh. Do not die, dear human.");
                 if (do_heal(cn, co)) {
                     remove_message(cn, msg);
                     return;
@@ -425,7 +425,7 @@ void william_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    say(cn, "The \260c4imp\260c0 asked me to tell you to go east and then northeast and hunt some bears.");
+                    say(cn, "The \260c4imp\260c0 asked me to tell thee to go east and then northeast and hunt some bears.");
                     ppd->william_state++;
                     didsay = 1;
                     break;
@@ -436,13 +436,13 @@ void william_driver(int cn, int ret, int lastact) {
                         ppd->william_state = 7;
                         break;
                     }
-                    say(cn, "Ah, hello %s. The \260c4imp\260c0 told me thou hast done him a favor. That's nice of thee.", ch[co].name);
+                    say(cn, "Ah, hello %s. The \260c4imp\260c0 told me thou hast done him a favor. That is nice of thee.", ch[co].name);
                     questlog_open(co, 23);
                     ppd->william_state++;
                     didsay = 1;
                     break;
                 case 4:
-                    say(cn, "Now if I may be so bold as to make a request of my own? It might sound strange to thee, friend, but I can make a nice stew from praying mantisses. I'd pay thee handsomely if thou couldst hunt one of them down and bring it to me.");
+                    say(cn, "Now if I may be so bold as to make a request of my own? It might sound strange to thee, friend, but I can make a nice stew from praying mantisses. I would pay thee handsomely if thou couldst hunt one of them down and bring it to me.");
                     ppd->william_state++;
                     didsay = 1;
                     break;
@@ -606,7 +606,7 @@ void hermit_driver(int cn, int ret, int lastact) {
             if (ppd) {
                 switch (ppd->hermit_state) {
                 case 0:
-                    say(cn, "My greetings to thee, %s. 'Tis most fortunate to see such a formidable hero as thyself. Be aware that I am in dire need of thine help.", ch[co].name);
+                    say(cn, "My greetings to thee, %s. 'Tis most fortunate to see such a formidable hero as thyself. Be aware that I am in dire need of thy help.", ch[co].name);
                     questlog_open(co, 24);
                     ppd->hermit_state++;
                     didsay = 1;

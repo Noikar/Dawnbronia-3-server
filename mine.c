@@ -75,7 +75,7 @@ void check_military_silver(int cn, int amount) {
                 ppd->mis[nr].opt1 -= amount;
                 log_char(cn, LOG_SYSTEM, 0, "You fulfilled part of your mission, you still need %d silver.", ppd->mis[nr].opt1);
             } else {
-                log_char(cn, LOG_SYSTEM, 0, "You solved your mission. Talk to the governor to claim your reward.");
+                log_char(cn, LOG_SYSTEM, 0, "Thou hast solved thy mission. Talk to the governor to claim thy reward.");
                 ppd->solved_mission = 1;
                 ppd->mis[nr].opt1 = 0;
             }
@@ -712,7 +712,7 @@ void keyhold_fight_driver(int cn, int ret, int lastact) {
 
     // self destruct eventually
     if (ticker - dat->creation_time > TICKS * 60 * 5) {
-        say(cn, "Thats all folks!");
+        say(cn, "That is all folks!");
         remove_destroy_char(cn);
         return;
     }

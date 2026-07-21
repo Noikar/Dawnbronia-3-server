@@ -2527,7 +2527,7 @@ void lqnpc(int cn, int ret, int lastact) {
                             destroy_item(in2);
                         }
                     }
-                    say(cn, "Thanks, that's what I wanted.");
+                    say(cn, "I thank thee, that is what I sought.");
                 }
                 // let it vanish
                 destroy_item(ch[cn].citem);

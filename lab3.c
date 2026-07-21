@@ -153,7 +153,7 @@ void lab3_passguard_driver(int cn, int ret, int lastact) {
 
             // dont talk to someone far away (if he is, reset the talkstep)
             if (char_dist(cn, co) > 10) {
-                if (ppd->guard_talkstep == 20) say(cn, "Do not forget thine password, %s. Next time I will ask you again.", ch[co].name);
+                if (ppd->guard_talkstep == 20) say(cn, "Do not forget thy password, %s. Next time I will ask thee again.", ch[co].name);
                 else if (ppd->guard_talkstep) say(cn, "Thou art wise, %s, very wise.", ch[co].name);
                 ppd->guard_talkstep = 0;
                 remove_message(cn, msg);
@@ -182,7 +182,7 @@ void lab3_passguard_driver(int cn, int ret, int lastact) {
                 ppd->guard_talkstep++;
                 break;
             case 3:
-                say(cn, "I'll count up to three, then I will kill thee, %s. So move, or say the password!", ch[co].name);
+                say(cn, "I shall count up to three, then I will kill thee, %s. So move, or say the password!", ch[co].name);
                 didsay = 1;
                 ppd->guard_talkstep++;
                 break;
@@ -197,7 +197,7 @@ void lab3_passguard_driver(int cn, int ret, int lastact) {
                 ppd->guard_talkstep++;
                 break;
             case 6:
-                say(cn, "Three! %s, I'm coming!", ch[co].name);
+                say(cn, "Three! %s, I am coming!", ch[co].name);
                 ppd->guard_talkstep = 0;
                 fight_driver_add_enemy(cn, co, 1, 1);
                 break;
@@ -258,7 +258,7 @@ void lab3_passguard_driver(int cn, int ret, int lastact) {
                 say(cn, "What?");
                 dat->last_talk = ticker + 10 * TICKS;
             } else if (strcasestr(str, "REPEAT")) {
-                say(cn, "I'll repeat.");
+                say(cn, "I shall repeat.");
                 ppd->guard_talkstep = 0;
             }
         }
@@ -394,7 +394,7 @@ void lab3_prisoner_driver(int cn, int ret, int lastact) {
                 dat->next_talk = ticker + 3 * TICKS;
                 break;
 
-            case 3: // say(cn,"I wrote it down, so i won't forget it. Wait a moment and I'll give it to thee, %s.",ch[co].name);
+            case 3: // say(cn,"I wrote it down, so i will not forget it. Wait a moment and I shall give it to thee, %s.",ch[co].name);
                 log_area(ch[cn].x, ch[cn].y, LOG_SYSTEM, 0, DIST * 2, "Now he makes signs like giving something to thee.");
                 didsay = 1;
                 ppd->prisoner_talkstep = 255;

@@ -1259,7 +1259,7 @@ void strategy_boss(int cn, int ret, int lastact) {
                 switch (ppd->boss_stage) {
                 case 0:
                     if (get_army_rank_int(co) < 8) {
-                        say(cn, "Ah, %s. The governer of Aston has some missions for you. You'd better head back there and do those first.", ch[co].name);
+                        say(cn, "Ah, %s. The governer of Aston has some missions for thee. Thou hadst better head back there and do those first.", ch[co].name);
                         ppd->boss_stage++;
                     } else {
                         say(cn, "Welcome, %s, to the Ice Army's Caves. I am %s, the commander in chief of the Ice Army Caves.", ch[co].name, ch[cn].name);
@@ -1272,7 +1272,7 @@ void strategy_boss(int cn, int ret, int lastact) {
                     else break;
 
                 case 2:
-                    say(cn, "We've discovered these caves a few weeks ago. Each cave seems to contain a network of depots, several castles and platinum mines. Some ancient magic is at work here, since each castle is able to create artificial creatures, which can be used as workers or fighters.");
+                    say(cn, "We have discovered these caves a few weeks ago. Each cave seems to contain a network of depots, several castles and platinum mines. Some ancient magic is at work here, since each castle is able to create artificial creatures, which can be used as workers or fighters.");
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     break;
@@ -1287,22 +1287,22 @@ void strategy_boss(int cn, int ret, int lastact) {
                     ppd->boss_timer = realtime;
                     break;
                 case 5:
-                    say(cn, "Your mission, %s, is to find out how to use the castles, the mines and the workers to raise an army of your own, and to defeat Islena's Lieutenants.", get_army_rank_string(co));
+                    say(cn, "Thy mission, %s, is to find out how to use the castles, the mines and the workers to raise an army of thine own, and to defeat Islena's Lieutenants.", get_army_rank_string(co));
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     break;
                 case 6:
-                    say(cn, "We have collected some information about the caves, and the Lieutenants you will encounter there. Type /mission to get a list of these caves, and the missions currently available.");
+                    say(cn, "We have collected some information about the caves, and the Lieutenants thou wilt encounter there. Type /mission to get a list of these caves, and the missions currently available.");
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     break;
                 case 7:
-                    say(cn, "You can use /enter <number> to start any of the missions listed. With /info, you'll be able to get some information about your understanding of the Castle's magic, and with /raise <number> you can choose to research one of the topics listed with /info.");
+                    say(cn, "Thou canst use /enter <number> to start any of the missions listed. With /info, thou shalt be able to get some information about thine understanding of the Castle's magic, and with /raise <number> thou canst choose to research one of the topics listed with /info.");
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     break;
                 case 8:
-                    say(cn, "You can also /surrender, /list, /jp and /eguard once you've started a mission. The artificial creatures obey specific spoken commands. So far, we discovered 'transfer', 'mine', 'guard' and 'fight'. You will have to do some research of your own to utilize all the commands fully.");
+                    say(cn, "Thou canst also /surrender, /list, /jp and /eguard once thou hast started a mission. The artificial creatures obey specific spoken commands. So far, we discovered 'transfer', 'mine', 'guard' and 'fight'. Thou wilt have to do some research of thine own to utilize all the commands fully.");
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     break;
@@ -1313,7 +1313,7 @@ void strategy_boss(int cn, int ret, int lastact) {
                     break;
                 case 10:
                     if (ppd->boss_exp > 0) {
-                        say(cn, "Ah, %s. You made some progress defeating Islena's Lieutenants, and I have orders to reward you. Do you prefer \260c4military rank\260c0 or \260c4levels and experience\260c0?", ch[co].name);
+                        say(cn, "Ah, %s. Thou madest some progress defeating Islena's Lieutenants, and I have orders to reward thee. Dost thou prefer \260c4military rank\260c0 or \260c4levels and experience\260c0?", ch[co].name);
                         ppd->boss_stage++;
                         ppd->boss_msg_exp = ppd->boss_exp;
                     }

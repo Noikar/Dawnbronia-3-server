@@ -76,13 +76,13 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"repeat", NULL}, NULL, 2},
     {{"restart", NULL}, NULL, 2},
     {{"please", "repeat", NULL}, NULL, 2},
@@ -281,12 +281,12 @@ void rammy_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    say(cn, "Oh... I see that thou art a messenger from the Count Brannington, that is a most pleasent surprise to learn that he still holds the city.");
+                    say(cn, "Oh... I see that thou art a messenger from the Count Brannington, that is a most pleasant surprise to learn that he still holds the city.");
                     ppd->rammy_state++;
                     didsay = 1;
                     break;
                 case 2:
-                    say(cn, "We haven't heard from the outside world in ages, are the demons still roaming wild out there?");
+                    say(cn, "We have not heard from the outside world in ages, are the demons still roaming wild out there?");
                     ppd->rammy_state++;
                     didsay = 1;
                     break;
@@ -301,7 +301,7 @@ void rammy_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 5:
-                    say(cn, "And come back here afterwards, I'm in need of thy help with another problem.");
+                    say(cn, "And come back here afterwards, I am in need of thy help with another problem.");
                     ppd->rammy_state++;
                     didsay = 1;
                     break;
@@ -344,7 +344,7 @@ void rammy_driver(int cn, int ret, int lastact) {
                         ppd->rammy_state++;
                     } else break;
                 case 14:
-                    say(cn, "Hello again, %s! We have a problem with the guards in the fortress. They wont let people just pass through of course, but they are attacking everyone!", ch[co].name);
+                    say(cn, "Hello again, %s! We have a problem with the guards in the fortress. They will not let people just pass through of course, but they are attacking everyone!", ch[co].name);
                     ppd->rammy_state++;
                     didsay = 1;
                     break;
@@ -354,7 +354,7 @@ void rammy_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 16:
-                    say(cn, "You must go see the captain in the fortress, hand him this letter. It will tell him who you are, and to find a solution to this issue");
+                    say(cn, "Thou must go see the captain in the fortress, hand him this letter. It will tell him who thou art, and to find a solution to this issue");
                     if (!has_item(co, IID_ARKHATA_FORTRESSKEY)) {
                         in = create_item("key14_13_main");
                         if (in && !give_char_item(co, in)) destroy_item(in);
@@ -536,19 +536,19 @@ void jaz_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    say(cn, "I had to run for my life, but accidently, my bracelet fell off my hand. It holds the insignia of Ishtar and has been passed down through generations in my family.");
+                    say(cn, "I had to run for my life, but accidently, my bracelet fell off my hand. It holdeth the insignia of Ishtar and has been passed down through generations in my family.");
                     ppd->jaz_state++;
                     didsay = 1;
                     break;
                 case 4:
-                    say(cn, "Now, dear fellow, I'll ask thee to cross bridge to the north-east and go into the hut. Defeat the Knoger who has my bracelet and return it to me.");
+                    say(cn, "Now, dear fellow, I shall ask thee to cross bridge to the north-east and go into the hut. Defeat the Knoger who hath my bracelet and return it to me.");
                     ppd->jaz_state++;
                     didsay = 1;
                     break;
                 case 5:
                     break; // waiting for bracelet
                 case 6:
-                    say(cn, "Thank thee so much, I will call thee my %s from now on.", (ch[co].flags & CF_MALE) ? "brother" : "sister");
+                    say(cn, "I thank thee so much, I will call thee my %s from now on.", (ch[co].flags & CF_MALE) ? "brother" : "sister");
                     ppd->jaz_state++;
                     didsay = 1;
                     break;
@@ -673,7 +673,7 @@ void fight_student(int cc, int cn, int nr) {
 
 int fiona_raise(int cn, int co, int v) {
     if (ch[co].gold < 10000 * 100) {
-        quiet_say(cn, "Sorry, it seems you cannot pay me.");
+        quiet_say(cn, "Sorry, it seemeth thou canst not pay me.");
         return 0;
     }
     if (raise_value_exp(co, v)) {
@@ -683,7 +683,7 @@ int fiona_raise(int cn, int co, int v) {
         ch[co].flags |= CF_ITEMS;
         return 1;
     }
-    say(cn, "You cannot raise the skill %s. Please choose a different one, %s.", skill[v].name, ch[co].name);
+    say(cn, "Thou canst not raise the skill %s. Please choose a different one, %s.", skill[v].name, ch[co].name);
     return 0;
 }
 
@@ -761,20 +761,20 @@ void fiona_driver(int cn, int ret, int lastact) {
                     if (ch[co].level >= 50) ppd->fiona_state++;
                     else break;
                 case 1:
-                    say(cn, "Hello there stranger, and welcome to my Academy of the Fighting Arts. I can train your abillities here if you prove thine worth first.");
+                    say(cn, "Hello there stranger, and welcome to my Academy of the Fighting Arts. I can train thine abilities here if thou provest thy worth first.");
                     questlog_open(co, 67);
                     ppd->fiona_state++;
                     didsay = 1;
                     break;
                 case 2:
-                    say(cn, "I ventured into the vampire lair a few days ago, and suddenly my ring disappeared. And my students need me here so I can't retrieve it myself. Please bring it back to me.");
+                    say(cn, "I ventured into the vampire lair a few days ago, and suddenly my ring disappeared. And my students need me here so I cannot retrieve it myself. Please bring it back to me.");
                     ppd->fiona_state++;
                     didsay = 1;
                     break;
                 case 3:
                     break; // waiting for ring
                 case 4:
-                    say(cn, "Thank thee ever so much.");
+                    say(cn, "I thank thee ever so much.");
                     ppd->fiona_state++;
                     didsay = 1;
                     break;
@@ -783,7 +783,7 @@ void fiona_driver(int cn, int ret, int lastact) {
                         say(cn, "I was going to offer thee a chance to prove thyself against my students, but they are no challenge for thee.");
                         ppd->fiona_state = 19;
                     } else {
-                        say(cn, "I will now allow you to test your skills against my students. If you defeat them all I will raise one of your skills by 2 points for the price of 10000gold.");
+                        say(cn, "I will now allow thee to test thy skills against my students. If thou defeatest them all, I will raise one of thy skills by 2 points for the price of 10000 gold.");
                         ppd->fiona_state++;
                     }
                     didsay = 1;
@@ -815,10 +815,10 @@ void fiona_driver(int cn, int ret, int lastact) {
                     break; // fighting gladiator 10
                 case 17:
                     if (ch[co].level <= 80) {
-                        say(cn, "Well done, %s. So what skill does thou want raised? Please say 'raise skill name' (like, for example, 'raise attack'). This will not increase your skills past the usual maxes.", ch[co].name);
+                        say(cn, "Well done, %s. So what skill dost thou want raised? Please say 'raise skill name' (like, for example, 'raise attack'). This will not increase thy skills past the usual maxes.", ch[co].name);
                         ppd->fiona_state = 18;
                     } else {
-                        say(cn, "Nicely done, %s. But then, it wasn't a big challenge, now, was it?", ch[co].name);
+                        say(cn, "Nicely done, %s. But then, it was not a big challenge, now, was it?", ch[co].name);
                         ppd->fiona_state = 19;
                     }
                     didsay = 1;
@@ -979,7 +979,7 @@ void gladiator_driver(int cn, int ret, int lastact) {
     if (ticker - dat->last_talk > TICKS * 60 * 3) {
         int x, y;
 
-        say(cn, "That's all folks!");
+        say(cn, "That is all folks!");
         for (x = 9; x <= 24; x++) {
             for (y = 238; y <= 252; y++) {
                 if ((co = map[x + y * MAXMAP].ch) && (ch[co].flags & CF_PLAYER)) {
@@ -1042,7 +1042,7 @@ void bridgeguard_driver(int cn, int ret, int lastact) {
 
             if (dist < 16) {
                 if (!mem_check_driver(cn, co, 7) && ticker - dat->last_talk > TICKS * 20) {
-                    if (ch[co].level < 50) say(cn, "Hold! This is no place for such inexperienced travellers as thyself. Return here when you are stronger, %s!", ch[co].name);
+                    if (ch[co].level < 50) say(cn, "Hold! This is no place for such inexperienced travellers as thyself. Return here when thou art stronger, %s!", ch[co].name);
                     else say(cn, "Greetings %s, thou mayest pass the bridge.", ch[co].name);
                     dat->last_talk = ticker;
                     mem_add_driver(cn, co, 7);
@@ -1197,13 +1197,13 @@ void ramin_driver(int cn, int ret, int lastact) {
                     if (ppd->fiona_state >= 4) ppd->ramin_state++;
                     else break;
                 case 1:
-                    say(cn, "Hello Great Adventurer! Tidings of thy deed of returning Queen Fiona's ring have reached me. I believe you could help me too.");
+                    say(cn, "Hello Great Adventurer! Tidings of thy deed of returning Queen Fiona's ring have reached me. I believe thou couldst help me too.");
                     questlog_open(co, 68);
                     ppd->ramin_state++;
                     didsay = 1;
                     break;
                 case 2:
-                    say(cn, "As a direct ancestor of High Counsellor Regnior who brough us here, I am in charge of the civil life of the city.");
+                    say(cn, "As a direct ancestor of High Counsellor Regnior who brought us here, I am in charge of the civil life of the city.");
                     ppd->ramin_state++;
                     didsay = 1;
                     break;
@@ -1213,12 +1213,12 @@ void ramin_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 4:
-                    say(cn, "It seems it appeared out of nowhere and he is now afraid to even enter his own bedroom.");
+                    say(cn, "It seemeth it appeared out of nowhere and he is now afraid to even enter his own bedroom.");
                     ppd->ramin_state++;
                     didsay = 1;
                     break;
                 case 5:
-                    say(cn, "I would have sent a soldier for this but Rammy says he doesn't have any to spare from the fortress. May you go instead, explore this hole and destroy any dangers within it?");
+                    say(cn, "I would have sent a soldier for this but Rammy says he doth not have any to spare from the fortress. Mayst thou go instead, explore this hole and destroy any dangers within it?");
                     ppd->ramin_state++;
                     didsay = 1;
                     break;
@@ -1238,7 +1238,7 @@ void ramin_driver(int cn, int ret, int lastact) {
                     if (ch[co].level >= 54 && ppd->monk_state >= 20) ppd->ramin_state++;
                     else break;
                 case 10:
-                    if (ppd->rammy_state < 14) say(cn, "Greetings my friend! I hear that you have helped the monks. Now Rammy has sent me news about trouble opening the fortress for a trade route, he is in need of thy help again. Please go and talk to him.");
+                    if (ppd->rammy_state < 14) say(cn, "Greetings my friend! I hear that thou hast helped the monks. Now Rammy has sent me news about trouble opening the fortress for a trade route, he is in need of thy help again. Please go and talk to him.");
                     ppd->ramin_state++;
                     didsay = 1;
                     break;
@@ -1246,7 +1246,7 @@ void ramin_driver(int cn, int ret, int lastact) {
                     if (ch[co].level >= 60 && ppd->rammy_state >= 18) ppd->ramin_state++;
                     else break;
                 case 12:
-                    say(cn, "Ah, it is good to see you again, %s!", ch[co].name);
+                    say(cn, "Ah, it is good to see thee again, %s!", ch[co].name);
                     ppd->ramin_state++;
                     didsay = 1;
                     break;
@@ -1322,7 +1322,7 @@ void ramin_driver(int cn, int ret, int lastact) {
 
             if ((in = ch[cn].citem)) { // we still have it
                 if (it[in].ID == IID_ARKHATA_LETTER2 && ppd && !(ppd->letter_bits & 2)) {
-                    quiet_say(cn, "You bring comfort and solution. My friend I am most grateful.");
+                    quiet_say(cn, "Thou bringest comfort and solution. My friend I am most grateful.");
                     destroy_item_byID(co, IID_ARKHATA_LETTER2);
 
                     ppd->letter_bits |= 2;
@@ -1477,28 +1477,28 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                     else break;
                 case 1:
                     if (nr == 1) {
-                        say(cn, "Dried leaves of lavender, and rose buttons, cinnamon powder and three drops elcalyptus extract is all you need for a fragrance so refreshing it will open thy air channels even when cought by the worst cold.");
+                        say(cn, "Dried leaves of lavender, and rose buttons, cinnamon powder and three drops elcalyptus extract is all thou needest for a fragrance so refreshing it will open thine air channels even when caught by the worst cold.");
                         ppd->monk_state++;
                         didsay = 1;
                     }
                     break;
                 case 2:
                     if (nr == 1) {
-                        say(cn, "Sleep on a pillow filled with acorns of wheat and drink a glass of milk before going to bed for a good nights sleep with calm dreams.");
+                        say(cn, "Sleep on a pillow filled with acorns of wheat and drink a glass of milk before going to bed for a good night's sleep with calm dreams.");
                         ppd->monk_state++;
                         didsay = 1;
                     }
                     break;
                 case 3:
                     if (nr == 1) {
-                        say(cn, "Twice a week have a bath in water with 1 teaspoon of coconut oil and scrub your skin with a saltwater spunge untill it turns red to maintain a soft and youthful skin.");
+                        say(cn, "Twice a week have a bath in water with 1 teaspoon of coconut oil and scrub thy skin with a saltwater spunge untill it turneth red to maintain a soft and youthful skin.");
                         ppd->monk_state++;
                         didsay = 1;
                     }
                     break;
                 case 4:
                     if (nr == 1) {
-                        say(cn, "Avoid garlic before proposing to your loved one...");
+                        say(cn, "Avoid garlic before proposing to thy loved one...");
                         ppd->monk_state++;
                         didsay = 1;
                     }
@@ -1526,7 +1526,7 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                     break;
                 case 8:
                     if (nr == 3) {
-                        say(cn, "Greetings! You have come just in time. We usually work here so late at night that we fall asleep by our books right here in the library.");
+                        say(cn, "Greetings! Thou hast come just in time. We usually work here so late at night that we fall asleep by our books right here in the library.");
                         questlog_open(co, 69);
                         ppd->monk_state++;
                         didsay = 1;
@@ -1548,7 +1548,7 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                     break;
                 case 11:
                     if (nr == 3) {
-                        say(cn, "I believe it must have been some of those monsters who occupy the old building across the bridge and south-west of here. Please find the keyparts and return them, and we will share with you some of the wisdom that is stored in those books.");
+                        say(cn, "I believe it must have been some of those monsters who occupy the old building across the bridge and south-west of here. Please find the keyparts and return them, and we will share with thee some of the wisdom that is stored in those books.");
                         ppd->monk_state++;
                         didsay = 1;
                     }
@@ -1564,14 +1564,14 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                     break;
                 case 14:
                     if (nr == 3) {
-                        say(cn, "I will now continue my research to uncover the secrets held within these books. Why don't thou go and talk to Tracy in the meantime?");
+                        say(cn, "I will now continue my research to uncover the secrets held within these books. Why dost thou not go and talk to Tracy in the meantime?");
                         ppd->monk_state++;
                         didsay = 1;
                     }
                     break;
                 case 15:
                     if (nr == 4) {
-                        say(cn, "I see you have assisted the monks, perhaps you can help me too?");
+                        say(cn, "I see thou hast assisted the monks, perhaps thou canst help me too?");
                         questlog_open(co, 70);
                         ppd->monk_state++;
                         didsay = 1;
@@ -1579,7 +1579,7 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                     break;
                 case 16:
                     if (nr == 4) {
-                        say(cn, "There is a hidden backroom down in the southern corner of the library, it seems like a huge book eater has occupied the basement floor there, and is chewing up my most precious novels.");
+                        say(cn, "There is a hidden backroom down in the southern corner of the library, it seemeth like a huge book eater has occupied the basement floor there, and is chewing up my most precious novels.");
                         ppd->monk_state++;
                         didsay = 1;
                     }
@@ -1593,7 +1593,7 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                     break;
                 case 18:
                     if (nr == 4) {
-                        say(cn, "Please go down there and slay it for me, those novels are of great value to me and I can't stand the thought of losing another page! I will reward you handsomely");
+                        say(cn, "Please go down there and slay it for me, those novels are of great value to me and I cannot stand the thought of losing another page! I will reward thee handsomely");
                         ppd->monk_state++;
                         didsay = 1;
                     }
@@ -1602,7 +1602,7 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                     break; // waiting for player to kill the bad book eater
                 case 20:
                     if (nr == 4) {
-                        say(cn, "Thank you, my novels should be safe now. Here is thy reward.");
+                        say(cn, "I thank thee, my novels should be safe now. Here is thy reward.");
                         give_money(co, 200 * 100, "solved Tracy's quest");
                         ppd->monk_state++;
                         didsay = 1;
@@ -1610,7 +1610,7 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                     break;
                 case 21:
                     if (nr == 3) {
-                        say(cn, "It is nice to see you again my friend. This book I'm attempting to translate is proving to be quite a challenge.");
+                        say(cn, "It is nice to see thee again my friend. This book I am attempting to translate is proving to be quite a challenge.");
                         questlog_open(co, 78);
                         ppd->monk_state++;
                         didsay = 1;
@@ -1618,14 +1618,14 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                     break;
                 case 22:
                     if (nr == 3) {
-                        say(cn, "It was found down in the caves, and I believe it's written in the Frawd's language. It is cryptic and ancient.");
+                        say(cn, "It was found down in the caves, and I believe it is written in the Frawd's language. It is cryptic and ancient.");
                         ppd->monk_state++;
                         didsay = 1;
                     }
                     break;
                 case 23:
                     if (nr == 3) {
-                        say(cn, "I believe they are related to the dwarfs, but the languages are less similar then deers and fire snails.");
+                        say(cn, "I believe they are related to the dwarfs, but the languages are less similar than deer and fire snails.");
                         ppd->monk_state++;
                         didsay = 1;
                     }
@@ -1646,14 +1646,14 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                     break;
                 case 26:
                     if (nr == 3) {
-                        say(cn, "If you have seen anyone above ground who forges metal items or weapons for a rather ridiculus salary, he is most likely of dwarf blood.");
+                        say(cn, "If thou hast seen anyone above ground who forgeth metal items or weapons for a rather ridiculus salary, he is most likely of dwarf blood.");
                         ppd->monk_state++;
                         didsay = 1;
                     }
                     break;
                 case 27:
                     if (nr == 3) {
-                        say(cn, "If you know such a person seek him out for me please.");
+                        say(cn, "If thou knowest such a person seek him out for me please.");
                         ppd->monk_state++;
                         didsay = 1;
                     }
@@ -1662,7 +1662,7 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                     break; // waiting for corby
                 case 29:
                     if (nr == 3) {
-                        say(cn, "I can not cover all your expences I'm afraid, but here is 3000g Let me at least repay some of my debt to you.");
+                        say(cn, "I can not cover all thine expenses I am afraid, but here is 3000g Let me at least repay some of my debt to thee.");
                         give_money(co, 3000 * 100, "Monk Dictionary Quest");
                         ppd->monk_state++;
                         didsay = 1;
@@ -1733,7 +1733,7 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                 } else if (ppd && nr == 2 && it[in].ID == IID_ARKHATA_MONKPART3 && ppd->monk_state == 12) {
                     destroy_item_byID(co, IID_ARKHATA_MONKPART3);
                     ppd->monk_bits |= 2;
-                    say(cn, "I shall remember thy herosim. Perhaps I shall write down your family tree next, %s?", ch[co].name);
+                    say(cn, "I shall remember thy heroism. Perhaps I shall write down thy family tree next, %s?", ch[co].name);
                     if (ppd->monk_bits == 7) {
                         questlog_done(co, 69);
                         ppd->monk_state = 13;
@@ -1756,7 +1756,7 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                     ch[cn].citem = 0;
                 } else if (ppd && nr == 3 && it[in].ID == IID_ARKHATA_DICTIONARY && ppd->monk_state == 28) {
                     destroy_item_byID(co, IID_ARKHATA_DICTIONARY);
-                    say(cn, "This is much more then I had hoped for, I'm now able to learn and translate the language in it's whole. Let us study together and share this knowledge.");
+                    say(cn, "This is much more then I had hoped for, I am now able to learn and translate the language in its whole. Let us study together and share this knowledge.");
                     give_exp(co, 15000);
                     log_char(co, LOG_SYSTEM, 0, "You learn the ancient language and gain some experience.");
                     ppd->monk_state++;
@@ -1857,7 +1857,7 @@ void captain_driver(int cn, int ret, int lastact) {
                 case 0:
                     break;
                 case 1:
-                    say(cn, "I see, so Rammy sent thee. Well if he trusts in thee then so shall I!");
+                    say(cn, "I see, so Rammy sent thee. Well if he trusteth in thee then so shall I!");
                     ppd->captain_state++;
                     didsay = 1;
                     break;
@@ -1867,7 +1867,7 @@ void captain_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    say(cn, "I need you to speak with the judge so that he can write the formal authorization letters for this. He will also tell you who needs a copy.");
+                    say(cn, "I need thee to speak with the judge so that he can write the formal authorization letters for this. He will also tell thee who needeth a copy.");
                     ppd->captain_state++;
                     didsay = 1;
                     break;
@@ -1890,12 +1890,12 @@ void captain_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 8:
-                    say(cn, "The clerk has reported more notes missing, so he was not alone in this treachery. You should speak with the clerk.");
+                    say(cn, "The clerk has reported more notes missing, so he was not alone in this treachery. Thou shouldst speak with the clerk.");
                     ppd->captain_state++;
                     didsay = 1;
                     break;
                 case 9:
-                    say(cn, "And a little warning. Your entrance pass is only valid in open areas of the fortress, some places my guard will attack you still.");
+                    say(cn, "And a little warning. Thine entrance pass is only valid in open areas of the fortress, some places my guard will attack thee still.");
                     ppd->captain_state++;
                     didsay = 1;
                     break;
@@ -2043,12 +2043,12 @@ void judge_driver(int cn, int ret, int lastact) {
                     if (ppd->captain_state > 0) ppd->judge_state++;
                     else break;
                 case 1:
-                    say(cn, "A, hello %s! So the captain needs a system of authorization letters for people to pass through the fortress?", get_army_rank_string(co));
+                    say(cn, "Ah, hello %s! So the captain needs a system of authorization letters for people to pass through the fortress?", get_army_rank_string(co));
                     ppd->judge_state++;
                     didsay = 1;
                     break;
                 case 2:
-                    say(cn, "I'm not surprised that this would become an issue. I'll write the formal agreements up right away, please wait a moment.");
+                    say(cn, "I am not surprised that this would become an issue. I shall write the formal agreements up right away, please wait a moment.");
                     ppd->judge_state++;
                     didsay = 1;
                     break;
@@ -2070,7 +2070,7 @@ void judge_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 4:
-                    say(cn, "And for you, an entrance pass to the fortress, whilst carrying it, no guard will attack you.");
+                    say(cn, "And for thee, an entrance pass to the fortress, whilst carrying it, no guard will attack thee.");
                     if (!has_item(co, IID_ARKHATA_LETTER5)) {
                         in = create_item("letter5");
                         if (in && !give_char_item(co, in)) destroy_item(in);
@@ -2079,7 +2079,7 @@ void judge_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 5:
-                    if (ppd->letter_bits != (2 | 4 | 8)) say(cn, "Now please deliver those agreements for me, and speak with Rammy again afterwards. I'm sure he will be happy to hear that this problem is solved.");
+                    if (ppd->letter_bits != (2 | 4 | 8)) say(cn, "Now please deliver those agreements for me, and speak with Rammy again afterwards. I am sure he will be happy to hear that this problem is solved.");
                     ppd->judge_state++;
                     didsay = 1;
                     break;
@@ -2488,12 +2488,12 @@ void jada_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 2:
-                    say(cn, "I have discovered that the source of this evil that seems to penetrate our fortress is placed somewhere below it, in the cave system.");
+                    say(cn, "I have discovered that the source of this evil that seemeth to penetrate our fortress is placed somewhere below it, in the cave system.");
                     ppd->jada_state++;
                     didsay = 1;
                     break;
                 case 3:
-                    say(cn, "The hole in the corner there is our safe entrance to the cave system, we have only been able to search a small part of the caves. I ask you to go down there and find the source of this evil and bring it to me.");
+                    say(cn, "The hole in the corner there is our safe entrance to the cave system, we have only been able to search a small part of the caves. I ask thee to go down there and find the source of this evil and bring it to me.");
                     ppd->jada_state++;
                     didsay = 1;
                     break;
@@ -2545,7 +2545,7 @@ void jada_driver(int cn, int ret, int lastact) {
                     destroy_item_byID(co, IID_ARKHATA_BLADE);
                     questlog_done(co, 72);
                     ppd->jada_state = 5;
-                    say(cn, "By the bless-swirls, this thing is a concentration of evil! I will have to ask the monks for help to contain it. Thank thee, thou hast most certainly saved us all!");
+                    say(cn, "By the bless-swirls, this thing is a concentration of evil! I will have to ask the monks for help to contain it. I thank thee, thou hast most certainly saved us all!");
 
                     // let it vanish, then
                     destroy_item(ch[cn].citem);
@@ -2634,13 +2634,13 @@ void potmaker_driver(int cn, int ret, int lastact) {
                     if (ch[co].level >= 48) ppd->pot_state++;
                     else break;
                 case 1:
-                    say(cn, "Hello Stranger, I'm afraid someone stole a rather special pot I made on order from the Monk Thai Pan. I made it from iron blessed with holy water from a spring in the mountains outside the fortress.");
+                    say(cn, "Hello Stranger, I am afraid someone stole a rather special pot I made on order from the Monk Thai Pan. I made it from iron blessed with holy water from a spring in the mountains outside the fortress.");
                     questlog_open(co, 73);
                     ppd->pot_state++;
                     didsay = 1;
                     break;
                 case 2:
-                    say(cn, "It is quite a valuable pot, it can hold water in temperatures far below freezing without it turning to ice. Thai Pan has told me he could sense it's magic south of his temple, perhaps you should search the forest in that direction.");
+                    say(cn, "It is quite a valuable pot, it can hold water in temperatures far below freezing without it turning to ice. Thai Pan has told me he could sense its magic south of his temple, perhaps thou shouldst search the forest in that direction.");
                     ppd->pot_state++;
                     didsay = 1;
                     break;
@@ -2692,7 +2692,7 @@ void potmaker_driver(int cn, int ret, int lastact) {
                     destroy_item_byID(co, IID_ARKHATA_IRONPOT);
                     questlog_done(co, 73);
                     ppd->pot_state = 4;
-                    say(cn, "May you be blessed by all that is good in this world, I'm in your debt. Here, take this smaller pot which holds the same holy water. You might find need for it some time.");
+                    say(cn, "Mayst thou be blessed by all that is good in this world, I am in thy debt. Here, take this smaller pot which holdeth the same holy water. Thou mightst find need for it some time.");
 
                     in2 = create_item("infravision_pot");
                     if (in2 && !give_char_item(co, in2)) destroy_item(in2);
@@ -2784,7 +2784,7 @@ void hunter_driver(int cn, int ret, int lastact) {
                     if (ppd->pot_state > 0) ppd->hunter_state++;
                     else break;
                 case 1:
-                    say(cn, "Hail adventurer! I see you are seeking for a ceremonial pot. Well that is an odd coincidence.");
+                    say(cn, "Hail adventurer! I see thou art seeking for a ceremonial pot. Well that is an odd coincidence.");
                     ppd->hunter_state++;
                     didsay = 1;
                     break;
@@ -2802,7 +2802,7 @@ void hunter_driver(int cn, int ret, int lastact) {
                     if (ch[co].level >= 58) ppd->hunter_state++;
                     else break;
                 case 5:
-                    say(cn, "It's great to see you again adventurer! News of your deeds in Arkhata has reached even me.");
+                    say(cn, "It is great to see thee again adventurer! News of thy deeds in Arkhata has reached even me.");
                     questlog_open(co, 77);
                     ppd->hunter_state++;
                     didsay = 1;
@@ -2813,12 +2813,12 @@ void hunter_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 7:
-                    say(cn, "Following hints from people who's seen it. Yet I have failed to seek out and slay the beast, it appears to move across a vast territory.");
+                    say(cn, "Following hints from people who's seen it. Yet I have failed to seek out and slay the beast, it appeareth to move across a vast territory.");
                     ppd->hunter_state++;
                     didsay = 1;
                     break;
                 case 8:
-                    say(cn, "I will reward you for slaying it, but its skin and the honor should be mine.");
+                    say(cn, "I will reward thee for slaying it, but its skin and the honor should be mine.");
                     ppd->hunter_state++;
                     didsay = 1;
                     break;
@@ -2870,7 +2870,7 @@ void hunter_driver(int cn, int ret, int lastact) {
                     destroy_item_byID(co, IID_ARKHATA_HARPY);
                     questlog_done(co, 77);
                     ppd->hunter_state = 10;
-                    say(cn, "Ah you did it! I knew I could count on you. Here take these 150 gold coins and say nothing of this to anyone. Farwell!");
+                    say(cn, "Ah thou didst it! I knew I could count on thee. Here take these 150 gold coins and say nothing of this to anyone. Farwell!");
                     give_money(co, 150 * 100, "Solved Hunter Quest");
 
                     // let it vanish, then
@@ -2960,7 +2960,7 @@ void thaipan_driver(int cn, int ret, int lastact) {
                     if (ch[co].level >= 49 && ppd->pot_state >= 4) ppd->thai_state++;
                     else break;
                 case 1:
-                    say(cn, "Aaaaaaaaaaooooommmm... Oh, hello there friend. I'm Thai Pan, monk in this small place of worship. You are welcome to have a cup of green tea with me.");
+                    say(cn, "Aaaaaaaaaaooooommmm... Oh, hello there friend. I am Thai Pan, monk in this small place of worship. Thou art welcome to have a cup of green tea with me.");
                     questlog_open(co, 74);
                     ppd->thai_state++;
                     didsay = 1;
@@ -2971,7 +2971,7 @@ void thaipan_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    say(cn, "It is said that the ruins on the shore right north-west of here was once a sanctuary for scholars of my order.");
+                    say(cn, "It is said that the ruins on the shore right north-west of here were once a sanctuary for scholars of my order.");
                     ppd->thai_state++;
                     didsay = 1;
                     break;
@@ -2981,7 +2981,7 @@ void thaipan_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 5:
-                    say(cn, "But their search was powered by greed, not by the will to do good. And as they discovered some of the ancient secrets it corrupted their minds and lead do their downfall.");
+                    say(cn, "But their search was powered by greed, not by the will to do good. And as they discovered some of the ancient secrets it corrupted their minds and led to their downfall.");
                     ppd->thai_state++;
                     didsay = 1;
                     break;
@@ -3043,7 +3043,7 @@ void thaipan_driver(int cn, int ret, int lastact) {
                     destroy_item_byID(co, IID_ARKHATA_SCROLL2);
                     questlog_done(co, 74);
                     ppd->thai_state = 9;
-                    say(cn, "So the story is true then, may the secrets within this scroll be yours.");
+                    say(cn, "So the story is true then, may the secrets within this scroll be thine.");
 
                     // let it vanish, then
                     destroy_item(ch[cn].citem);
@@ -3051,7 +3051,7 @@ void thaipan_driver(int cn, int ret, int lastact) {
                 } else if (ppd && it[in].ID == IID_ARKHATA_BUDDA && ppd->thai_state > 0 && ch[co].exp_used > ch[co].exp && realtime - ppd->last_budda > 60 * 60 * 24) {
                     int v, w;
 
-                    say(cn, "May you find peace and recover from any discomfort you have had.");
+                    say(cn, "Mayst thou find peace and recover from any discomfort thou hast had.");
                     v = ch[co].exp_used - ch[co].exp;
 
                     ppd->last_budda = realtime;
@@ -3066,7 +3066,7 @@ void thaipan_driver(int cn, int ret, int lastact) {
                     ch[cn].citem = 0;
                 } else {
                     if (ppd && it[in].ID == IID_ARKHATA_BUDDA && ppd->thai_state > 0) {
-                        if (ch[co].exp_used <= ch[co].exp) say(cn, "Thou doest not have any negative experience.");
+                        if (ch[co].exp_used <= ch[co].exp) say(cn, "Thou dost not have any negative experience.");
                         else if (realtime - ppd->last_budda <= 60 * 60 * 24) say(cn, "Thou canst only do this once per day.");
                     } else say(cn, "Thou hast better use for this than I do. Well, if there is a use for it at all.");
                     if (!give_char_item(co, ch[cn].citem)) destroy_item(ch[cn].citem);
@@ -3159,12 +3159,12 @@ void clerk_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 2:
-                    say(cn, "Three notes containing information about a transport from Brannington to Arkhata due tomorow night are missing. Most likely the traitors will pass these notes to the robbers tonight.");
+                    say(cn, "Three notes containing information about a transport from Brannington to Arkhata due tomorrow night are missing. Most likely the traitors will pass these notes to the robbers tonight.");
                     ppd->clerk_state++;
                     didsay = 1;
                     break;
                 case 3:
-                    say(cn, "Are you able to find these traitors in time? You will have three hours (Astonia time)! Say \260c04Aye\260c0 when you are ready!");
+                    say(cn, "Art thou able to find these traitors in time? Thou wilt have three hours (Astonia time)! Say \260c04Aye\260c0 when thou art ready!");
                     ppd->clerk_state++;
                     didsay = 1;
                     break;
@@ -3212,7 +3212,7 @@ void clerk_driver(int cn, int ret, int lastact) {
                 if (ppd && (ppd->clerk_state == 4 || (ch[co].flags & CF_GOD))) {
                     ppd->clerk_time = realtime;
                     ppd->clerk_state = 5;
-                    say(cn, "Very good, you have 3 hours (astonia time) to retrieve the notes. Good Luck!");
+                    say(cn, "Very good, thou hast 3 hours (astonia time) to retrieve the notes. Good Luck!");
 
                     log_char(co, LOG_SYSTEM, 0, "Your stopwatch will vanish if you leave the area or log off. The quest, however, will still be open and the three hours will continue to run out. The clerk will give you a new watch if you ask him for a 'watch'.");
 
@@ -3248,7 +3248,7 @@ void clerk_driver(int cn, int ret, int lastact) {
                     destroy_item_byID(co, IID_ARKHATA_NOTE1);
                     ppd->clerk_bits |= 1;
                     if (ppd->clerk_bits == (1 | 2 | 4)) {
-                        say(cn, "You have done a great job. Now the transport will be safe, thank you.");
+                        say(cn, "Thou hast done a great job. Now the transport will be safe, I thank thee.");
                         questlog_done(co, 76);
                     } else say(cn, "Oh there might be hope after all then.");
 
@@ -3259,7 +3259,7 @@ void clerk_driver(int cn, int ret, int lastact) {
                     destroy_item_byID(co, IID_ARKHATA_NOTE2);
                     ppd->clerk_bits |= 2;
                     if (ppd->clerk_bits == (1 | 2 | 4)) {
-                        say(cn, "You have done a great job, Now the transport will be safe, thank you.");
+                        say(cn, "Thou hast done a great job, Now the transport will be safe, I thank thee.");
                         questlog_done(co, 76);
                     } else say(cn, "Oh there might be hope after all then.");
 
@@ -3270,7 +3270,7 @@ void clerk_driver(int cn, int ret, int lastact) {
                     destroy_item_byID(co, IID_ARKHATA_NOTE3);
                     ppd->clerk_bits |= 4;
                     if (ppd->clerk_bits == (1 | 2 | 4)) {
-                        say(cn, "You have done a great job, Now the transport will be safe, thank you.");
+                        say(cn, "Thou hast done a great job, Now the transport will be safe, I thank thee.");
                         questlog_done(co, 76);
                         ppd->clerk_state = 6;
                     } else say(cn, "Oh there might be hope after all then.");
@@ -3362,18 +3362,18 @@ void trainer_driver(int cn, int ret, int lastact) {
                     if (ch[co].level >= 53 && ppd->fiona_state >= 4) ppd->trainer_state++;
                     else break;
                 case 1:
-                    say(cn, "Greetings, adventurer who returned the ring to my Queen Fiona. As one who may train in this academy now, your loyalty is expected in return.");
+                    say(cn, "Greetings, adventurer who returned the ring to my Queen Fiona. As one who may train in this academy now, thy loyalty is expected in return.");
                     questlog_open(co, 75);
                     ppd->trainer_state++;
                     didsay = 1;
                     break;
                 case 2:
-                    say(cn, "And I'm in need of thine services. One of my students has been kidnapped by the gang who has their guild east of our fine establishment.");
+                    say(cn, "And I am in need of thy services. One of my students has been kidnapped by the gang who hath their guild east of our fine establishment.");
                     ppd->trainer_state++;
                     didsay = 1;
                     break;
                 case 3:
-                    say(cn, "Usually the evil gang doesn't trouble us, but one of my more reckless students ventured too far on his own.");
+                    say(cn, "Usually the evil gang does not trouble us, but one of my more reckless students ventured too far on his own.");
                     ppd->trainer_state++;
                     didsay = 1;
                     break;
@@ -3383,7 +3383,7 @@ void trainer_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 5:
-                    say(cn, "I need you to go get the student back, before our secrets are given away. Time is short, so go now!");
+                    say(cn, "I need thee to go get the student back, before our secrets are given away. Time is short, so go now!");
                     ppd->trainer_state++;
                     didsay = 1;
                     break;
@@ -3393,7 +3393,7 @@ void trainer_driver(int cn, int ret, int lastact) {
                         ppd->trainer_state++;
                     } else break;
                 case 7:
-                    say(cn, "Thank thee great fighter. Now that my student is safe I can sleep at night. You have proven your skills once again. The door to the academy will always be open to you.");
+                    say(cn, "I thank thee great fighter. Now that my student is safe I can sleep at night. Thou hast proven thy skills once again. The door to the academy will always be open to thee.");
                     ppd->trainer_state++;
                     didsay = 1;
                     break;
@@ -3530,7 +3530,7 @@ void kidnappee_driver(int cn, int ret, int lastact) {
                     if (ppd->trainer_state > 0) ppd->kid_state++;
                     else break;
                 case 1:
-                    say(cn, "You must have been sent to rescue me! Oh how glad I am to see you! Please open this cage and let me out!");
+                    say(cn, "Thou must have been sent to rescue me! Oh how glad I am to see thee! Please open this cage and let me out!");
                     ppd->kid_state++;
                     didsay = 1;
                     break;
@@ -3541,7 +3541,7 @@ void kidnappee_driver(int cn, int ret, int lastact) {
                         destroy_item(in);
                         ppd->kid_state = 4;
                     } else {
-                        say(cn, "Only their leader could seal my cage, only he gets close to me. He must have the secret to open this cage.");
+                        say(cn, "Only their leader could seal my cage, only he getteth close to me. He must have the secret to open this cage.");
                         ppd->kid_state = 3;
                     }
                     didsay = 1;
@@ -3550,7 +3550,7 @@ void kidnappee_driver(int cn, int ret, int lastact) {
                     if (has_item(co, IID_ARKHATA_IRONPOTION)) ppd->kid_state = 2;
                     break;
                 case 4:
-                    say(cn, "Thank thee so much for rescuing me.");
+                    say(cn, "I thank thee so much for rescuing me.");
                     log_char(co, LOG_SYSTEM, 0, "You've rescued the student. Now go back to the trainer to claim your reward.");
                     ppd->kid_state++;
                     didsay = 1;
@@ -3695,7 +3695,7 @@ void krenach_driver(int cn, int ret, int lastact) {
                         break;
                     }
                 case 1:
-                    say(cn, "So you have met my grandson? And he is well? Oh by the pickaxe's tip you are one blessed human.");
+                    say(cn, "So thou hast met my grandson? And he is well? Oh by the pickaxe's tip thou art one blessed human.");
                     questlog_done(co, 78);
                     ppd->krenach_state++;
                     didsay = 1;
@@ -3706,7 +3706,7 @@ void krenach_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    say(cn, "10000g for a book is alot of money. I see you have taken good care of it. Here take these 5000g from me. All in all, the price of your adventure should be more reasonable now.");
+                    say(cn, "10000g for a book is alot of money. I see thou hast taken good care of it. Here take these 5000g from me. All in all, the price of thine adventure should be more reasonable now.");
                     give_money(co, 5000 * 100, "Krenach Dictionary Quest");
                     ppd->krenach_state++;
                     didsay = 1;
@@ -3874,7 +3874,7 @@ void immortal_dead(int cn, int co) {
 }
 
 void prisoner_dead(int cn, int co) {
-    say(cn, "I know the secret, it's right here!");
+    say(cn, "I know the secret, it is right here!");
 }
 
 void madhermit_driver(int cn, int ret, int lastact) {

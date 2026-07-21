@@ -72,40 +72,40 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"what's", "your", "name", NULL}, NULL, 1},
     {{"what", "is", "your", "name", NULL}, NULL, 1},
     {{"who", "are", "you", NULL}, NULL, 1},
-    {{"play", NULL}, "I only play for bronze chips. You can \260c4bet one\260c0 or \260c4bet two\260c0 or \260c4bet five\260c0 of them. Then you'll roll three dice and depending on the \260c4results\260c0 you'll win the most fantastic stuff possible!", 0},
-    {{"results", NULL}, "The dice are twenty-sided and the numbers are added up. If you roll 3 to 20 you win and if you roll 43 to 60 you win, too. Want to hear about the \260c4prizes\260c0?", 0},
-    {{"prizes", NULL}, "A 3 gets you a Cape of the Warrior. A 60 a Cape of the Mage. +7 if you bet one chip, +14 if you bet two, +21 if you bet all five. Want to hear \260c4 more prizes\260c0?", 0},
-    {{"more", "prizes", NULL}, "With a 4 or a 59 you'll win 100,000 gold (when betting 5 chips, 20,000 for 1 chip, 40,000 for 2 chips). And there are many, many more prizes...", 0},
+    {{"play", NULL}, "I only play for bronze chips. Thou canst \260c4bet one\260c0 or \260c4bet two\260c0 or \260c4bet five\260c0 of them. Then thou shalt roll three dice and depending on the \260c4results\260c0 thou shalt win the most fantastic stuff possible!", 0},
+    {{"results", NULL}, "The dice are twenty-sided and the numbers are added up. If thou rollest 3 to 20 thou winnest and if thou rollest 43 to 60 thou winnest, too. Want to hear about the \260c4prizes\260c0?", 0},
+    {{"prizes", NULL}, "A 3 gets thee a Cape of the Warrior. A 60 a Cape of the Mage. +7 if thou bettest one chip, +14 if thou bettest two, +21 if thou bettest all five. Want to hear \260c4 more prizes\260c0?", 0},
+    {{"more", "prizes", NULL}, "With a 4 or a 59 thou shalt win 100,000 gold (when betting 5 chips, 20,000 for 1 chip, 40,000 for 2 chips). And there are many, many more prizes...", 0},
 
-    {{"play2", NULL}, "I only play for silver chips. You can \260c4bet one\260c0 or \260c4bet two\260c0 or \260c4bet five\260c0 of them. Then you'll roll three dice and depending on the \260c4results2\260c0 you'll win the most fantastic stuff possible!", 0},
-    {{"results2", NULL}, "The dice are twenty-sided and the numbers are added up. If you roll 3 to 20 you win and if you roll 43 to 60 you win, too. Want to hear about the \260c4prizes2\260c0?", 0},
-    {{"prizes2", NULL}, "A 3 gets you boots of the Warrior. A 60 boots of the Mage. +8 if you bet one chip, +15 if you bet two, +22 if you bet all five. Want to hear \260c4 more prizes2\260c0?", 0},
-    {{"more", "prizes2", NULL}, "With a 4 or a 59 you'll win 150,000 gold (when betting 5 chips, 30,000 for 1 chip, 60,000 for 2 chips). And there are many, many more prizes...", 0},
+    {{"play2", NULL}, "I only play for silver chips. Thou canst \260c4bet one\260c0 or \260c4bet two\260c0 or \260c4bet five\260c0 of them. Then thou shalt roll three dice and depending on the \260c4results2\260c0 thou shalt win the most fantastic stuff possible!", 0},
+    {{"results2", NULL}, "The dice are twenty-sided and the numbers are added up. If thou rollest 3 to 20 thou winnest and if thou rollest 43 to 60 thou winnest, too. Want to hear about the \260c4prizes2\260c0?", 0},
+    {{"prizes2", NULL}, "A 3 gets thee boots of the Warrior. A 60 boots of the Mage. +8 if thou bettest one chip, +15 if thou bettest two, +22 if thou bettest all five. Want to hear \260c4 more prizes2\260c0?", 0},
+    {{"more", "prizes2", NULL}, "With a 4 or a 59 thou shalt win 150,000 gold (when betting 5 chips, 30,000 for 1 chip, 60,000 for 2 chips). And there are many, many more prizes...", 0},
 
-    {{"play3", NULL}, "I only play for gold chips. You can \260c4bet one\260c0 or \260c4bet two\260c0 or \260c4bet five\260c0 of them. Then you'll roll three dice and depending on the \260c4results3\260c0 you'll win the most fantastic stuff possible!", 0},
-    {{"results3", NULL}, "The dice are twenty-sided and the numbers are added up. If you roll 3 to 20 you win and if you roll 43 to 60 you win, too. Want to hear about the \260c4prizes3\260c0?", 0},
-    {{"prizes3", NULL}, "A 3 gets you a helmet of the Warrior. A 60 a hat of the Mage. +9 if you bet one chip, +16 if you bet two, +23 if you bet all five. Want to hear \260c4 more prizes3\260c0?", 0},
-    {{"more", "prizes3", NULL}, "With a 4 or a 59 you'll win 200,000 gold (when betting 5 chips, 40,000 for 1 chip, 80,000 for 2 chips). And there are many, many more prizes...", 0},
+    {{"play3", NULL}, "I only play for gold chips. Thou canst \260c4bet one\260c0 or \260c4bet two\260c0 or \260c4bet five\260c0 of them. Then thou shalt roll three dice and depending on the \260c4results3\260c0 thou shalt win the most fantastic stuff possible!", 0},
+    {{"results3", NULL}, "The dice are twenty-sided and the numbers are added up. If thou rollest 3 to 20 thou winnest and if thou rollest 43 to 60 thou winnest, too. Want to hear about the \260c4prizes3\260c0?", 0},
+    {{"prizes3", NULL}, "A 3 gets thee a helmet of the Warrior. A 60 a hat of the Mage. +9 if thou bettest one chip, +16 if thou bettest two, +23 if thou bettest all five. Want to hear \260c4 more prizes3\260c0?", 0},
+    {{"more", "prizes3", NULL}, "With a 4 or a 59 thou shalt win 200,000 gold (when betting 5 chips, 40,000 for 1 chip, 80,000 for 2 chips). And there are many, many more prizes...", 0},
 
     {{"bet", "one", NULL}, NULL, 2},
     {{"bet", "two", NULL}, NULL, 3},
     {{"bet", "five", NULL}, NULL, 4},
 
-    {{"repeat", NULL}, "Hello, %s! We have a slight rat problem in the caverns to the north. There's a nice \260c4reward\260c0 for killing some rats.", 0},
-    {{"reward", NULL}, "Yeah. You go kill some rats. The more and bigger the rats you kill, the more points you get in my book. The more points you have, the better the rewards you get. You know, \260c4experience\260c0, \260c4military\260c0 knowledge or just plain \260c4money\260c0 if that's what you want.", 0},
-    {{"experience", NULL}, "Exactly. Experience. The fire-is-hot-so-don't-touch-it kind of experience. \260c4Give experience\260c0 will exchange your points for experience.", 0},
-    {{"military", NULL}, "That's right. Everything your drill sergeant told you and you can't remember. \260c4Give military\260c0 will exchange your points for military knowledge.", 0},
-    {{"money", NULL}, "You know, them greenbacks. Oh, wait. Wrong dimension. Money... Ah, right. Round, flat and shiny... Coins! That's it. \260c4Give money\260c0 will exchange your points for greenbacks. Err, gold coins.", 0},
+    {{"repeat", NULL}, "Hello, %s! We have a slight rat problem in the caverns to the north. There is a nice \260c4reward\260c0 for killing some rats.", 0},
+    {{"reward", NULL}, "Yeah. Go kill some rats. The more and bigger the rats thou killest, the more points thou gettest in my book. The more points thou hast, the better the rewards thou gettest. Thou knowest, \260c4experience\260c0, \260c4military\260c0 knowledge or just plain \260c4money\260c0 if that is what thou wantest.", 0},
+    {{"experience", NULL}, "Exactly. Experience. The fire-is-hot-so-don't-touch-it kind of experience. \260c4Give experience\260c0 will exchange thy points for experience.", 0},
+    {{"military", NULL}, "That is right. Everything thy drill sergeant told thee and thou canst not remember. \260c4Give military\260c0 will exchange thy points for military knowledge.", 0},
+    {{"money", NULL}, "Thou knowest, them greenbacks. Oh, wait. Wrong dimension. Money... Ah, right. Round, flat and shiny... Coins! That is it. \260c4Give money\260c0 will exchange thy points for greenbacks. Err, gold coins.", 0},
 
     {{"give", "experience", NULL}, NULL, 5},
     {{"give", "military", NULL}, NULL, 6},
@@ -178,7 +178,7 @@ int analyse_text_driver(int cn, int type, char *text, int co) {
                 if (qa[q].answer) quiet_say(cn, qa[q].answer, ch[co].name, ch[cn].name);
                 else switch (qa[q].answer_code) {
                     case 1:
-                        quiet_say(cn, "I'm %s.", ch[cn].name);
+                        quiet_say(cn, "I am %s.", ch[cn].name);
                         break;
                     case 2:
                         return 2;
@@ -956,19 +956,19 @@ void teufelgambler_driver(int cn, int ret, int lastact) {
                 if (!is_demon(co)) {
                     say(cn, "Oh. A human. Well, no matter I guess. Wanna \260c4play\260c0 with me, kid?");
                 } else {
-                    say(cn, "Hello there, %s! Make your bet! Win big! Come on, \260c4play\260c0 with me!", ch[co].name);
+                    say(cn, "Hello there, %s! Make thy bet! Win big! Come on, \260c4play\260c0 with me!", ch[co].name);
                 }
             } else if (dat->nr == 2) {
                 if (!is_demon(co)) {
                     say(cn, "Oh. A human. Well, no matter I guess. Wanna \260c4play2\260c0 with me, kid?");
                 } else {
-                    say(cn, "Hello there, %s! Make your bet! Win big! Come on, \260c4play2\260c0 with me!", ch[co].name);
+                    say(cn, "Hello there, %s! Make thy bet! Win big! Come on, \260c4play2\260c0 with me!", ch[co].name);
                 }
             } else if (dat->nr == 3) {
                 if (!is_demon(co)) {
                     say(cn, "Oh. A human. Well, no matter I guess. Wanna \260c4play3\260c0 with me, kid?");
                 } else {
-                    say(cn, "Hello there, %s! Make your bet! Win big! Come on, \260c4play3\260c0 with me!", ch[co].name);
+                    say(cn, "Hello there, %s! Make thy bet! Win big! Come on, \260c4play3\260c0 with me!", ch[co].name);
                 }
             }
 
@@ -1036,15 +1036,15 @@ void teufelgambler_driver(int cn, int ret, int lastact) {
                         c = RANDOM(20) + 1;
 
                         t = a + b + c;
-                        if (t > 20 && t < 43) say(cn, "Ha! You rolled %d, %d and %d. You lost!", a, b, c);
+                        if (t > 20 && t < 43) say(cn, "Ha! Thou rolledst %d, %d and %d. Thou lostest!", a, b, c);
                         else {
-                            say(cn, "Oh. You rolled %d, %d and %d. You win!", a, b, c);
+                            say(cn, "Oh. Thou rolledst %d, %d and %d. Thou winnest!", a, b, c);
                             if (dat->nr == 1) give_reward(co, t, cnt);
                             else if (dat->nr == 2) give_reward2(co, t, cnt);
                             else if (dat->nr == 3) give_reward3(co, t, cnt);
                             else say(cn, "Bug #4227v");
                         }
-                    } else say(cn, "No chips, no game (make sure you only have one stack of chips).");
+                    } else say(cn, "No chips, no game (make sure thou only hast one stack of chips).");
                 }
             }
 
@@ -1107,7 +1107,7 @@ void special_rat_reward(int cn, int co, struct rat_data *ppd) {
     }
 
     if (pts && in) {
-        say(cn, "Here's a little extra for scoring %d points in one go: %s!", pts, it[in].name);
+        say(cn, "Here is a little extra for scoring %d points in one go: %s!", pts, it[in].name);
         if (!give_char_item(co, in)) destroy_item(in);
     }
 }
@@ -1156,7 +1156,7 @@ void teufelquest_driver(int cn, int ret, int lastact) {
             if (!is_demon(co)) {
                 say(cn, "Ah human? AAAAAHHHHHHHHHH! HELP!");
             } else {
-                say(cn, "Hello, %s! We have a slight rat problem in the caverns to the north. There's a nice \260c4reward\260c0 for killing some rats.", ch[co].name);
+                say(cn, "Hello, %s! We have a slight rat problem in the caverns to the north. There is a nice \260c4reward\260c0 for killing some rats.", ch[co].name);
             }
 
             talkdir = offset2dx(ch[cn].x, ch[cn].y, ch[co].x, ch[co].y);
@@ -1183,7 +1183,7 @@ void teufelquest_driver(int cn, int ret, int lastact) {
                 case 5:
 
                     tmp = ppd->score / 20 * ch[cn].level; // 12% of a level for 1000 enemies killed (at max level)
-                    say(cn, "Experience it is. You killed %d rats for a total score of %d.", ppd->kills, ppd->score);
+                    say(cn, "Experience it is. Thou killedst %d rats for a total score of %d.", ppd->kills, ppd->score);
                     give_exp(co, tmp);
                     special_rat_reward(cn, co, ppd);
                     ppd->score = 0;
@@ -1191,7 +1191,7 @@ void teufelquest_driver(int cn, int ret, int lastact) {
                     break;
                 case 6:
                     tmp = ppd->score / 1250; // 50 pts for 625 enemies killed (at max level)
-                    say(cn, "Military knowledge it is. You killed %d rats for a total score of %d.", ppd->kills, ppd->score);
+                    say(cn, "Military knowledge it is. Thou killedst %d rats for a total score of %d.", ppd->kills, ppd->score);
                     give_military_pts_no_npc(co, tmp, 1);
                     special_rat_reward(cn, co, ppd);
                     ppd->score = 0;
@@ -1199,7 +1199,7 @@ void teufelquest_driver(int cn, int ret, int lastact) {
                     break;
                 case 7:
                     tmp = ppd->score * 12; // aprox 12 gold per enemy killed (at max level)
-                    say(cn, "Money it is. You killed %d rats for a total score of %d.", ppd->kills, ppd->score);
+                    say(cn, "Money it is. Thou killedst %d rats for a total score of %d.", ppd->kills, ppd->score);
                     give_money(co, tmp, "earned from rat hunter");
                     special_rat_reward(cn, co, ppd);
                     ppd->score = 0;

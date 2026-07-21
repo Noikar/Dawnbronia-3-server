@@ -79,14 +79,14 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Sul vana ley, %s.", 0},
     {{"hi", NULL}, "Sul vana ley, %s.", 0},
     {{"greetings", NULL}, "Sul vana ley, %s.", 0},
     {{"hail", NULL}, "Sul vana ley, %s.", 0},
-    {{"whats", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"whats", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"llakal", "sla", NULL}, "Llakal Sla is a game played with three dice. The opponents agree on a bet, and the one throwing the higher number wins. If thou wishest to play, say: 'bet <amount>', where amount is in ounces of salt.", 0},
     {{"repeat", NULL}, NULL, 2},
     {{"cheap", "dice", NULL}, NULL, 3},
@@ -256,7 +256,7 @@ int nomad_1(int cn, int co, struct nomad_ppd *ppd, int nr) {
         ppd->nomad_state[nr]++;
         return 1;
     case 1:
-        say(cn, "Welcome to the plains of the Vana Laka. Thou wouldst best learn about our customs, before thou venturest further north, %s.", ch[co].name);
+        say(cn, "Welcome to the plains of the Vana Laka. Thou hadst best learn about our customs, before thou venturest further north, %s.", ch[co].name);
         ppd->nomad_state[nr]++;
         return 1;
     case 2:
@@ -276,7 +276,7 @@ int nomad_1(int cn, int co, struct nomad_ppd *ppd, int nr) {
         ppd->nomad_state[nr]++;
         return 1;
     case 6:
-        say(cn, "I will also trade any wolf skins thou might find for salt, in spite of thee being tribe-less. Thou canst find wolves to the north-east, or thou canst go north-west, to my tribe.");
+        say(cn, "I will also trade any wolf skins thou mightst find for salt, in spite of thee being tribe-less. Thou canst find wolves to the north-east, or thou canst go north-west, to my tribe.");
         ppd->nomad_state[nr]++;
         return 1;
     case 7:
@@ -308,7 +308,7 @@ int nomad_2(int cn, int co, struct nomad_ppd *ppd, int nr) {
         ppd->nomad_state[nr]++;
         return 1;
     case 1:
-        say(cn, "I have a nice collection of dice. I'd sell thee a set of \260c4cheap dice\260c0 for 200 ounces of salt, or a set of \260c4mediocre dice\260c0 for 500 ounces, or a set of \260c4 good dice\260c0 for 1200 ounces.");
+        say(cn, "I have a nice collection of dice. I would sell thee a set of \260c4cheap dice\260c0 for 200 ounces of salt, or a set of \260c4mediocre dice\260c0 for 500 ounces, or a set of \260c4 good dice\260c0 for 1200 ounces.");
         ppd->nomad_state[nr]++;
         return 1;
     case 2:
@@ -330,7 +330,7 @@ int nomad_3(int cn, int co, struct nomad_ppd *ppd, int nr) {
         ppd->nomad_state[nr]++;
         return 1;
     case 1:
-        say(cn, "Would you like a game of \260c4Llakal Sla\260c0?");
+        say(cn, "Wouldst thou like a game of \260c4Llakal Sla\260c0?");
         ppd->nomad_state[nr]++;
         return 1;
     case 2:
@@ -352,17 +352,17 @@ int nomad_4(int cn, int co, struct nomad_ppd *ppd, int nr) {
         ppd->nomad_state[nr]++;
         return 1;
     case 1:
-        say(cn, "It is seldom indeed that we have visitors in these sad times. The mountains have never been friendly, but only a short while ago all one had to fear was the cold, or losing one's way. Now one has to fear being eaten alive by Harpies. Welcome again, %s. It is good to see that there are %s brave enough to visit us.", ch[co].name, (ch[co].flags & CF_MALE) ? "men" : "women");
+        say(cn, "It is seldom indeed that we have visitors in these sad times. The mountains have never been friendly, but only a short while ago all one had to fear was the cold, or losing one's way. Now one hath to fear being eaten alive by Harpies. Welcome again, %s. It is good to see that there are %s brave enough to visit us.", ch[co].name, (ch[co].flags & CF_MALE) ? "men" : "women");
         ppd->nomad_state[nr]++;
         return 1;
     case 2:
-        say(cn, "Unfortunately, the Harpies are not our only problem. Brother Sarkilar has left the monastery with a few of the younger brothers. We haven't heard from him since he left, and I am worried. Neither the nomads nor the valkyries have seen him, so he must still be in this mountain. If thou couldst find out what happened to him?");
+        say(cn, "Unfortunately, the Harpies are not our only problem. Brother Sarkilar has left the monastery with a few of the younger brothers. We have not heard from him since he left, and I am worried. Neither the nomads nor the valkyries have seen him, so he must still be in this mountain. If thou couldst find out what happened to him?");
         ppd->nomad_state[nr]++;
         return 1;
     case 3:
         return 0; // waiting for news about sarkilar
     case 4:
-        say(cn, "Oh, Sarkilar! What hast thou done? How couldst thou fall for the silver tongue of evil? I thank thee, %s, even though thine news is sad indeed.", ch[co].name);
+        say(cn, "Oh, Sarkilar! What hast thou done? How couldst thou fall for the silver tongue of evil? I thank thee, %s, even though thy news is sad indeed.", ch[co].name);
         ppd->nomad_state[nr]++;
         return 1;
     case 5:
@@ -394,7 +394,7 @@ int nomad_5(int cn, int co, struct nomad_ppd *ppd, int nr) {
     case 3:
         return 0; // waiting for statue
     case 4:
-        say(cn, "If thou ever needst to regain lost experiences, I can help thee in the process. I won't be able to bring it all back, but most of it. Do not forget to bring a golden Kir statue...");
+        say(cn, "If thou ever needst to regain lost experiences, I can help thee in the process. I will not be able to bring it all back, but most of it. Do not forget to bring a golden Kir statue...");
         ppd->nomad_state[nr]++;
         return 1;
     case 5:
@@ -545,7 +545,7 @@ void nomad_2_text(int cn, int co, struct nomad_ppd *ppd, int nr, int res) {
             destroy_item(in);
         } else {
             remove_salt(co, cost);
-            say(cn, "It's a pleasure doing business with thee, %s.", ch[co].name);
+            say(cn, "It is a pleasure doing business with thee, %s.", ch[co].name);
         }
     }
 }
@@ -575,7 +575,7 @@ void nomad_6_text(int cn, int co, struct nomad_ppd *ppd, int nr, int res) {
             destroy_item(in);
         } else {
             remove_salt(co, cost);
-            say(cn, "It's a pleasure doing business with thee, %s.", ch[co].name);
+            say(cn, "It is a pleasure doing business with thee, %s.", ch[co].name);
         }
     }
 }
@@ -598,7 +598,7 @@ int nomad_1_give(int cn, int co, int in, struct nomad_ppd *ppd, int nr) {
             return 0;
         }
         if (*(unsigned int *)(it[in].drdata) > 100) {
-            say(cn, "This is most generous, but I wilt not accept more than 100 ounces for thy membership.");
+            say(cn, "This is most generous, but I will not accept more than 100 ounces for thy membership.");
             return 0;
         }
         say(cn, "Welcome to the tribe of the Vana Kiru, %s.", ch[co].name);
@@ -663,7 +663,7 @@ int nomad_5_give(int cn, int co, int in, struct nomad_ppd *ppd, int nr) {
     if (it[in].ID == IID_AREA19_KIR) {
         if (ppd->nomad_state[nr] > 3) {
             if (ch[co].exp > ch[co].exp_used) {
-                say(cn, "But thou dost not have lost any experience.");
+                say(cn, "But thou hast not lost any experience.");
                 return 0;
             }
             say(cn, "There, some of the memories are back. I can work with thee further, if thou bringst me another of these statues.");
@@ -672,7 +672,7 @@ int nomad_5_give(int cn, int co, int in, struct nomad_ppd *ppd, int nr) {
             else give_exp(co, diff / 2);
 
         } else {
-            say(cn, "Isn't it beautiful? Thank thee, %s. Now, let me teach thee...", ch[co].name);
+            say(cn, "Is it not beautiful? I thank thee, %s. Now, let me teach thee...", ch[co].name);
             questlog_done(co, 34);
             ppd->nomad_state[nr] = 4;
         }
@@ -705,16 +705,16 @@ void nomad_bet(int cn, struct nomad_data *dat, int co, int val, struct nomad_ppd
     if (dat->play_with && !char_see_char(cn, dat->play_with)) dat->play_with = 0;
 
     if (dat->play_with) {
-        say(cn, "Sorry, I'm playing with %s right now.", ch[dat->play_with].name);
+        say(cn, "Sorry, I am playing with %s right now.", ch[dat->play_with].name);
         return;
     }
     if (ppd->nomad_win[nr] < -dat->max_loss) {
-        say(cn, "I won't play with thee anymore, %s. Thou art too lucky for my taste.", ch[co].name);
+        say(cn, "I will not play with thee anymore, %s. Thou art too lucky for my taste.", ch[co].name);
         return;
     }
 
     if (val < dat->min_bet) {
-        say(cn, "%d ounces? That's too cheap.", val);
+        say(cn, "%d ounces? That is too cheap.", val);
         return;
     }
     if (val > dat->max_bet) {
@@ -744,11 +744,11 @@ void nomad_bet(int cn, struct nomad_data *dat, int co, int val, struct nomad_ppd
 
     dat->my_throw = d1 + d2 + d3;
     if (dat->my_throw < 11) {
-        say(cn, "Ack. Well, roll your dice now, %s. (USE the dice)", ch[co].name);
+        say(cn, "Ack. Well, roll thy dice now, %s. (USE the dice)", ch[co].name);
     } else if (dat->my_throw < 14) {
-        say(cn, "Your turn, %s. (USE the dice)", ch[co].name);
+        say(cn, "Thy turn, %s. (USE the dice)", ch[co].name);
     } else {
-        say(cn, "Ha! Now it's your turn, %s. (USE the dice)", ch[co].name);
+        say(cn, "Ha! Now it is thy turn, %s. (USE the dice)", ch[co].name);
     }
 
     // remember high dice rolls in case player walks away from them
@@ -779,7 +779,7 @@ void nomad_roll(int cn, struct nomad_data *dat, int co, int val, struct nomad_pp
     }
 
     if (dat->my_throw > val) {
-        say(cn, "It's a pleasure playing with thee, %s.", ch[co].name);
+        say(cn, "It is a pleasure playing with thee, %s.", ch[co].name);
         remove_salt(co, dat->bet);
         ch[co].flags |= CF_ITEMS;
 

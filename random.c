@@ -187,13 +187,13 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"wizard", NULL}, "The Wizard of Yendor was fascinated by the Labyrinth created by Ishtar and spent his life building an imitation of it. Before his death, he transfered all his magical energies into various \260c4shrines\260c0 he hid in his dungeons. With the Wizard no longer around, I take care of these \260c4dungeons\260c0.", 0},
     {{"shrines", NULL}, "Unfortunately, the Wizard had a peculiar sense of humor, and some of his shrines do strange things to those who use them. Do look at them before thou usest them, and decide carefully.", 0},
     {{"yendor", NULL}, "No one really knows where the name 'Yendor' stems from. But rumor has it that the Wizard's name used to be 'Rodney', before he changed it to 'The Wizard of Yendor'.", 0},
@@ -1221,7 +1221,7 @@ void create_dungeon(int cn, int co, int level, struct master_data *dat) {
 
     for (n = 0; n < 16; n++) {
         if (dat->owner[n] == ch[co].ID) {
-            say(cn, "You have created a dungeon already, you may not create another one before the first one has collapsed. You can use \260c4destroy %d\260c0 to collapse it now.", n + 1);
+            say(cn, "Thou hast created a dungeon already, thou mayst not create another one before the first one hath collapsed. Thou canst use \260c4destroy %d\260c0 to collapse it now.", n + 1);
             return;
         }
     }
@@ -1385,7 +1385,7 @@ void randommaster(int cn, int ret, int lastact) {
 
             switch (analyse_text_driver(cn, msg->dat1, (char *)msg->dat2, co)) {
             case 2:
-                say(cn, "Use: 'create <nr>' to create a dungeon of level <nr>, 'enter <nr>' to enter dungeon <nr>, 'list' to get a listing of all dungeons or 'destroy <nr>' to destroy the dungeon <nr> you have created.");
+                say(cn, "Use: 'create <nr>' to create a dungeon of level <nr>, 'enter <nr>' to enter dungeon <nr>, 'list' to get a listing of all dungeons or 'destroy <nr>' to destroy the dungeon <nr> thou hast created.");
                 break;
             case 3:
                 list_dungeon(cn, dat);
@@ -1408,7 +1408,7 @@ void randommaster(int cn, int ret, int lastact) {
             if ((ptr = strcasestr(haystack, "enter"))) {
                 ptr += 5;
                 target = atoi(ptr);
-                say(cn, "You want to enter dungeon %d", target);
+                say(cn, "Thou wantest to enter dungeon %d", target);
 
                 enter_dungeon(cn, co, target, dat);
             }
@@ -1416,7 +1416,7 @@ void randommaster(int cn, int ret, int lastact) {
             if ((ptr = strcasestr(haystack, "destroy"))) {
                 ptr += 7;
                 target = atoi(ptr);
-                say(cn, "You want to destroy dungeon %d", target);
+                say(cn, "Thou wantest to destroy dungeon %d", target);
 
                 if (target > 0 && target < 17) {
                     target--;
@@ -1427,7 +1427,7 @@ void randommaster(int cn, int ret, int lastact) {
                         dat->warning[target] = 0;
                         dat->owner[target] = 0;
                         say(cn, "Done.");
-                    } else say(cn, "Sorry, you did not create that dungeon, hence you may not destroy it.");
+                    } else say(cn, "Sorry, thou didst not create that dungeon, hence thou mayst not destroy it.");
                 } else say(cn, "Sorry, that number is out of bounds.");
             }
         }

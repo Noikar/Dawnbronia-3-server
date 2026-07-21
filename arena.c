@@ -65,13 +65,13 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"repeat", NULL}, NULL, 2},
     {{"restart", NULL}, NULL, 2},
     {{"please", "repeat", NULL}, NULL, 2},
@@ -212,7 +212,7 @@ void add_contender(int cn, int co, struct master_data *dat, struct arena_ppd *pp
     int n, ID;
 
     /*if (realtime-ppd->lastfight<60*5) {
-        say(cn,"Sorry, you have fought within the last five minutes already, you cannot fight again now, %s.",ch[co].name);
+        say(cn,"Sorry, thou hast fought within the last five minutes already, thou canst not fight again now, %s.",ch[co].name);
         return;
     }*/
 
@@ -220,7 +220,7 @@ void add_contender(int cn, int co, struct master_data *dat, struct arena_ppd *pp
 
     for (n = 0; n < MAXCONTENDER; n++) {
         if (dat->ct[n].ID == ID) {
-            say(cn, "You're already registered for this tournament, %s.", ch[co].name);
+            say(cn, "Thou art already registered for this tournament, %s.", ch[co].name);
             notify_char(co, NT_NPC, NTID_ARENA, 3, 0);
             return;
         }
@@ -231,12 +231,12 @@ void add_contender(int cn, int co, struct master_data *dat, struct arena_ppd *pp
             dat->ct[n].cn = co;
             dat->ct[n].score = ppd->score;
             dat->ct[n].reg_time = ticker;
-            say(cn, "Good luck, %s. I will call you when your fight starts.", ch[co].name);
+            say(cn, "Good luck, %s. I will call thee when thy fight starts.", ch[co].name);
             notify_char(co, NT_NPC, NTID_ARENA, 3, 0);
             return;
         }
     }
-    say(cn, "I'm sorry, %s, but there are no free slots at the moment. Please try again after the next fight.", ch[co].name);
+    say(cn, "I am sorry, %s, but there are no free slots at the moment. Please try again after the next fight.", ch[co].name);
 }
 
 void find_contender(int cn, struct master_data *dat) {
@@ -275,7 +275,7 @@ void find_contender(int cn, struct master_data *dat) {
         dat->fight2_cn = dat->ct[fight2].cn;
         dat->timeout = ticker + TICKS * 30;
 
-        say(cn, "Next fight is: \260c6%s versus %s.\260c0 Both participants please step forward and say: 'enter'. You have 30 seconds to enter the arena, otherwise you lose by default.",
+        say(cn, "Next fight is: \260c6%s versus %s.\260c0 Both participants please step forward and say: 'enter'. Thou hast 30 seconds to enter the arena, otherwise thou losest by default.",
             ch[dat->fight1_cn].name,
             ch[dat->fight2_cn].name);
 
@@ -300,7 +300,7 @@ void check_inside(int cn, struct master_data *dat) {
         if (dat->ct[n].ID == dat->fight2_ID) dat->ct[n].ID = 0;
     }
 
-    say(cn, "Let the fight begin! You have two minutes to kill your opponent.");
+    say(cn, "Let the fight begin! Thou hast two minutes to kill thine opponent.");
     dat->state = MS_FIGHT;
     dat->timeout = ticker + TICKS * 60 * 2;
 }
@@ -525,7 +525,7 @@ void master_driver(int cn, int ret, int lastact) {
                     ch[co].flags &= ~CF_LAG;
                     dat->fight2_cn = co;
                 } else {
-                    say(cn, "You are not invited to this fight, %s.", ch[co].name);
+                    say(cn, "Thou art not invited to this fight, %s.", ch[co].name);
                     notify_char(co, NT_NPC, NTID_ARENA, 5, 0);
                 }
                 break;
@@ -984,12 +984,12 @@ void manager_driver(int cn, int ret, int lastact) {
                     teleport_char_driver(co, dat->arena_x, dat->arena_y);
                     ch[co].flags &= ~CF_LAG;
                     dat->invite[0] = 0;
-                } else say(cn, "You have not been invited, %s.", ch[co].name);
+                } else say(cn, "Thou hast not been invited, %s.", ch[co].name);
                 break;
             }
             if ((ptr = strcasestr((char *)msg->dat2, "invite:"))) {
                 if (co != dat->renter) {
-                    say(cn, "This is not your arena, %s.", ch[co].name);
+                    say(cn, "This is not thine arena, %s.", ch[co].name);
                 } else {
                     ptr += 7;
                     while (isspace(*ptr)) ptr++;
@@ -999,7 +999,7 @@ void manager_driver(int cn, int ret, int lastact) {
                     }
                     dat->invite[n] = 0;
 
-                    say(cn, "%s, say 'enter' if you wish to enter the arena", dat->invite);
+                    say(cn, "%s, say 'enter' if thou wishest to enter the arena", dat->invite);
                 }
             }
             if (didsay) {

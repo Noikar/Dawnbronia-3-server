@@ -54,14 +54,14 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"help", NULL}, "Sorry, I'm just a merchant, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"help", NULL}, "Sorry, I am just a merchant, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"buy", NULL}, "Hey %s, use 'trade %s'!", 0},
     {{"sell", NULL}, "Hey %s, use 'trade %s'!", 0},
     {{"what's", "your", "name", NULL}, NULL, 1},
@@ -134,7 +134,7 @@ int analyse_text_driver(int cn, int type, char *text, int co) {
                 if (qa[q].answer) quiet_say(cn, qa[q].answer, ch[co].name, ch[cn].name);
                 else switch (qa[q].answer_code) {
                     case 1:
-                        quiet_say(cn, "I'm %s.", ch[cn].name);
+                        quiet_say(cn, "I am %s.", ch[cn].name);
                         break;
                     }
                 break;
@@ -291,7 +291,7 @@ void merchant_driver(int cn, int ret, int lastact) {
                 continue;
             }
 
-            quiet_say(cn, "Hello %s! If you'd like to trade, say: '\260c4%s, trade\260c0!", ch[co].name, ch[cn].name);
+            quiet_say(cn, "Hello %s! If thou wouldst like to trade, say: '\260c4%s, trade\260c0!", ch[co].name, ch[cn].name);
             mem_add_driver(cn, co, 7);
         }
 
@@ -335,7 +335,7 @@ void merchant_driver(int cn, int ret, int lastact) {
         if (!opening_time(dat->open, dat->close)) { // we're closed
             if (dat->doorx && !is_closed(dat->doorx, dat->doory)) { // door is still open
                 if (!is_room_empty(dat->storefx, dat->storefy, dat->storetx, dat->storety)) { // store is not empty
-                    quiet_say(cn, "We're closing, please leave now!");
+                    quiet_say(cn, "We are closing, please leave now!");
                     do_idle(cn, TICKS);
                     return;
                 } else {
@@ -364,7 +364,7 @@ void merchant_driver(int cn, int ret, int lastact) {
             murmur(cn, "My back itches.");
             break;
         case 1:
-            whisper(cn, "There's something stuck between your teeth.");
+            whisper(cn, "There is something stuck between thy teeth.");
             break;
         case 2:
             murmur(cn, "Oh yeah, those were the days.");

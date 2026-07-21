@@ -56,14 +56,14 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"help", NULL}, "Sorry, I'm just a merchant, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"help", NULL}, "Sorry, I am just a merchant, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"buy", NULL}, "Hey %s, use 'buy %s'!", 0},
     {{"sell", NULL}, "Hey %s, use 'sell %s'!", 0},
     {{"what's", "your", "name", NULL}, NULL, 1},
@@ -153,7 +153,7 @@ int analyse_text_driver(int cn, int type, char *text, int co) {
                 if (qa[q].answer) say(cn, qa[q].answer, ch[co].name, ch[cn].name);
                 else switch (qa[q].answer_code) {
                     case 1:
-                        say(cn, "I'm %s.", ch[cn].name);
+                        say(cn, "I am %s.", ch[cn].name);
                         break;
                     default:
                         return qa[q].answer_code;
@@ -221,7 +221,7 @@ int learn_prof(int cn, int co, int nr) {
     cnt = free_prof_points(co);
 
     if (cnt < prof[nr].base) {
-        say(cn, "Thou have not the required profession points. Thou needst %d, but thou hast only %d.", prof[nr].base, cnt);
+        say(cn, "Thou hast not the required profession points. Thou needst %d, but thou hast only %d.", prof[nr].base, cnt);
         return 0;
     }
     ch[co].prof[nr] = prof[nr].base;
@@ -325,32 +325,32 @@ void professor_driver(int cn, int ret, int lastact) {
                     say(cn, "If thou wishest to learn the art of the %s, thou must pay %d gold coins and %d profession points. Say \260c4learn\260c0 if this is thy wish. Thou canst also \260c4improve\260c0 thy knowledge of this art for the fee of %d gold coins and %d profession points.", prof[dat->nr].name, dat->quest_option, prof[dat->nr].base, dat->improve_cost * prof[dat->nr].step, prof[dat->nr].step);
                     break;
                 default:
-                    say(cn, "You've found bug #418a");
+                    say(cn, "Thou hast found bug #418a");
                     break;
                 }
                 break;
             case 3:
                 switch (dat->nr) {
                 case P_ATHLETE:
-                    say(cn, "The art of the athlete are fast, precise movements. Skilled athletes make better use of their endurance and move faster than untrained humans.");
+                    say(cn, "The art of the athlete is fast, precise movements. Skilled athletes make better use of their endurance and move faster than untrained humans.");
                     break;
                 case P_ALCHEMIST:
                     say(cn, "The alchemist can create better potions, calling on the powers of the moons and the seasons at any time.");
                     break;
                 case P_MINER:
-                    say(cn, "A skilled miner will make better use of every vein of precious metal he finds. He will also not exhaust as fast as an unskilled miner.");
+                    say(cn, "A skilled miner will make better use of every vein of precious metal he findeth. He will also not exhaust as fast as an unskilled miner.");
                     break;
                 case P_ASSASSIN:
-                    say(cn, "The assassin is especially skilled at attacking an enemy from the side or behind, and he can backstab an unware opponent from behind.");
+                    say(cn, "The assassin is especially skilled at attacking an enemy from the side or behind, and he can backstab an unaware opponent from behind.");
                     break;
                 case P_THIEF:
-                    say(cn, "A skilled thief can remain unseen even when next to another person. But when he uses this skill of stealth he cannot do anything but wait or walk, and the effort of remaining unseen will drain his endurance.");
+                    say(cn, "A skilled thief can remain unseen even when next to another person. But when he useth this skill of stealth he cannot do anything but wait or walk, and the effort of remaining unseen will drain his endurance.");
                     break;
                 case P_LIGHT:
-                    say(cn, "A master of light will receive a bonus to his basic abilities during the day. If he masters this skill he will also be able to see all undead creatures in the dark.");
+                    say(cn, "A master of light will receive a bonus to his basic abilities during the day. If he mastereth this skill he will also be able to see all undead creatures in the dark.");
                     break;
                 case P_DARK:
-                    say(cn, "A master of dark will receive a bonus to his basic abilities during the night. If he masters this skill he will also be able to see all living creatures in the dark.");
+                    say(cn, "A master of dark will receive a bonus to his basic abilities during the night. If he mastereth this skill he will also be able to see all living creatures in the dark.");
                     break;
                 case P_TRADER:
                     say(cn, "A skilled trader will get better prices when dealing with merchants.");
@@ -362,11 +362,11 @@ void professor_driver(int cn, int ret, int lastact) {
                     say(cn, "A clan master has received special training in the art of clan warfare. He will be at an advantage in any fight in the clan catacombs.");
                     break;
                 case P_HERBALIST:
-                    say(cn, "A herbalist knows the art of making plants ripe faster. Any flower, berry or mushroom he picks will grow back in less time.");
+                    say(cn, "A herbalist knows the art of making plants ripe faster. Any flower, berry or mushroom he picketh will grow back in less time.");
                     break;
 
                 default:
-                    say(cn, "You've found bug #418b");
+                    say(cn, "Thou hast found bug #418b");
                     break;
                 }
                 break;
@@ -374,7 +374,7 @@ void professor_driver(int cn, int ret, int lastact) {
                 switch (dat->quest) {
                 case 0:
                     if (ch[co].gold < dat->quest_option * 100) {
-                        say(cn, "But thou cannot afford my fee of %dG.", dat->quest_option);
+                        say(cn, "But thou canst not afford my fee of %dG.", dat->quest_option);
                         break;
                     }
                     if (!learn_prof(cn, co, dat->nr)) break;
@@ -382,13 +382,13 @@ void professor_driver(int cn, int ret, int lastact) {
                     ch[co].flags |= CF_ITEMS;
                     break;
                 default:
-                    say(cn, "You've found bug #418a");
+                    say(cn, "Thou hast found bug #418a");
                     break;
                 }
                 break;
             case 5:
                 if (ch[co].gold < dat->improve_cost * prof[dat->nr].step * 100) {
-                    say(cn, "But thou cannot afford my fee of %dG.", dat->improve_cost * prof[dat->nr].step);
+                    say(cn, "But thou canst not afford my fee of %dG.", dat->improve_cost * prof[dat->nr].step);
                     break;
                 }
                 if (!improve_prof(cn, co, dat->nr)) break;

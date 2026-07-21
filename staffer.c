@@ -75,13 +75,13 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"repeat", NULL}, NULL, 2},
     {{"restart", NULL}, NULL, 2},
     {{"please", "repeat", NULL}, NULL, 2},
@@ -398,16 +398,16 @@ void smugglecom_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    quiet_say(cn, "I want you to find a book for me called 'the contraband book', which contains the names of four of the smuggler's most precious items.");
+                    quiet_say(cn, "I would have thee find a book for me called 'the contraband book', which containeth the names of four of the smuggler's most precious items.");
                     ppd->smugglecom_state++;
                     didsay = 1;
                     break;
-                case 2: //quiet_say(cn,"Also, I will reward you for every piece of contraband you bring me. ");
+                case 2: //quiet_say(cn,"Also, I will reward thee for every piece of contraband thou bringest me. ");
                     //ppd->smugglecom_state++; didsay=1;
                     //break;
                     // fall through intended for now
                 case 3:
-                    quiet_say(cn, "Go now, and may Ishtar be with you.");
+                    quiet_say(cn, "Go now, and may Ishtar be with thee.");
                     ppd->smugglecom_state = 4;
                     didsay = 1;
                     break;
@@ -418,7 +418,7 @@ void smugglecom_driver(int cn, int ret, int lastact) {
                         ppd->smugglecom_state = 7;
                         break;
                     }
-                    quiet_say(cn, "It lists four important items which I want you to retrieve: the Rainbow Pearls, the Crimson Ring, the Leopard Cape, and the Emerald Necklace. Find them, and bring them to me.");
+                    quiet_say(cn, "It listeth four important items which I would have thee retrieve: the Rainbow Pearls, the Crimson Ring, the Leopard Cape, and the Emerald Necklace. Find them, and bring them to me.");
                     questlog_open(co, 36);
                     ppd->smugglecom_state++;
                     didsay = 1;
@@ -430,12 +430,12 @@ void smugglecom_driver(int cn, int ret, int lastact) {
                     }
                     break;
                 case 7:
-                    quiet_say(cn, "Thank you, you are of great help in hurting the smuggler's operations.");
+                    quiet_say(cn, "I thank thee, thou art of great help in hurting the smuggler's operations.");
                     if (questlog_isdone(co, 37)) {
                         ppd->smugglecom_state = 10;
                         break;
                     }
-                    quiet_say(cn, "Now, as a final task, I want you to kill the smuggler's leader. Good luck!");
+                    quiet_say(cn, "Now, as a final task, I would have thee kill the smuggler's leader. Good luck!");
                     questlog_open(co, 37);
                     ppd->smugglecom_state++;
                     didsay = 1;
@@ -443,7 +443,7 @@ void smugglecom_driver(int cn, int ret, int lastact) {
                 case 8:
                     break;
                 case 9:
-                    quiet_say(cn, "Thank you for helping us, %s, you have been of great value.", ch[co].name);
+                    quiet_say(cn, "I thank thee for helping us, %s, thou hast been of great value.", ch[co].name);
                     ppd->smugglecom_state++;
                     didsay = 1;
                     questlog_done(co, 37);
@@ -502,12 +502,12 @@ void smugglecom_driver(int cn, int ret, int lastact) {
                 ppd = set_data(co, DRD_STAFFER_PPD, sizeof(struct staffer_ppd));
 
                 if (it[in].ID == IID_STAFF_SMUGGLEBOOK && ppd && ppd->smugglecom_state <= 4 && (ch[co].flags & CF_PLAYER)) {
-                    quiet_say(cn, "Thank you for the book, %s.", ch[co].name);
+                    quiet_say(cn, "I thank thee for the book, %s.", ch[co].name);
                     questlog_done(co, 35);
                     destroy_item_byID(co, IID_STAFF_SMUGGLEBOOK);
                     ppd->smugglecom_state = 5;
                 } else if (it[in].ID == IID_STAFF_SMUGGLEPEARLS && ppd && !(ppd->smugglecom_bits & SMUGGLEBIT_PEARLS) && (ch[co].flags & CF_PLAYER)) {
-                    quiet_say(cn, "Thank you for bringing back the %s, %s.", it[in].name, ch[co].name);
+                    quiet_say(cn, "I thank thee for bringing back the %s, %s.", it[in].name, ch[co].name);
 
                     val = questlog_scale(questlog_count(co, 36), 1000);
                     dlog(cn, 0, "Received %d exp for doing quest Contraband I for the %d. time (nominal value %d exp)", val, questlog_count(co, 36) + 1, 1000);
@@ -515,7 +515,7 @@ void smugglecom_driver(int cn, int ret, int lastact) {
 
                     ppd->smugglecom_bits |= SMUGGLEBIT_PEARLS;
                 } else if (it[in].ID == IID_STAFF_SMUGGLERING && ppd && !(ppd->smugglecom_bits & SMUGGLEBIT_RING) && (ch[co].flags & CF_PLAYER)) {
-                    quiet_say(cn, "Thank you for bringing back the %s, %s.", it[in].name, ch[co].name);
+                    quiet_say(cn, "I thank thee for bringing back the %s, %s.", it[in].name, ch[co].name);
 
                     val = questlog_scale(questlog_count(co, 36), 1000);
                     dlog(cn, 0, "Received %d exp for doing quest Contraband II for the %d. time (nominal value %d exp)", val, questlog_count(co, 36) + 1, 1000);
@@ -523,7 +523,7 @@ void smugglecom_driver(int cn, int ret, int lastact) {
 
                     ppd->smugglecom_bits |= SMUGGLEBIT_RING;
                 } else if (it[in].ID == IID_STAFF_SMUGGLECAPE && ppd && !(ppd->smugglecom_bits & SMUGGLEBIT_CAPE) && (ch[co].flags & CF_PLAYER)) {
-                    quiet_say(cn, "Thank you for bringing back the %s, %s.", it[in].name, ch[co].name);
+                    quiet_say(cn, "I thank thee for bringing back the %s, %s.", it[in].name, ch[co].name);
 
                     val = questlog_scale(questlog_count(co, 36), 1000);
                     dlog(cn, 0, "Received %d exp for doing quest Contraband III for the %d. time (nominal value %d exp)", val, questlog_count(co, 36) + 1, 1000);
@@ -531,7 +531,7 @@ void smugglecom_driver(int cn, int ret, int lastact) {
 
                     ppd->smugglecom_bits |= SMUGGLEBIT_CAPE;
                 } else if (it[in].ID == IID_STAFF_SMUGGLENECKLACE && ppd && !(ppd->smugglecom_bits & SMUGGLEBIT_NECKLACE) && (ch[co].flags & CF_PLAYER)) {
-                    quiet_say(cn, "Thank you for bringing back the %s, %s.", it[in].name, ch[co].name);
+                    quiet_say(cn, "I thank thee for bringing back the %s, %s.", it[in].name, ch[co].name);
 
                     val = questlog_scale(questlog_count(co, 36), 1000);
                     dlog(cn, 0, "Received %d exp for doing quest Contraband IV for the %d. time (nominal value %d exp)", val, questlog_count(co, 36) + 1, 1000);
@@ -649,13 +649,13 @@ void rouven_driver(int cn, int ret, int lastact) {
                         }
                         break;
                     }
-                    quiet_say(cn, "Hail, %s. Carlos sent you for a ritual? Did he mention the place is cursed? Well, I have two quests of my own for you.", ch[co].name);
+                    quiet_say(cn, "Hail, %s. Carlos sent thee for a ritual? Did he mention the place is cursed? Well, I have two quests of my own for thee.", ch[co].name);
                     ppd->rouven_state++;
                     didsay = 1;
                     questlog_open(co, 62);
                     break;
                 case 1:
-                    quiet_say(cn, "First, I beg you to try to locate the source of the curse that has befallen the Imperial Vault.");
+                    quiet_say(cn, "First, I beg thee to try to locate the source of the curse that hath befallen the Imperial Vault.");
                     ppd->rouven_state++;
                     didsay = 1;
                     break;
@@ -678,13 +678,13 @@ void rouven_driver(int cn, int ret, int lastact) {
                     break; // waiting for player to find skull
 
                 case 6:
-                    quiet_say(cn, "You say there's demons and a pile of strange skulls? They must have burrowed in from the underground. We'll look into this immediately.");
+                    quiet_say(cn, "Thou sayest there are demons and a pile of strange skulls? They must have burrowed in from the underground. We shall look into this immediately.");
                     ppd->rouven_state++;
                     didsay = 1;
                     questlog_open(co, 63);
                     break;
                 case 7:
-                    quiet_say(cn, "Now I ask you to retrieve the chronicles of Seyan I. He kept a journal detailing many of his plans. Including those for the Aston Empire.");
+                    quiet_say(cn, "Now I ask thee to retrieve the chronicles of Seyan I. He kept a journal detailing many of his plans. Including those for the Aston Empire.");
                     ppd->rouven_state++;
                     didsay = 1;
                     break;
@@ -697,7 +697,7 @@ void rouven_driver(int cn, int ret, int lastact) {
                     break; // waiting for player to find chronicles
 
                 case 10:
-                    quiet_say(cn, "Thank you %s. It will be most useful in our rebuilding efforts.", ch[co].name);
+                    quiet_say(cn, "I thank thee %s. It will be most useful in our rebuilding efforts.", ch[co].name);
                     ppd->rouven_state++;
                     didsay = 1;
                     break;
@@ -707,7 +707,7 @@ void rouven_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 12:
-                    quiet_say(cn, "Take this key and when you find the scroll return to Carlos.");
+                    quiet_say(cn, "Take this key and when thou findest the scroll return to Carlos.");
                     if (!has_item(co, IID_MAX_VAULTKEY) && (in2 = create_item("vault_key1"))) {
                         if (!give_char_item(co, in2)) destroy_item(in2);
                     }
@@ -764,7 +764,7 @@ void rouven_driver(int cn, int ret, int lastact) {
                 ppd = set_data(co, DRD_STAFFER_PPD, sizeof(struct staffer_ppd));
 
                 if (it[in].ID == IID_MAX_CHRONICLES && ppd && ppd->rouven_state >= 6 && ppd->rouven_state <= 9 && (ch[co].flags & CF_PLAYER)) {
-                    quiet_say(cn, "Thank you for the book, %s.", ch[co].name);
+                    quiet_say(cn, "I thank thee for the book, %s.", ch[co].name);
                     questlog_done(co, 63);
                     destroy_item_byID(co, IID_MAX_CHRONICLES);
                     ppd->rouven_state = 10;

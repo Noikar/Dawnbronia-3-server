@@ -72,13 +72,13 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"repeat", NULL}, NULL, 2},
     {{"restart", NULL}, NULL, 2},
     {{"please", "repeat", NULL}, NULL, 2},
@@ -339,17 +339,17 @@ void seymour_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 6:
-                    say(cn, "%s, the Seyan'Du are offering you rank and status, in exchange for some missions. The first of these missions is to find out more about a certain Loisan.", ch[co].name);
+                    say(cn, "%s, the Seyan'Du are offering thee rank and status, in exchange for some missions. The first of these missions is to find out more about a certain Loisan.", ch[co].name);
                     ppd->seymour_state++;
                     didsay = 1;
                     break;
                 case 7:
-                    say(cn, "It seems he lived in Cameron for a while and moved here a few weeks later. After he left Cameron, skeletons have been haunting that place. Now, he has left Aston, and we're having trouble with zombies.");
+                    say(cn, "It seemeth he lived in Cameron for a while and moved here a few weeks later. After he left Cameron, skeletons have been haunting that place. Now, he hath left Aston, and we are having trouble with zombies.");
                     ppd->seymour_state++;
                     didsay = 1;
                     break;
                 case 8:
-                    say(cn, "As a first step, I want you to go back to Cameron and search Loisan's house there. I have heard rumors that he was working on strange human skulls, and I want you to acquire one of those and bring it to me.");
+                    say(cn, "As a first step, I would have thee go back to Cameron and search Loisan's house there. I have heard rumors that he was working on strange human skulls, and I would have thee acquire one of those and bring it to me.");
                     ppd->seymour_state++;
                     didsay = 1;
                     break;
@@ -360,7 +360,7 @@ void seymour_driver(int cn, int ret, int lastact) {
                         ppd->seymour_state = 12;
                         break;
                     }
-                    say(cn, "Your next mission, %s, is to search Loisan's house here in Aston. It is on this street, on the western side. As far as we know, he's been using silver skulls here, and I want you to bring me one of those. You might also want to talk to the Governor of Aston for additional missions.", get_army_rank_string(co));
+                    say(cn, "Thy next mission, %s, is to search Loisan's house here in Aston. It is on this street, on the western side. As far as we know, he hath been using silver skulls here, and I would have thee bring me one of those. Thou mightst also want to talk to the Governor of Aston for additional missions.", get_army_rank_string(co));
                     questlog_open(co, 11);
                     ppd->seymour_state++;
                     didsay = 1;
@@ -376,7 +376,7 @@ void seymour_driver(int cn, int ret, int lastact) {
                         ppd->seymour_state = 16;
                         break;
                     }
-                    say(cn, "Alright, now that we have the skulls he was using, it would be nice to know what became of Loisan. If you can find him, his body, or proof of his whereabouts, bring it to me.");
+                    say(cn, "Alright, now that we have the skulls he was using, it would be nice to know what became of Loisan. If thou canst find him, his body, or proof of his whereabouts, bring it to me.");
                     questlog_open(co, 12);
                     ppd->seymour_state++;
                     didsay = 1;
@@ -384,7 +384,7 @@ void seymour_driver(int cn, int ret, int lastact) {
                 case 15:
                     break;
                 case 16:
-                    say(cn, "Kelly, my superior, mentioned that she needs some fighters. Please go to her and offer your service. And do not forget to report to the Governor from time to time.");
+                    say(cn, "Kelly, my superior, mentioned that she needeth some fighters. Pray, go to her and offer thy service. And do not forget to report to the Governor from time to time.");
                     ppd->seymour_state++;
                     didsay = 1;
                     break;
@@ -452,7 +452,7 @@ void seymour_driver(int cn, int ret, int lastact) {
                 if (it[in].ID == IID_AREA2_LOISANNOTE && ppd->seymour_state == 15) {
                     int tmp;
 
-                    say(cn, "So he is dead. Ah, well. Thank you, %s.", ch[co].name);
+                    say(cn, "So he is dead. Ah, well. I thank thee, %s.", ch[co].name);
                     tmp = questlog_done(co, 12);
                     destroy_item_byID(co, IID_AREA2_LOISANNOTE);
                     ppd->seymour_state = 16;
@@ -526,7 +526,7 @@ int collect_heads(int cn, int co) {
         }
     }
     if (cnt) {
-        say(cn, "Ah. %d heads. I'll give you %.2fG for them.", cnt, sum / 100.0);
+        say(cn, "Ah. %d heads. I shall give thee %.2fG for them.", cnt, sum / 100.0);
         ch[co].gold += sum;
         ch[co].flags |= CF_ITEMS;
         return 1;
@@ -629,7 +629,7 @@ void kelly_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 7:
-                    quiet_say(cn, "They found a strange shrine there. I suspect there are several of them. Thou are to go there and find them all. Report back when thou hast found at least one.");
+                    quiet_say(cn, "They found a strange shrine there. I suspect there are several of them. Thou art to go there and find them all. Report back when thou hast found at least one.");
                     ppd->kelly_state++;
                     didsay = 1;
                     break;
@@ -679,7 +679,7 @@ void kelly_driver(int cn, int ret, int lastact) {
                         ppd->kelly_state = 19;
                         break;
                     }
-                    quiet_say(cn, "We have lost contact with our outpost in the swamp north of Aston. I want thee to go there and deliver a full report when thou getst back. Dismissed, %s.", get_army_rank_string(co));
+                    quiet_say(cn, "We have lost contact with our outpost in the swamp north of Aston. I would have thee go there and deliver a full report when thou getst back. Dismissed, %s.", get_army_rank_string(co));
                     questlog_open(co, 15);
                     ppd->kelly_state++;
                     didsay = 1;
@@ -724,7 +724,7 @@ void kelly_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 21:
-                    quiet_say(cn, "I have another mission for you. An important plaque containing the signatures of every Emporer who has ruled over Aston has been stolen from Wesley's bank vault.");
+                    quiet_say(cn, "I have another mission for thee. An important plaque containing the signatures of every Emperor who hath ruled over Aston has been stolen from Wesley's bank vault.");
                     ppd->kelly_state++;
                     didsay = 1;
                     break;
@@ -739,7 +739,7 @@ void kelly_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 24:
-                    quiet_say(cn, "Go to Gwendylon with this letter. He will teleport you there. I have a contact named Glori collecting information on the area. See what she knows, and get that plaque back at all costs! Dismissed!");
+                    quiet_say(cn, "Go to Gwendylon with this letter. He will teleport thee there. I have a contact named Glori collecting information on the area. See what she knoweth, and get that plaque back at all costs! Dismissed!");
                     if (!has_item(co, IID_CALIGARLETTER)) {
                         in = create_item("caligar_letter");
                         if (in && !give_char_item(co, in)) destroy_item(in);
@@ -835,7 +835,7 @@ void kelly_driver(int cn, int ret, int lastact) {
 
                     questlog_done(co, 60);
 
-                    quiet_say(cn, "Oh thank you so much, %s! I don't think I can ever repay you for your effort. However, I can give you these 5,000 gold coins.", ch[co].name);
+                    quiet_say(cn, "Oh, I thank thee so much, %s! I do not think I can ever repay thee for thine effort. However, I can give thee these 5,000 gold coins.", ch[co].name);
                     ch[co].gold += 5000 * 100;
                     ch[co].flags |= CF_ITEMS;
 
@@ -941,7 +941,7 @@ void astro1_driver(int cn, int ret, int lastact) {
             dat->state++;
             break;
         case 12:
-            quiet_say(cn, "But then I got interrupted by my colleague, who wanted to have a heated discussion about something I don't remember. I offered him some food to quiet him and continued my observations.");
+            quiet_say(cn, "But then I got interrupted by my colleague, who wanted to have a heated discussion about something I do not remember. I offered him some food to quiet him and continued my observations.");
             dat->state++;
             break;
         case 13:
@@ -1033,7 +1033,7 @@ void astro2_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    say(cn, "Me and my colleagues, we've been watching the moon from our big telescope in the garden south-east of here.");
+                    say(cn, "Me and my colleagues, we have been watching the moon from our big telescope in the garden south-east of here.");
                     ppd->astro2_state++;
                     didsay = 1;
                     break;
@@ -1043,7 +1043,7 @@ void astro2_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    say(cn, "Could thou try to get those notes back? I'd... well, I'd pay thee handsomely!");
+                    say(cn, "Couldst thou try to get those notes back? I would... well, I would pay thee handsomely!");
                     ppd->astro2_state++;
                     didsay = 1;
                     break;
@@ -1359,7 +1359,7 @@ void sir_jones_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 4:
-                    say(cn, "Would thou be willing to go? Say \260c4Aye\260c0 or \260c4Nay\260c0!");
+                    say(cn, "Wouldst thou be willing to go? Say \260c4Aye\260c0 or \260c4Nay\260c0!");
                     ppd->crypt_state++;
                     didsay = 1;
                     break;
@@ -1380,7 +1380,7 @@ void sir_jones_driver(int cn, int ret, int lastact) {
                 case 9:
                     break; // waiting for player to solve quest
                 case 10:
-                    say(cn, "It seems thou foundst quite a challenge down there. Well done, %s.", ch[co].name);
+                    say(cn, "It seemeth thou foundst quite a challenge down there. Well done, %s.", ch[co].name);
                     ppd->crypt_state++;
                     didsay = 1;
                     if (ppd->crypt_bonus && questlog_count(co, 18) == 1) {
@@ -1400,7 +1400,7 @@ void sir_jones_driver(int cn, int ret, int lastact) {
                     ppd->crypt_state++;
                     break;
                 case 13:
-                    say(cn, "I don't believe in these rumors, but it is said that thou canst gain entry to its lair by walking through the wall in the western corner of the Vampire Lords room.");
+                    say(cn, "I do not believe in these rumors, but it is said that thou canst gain entry to its lair by walking through the wall in the western corner of the Vampire Lords room.");
                     ppd->crypt_state++;
                     break;
                 case 14:
@@ -1565,12 +1565,12 @@ void carlos_driver(int cn, int ret, int lastact) {
                         didsay = 1;
                         break;
                     case 1:
-                        quiet_say(cn, "I need your help in aquiring a magical ritual that may aid in preventing any more attacks on the city.");
+                        quiet_say(cn, "I need thy help in acquiring a magical ritual that may aid in preventing any more attacks on the city.");
                         ppd->carlos2_state++;
                         didsay = 1;
                         break;
                     case 2:
-                        quiet_say(cn, "The only known copy of this ritual was on a scroll stored in the Imperial Vault. I need you to find and bring the scroll to me.");
+                        quiet_say(cn, "The only known copy of this ritual was on a scroll stored in the Imperial Vault. I need thee to find and bring the scroll to me.");
                         ppd->carlos2_state++;
                         didsay = 1;
                         break;
@@ -1603,7 +1603,7 @@ void carlos_driver(int cn, int ret, int lastact) {
                         didsay = 1;
                         break;
                     case 3:
-                        quiet_say(cn, "My army captured the head creature and brought his staff to me. It has been brought to my attention that the staff has gone missing.");
+                        quiet_say(cn, "My army captured the head creature and brought his staff to me. It hath been brought to my attention that the staff has gone missing.");
                         ppd->carlos_state++;
                         didsay = 1;
                         break;
@@ -1665,7 +1665,7 @@ void carlos_driver(int cn, int ret, int lastact) {
                 ppd = set_data(co, DRD_STAFFER_PPD, sizeof(struct staffer_ppd));
                 if (ppd && ppd->carlos_state <= 5 && it[in].ID == IID_STAFF_DRAGONSTAFF) {
                     ppd->carlos_state = 6;
-                    quiet_say(cn, "Well done, %s, that is the staff I wanted.", ch[co].name);
+                    quiet_say(cn, "Well done, %s, that is the staff I sought.", ch[co].name);
                     questlog_done(co, 20);
                     destroy_item_byID(co, IID_STAFF_DRAGONSTAFF);
                     destroy_item_byID(co, IID_STAFF_DRAGONKEY1);
@@ -1674,7 +1674,7 @@ void carlos_driver(int cn, int ret, int lastact) {
                     destroy_item_byID(co, IID_STAFF_DRAGONKEY4);
                 } else if (ppd && ppd->carlos2_state <= 4 && it[in].ID == IID_MAX_RITUAL) {
                     ppd->carlos2_state = 5;
-                    quiet_say(cn, "Well done, %s, that is the ritual I wanted.", ch[co].name);
+                    quiet_say(cn, "Well done, %s, that is the ritual I sought.", ch[co].name);
                     questlog_done(co, 61);
                     destroy_item_byID(co, IID_MAX_CHRONICLES);
                 } else {
@@ -1722,7 +1722,7 @@ void supermax_list(int cn, int co) {
 
     left = ch[co].exp - ch[co].exp_used;
     if (left < 1) {
-        say(cn, "You cannot raise anything while you don't have any experience to spend.");
+        say(cn, "Thou canst not raise anything while thou dost not have any experience to spend.");
         return;
     }
     smax = skillmax(co);
@@ -1754,7 +1754,7 @@ void supermax_raise(int cn, int co, int skl) {
     smax = skillmax(co);
 
     if (ch[co].value[1][skl] < smax) {
-        say(cn, "You can only raise skills you have already maxed, %s.", ch[co].name);
+        say(cn, "Thou canst only raise skills thou hast already maxed, %s.", ch[co].name);
         return;
     }
     if (ch[co].value[1][skl] >= 250) {
@@ -1762,16 +1762,16 @@ void supermax_raise(int cn, int co, int skl) {
         return;
     }
     if (cost > left) {
-        say(cn, "You do not have enough experience to raise %s, %s.", skill[skl].name, ch[co].name);
+        say(cn, "Thou dost not have enough experience to raise %s, %s.", skill[skl].name, ch[co].name);
         return;
     }
     if (ch[co].gold < 2000 * 100) {
-        say(cn, "You cannot pay the fee of 2000 gold, %s.", ch[co].name);
+        say(cn, "Thou canst not pay the fee of 2000 gold, %s.", ch[co].name);
         return;
     }
 
     dlog(co, 0, "supermax: raise %s, val %d, smax %d, left %d, cost %d", skill[skl].name, ch[co].value[1][skl], smax, left, cost);
-    say(cn, "Your %s has been raised, %s.", skill[skl].name, ch[co].name);
+    say(cn, "Thy %s has been raised, %s.", skill[skl].name, ch[co].name);
 
     ch[co].value[1][skl]++;
     ch[co].exp_used += cost;
@@ -1787,7 +1787,7 @@ void supermax_lower(int cn, int co, int skl) {
     smax = skillmax(co);
 
     if (ch[co].value[1][skl] <= smax) {
-        say(cn, "You can only lower skills you have already raised past the max, %s.", ch[co].name);
+        say(cn, "Thou canst only lower skills thou hast already raised past the max, %s.", ch[co].name);
         return;
     }
 
@@ -1795,7 +1795,7 @@ void supermax_lower(int cn, int co, int skl) {
     cost = supermax_cost(co, skl, ch[co].value[1][skl]);
     ch[co].exp_used -= cost;
     dlog(co, 0, "supermax: lower %s, val %d, smax %d, cost %d", skill[skl].name, ch[co].value[1][skl], smax, cost);
-    say(cn, "Your %s has been lowered, %s.", skill[skl].name, ch[co].name);
+    say(cn, "Thy %s has been lowered, %s.", skill[skl].name, ch[co].name);
 }
 
 void supermax_driver(int cn, int ret, int lastact) {
@@ -1858,12 +1858,12 @@ void supermax_driver(int cn, int ret, int lastact) {
             if (ppd) {
                 switch (ppd->supermax_state) {
                 case 0:
-                    say(cn, "Hello, %s. I am %s, and I can turn your life upside down.", ch[co].name, ch[cn].name);
+                    say(cn, "Hello, %s. I am %s, and I can turn thy life upside down.", ch[co].name, ch[cn].name);
                     ppd->supermax_state++;
                     didsay = 1;
                     break;
                 case 1:
-                    say(cn, "I can raise any of your attributes, skills or spells past your normal maximum of %d.", smax);
+                    say(cn, "I can raise any of thine attributes, skills or spells past thy normal maximum of %d.", smax);
                     ppd->supermax_state++;
                     didsay = 1;
                     break;
@@ -1873,7 +1873,7 @@ void supermax_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    say(cn, "To raise a skill, say: \"raise SKILLNAME\". This costs 2000g, and a lot of experience. To lower a skill, say: \"lower SKILLNAME\". You'll get the experience back, but not the gold. To see the list again, say: \"list\".");
+                    say(cn, "To raise a skill, say: \"raise SKILLNAME\". This costeth 2000g, and a lot of experience. To lower a skill, say: \"lower SKILLNAME\". Thou shalt get the experience back, but not the gold. To see the list again, say: \"list\".");
                     ppd->supermax_state++;
                     didsay = 1;
                     break;
@@ -1907,7 +1907,7 @@ void supermax_driver(int cn, int ret, int lastact) {
                 break;
             case 6:
                 ppd = set_data(co, DRD_MISC_PPD, sizeof(struct misc_ppd));
-                if (ppd && ppd->supermax_gold > 0) say(cn, "You spent %d gold already. The Astonian Wildlife Fund says: 'Thank you!'", ppd->supermax_gold / 100);
+                if (ppd && ppd->supermax_gold > 0) say(cn, "Thou spentest %d gold already. The Astonian Wildlife Fund says: 'We thank thee!'", ppd->supermax_gold / 100);
                 break;
             }
             if (didsay > 100 && didsay < 200) supermax_raise(cn, co, didsay - 100);

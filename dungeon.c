@@ -74,13 +74,13 @@ struct qa {
 };
 
 struct qa qa[] = {
-    {{"how", "are", "you", NULL}, "I'm fine!", 0},
+    {{"how", "are", "you", NULL}, "I am fine!", 0},
     {{"hello", NULL}, "Hello, %s!", 0},
     {{"hi", NULL}, "Hi, %s!", 0},
     {{"greetings", NULL}, "Greetings, %s!", 0},
-    {{"hail", NULL}, "And hail to you, %s!", 0},
-    {{"what's", "up", NULL}, "Everything that isn't nailed down.", 0},
-    {{"what", "is", "up", NULL}, "Everything that isn't nailed down.", 0},
+    {{"hail", NULL}, "And hail to thee, %s!", 0},
+    {{"what's", "up", NULL}, "Everything that is not nailed down.", 0},
+    {{"what", "is", "up", NULL}, "Everything that is not nailed down.", 0},
     {{"help", NULL}, NULL, 2},
     {{"list", NULL}, NULL, 3}};
 
@@ -1185,22 +1185,22 @@ void create_dungeon(int cn, int co, int target, struct master_data *dat) {
     }
 
     if (ch[co].level > 56) {
-        say(cn, "You cannot create a clan catacomb, your level is too high (max 56).");
+        say(cn, "Thou canst not create a clan catacomb, thy level is too high (max 56).");
         return;
     }
 
     if (!clan_can_attack_inside(get_char_clan(co), target) && !(ch[co].flags & CF_GOD)) {
-        say(cn, "You are not at war with that clan.");
+        say(cn, "Thou art not at war with that clan.");
         return;
     }
 
     if (cnt_jewels(target) < 11) {
-        say(cn, "That clan does not have any jewels you could steal.");
+        say(cn, "That clan does not have any jewels thou couldst steal.");
         return;
     }
 
     if (cnt_jewels(get_char_clan(co)) < 12) {
-        say(cn, "Your clan does not have enough jewels to mount a raid (your clan needs to have at least 11 of them).");
+        say(cn, "Thy clan does not have enough jewels to mount a raid (thy clan needs to have at least 11 of them).");
         return;
     }
 
@@ -1210,11 +1210,11 @@ void create_dungeon(int cn, int co, int target, struct master_data *dat) {
             return;
         }
         if (dat->created_by_clan[n] == get_char_clan(co)) {
-            say(cn, "Your clan has created a catacomb already, you may not create another one before the first one has collapsed.");
+            say(cn, "Thy clan has created a catacomb already, thou mayst not create another one before the first one hath collapsed.");
             return;
         }
         if (dat->owner[n] == ch[co].ID) {
-            say(cn, "You have created a catacomb already, you may not create another one before the first one has collapsed.");
+            say(cn, "Thou hast created a catacomb already, thou mayst not create another one before the first one hath collapsed.");
             return;
         }
     }
@@ -1235,10 +1235,10 @@ void create_dungeon(int cn, int co, int target, struct master_data *dat) {
     fee = 3500;
 
     if (!take_money(co, fee * 100)) {
-        say(cn, "Sorry, you cannot afford the fee of %dG.", fee);
+        say(cn, "Sorry, thou canst not afford the fee of %dG.", fee);
         return;
     }
-    say(cn, "Very well, I have created the catacomb for you. Thank you for paying %d gold.", fee);
+    say(cn, "Very well, I have created the catacomb for thee. I thank thee for paying %d gold.", fee);
 
     xoff = (bestn % 3) * 81 + 2;
     yoff = (bestn / 3) * 81 + 2;
@@ -1312,11 +1312,11 @@ void enter_dungeon(int cn, int co, int target, struct master_data *dat) {
     }
     target--;
     if (ch[co].level > 56) {
-        say(cn, "Sorry, you may not enter this catacomb, it was created for level %d and below.", dat->level[target]);
+        say(cn, "Sorry, thou mayst not enter this catacomb, it was created for level %d and below.", dat->level[target]);
         return;
     }
     if (!clan_can_attack_inside(get_char_clan(co), dat->target[target])) {
-        say(cn, "You are not at war with that clan.");
+        say(cn, "Thou art not at war with that clan.");
         return;
     }
 
