@@ -304,9 +304,9 @@ static int transfer_to_restarea(int cn) {
     return 0;
 }
 
-// calculate exp lost due to death
+// calculate exp lost due to death: 2.4% of total exp (60% of the original 4%)
 int death_loss(int total_exp) {
-    return total_exp / 25;
+    return total_exp * 3 / 125;
 }
 
 int drop_grave(int in, int x, int y, int isplayer) {

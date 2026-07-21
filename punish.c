@@ -35,6 +35,13 @@ void list_punishment(int rID, struct punishment *pun, int cID, int date, int ID)
               pun->reason);
 }
 
+// Base exp penalty the punishment tiers are scaled from. Deliberately kept at the
+// original 4% instead of calling death_loss(), so that softening the death penalty
+// does not silently soften staff punishments along with it.
+static int punish_base(int total_exp) {
+    return total_exp / 25;
+}
+
 // pID is punishing co
 int punish(int pID, struct character *co, int level, char *reason, int *plock, int *pkick) {
     struct punishment pm;
@@ -53,23 +60,23 @@ int punish(int pID, struct character *co, int level, char *reason, int *plock, i
         karma = 0;
         break;
     case 1:
-        exp = (death_loss(co->exp) + 3) / 4;
+        exp = (punish_base(co->exp) + 3) / 4;
         karma = 1;
         break;
     case 2:
-        exp = (death_loss(co->exp) + 1) / 2;
+        exp = (punish_base(co->exp) + 1) / 2;
         karma = 2;
         break;
     case 3:
-        exp = death_loss(co->exp);
+        exp = punish_base(co->exp);
         karma = 4;
         break;
     case 4:
-        exp = death_loss(co->exp) * 2;
+        exp = punish_base(co->exp) * 2;
         karma = 6;
         break;
     case 5:
-        exp = death_loss(co->exp) * 4;
+        exp = punish_base(co->exp) * 4;
         karma = 8;
         break;
     case 6:
