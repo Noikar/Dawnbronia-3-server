@@ -122,7 +122,7 @@ void book_driver(int in, int cn) {
         return;
 
     case BOOK_VAMPIRE3:
-        log_char(cn, LOG_SYSTEM, 0, "One among many, one pointing sideways, part you shall find there. Cross I shall be with thee, shouldst thou fail.");
+        log_char(cn, LOG_SYSTEM, 0, "One among many, one pointing sideways, part thou shalt find there. Cross I shall be with thee, shouldst thou fail.");
         return;
 
     case BOOK_VAMPIRE4:
@@ -158,11 +158,11 @@ void book_driver(int in, int cn) {
 
     case SIGN_EDEMON1:
         if (ch[cn].value[1][V_DEMON] < 1) {
-            log_char(cn, LOG_SYSTEM, 0, "It's written in strange letters you cannot read.");
+            log_char(cn, LOG_SYSTEM, 0, "It is written in strange letters thou canst not read.");
             return;
         }
         if (ch[cn].value[1][V_DEMON] < 2) {
-            log_char(cn, LOG_SYSTEM, 0, "You recognice some of the letters used in this sign from your studies of the ancient knowledge, but you cannot tell what the sign means.");
+            log_char(cn, LOG_SYSTEM, 0, "Thou recognizest some of the letters used in this sign from thy studies of the ancient knowledge, but thou canst not tell what the sign meaneth.");
             return;
         }
         log_char(cn, LOG_SYSTEM, 0, "Defense Systems Control Room");
@@ -170,11 +170,11 @@ void book_driver(int in, int cn) {
 
     case SIGN_EDEMON2:
         if (ch[cn].value[1][V_DEMON] < 1) {
-            log_char(cn, LOG_SYSTEM, 0, "It's written in strange letters you cannot read.");
+            log_char(cn, LOG_SYSTEM, 0, "It is written in strange letters thou canst not read.");
             return;
         }
         if (ch[cn].value[1][V_DEMON] < 2) {
-            log_char(cn, LOG_SYSTEM, 0, "You recognice some of the letters used in this sign from your studies of the ancient knowledge, but you cannot tell what the sign means.");
+            log_char(cn, LOG_SYSTEM, 0, "Thou recognizest some of the letters used in this sign from thy studies of the ancient knowledge, but thou canst not tell what the sign meaneth.");
             return;
         }
         log_char(cn, LOG_SYSTEM, 0, "Research Laboratorium");
@@ -183,7 +183,7 @@ void book_driver(int in, int cn) {
 
     case BOOK_EDEMON1:
         log_char(cn, LOG_SYSTEM, 0, "Day 91, year 97, evening by outside time. Personal diary of Avaisor of the Isara.");
-        log_char(cn, LOG_SYSTEM, 0, "The struggle seems hopeless now. We're trapped in these caverns by our own defense systems. We can no longer control them as the key was lost when Daoslan was slain by demons in the southern part of the natural caverns.");
+        log_char(cn, LOG_SYSTEM, 0, "The struggle seems hopeless now. We are trapped in these caverns by our own defense systems. We can no longer control them as the key was lost when Daoslan was slain by demons in the southern part of the natural caverns.");
         log_char(cn, LOG_SYSTEM, 0, "Our desperate attempts to raise demons for our defense have failed so far. Some of the research labs had to be closed since the demons in them could no longer be controlled.");
         return;
 
@@ -221,7 +221,7 @@ void book_driver(int in, int cn) {
     case BOOK_IDEMON2:
         log_char(cn, LOG_SYSTEM, 0, "Day 158, year 103. Personal diary of Ileanor, Lieutenant of the Isara.");
         log_char(cn, LOG_SYSTEM, 0, "The three days rest we have given our men are all the time we can spare. Not all wounds are healed, and the men are still tired, but delaying further would leave us open to a counter-attack. I wonder what the Ilasner are up to. It is not like them to give up this much ground without any resistance.");
-        log_char(cn, LOG_SYSTEM, 0, "Tomorrow at dawn, well, tomorrow when we wake up, we will move on. We still have some wood to build fires to break the ice demon's spell, and the morale is as well as can be expected under these circumstances. I am greatly worried, though. We haven't seen the surface for years, and all the explosions we heard a few weeks ago mean the war is raging there as savage as it is here.");
+        log_char(cn, LOG_SYSTEM, 0, "Tomorrow at dawn, well, tomorrow when we wake up, we will move on. We still have some wood to build fires to break the ice demon's spell, and the morale is as well as can be expected under these circumstances. I am greatly worried, though. We have not seen the surface for years, and all the explosions we heard a few weeks ago mean the war is raging there as savage as it is here.");
         return;
 
     case BOOK_IDEMON3:
@@ -231,13 +231,13 @@ void book_driver(int in, int cn) {
         return;
 
     case BOOK_SWAMP:
-        log_char(cn, LOG_SYSTEM, 0, "Contrary to my original belief, the swamp beasts possess no intelligence. The buildings they inhabitate must have been built by a now extinct people. I assume that the three stone circles have been built by the same people.");
+        log_char(cn, LOG_SYSTEM, 0, "Contrary to my original belief, the swamp beasts possess no intelligence. The buildings they inhabit must have been built by a now extinct people. I assume that the three stone circles have been built by the same people.");
         log_char(cn, LOG_SYSTEM, 0, "Some pages later: I have discovered old drawings, showing humans fighting against swamp beasts. In the first pictures the humans flee from a huge beast. A bit further down, one of the drawings shows a human warrior standing in the center of a stone circle, holding a weapon in his hand. Strangely, it shows the sun being exactly below the warrior and the ground. The warrior seems to be waiting, and looking at the sun. In the next drawing, he is still standing in the stone circle, but now he is killing a small swamp beast. His weapon seems to be glowing.");
         return;
 
     case BOOK_PALACE1:
         log_char(cn, LOG_SYSTEM, 0, "Day 172, year 103. Personal diary of Cari-Maar of the Ilasner.");
-        log_char(cn, LOG_SYSTEM, 0, "Today we finished raising the demon lord for the trap we've built for the Isara. Let them come now, they are doomed.");
+        log_char(cn, LOG_SYSTEM, 0, "Today we finished raising the demon lord for the trap we have built for the Isara. Let them come now, they are doomed.");
         return;
 
     case BOOK_PALACE2:
@@ -245,7 +245,7 @@ void book_driver(int in, int cn) {
         log_char(cn, LOG_SYSTEM, 0, "Dead. All dead. Only Ishtar and I survived the storm of demon lords the Ilasner raised. We could flee, but we are locked into these rooms. The demon lords cannot enter, but they have begun to invoke the icy cold. We will freeze to death.");
         log_char(cn, LOG_SYSTEM, 0, "Day 177, year 103. Personal diary of Ileanor, Lieutenant of the Isara.");
         log_char(cn, LOG_SYSTEM, 0, "The cold is creeping into my bones. Ishtar has kept us alive so far, but now he is exhausted and cannot sustain the heating spell. I think the whole palace is frozen.");
-        log_char(cn, LOG_SYSTEM, 0, "Why, oh why did we have to fight this war? The world was so beautiful, and so were we. But now, all that remains is blood and tears. If anyone survives this folly, let our fate teach you not to repeat our mistakes!");
+        log_char(cn, LOG_SYSTEM, 0, "Why, oh why did we have to fight this war? The world was so beautiful, and so were we. But now, all that remains is blood and tears. If anyone survives this folly, let our fate teach thee not to repeat our mistakes!");
         return;
 
     case BOOK_PALACE3:
@@ -262,15 +262,15 @@ void book_driver(int in, int cn) {
         log_char(cn, LOG_SYSTEM, 0, "\260c1The line above has been nearly scratched out, and replaced by:");
         log_char(cn, LOG_SYSTEM, 0, "Personal Diary of Korzam, Governor of Exkordon.");
         log_char(cn, LOG_SYSTEM, 0, "Scarcewind, the fool, is still loyal to Aston. He does not understand that the only way for our city to prosper is to cut our ties to that rotten empire. What good is an advisor, if no one listens to him?");
-        log_char(cn, LOG_SYSTEM, 0, "To get my mind on other things, I have gone north, into the barren lands below the mountains, hunting rumors. It is said that huge towers are build on those plains, and in those mountains. Towers built by powerful wizards of the old age. Whoever started these rumors has his history wrong, that is for sure. There was no old age. Before us were the ancients. They destroyed each other, and the world, in their foolish war. After them came we, and Ishtar and his notions of godhood and the empire.");
+        log_char(cn, LOG_SYSTEM, 0, "To get my mind on other things, I have gone north, into the barren lands below the mountains, hunting rumors. It is said that huge towers are built on those plains, and in those mountains. Towers built by powerful wizards of the old age. Whoever started these rumors has his history wrong, that is for sure. There was no old age. Before us were the ancients. They destroyed each other, and the world, in their foolish war. After them came we, and Ishtar and his notions of godhood and the empire.");
         log_char(cn, LOG_SYSTEM, 0, "But if these towers are really there, and if they are as magical as the rumors say, who built them? Who else but the ancients! There was no one else who could have built them. And if the ancients are the makers, those towers are old and must have survived the destructions of the war. I want to see what kind of magic can make buildings survive what has shattered the earth.");
         log_char(cn, LOG_SYSTEM, 0, "\260c1You skip several pages containing a description of the voyage to the towers.");
         log_char(cn, LOG_SYSTEM, 0, "I have forced my way into one of the towers. Magical they are, for sure, and guarded by the living dead. Fighting my way inside nearly exhausted me, and all I could do was grab some parchments and a small bag and flee, before those undead came back in greater numbers.");
         log_char(cn, LOG_SYSTEM, 0, "The book is written in the language of the ancients. Unfortunately, I can barely understand some words. The bag contained polished pieces of bone, each bearing a rune. I will return to Exkordon now, and study them at my leisure.");
         log_char(cn, LOG_SYSTEM, 0, "I found some pictures in the book, showing how to arrange the runes. I wonder what will happen...");
         log_char(cn, LOG_SYSTEM, 0, "\260c1You notice a change in the writing. It is the same hand, but the letters are bigger, and more forcefully written.");
-        log_char(cn, LOG_SYSTEM, 0, "That does it. Scarewind is a weak fool. I shall kill him, and take Exkordons fate into my own hands.");
-        log_char(cn, LOG_SYSTEM, 0, "Easy, almost too easy it was. I am now Governor of Exkordon. Scarcewind died like the fool he was in life. 'How can you do that? Why? I trusted you!' What a fool. I invited him into my house, told him about an important discovery I made. He came, and left his guards outside. And so he died. When his guards came looking for him, I lured them into my cellars, and disposed of them. They are no match for the ancient's magic.");
+        log_char(cn, LOG_SYSTEM, 0, "That does it. Scarcewind is a weak fool. I shall kill him, and take Exkordon's fate into my own hands.");
+        log_char(cn, LOG_SYSTEM, 0, "Easy, almost too easy it was. I am now Governor of Exkordon. Scarcewind died like the fool he was in life. 'How canst thou do that? Why? I trusted thee!' What a fool. I invited him into my house, told him about an important discovery I made. He came, and left his guards outside. And so he died. When his guards came looking for him, I lured them into my cellars, and disposed of them. They are no match for the ancient's magic.");
         log_char(cn, LOG_SYSTEM, 0, "\260c1Here, the writing changes back to the style used in the beginning.");
         log_char(cn, LOG_SYSTEM, 0, "What have I done? What came over me? And why are the dead rising, and walking my halls? They are dead! Dead! I killed them!");
         return;
@@ -323,12 +323,12 @@ void book_driver(int in, int cn) {
         return;
 
     case BOOK_LAB2_DIARY:
-        log_char(cn, LOG_SYSTEM, 0, "The pages are badly burned. You can only read: All those heros who tried to kill my brother died through his hands. To keep these young hotheads away, I summoned a demon to guard the entrance and ordered him to let no one pass but me. He is a bit short-sighted, but...");
+        log_char(cn, LOG_SYSTEM, 0, "The pages are badly burned. Thou canst only read: All those heroes who tried to kill my brother died through his hands. To keep these young hotheads away, I summoned a demon to guard the entrance and ordered him to let no one pass but me. He is a bit short-sighted, but...");
         log_char(cn, LOG_SYSTEM, 0, "My brother must be killed, or the horror will never stop. He is my brother, but he must die for his misdeeds...");
         log_char(cn, LOG_SYSTEM, 0, "The last fight with the undeads was hard. But even though I am bleeding from many wounds, today is the day I will kill my brother. I will take the amulet and go into the family vault and face him now!");
         return;
     case BOOK_LAB2_DIARY_PAGE:
-        log_char(cn, LOG_SYSTEM, 0, "Most of the page is burned, but you can read: To prevent holy water from hurting him, and his minions, my brother created a anti-magic zone which dispells all holy effects and all magic. But I have found a way to break this spell. I created an amulet to hold the counter-spell...");
+        log_char(cn, LOG_SYSTEM, 0, "Most of the page is burned, but thou canst read: To prevent holy water from hurting him, and his minions, my brother created an anti-magic zone which dispels all holy effects and all magic. But I have found a way to break this spell. I created an amulet to hold the counter-spell...");
         return;
 
     case BOOK_SHRIKE:
