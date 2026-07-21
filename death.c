@@ -135,7 +135,7 @@ static void give_first_kill(int cn, int co) {
     give_exp_bonus(cn, kill_score(co, cn) * 5);
 
     if (ch[co].flags & CF_HASNAME) {
-        log_char(cn, LOG_SYSTEM, 0, "You just killed %s for the first time. Congratulations!", ch[co].name);
+        log_char(cn, LOG_SYSTEM, 0, "Thou hast just killed %s for the first time. Congratulations!", ch[co].name);
     } else if ((ch[co].class >= 52 && ch[co].class <= 84) || // pents
                (ch[co].class >= 85 && ch[co].class <= 100) || // sewers
                (ch[co].class >= 101 && ch[co].class <= 106) || // edemon
@@ -150,14 +150,14 @@ static void give_first_kill(int cn, int co) {
                (ch[co].class >= 237 && ch[co].class <= 244) || // mine, zombie
                (ch[co].class >= 336 && ch[co].class <= 365) || // bones, skelly, zombie, wizard
                (ch[co].class >= 388 && ch[co].class <= 403)) { // hell pents demons
-        log_char(cn, LOG_SYSTEM, 0, "You just killed your first level %d %s. Congratulations!", ch[co].level, ch[co].name);
+        log_char(cn, LOG_SYSTEM, 0, "Thou hast just killed thy first level %d %s. Congratulations!", ch[co].level, ch[co].name);
     } else if ((ch[co].class >= 258 && ch[co].class <= 305) || (ch[co].class >= 404 && ch[co].class <= 411)) {
         if (get_army_rank_int(cn)) {
-            log_char(cn, LOG_SYSTEM, 0, "You just killed your first level %d %s! The Governor will be proud of you.", ch[co].level, ch[co].name);
+            log_char(cn, LOG_SYSTEM, 0, "Thou hast just killed thy first level %d %s! The Governor will be proud of thee.", ch[co].level, ch[co].name);
             give_military_pts_no_npc(cn, min(ch[co].level / 3, 10), kill_score(co, cn) * 15);
-        } else log_char(cn, LOG_SYSTEM, 0, "You just killed your first level %d %s!", ch[co].level, ch[co].name);
+        } else log_char(cn, LOG_SYSTEM, 0, "Thou hast just killed thy first level %d %s!", ch[co].level, ch[co].name);
     } else {
-        log_char(cn, LOG_SYSTEM, 0, "You just killed your first %s. Congratulations!", ch[co].name);
+        log_char(cn, LOG_SYSTEM, 0, "Thou hast just killed thy first %s. Congratulations!", ch[co].name);
     }
 }
 
@@ -200,7 +200,7 @@ void check_military_solve(int cn, int co) {
                             log_char(cn, LOG_SYSTEM, 0, "\260c1Mission kill, %d to go.", ppd->mis[nr].opt1);
                         }
                     } else {
-                        log_char(cn, LOG_SYSTEM, 0, "You solved your mission. Talk to the governor to claim your reward.");
+                        log_char(cn, LOG_SYSTEM, 0, "Thou hast solved thy mission. Talk to the governor to claim thy reward.");
                         ppd->solved_mission = 1;
                     }
                 }
@@ -217,7 +217,7 @@ void check_military_solve(int cn, int co) {
                             log_char(cn, LOG_SYSTEM, 0, "\260c1Mission kill, %d to go.", ppd->mis[nr].opt1);
                         }
                     } else {
-                        log_char(cn, LOG_SYSTEM, 0, "You solved your mission. Talk to the governor to claim your reward.");
+                        log_char(cn, LOG_SYSTEM, 0, "Thou hast solved thy mission. Talk to the governor to claim thy reward.");
                         ppd->solved_mission = 1;
                     }
                 }
@@ -443,7 +443,7 @@ int die_char(int cn, int co, int ispk) {
     // re-create player character at rest point
     if (ch[cn].flags & CF_PLAYER) {
         if (ispk) {
-            log_char(cn, LOG_SYSTEM, 0, "Thou died by the hands of a player. Thou did not lose any experience points.");
+            log_char(cn, LOG_SYSTEM, 0, "Thou diedst by the hands of a player. Thou didst not lose any experience points.");
 
             dlog(cn, 0, "died through PK");
         } else {
@@ -463,8 +463,8 @@ int die_char(int cn, int co, int ispk) {
                 }
             }
 
-            if (loss) log_char(cn, LOG_SYSTEM, 0, "Thou died and lost some experience points.");
-            else log_char(cn, LOG_SYSTEM, 0, "Thou died, but since thou art still a Newbie, thou did not lose any experience points.");
+            if (loss) log_char(cn, LOG_SYSTEM, 0, "Thou diedst and lost some experience points.");
+            else log_char(cn, LOG_SYSTEM, 0, "Thou diedst, but since thou art still a Newbie, thou didst not lose any experience points.");
 
             ch[cn].exp -= loss;
 
@@ -575,8 +575,8 @@ static int area_save_char(int cn) {
         }
     }
 
-    if (loss) log_char(cn, LOG_SYSTEM, 0, "Thou died and lost some experience points. Because of the warped ways of the area, you did not lose your items.");
-    else log_char(cn, LOG_SYSTEM, 0, "Thou died, but since thou art still a Newbie, thou did not lose any experience points. Because of the warped ways of the area, you did not lose your items. Consider yourself lucky.");
+    if (loss) log_char(cn, LOG_SYSTEM, 0, "Thou diedst and lost some experience points. Because of the warped ways of the area, thou didst not lose thine items.");
+    else log_char(cn, LOG_SYSTEM, 0, "Thou diedst, but since thou art still a Newbie, thou didst not lose any experience points. Because of the warped ways of the area, thou didst not lose thine items. Consider thyself lucky.");
 
     ch[cn].exp -= loss;
     ch[cn].deaths++;
@@ -593,7 +593,7 @@ static int area_save_char(int cn) {
 }
 
 static int arena_save_char(int cn) {
-    log_char(cn, LOG_SYSTEM, 0, "Yuck. If you hadn't been in an arena... You'd be dead by now. Ave Caesar, morituri te salutant!");
+    log_char(cn, LOG_SYSTEM, 0, "Yuck. If thou hadst not been in an arena... Thou wouldst be dead by now. Ave Caesar, morituri te salutant!");
 
     transfer_to_restarea(cn);
     ch[cn].hp = 1 * POWERSCALE;
@@ -762,7 +762,7 @@ int hurt(int cn, int dam, int cc, int armordiv, int armorper, int shieldper) {
                         !teleport_char_driver(cn, 235, 235) &&
                         !teleport_char_driver(cn, 245, 240) &&
                         !teleport_char_driver(cn, 240, 245)) teleport_char_driver(cn, 245, 245);
-                    log_char(cn, LOG_SYSTEM, 0, "You lose. You may enter again after a 5 minute penalty.");
+                    log_char(cn, LOG_SYSTEM, 0, "Thou losest. Thou mayst enter again after a 5 minute penalty.");
                     ch[cn].hp = 5 * POWERSCALE;
                     if ((ppd = set_data(cn, DRD_MISC_PPD, sizeof(struct misc_ppd)))) ppd->last_lq_death = realtime;
                 } else if (areaID == 21 && (ch[cn].flags & CF_PLAYER)) { // !!!!!!!!!!!!!!!!! hack !!!!!!!!!!!!!!!

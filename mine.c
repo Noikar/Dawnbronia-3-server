@@ -75,7 +75,7 @@ void check_military_silver(int cn, int amount) {
                 ppd->mis[nr].opt1 -= amount;
                 log_char(cn, LOG_SYSTEM, 0, "You fulfilled part of your mission, you still need %d silver.", ppd->mis[nr].opt1);
             } else {
-                log_char(cn, LOG_SYSTEM, 0, "You solved your mission. Talk to the governor to claim your reward.");
+                log_char(cn, LOG_SYSTEM, 0, "Thou hast solved thy mission. Talk to the governor to claim thy reward.");
                 ppd->solved_mission = 1;
                 ppd->mis[nr].opt1 = 0;
             }
