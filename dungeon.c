@@ -1200,7 +1200,7 @@ void create_dungeon(int cn, int co, int target, struct master_data *dat) {
     }
 
     if (cnt_jewels(get_char_clan(co)) < 12) {
-        say(cn, "Thy clan does not have enough jewels to mount a raid (thy clan needs to have at least 11 of them).");
+        say(cn, "Thy clan does not have enough jewels to mount a raid (thy clan needeth to have at least 11 of them).");
         return;
     }
 

@@ -888,7 +888,7 @@ void smith_driver(int cn, int ret, int lastact) {
                 didsay = 1;
                 break;
             case 5:
-                quiet_say(cn, "My father still lives up there somewhere. Some of us have later on built a life amongst you humans, and learned thy ways and language.");
+                quiet_say(cn, "My father still liveth up there somewhere. Some of us have later on built a life amongst you humans, and learned thy ways and language.");
                 ppd->smith_state++;
                 ppd->smith_last_talk = realtime;
                 didsay = 1;

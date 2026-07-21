@@ -1987,7 +1987,7 @@ void broklin_driver(int cn, int ret, int lastact) {
                         if (in) {
                             if (!give_char_item(co, in)) destroy_item(in);
                         }
-                        quiet_say(cn, "This key lets thee enter the sewers under the town.");
+                        quiet_say(cn, "This key letteth thee enter the sewers under the town.");
                     } else quiet_say(cn, "Thou already hast the key for the sewers...");
                     ppd->broklin_state++;
                     didsay = 1;
@@ -2211,7 +2211,7 @@ void grinnich_driver(int cn, int ret, int lastact) {
                 case 2:
                     break; // waiting for completion of quest
                 case 3:
-                    quiet_say(cn, "Did I not tell thee it was worth it? Oh, all that knowledge just makes the mind grow! Is Shanra not wonderful? She can tell so many stories, more even than those books of her can...");
+                    quiet_say(cn, "Did I not tell thee it was worth it? Oh, all that knowledge just maketh the mind grow! Is Shanra not wonderful? She can tell so many stories, more even than those books of her can...");
                     ppd->grinnich_state++;
                     didsay = 1;
                     break;
@@ -2360,7 +2360,7 @@ void shanra_driver(int cn, int ret, int lastact) {
                 case 2:
                     break;
                 case 3:
-                    quiet_say(cn, "Well done! It is good to see others learning about animation. I cannot teach thee how to use it though, the magic is ancient, and takes a long time to learn and control. I will now send thee back to the ruins above.");
+                    quiet_say(cn, "Well done! It is good to see others learning about animation. I cannot teach thee how to use it though, the magic is ancient, and taketh a long time to learn and control. I will now send thee back to the ruins above.");
                     ppd->shanra_state++;
                     didsay = 1;
                     break;

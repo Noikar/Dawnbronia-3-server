@@ -362,7 +362,7 @@ void professor_driver(int cn, int ret, int lastact) {
                     say(cn, "A clan master has received special training in the art of clan warfare. He will be at an advantage in any fight in the clan catacombs.");
                     break;
                 case P_HERBALIST:
-                    say(cn, "A herbalist knows the art of making plants ripe faster. Any flower, berry or mushroom he picketh will grow back in less time.");
+                    say(cn, "A herbalist knoweth the art of making plants ripe faster. Any flower, berry or mushroom he picketh will grow back in less time.");
                     break;
 
                 default:

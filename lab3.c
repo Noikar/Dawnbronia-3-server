@@ -374,7 +374,7 @@ void lab3_prisoner_driver(int cn, int ret, int lastact) {
             switch (ppd->prisoner_talkstep) {
             case 0: // INTRO
                 say(cn, "Blub.");
-                log_area(ch[cn].x, ch[cn].y, LOG_SYSTEM, 0, DIST * 2, "The Prisoner looks glad to see thee, %s.", ch[co].name);
+                log_area(ch[cn].x, ch[cn].y, LOG_SYSTEM, 0, DIST * 2, "The Prisoner looketh glad to see thee, %s.", ch[co].name);
                 didsay = 1;
                 ppd->prisoner_talkstep++;
                 dat->next_talk = ticker + 3 * TICKS;

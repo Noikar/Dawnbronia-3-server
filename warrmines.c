@@ -295,7 +295,7 @@ void dwarfchief_driver(int cn, int ret, int lastact) {
                         ppd->dwarfchief_state = 14;
                         break;
                     }
-                    quiet_say(cn, "Just in time! If thou hadst been any later, he would not have had his dinner, and trust me, thou dost not want to see a dwarf hungry, it is not a pretty sight. The fourth miner should be ok, he always packs more than the others, but do hurry and find him.");
+                    quiet_say(cn, "Just in time! If thou hadst been any later, he would not have had his dinner, and trust me, thou dost not want to see a dwarf hungry, it is not a pretty sight. The fourth miner should be ok, he always packeth more than the others, but do hurry and find him.");
                     questlog_open(co, 50);
                     ppd->dwarfchief_state++;
                     didsay = 1;

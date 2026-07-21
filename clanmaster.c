@@ -613,7 +613,7 @@ void clanclerk_driver(int cn, int ret, int lastact) {
                         continue;
                     }
                     if ((tmp1 = get_clan_dungeon_cost(nr, level)) > (tmp2 = get_clan_money(dat->clan))) {
-                        say(cn, "This order amounts to %dg while thy treasury only holds %dg.", tmp1, tmp2);
+                        say(cn, "This order amounts to %dg while thy treasury only holdeth %dg.", tmp1, tmp2);
 
                         remove_message(cn, msg);
                         continue;

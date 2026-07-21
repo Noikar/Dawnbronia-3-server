@@ -1763,7 +1763,7 @@ void shrine_vitality(int in, int cn, int nr, int level, struct shrine_ppd *ppd) 
     else cnt = min(5, 115 - ch[cn].value[1][v]);
 
     if (cnt < 1) {
-        log_char(cn, LOG_SYSTEM, 0, "A lively voice says: 'Thou canst improve thine vitality any more.'");
+        log_char(cn, LOG_SYSTEM, 0, "A lively voice saith: 'Thou canst improve thine vitality any more.'");
         return;
     }
 
@@ -1789,15 +1789,15 @@ void shrine_continuity(int in, int cn, int nr, int level, struct shrine_ppd *ppd
         if (level == 99) {
             teleport_char_driver(cn, 41, 250);
             log_char(cn, LOG_SYSTEM, 0, "Thy continuity has opened a gate...");
-        } else log_char(cn, LOG_SYSTEM, 0, "A steady voice says: 'Thou hast visited me already.'");
+        } else log_char(cn, LOG_SYSTEM, 0, "A steady voice saith: 'Thou hast visited me already.'");
         return;
     }
     if (level > ppd->continuity) {
-        log_char(cn, LOG_SYSTEM, 0, "A steady voice says: 'Thou must visit mine younger brother first.'");
+        log_char(cn, LOG_SYSTEM, 0, "A steady voice saith: 'Thou must visit mine younger brother first.'");
         return;
     }
 
-    log_char(cn, LOG_SYSTEM, 0, "A steady voice says: 'Continuity is power.'");
+    log_char(cn, LOG_SYSTEM, 0, "A steady voice saith: 'Continuity is power.'");
     ppd->continuity = level + 1;
 
     cost = level_value(min(ch[cn].level + 5, level)) / 6;
@@ -1827,7 +1827,7 @@ void shrine_braveness(int in, int cn, int nr, int level, struct shrine_ppd *ppd)
     int cost;
 
     if (!(ppd->used[DEATH_SHRINE_INDEX] & DEATH_SHRINE_BIT)) {
-        log_char(cn, LOG_SYSTEM, 0, "An insulting voice says: 'Thou art a coward, bother me not!");
+        log_char(cn, LOG_SYSTEM, 0, "An insulting voice saith: 'Thou art a coward, bother me not!");
         return;
     }
 
@@ -1837,7 +1837,7 @@ void shrine_braveness(int in, int cn, int nr, int level, struct shrine_ppd *ppd)
 
     dlog(cn, 0, "Used shrine of braveness (%d exp, %d gold (%d,%d), lvl %d)", cost, cost / 10, level, level_value(level), level);
 
-    log_char(cn, LOG_SYSTEM, 0, "A triumphant voice says: 'Thou art brave indeed!'");
+    log_char(cn, LOG_SYSTEM, 0, "A triumphant voice saith: 'Thou art brave indeed!'");
 
     give_exp_bonus(cn, cost);
     ch[cn].gold += cost / 10;
@@ -1873,10 +1873,10 @@ void shrine_jobless(int in, int cn, int nr, int level, struct shrine_ppd *ppd) {
         if (ch[cn].prof[n]) break;
     }
     if (n == P_MAX) {
-        log_char(cn, LOG_SYSTEM, 0, "A bored voice says: 'Thou art jobless already.'");
+        log_char(cn, LOG_SYSTEM, 0, "A bored voice saith: 'Thou art jobless already.'");
         return;
     }
-    log_char(cn, LOG_SYSTEM, 0, "A bored voice says: 'Thou shalt be jobless.'");
+    log_char(cn, LOG_SYSTEM, 0, "A bored voice saith: 'Thou shalt be jobless.'");
 
     for (n = 0; n < P_MAX; n++) ch[cn].prof[n] = 0;
     ch[cn].flags |= CF_PROF;
