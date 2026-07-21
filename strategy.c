@@ -1313,7 +1313,7 @@ void strategy_boss(int cn, int ret, int lastact) {
                     break;
                 case 10:
                     if (ppd->boss_exp > 0) {
-                        say(cn, "Ah, %s. You made some progress defeating Islena's Lieutenants, and I have orders to reward you. Do you prefer \260c4military rank\260c0 or \260c4levels and experience\260c0?", ch[co].name);
+                        say(cn, "Ah, %s. Thou madest some progress defeating Islena's Lieutenants, and I have orders to reward thee. Dost thou prefer \260c4military rank\260c0 or \260c4levels and experience\260c0?", ch[co].name);
                         ppd->boss_stage++;
                         ppd->boss_msg_exp = ppd->boss_exp;
                     }

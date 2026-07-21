@@ -710,7 +710,7 @@ void do_emote(int cn, struct farmy_data *dat) {
             dat->emote.answer_cn = co;
             dat->emote.answer_type = AT_YESNO;
         } else if (dat->emote.likes[n] < 20) {
-            say(cn, "I like the way you smile, %s.", ch[co].name);
+            say(cn, "I like the way thou smilest, %s.", ch[co].name);
             if (dat->emote.talked[n] > -2) dat->emote.likes[n]++;
             dat->emote.talked[n]--;
             dat->emote.answer_timer = ticker;
@@ -1402,7 +1402,7 @@ void fdemon_boss(int cn, int ret, int lastact) {
                     ppd->boss_timer = realtime;
                     break;
                 case 3:
-                    say(cn, "It is up to you if you want their help on your missions. I recommend you take them along, the enemies are numerous, and some are quite dangerous.");
+                    say(cn, "It is up to thee if thou wantest their help on thy missions. I recommend thou takest them along, the enemies are numerous, and some are quite dangerous.");
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     break;

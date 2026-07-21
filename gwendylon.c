@@ -602,7 +602,7 @@ void yoakin_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    quiet_say(cn, "This bear has been killing several travellers, and I put a price on its head. So if thou happen to kill it, bring me its teeth as proof.");
+                    quiet_say(cn, "This bear has been killing several travellers, and I put a price on its head. So if thou happenest to kill it, bring me its teeth as proof.");
                     ppd->yoakin_state = 4;
                     didsay = 1;
                     break;
@@ -1059,7 +1059,7 @@ void james_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 4:
-                    quiet_say(cn, "If you ever need \260c4advice\260c0 on how to raise your character, I'd be happy to help you - for a small fee.");
+                    quiet_say(cn, "If thou ever needest \260c4advice\260c0 on how to raise thy character, I would be happy to help thee - for a small fee.");
                     ppd->james_state++;
                     didsay = 1;
                     break;
@@ -2087,7 +2087,7 @@ void reskin_driver(int cn, int ret, int lastact) {
                             quiet_say(cn, "Oh, a very nice mushroom, %s. But I am afraid I cannot pay for it at the moment.", ch[co].name);
                         } else {
                             ppd->reskin_got_bits |= bit;
-                            quiet_say(cn, "Ah, a nice %s thou found there. Here, this is for thy trouble.", it[in].name);
+                            quiet_say(cn, "Ah, a nice %s thou foundest there. Here, this is for thy trouble.", it[in].name);
 
                             ch[co].gold += it[in].value * 5;
                             ch[co].flags |= CF_ITEMS;
@@ -2099,7 +2099,7 @@ void reskin_driver(int cn, int ret, int lastact) {
                             return;
                         }
                     } else {
-                        quiet_say(cn, "Oh, I'm sorry, %s, but thou brought me this one before.", ch[co].name);
+                        quiet_say(cn, "Oh, I am sorry, %s, but thou broughtest me this one before.", ch[co].name);
 
                         if (!give_char_item(co, ch[cn].citem)) destroy_item(ch[cn].citem);
                         ch[cn].citem = 0;
@@ -2659,7 +2659,7 @@ void logain_driver(int cn, int ret, int lastact) {
                     if (!has_item(co, IID_AREA1_MADKEY6)) {
                         in = create_item("mad_key6");
                         if (!give_char_item(co, in)) destroy_item(in);
-                        quiet_say(cn, "Thou willt need this key to gain entry.");
+                        quiet_say(cn, "Thou wilt need this key to gain entry.");
                     }
                     break;
                 case 5:

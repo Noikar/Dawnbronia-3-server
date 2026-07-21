@@ -249,7 +249,7 @@ void aristocrat_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    quiet_say(cn, "Say! You look like quite a buoyant adventurer.");
+                    quiet_say(cn, "Say! Thou lookest like quite a buoyant adventurer.");
                     ppd->aristocrat_state++;
                     didsay = 1;
                     break;
@@ -468,7 +468,7 @@ void yoatin_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 7:
-                    quiet_say(cn, "Take care as you travel! The whole forest is full of bears and bear caves.");
+                    quiet_say(cn, "Take care as thou travellest! The whole forest is full of bears and bear caves.");
                     ppd->yoatin_state++;
                     didsay = 1;
                     break;

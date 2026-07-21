@@ -401,7 +401,7 @@ void smugglecom_driver(int cn, int ret, int lastact) {
                     ppd->smugglecom_state++;
                     didsay = 1;
                     break;
-                case 2: //quiet_say(cn,"Also, I will reward you for every piece of contraband you bring me. ");
+                case 2: //quiet_say(cn,"Also, I will reward thee for every piece of contraband thou bringest me. ");
                     //ppd->smugglecom_state++; didsay=1;
                     //break;
                     // fall through intended for now
@@ -706,7 +706,7 @@ void rouven_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 12:
-                    quiet_say(cn, "Take this key and when you find the scroll return to Carlos.");
+                    quiet_say(cn, "Take this key and when thou findest the scroll return to Carlos.");
                     if (!has_item(co, IID_MAX_VAULTKEY) && (in2 = create_item("vault_key1"))) {
                         if (!give_char_item(co, in2)) destroy_item(in2);
                     }

@@ -761,7 +761,7 @@ void fiona_driver(int cn, int ret, int lastact) {
                     if (ch[co].level >= 50) ppd->fiona_state++;
                     else break;
                 case 1:
-                    say(cn, "Hello there stranger, and welcome to my Academy of the Fighting Arts. I can train your abillities here if you prove thine worth first.");
+                    say(cn, "Hello there stranger, and welcome to my Academy of the Fighting Arts. I can train thine abillities here if thou provest thy worth first.");
                     questlog_open(co, 67);
                     ppd->fiona_state++;
                     didsay = 1;
@@ -1322,7 +1322,7 @@ void ramin_driver(int cn, int ret, int lastact) {
 
             if ((in = ch[cn].citem)) { // we still have it
                 if (it[in].ID == IID_ARKHATA_LETTER2 && ppd && !(ppd->letter_bits & 2)) {
-                    quiet_say(cn, "You bring comfort and solution. My friend I am most grateful.");
+                    quiet_say(cn, "Thou bringest comfort and solution. My friend I am most grateful.");
                     destroy_item_byID(co, IID_ARKHATA_LETTER2);
 
                     ppd->letter_bits |= 2;
@@ -1477,7 +1477,7 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                     else break;
                 case 1:
                     if (nr == 1) {
-                        say(cn, "Dried leaves of lavender, and rose buttons, cinnamon powder and three drops elcalyptus extract is all you need for a fragrance so refreshing it will open thy air channels even when cought by the worst cold.");
+                        say(cn, "Dried leaves of lavender, and rose buttons, cinnamon powder and three drops elcalyptus extract is all thou needest for a fragrance so refreshing it will open thine air channels even when cought by the worst cold.");
                         ppd->monk_state++;
                         didsay = 1;
                     }

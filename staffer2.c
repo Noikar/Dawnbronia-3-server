@@ -808,7 +808,7 @@ void brenneth_brannington_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    quiet_say(cn, "Perhaps one of these... grolms... has taken something that may help me recall why I'm here... If you find anything, please bring it back to me...");
+                    quiet_say(cn, "Perhaps one of these... grolms... has taken something that may help me recall why I am here... If thou findest anything, please bring it back to me...");
                     ppd->brennethbran_state++;
                     didsay = 1;
                     break;
@@ -1839,7 +1839,7 @@ void broklin_trade_gold(int cn, int co) {
             return;
         }
     }
-    say(cn, "You need to have 1000 gold units in a single spot in your inventory, %s.", ch[co].name);
+    say(cn, "Thou needest to have 1000 gold units in a single spot in thine inventory, %s.", ch[co].name);
 }
 void broklin_trade_silver(int cn, int co) {
     struct staffer_ppd *ppd;
@@ -1876,7 +1876,7 @@ void broklin_trade_silver(int cn, int co) {
             return;
         }
     }
-    say(cn, "You need to have 5000 silver units in a single spot in your inventory, %s.", ch[co].name);
+    say(cn, "Thou needest to have 5000 silver units in a single spot in thine inventory, %s.", ch[co].name);
 }
 
 void broklin_driver(int cn, int ret, int lastact) {
@@ -1949,7 +1949,7 @@ void broklin_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 2:
-                    quiet_say(cn, "I wonder... you look like a capable adventurer - mayhaps you could take a trip to visit these robbers?");
+                    quiet_say(cn, "I wonder... thou lookest like a capable adventurer - mayhaps thou couldst take a trip to visit these robbers?");
                     ppd->broklin_state++;
                     didsay = 1;
                     break;

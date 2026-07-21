@@ -81,11 +81,11 @@ struct qa qa[] = {
     {{"what's", "your", "name", NULL}, NULL, 1},
     {{"what", "is", "your", "name", NULL}, NULL, 1},
     {{"who", "are", "you", NULL}, NULL, 1},
-    {{"clan", NULL}, "If you wish to found a clan, tell me the name you want that clan to have, and hand me a Clan Jewel. If you wish to tell me the name, use: 'name: <clan name>', that is, to name your clan 'Black Rose', use: 'name: Black Rose'. Be aware that the game will use the phrase 'The <clan name> clan', ie. 'The Black Rose Clan', so avoid 'The' and 'Clan' in the name.", 0},
+    {{"clan", NULL}, "If thou wishest to found a clan, tell me the name thou wantest that clan to have, and hand me a Clan Jewel. If thou wishest to tell me the name, use: 'name: <clan name>', that is, to name thy clan 'Black Rose', use: 'name: Black Rose'. Be aware that the game will use the phrase 'The <clan name> clan', ie. 'The Black Rose Clan', so avoid 'The' and 'Clan' in the name.", 0},
     {{"jewels", NULL}, NULL, 2},
     {{"repeat", NULL}, NULL, 3},
-    {{"raid", NULL}, "I will enter the clan you name, kill any guards I see and try to steal a clan jewel. If I succeed I will transfer that jewel to your clan vault. I can only attack a clan if you are at war with that clan. If you want me to attack clan 2, say 'attack 2'.", 0},
-    {{"scout", NULL}, "On a scouting mission, I will just take a peek into the clan you name and give you a report about its guards. Say 'sneak 2' if you want me to scout clan number 2.", 0},
+    {{"raid", NULL}, "I will enter the clan thou namest, kill any guards I see and try to steal a clan jewel. If I succeed I will transfer that jewel to thy clan vault. I can only attack a clan if thou art at war with that clan. If thou wantest me to attack clan 2, say 'attack 2'.", 0},
+    {{"scout", NULL}, "On a scouting mission, I will just take a peek into the clan thou namest and give thee a report about its guards. Say 'sneak 2' if thou wantest me to scout clan number 2.", 0},
     {{"info", NULL}, NULL, 4}};
 
 void lowerstrcpy(char *dst, char *src) {
@@ -262,7 +262,7 @@ void clanmaster_driver(int cn, int ret, int lastact) {
                         }
                         fnd->name[n] = 0;
                         fnd->state = 1;
-                        quiet_say(cn, "Your clan, %s, will be named '%s'. Try again if that is not what you want. Or hand me a Clan Jewel to proceed. You can buy them at Jeremy's", ch[co].name, fnd->name);
+                        quiet_say(cn, "Thy clan, %s, will be named '%s'. Try again if that is not what thou wantest. Or hand me a Clan Jewel to proceed. Thou canst buy them at Jeremy's", ch[co].name, fnd->name);
                     } else quiet_say(cn, "Thou art already a member of a clan or club. Thou canst not found a new one.");
                 }
                 if ((ptr = strcasestr((char *)msg->dat2, "accept:"))) {
@@ -738,7 +738,7 @@ void clanclerk_driver(int cn, int ret, int lastact) {
                     }
 
                     if (level > CS_NEUTRAL && !get_clan_raid(dat->clan)) {
-                        say(cn, "Your clan cannot go to war or feud unless you turn \260c4raiding on\260c0.");
+                        say(cn, "Thy clan cannot go to war or feud unless thou turnest \260c4raiding on\260c0.");
 
                         remove_message(cn, msg);
                         continue;

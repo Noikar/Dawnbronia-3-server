@@ -1408,7 +1408,7 @@ void randommaster(int cn, int ret, int lastact) {
             if ((ptr = strcasestr(haystack, "enter"))) {
                 ptr += 5;
                 target = atoi(ptr);
-                say(cn, "You want to enter dungeon %d", target);
+                say(cn, "Thou wantest to enter dungeon %d", target);
 
                 enter_dungeon(cn, co, target, dat);
             }
@@ -1416,7 +1416,7 @@ void randommaster(int cn, int ret, int lastact) {
             if ((ptr = strcasestr(haystack, "destroy"))) {
                 ptr += 7;
                 target = atoi(ptr);
-                say(cn, "You want to destroy dungeon %d", target);
+                say(cn, "Thou wantest to destroy dungeon %d", target);
 
                 if (target > 0 && target < 17) {
                     target--;

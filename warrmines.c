@@ -233,7 +233,7 @@ void dwarfchief_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 2:
-                    quiet_say(cn, "If you wish, here's a scroll so you can help one of them. Give this one to the miner in the first section, then come back for another scroll for the next miner.");
+                    quiet_say(cn, "If thou wishest, here is a scroll so thou canst help one of them. Give this one to the miner in the first section, then come back for another scroll for the next miner.");
                     ppd->dwarfchief_state++;
                     didsay = 1;
                     if (!has_item(co, IID_DWARFRECALL1)) {
@@ -515,7 +515,7 @@ void dwarfshaman_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 10:
-                    quiet_say(cn, "I thank thee for helping out! I guess you are sturdier than you look, even though your kind looks skinnier than a dwarven skeleton!");
+                    quiet_say(cn, "I thank thee for helping out! I guess thou art sturdier than thou lookest, even though thy kind looks skinnier than a dwarven skeleton!");
                     ppd->dwarfshaman_state++;
                     didsay = 1;
                     break;

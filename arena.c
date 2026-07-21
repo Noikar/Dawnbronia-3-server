@@ -275,7 +275,7 @@ void find_contender(int cn, struct master_data *dat) {
         dat->fight2_cn = dat->ct[fight2].cn;
         dat->timeout = ticker + TICKS * 30;
 
-        say(cn, "Next fight is: \260c6%s versus %s.\260c0 Both participants please step forward and say: 'enter'. You have 30 seconds to enter the arena, otherwise you lose by default.",
+        say(cn, "Next fight is: \260c6%s versus %s.\260c0 Both participants please step forward and say: 'enter'. Thou hast 30 seconds to enter the arena, otherwise thou losest by default.",
             ch[dat->fight1_cn].name,
             ch[dat->fight2_cn].name);
 
@@ -999,7 +999,7 @@ void manager_driver(int cn, int ret, int lastact) {
                     }
                     dat->invite[n] = 0;
 
-                    say(cn, "%s, say 'enter' if you wish to enter the arena", dat->invite);
+                    say(cn, "%s, say 'enter' if thou wishest to enter the arena", dat->invite);
                 }
             }
             if (didsay) {

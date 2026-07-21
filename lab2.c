@@ -174,7 +174,7 @@ void lab2_herald_driver(int cn, int ret, int lastact) {
                 break;
 
             case 11:
-                say(cn, "But thou wished to hear about Arathas. He and his brother stem from a family of well renowed mages. They have their own \260c4family vault\260c0 on this graveyard. Arathas died during some kind of magical experiment, and he was buried in the family vault a long time ago.");
+                say(cn, "But thou wishedst to hear about Arathas. He and his brother stem from a family of well renowed mages. They have their own \260c4family vault\260c0 on this graveyard. Arathas died during some kind of magical experiment, and he was buried in the family vault a long time ago.");
                 didsay = 1;
                 ppd->herald_talkstep = 255;
                 dat->next_talk = ticker + 10 * TICKS;

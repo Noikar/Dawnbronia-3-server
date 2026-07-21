@@ -943,7 +943,7 @@ void military_advisor_driver(int cn, int ret, int lastact) {
                 if (ppd->advisor_last[idx] == yday + 1) quiet_say(cn, "Mentioning thy name twice a day will not accomplish much, %s.", ch[co].name);
                 else {
                     cost = advisor_price(ch[co].level) * 1; //max(500,calc_cost(100*100,dat->storage_data+0,30));
-                    quiet_say(cn, "You can get a small favor for the humble fee of %dG, %dS, %s. Say \260c4pay\260c0 if you want it.", cost / 100, cost % 100, ch[co].name);
+                    quiet_say(cn, "Thou canst get a small favor for the humble fee of %dG, %dS, %s. Say \260c4pay\260c0 if thou wantest it.", cost / 100, cost % 100, ch[co].name);
                     ppd->advisor_cost = cost;
                     ppd->advisor_state = 2;
                     ppd->advisor_storage_nr = 0;
@@ -953,7 +953,7 @@ void military_advisor_driver(int cn, int ret, int lastact) {
                 if (ppd->advisor_last[idx] == yday + 1) quiet_say(cn, "Mentioning thy name twice a day will not accomplish much, %s.", ch[co].name);
                 else {
                     cost = advisor_price(ch[co].level) * 3; //max(1500,calc_cost(200*100,dat->storage_data+1,20));
-                    quiet_say(cn, "You can get a medium favor for the humble fee of %dG, %dS, %s. Say \260c4pay\260c0 if you want it.", cost / 100, cost % 100, ch[co].name);
+                    quiet_say(cn, "Thou canst get a medium favor for the humble fee of %dG, %dS, %s. Say \260c4pay\260c0 if thou wantest it.", cost / 100, cost % 100, ch[co].name);
                     ppd->advisor_cost = cost;
                     ppd->advisor_state = 2;
                     ppd->advisor_storage_nr = 1;
@@ -963,7 +963,7 @@ void military_advisor_driver(int cn, int ret, int lastact) {
                 if (ppd->advisor_last[idx] == yday + 1) quiet_say(cn, "Mentioning thy name twice a day will not accomplish much, %s.", ch[co].name);
                 else {
                     cost = advisor_price(ch[co].level) * 10; //max(4000,calc_cost(400*100,dat->storage_data+2,15));
-                    quiet_say(cn, "You can get a big favor for the humble fee of %dG, %dS, %s. Say \260c4pay\260c0 if you want it.", cost / 100, cost % 100, ch[co].name);
+                    quiet_say(cn, "Thou canst get a big favor for the humble fee of %dG, %dS, %s. Say \260c4pay\260c0 if thou wantest it.", cost / 100, cost % 100, ch[co].name);
                     ppd->advisor_cost = cost;
                     ppd->advisor_state = 2;
                     ppd->advisor_storage_nr = 2;
@@ -973,7 +973,7 @@ void military_advisor_driver(int cn, int ret, int lastact) {
                 if (ppd->advisor_last[idx] == yday + 1) quiet_say(cn, "Mentioning thy name twice a day will not accomplish much, %s.", ch[co].name);
                 else {
                     cost = advisor_price(ch[co].level) * 20; //max(10000,calc_cost(800*100,dat->storage_data+3,10));
-                    quiet_say(cn, "You can get a huge favor for the humble fee of %dG, %dS, %s. Say \260c4pay\260c0 if you want it.", cost / 100, cost % 100, ch[co].name);
+                    quiet_say(cn, "Thou canst get a huge favor for the humble fee of %dG, %dS, %s. Say \260c4pay\260c0 if thou wantest it.", cost / 100, cost % 100, ch[co].name);
                     ppd->advisor_cost = cost;
                     ppd->advisor_state = 2;
                     ppd->advisor_storage_nr = 3;
@@ -983,7 +983,7 @@ void military_advisor_driver(int cn, int ret, int lastact) {
                 if (ppd->advisor_last[idx] == yday + 1) quiet_say(cn, "Mentioning thy name twice a day will not accomplish much, %s.", ch[co].name);
                 else {
                     cost = advisor_price(ch[co].level) * 35; //max(25000,calc_cost(1600*100,dat->storage_data+4,5));
-                    quiet_say(cn, "You can get a vast favor for the humble fee of %dG, %dS, %s. Say \260c4pay\260c0 if you want it.", cost / 100, cost % 100, ch[co].name);
+                    quiet_say(cn, "Thou canst get a vast favor for the humble fee of %dG, %dS, %s. Say \260c4pay\260c0 if thou wantest it.", cost / 100, cost % 100, ch[co].name);
                     ppd->advisor_cost = cost;
                     ppd->advisor_state = 2;
                     ppd->advisor_storage_nr = 4;

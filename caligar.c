@@ -355,7 +355,7 @@ void guard2_driver(int cn, int ret, int lastact) {
 
             if (realtime - ppd->guard2_last_talk < 15) { continue; }
 
-            say(cn, "Halt! You will die where you stand!");
+            say(cn, "Halt! Thou wilt die where thou standest!");
             ppd->guard2_last_talk = realtime;
         }
     }
@@ -960,7 +960,7 @@ void smith_driver(int cn, int ret, int lastact) {
                     }
                     in = create_item("caligar_underground_key");
                     if (!in) {
-                        quiet_say(cn, "Oops. You found bug #1635t. Please report it.");
+                        quiet_say(cn, "Oops. Thou foundest bug #1635t. Please report it.");
                         break;
                     }
                     if (!give_char_item(co, in)) {
@@ -975,7 +975,7 @@ void smith_driver(int cn, int ret, int lastact) {
                 } else quiet_say(cn, "Thou dost not appear to have all the neccessary parts.");
                 break;
             case 4:
-                quiet_say(cn, "Okay, come back if you change your mind.");
+                quiet_say(cn, "Okay, come back if thou changest thy mind.");
                 break;
             case 5:
                 appd = set_data(co, DRD_ARKHATA_PPD, sizeof(struct arkhata_ppd));
@@ -988,7 +988,7 @@ void smith_driver(int cn, int ret, int lastact) {
                 }
                 in = create_item("dictionary");
                 if (!in) {
-                    quiet_say(cn, "Oops. You found bug #1636t. Please report it.");
+                    quiet_say(cn, "Oops. Thou foundest bug #1636t. Please report it.");
                     break;
                 }
                 if (!give_char_item(co, in)) {

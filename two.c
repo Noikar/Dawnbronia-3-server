@@ -361,7 +361,7 @@ void guard_driver(int cn, int ret, int lastact) {
                         }
                         if (dat->leave_timeout + timeout < ticker) {
                             dat->leave_state = 2;
-                            say(cn, "You had ample time to leave, now you die!");
+                            say(cn, "Thou hadst ample time to leave, now thou diest!");
                         } else if (move_driver(cn, ch[co].x, ch[co].y, 2)) {
                             remove_message(cn, msg);
                             return;
@@ -385,7 +385,7 @@ void guard_driver(int cn, int ret, int lastact) {
                     dat->last_y = ch[co].y;
                     dat->last_co = co;
                     if (dat->fine_state == 0) {
-                        say(cn, "Hey, %s, you owe the city %.2fG! Say \260c4pay\260c0 to pay it!", ch[co].name, ppd->legal_fine / 100.0);
+                        say(cn, "Hey, %s, thou owest the city %.2fG! Say \260c4pay\260c0 to pay it!", ch[co].name, ppd->legal_fine / 100.0);
                         dat->fine_state = 1;
                         dat->fine_timeout = ticker;
                         dat->lastsay = ticker;
@@ -399,7 +399,7 @@ void guard_driver(int cn, int ret, int lastact) {
                         }
                         if (dat->fine_timeout + TICKS * 60 < ticker) {
                             dat->fine_state = 2;
-                            say(cn, "You had ample time to pay, now you die!");
+                            say(cn, "Thou hadst ample time to pay, now thou diest!");
                         } else if (move_driver(cn, ch[co].x, ch[co].y, 1)) {
                             remove_message(cn, msg);
                             return;
@@ -1635,7 +1635,7 @@ void thiefmaster(int cn, int ret, int lastact) {
                         say(cn, "Ah, %s. I have heard about thine efforts burning down those barrels.", ch[co].name);
                         val = 5000;
                     } else {
-                        say(cn, "Thou made a nice fire, indeed, %s.", ch[co].name);
+                        say(cn, "Thou madest a nice fire, indeed, %s.", ch[co].name);
                         val = 10000;
                     }
                     say(cn, "Here's a key that might come in handy. It opens most of the doors in the sewers.");

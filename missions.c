@@ -1342,7 +1342,7 @@ void mission_giver_driver(int cn, int ret, int lastact) {
                     break;
                 case 12:
                     ppd->dif_kill = min(MAXDIFF, ppd->dif_kill + 10);
-                    quiet_say(cn, "Alright, bigmouth. Let's see how you handle this.");
+                    quiet_say(cn, "Alright, bigmouth. Let us see how thou handlest this.");
                     break;
                 case 13:
                     ppd->dif_kill = max(0, ppd->dif_kill - 10);

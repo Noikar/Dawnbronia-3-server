@@ -71,7 +71,7 @@ struct qa qa[] = {
     {{"what's", "your", "name", NULL}, NULL, 1},
     {{"what", "is", "your", "name", NULL}, NULL, 1},
     {{"who", "are", "you", NULL}, NULL, 1},
-    {{"account", NULL}, "If you want to open an account, you must first deposit (\260c4explain deposit\260c0) some money in it. After that, you can inquire for your balance (\260c4explain balance\260c0) or withdraw (\260c4explain withdraw\260c0) money.", 0},
+    {{"account", NULL}, "If thou wantest to open an account, thou must first deposit (\260c4explain deposit\260c0) some money in it. After that, thou canst inquire for thy balance (\260c4explain balance\260c0) or withdraw (\260c4explain withdraw\260c0) money.", 0},
     {{"explain", "deposit", NULL}, "To deposit 38 gold coins for example, just say: 'deposit 38'.", 0},
     {{"explain", "withdraw", NULL}, "To withdraw 38 gold coins for example, just say: 'withdraw 38'.", 0},
     {{"explain", "balance", NULL}, "To inquire about the balance of thine account, just say: 'balance'", 0}};

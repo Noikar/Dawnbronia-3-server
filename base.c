@@ -2958,7 +2958,7 @@ void trader_driver(int cn, int ret, int lastact) {
                 dat->c1ID = ch[co].ID;
                 dat->c2ID = ch[c2].ID;
                 dat->timeout = ticker + TICKS * 60 * 3;
-                quiet_say(cn, "I will handle a trade between %s and %s. You have three minutes to complete it. When you are satisfied with the deal, say \260c4accept trade\260c0. If you wish to stop the deal, say \260c4stop trade\260c0. You can check the deal with \260c4show trade\260c0.", ch[co].name, ch[c2].name);
+                quiet_say(cn, "I will handle a trade between %s and %s. Thou hast three minutes to complete it. When thou art satisfied with the deal, say \260c4accept trade\260c0. If thou wishest to stop the deal, say \260c4stop trade\260c0. Thou canst check the deal with \260c4show trade\260c0.", ch[co].name, ch[c2].name);
                 talkdir = offset2dx(ch[cn].x, ch[cn].y, ch[co].x, ch[co].y);
             }
 
