@@ -1259,7 +1259,7 @@ void strategy_boss(int cn, int ret, int lastact) {
                 switch (ppd->boss_stage) {
                 case 0:
                     if (get_army_rank_int(co) < 8) {
-                        say(cn, "Ah, %s. The governer of Aston has some missions for thee. Thou wouldst better head back there and do those first.", ch[co].name);
+                        say(cn, "Ah, %s. The governer of Aston has some missions for thee. Thou hadst better head back there and do those first.", ch[co].name);
                         ppd->boss_stage++;
                     } else {
                         say(cn, "Welcome, %s, to the Ice Army's Caves. I am %s, the commander in chief of the Ice Army Caves.", ch[co].name, ch[cn].name);

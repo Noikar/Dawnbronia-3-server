@@ -478,7 +478,7 @@ void dwarfshaman_driver(int cn, int ret, int lastact) {
                         ppd->dwarfshaman_state = 6;
                         break;
                     }
-                    quiet_say(cn, "Ah! I see thee have come back with all thy teeth, and those of the lizards. I guess thou art strong enough after all to do the quest I am about to give thee. Thou seest, I have seen the lizards come out with brown berries out of the water.");
+                    quiet_say(cn, "Ah! I see thou hast come back with all thy teeth, and those of the lizards. I guess thou art strong enough after all to do the quest I am about to give thee. Thou seest, I have seen the lizards come out with brown berries out of the water.");
                     questlog_open(co, 52);
                     ppd->dwarfshaman_state++;
                     didsay = 1;
@@ -502,7 +502,7 @@ void dwarfshaman_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 7:
-                    quiet_say(cn, "Also, I managed to learn some of the lizard's tongue, and overheard them talking in fear of an 'elite lizard'... If thou canst find it and bring it is head to me, I can learn more about these lizards, and why they are so varied.");
+                    quiet_say(cn, "Also, I managed to learn some of the lizard's tongue, and overheard them talking in fear of an 'elite lizard'... If thou canst find it and bring its head to me, I can learn more about these lizards, and why they are so varied.");
                     ppd->dwarfshaman_state++;
                     didsay = 1;
                     break;

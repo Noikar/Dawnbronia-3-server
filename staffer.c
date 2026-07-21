@@ -677,7 +677,7 @@ void rouven_driver(int cn, int ret, int lastact) {
                     break; // waiting for player to find skull
 
                 case 6:
-                    quiet_say(cn, "Thou sayest there is demons and a pile of strange skulls? They must have burrowed in from the underground. We shall look into this immediately.");
+                    quiet_say(cn, "Thou sayest there are demons and a pile of strange skulls? They must have burrowed in from the underground. We shall look into this immediately.");
                     ppd->rouven_state++;
                     didsay = 1;
                     questlog_open(co, 63);

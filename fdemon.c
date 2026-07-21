@@ -700,9 +700,9 @@ void do_emote(int cn, struct farmy_data *dat) {
 
         if (dat->emote.likes[n] < 10) {
             if (hour > 6 && hour < 20) {
-                say(cn, "Oh, what a nice day it is, %s, is not it?", ch[co].name);
+                say(cn, "Oh, what a nice day it is, %s, is it not?", ch[co].name);
             } else {
-                say(cn, "The nights here are scary, %s, are not they?", ch[co].name);
+                say(cn, "The nights here are scary, %s, are they not?", ch[co].name);
             }
             if (dat->emote.talked[n] > -2) dat->emote.likes[n]++;
             dat->emote.talked[n]--;
@@ -748,7 +748,7 @@ void do_emote(int cn, struct farmy_data *dat) {
             dat->emote.answer_cn = co;
             dat->emote.answer_type = AT_INSULT;
         } else if (dat->emote.likes[n] < 0) {
-            say(cn, "Why do not thou goest away, %s?", ch[co].name);
+            say(cn, "Why dost thou not go away, %s?", ch[co].name);
             if (dat->emote.talked[n] > -2) dat->emote.likes[n]--;
             dat->emote.talked[n]--;
             dat->emote.answer_timer = ticker;
@@ -793,7 +793,7 @@ void do_emote(int cn, struct farmy_data *dat) {
         //say(cn,"afraid: score=%d, co=%d, n=%d",bestscore,bestco,n);
 
         if (dat->emote.likes[n] < 10) {
-            say(cn, "Should not we turn back? What dost thou think, %s?", ch[co].name);
+            say(cn, "Should we not turn back? What dost thou think, %s?", ch[co].name);
             if (dat->emote.talked[n] > -2) dat->emote.likes[n]++;
             dat->emote.talked[n]--;
             dat->emote.answer_timer = ticker;
@@ -1384,7 +1384,7 @@ void fdemon_boss(int cn, int ret, int lastact) {
                 switch (ppd->boss_stage) {
                 case 0:
                     if (get_army_rank_int(co) < 2) {
-                        say(cn, "Ah, %s. The governer of Aston has some missions for thee. Thou wouldst better head back there and do those first.", ch[co].name);
+                        say(cn, "Ah, %s. The governer of Aston has some missions for thee. Thou hadst better head back there and do those first.", ch[co].name);
                     } else {
                         say(cn, "Welcome, %s, to our underground headquarters. I am the commander of the underground army. We are trying to stop the demon's progress here, before they invade Aston again.", ch[co].name);
                         ppd->boss_stage++;
@@ -1525,7 +1525,7 @@ void fdemon_boss(int cn, int ret, int lastact) {
                     }
                     if (cnt2 >= 26) ppd->boss_stage++;
                     if (!cnt) break;
-                    say(cn, "Ah, %s. I hear thee have found %d new Defense Stations. So thou hast found %d stations now.", ch[co].name, cnt, cnt2);
+                    say(cn, "Ah, %s. I hear thou hast found %d new Defense Stations. So thou hast found %d stations now.", ch[co].name, cnt, cnt2);
                     platoon_exp(cn, co, 2000 * cnt, 2 * cnt, ppd);
                     ppd->boss_timer = realtime;
                     ppd->boss_reported = ppd->boss_counter;

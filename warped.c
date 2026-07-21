@@ -884,7 +884,7 @@ void warpmaster(int cn, int ret, int lastact) {
                 continue;
             }
 
-            if (ch[co].level < 30) say(cn, "Hello %s! Thou wouldst better leave this area - it is too dangerous for thee.", ch[co].name);
+            if (ch[co].level < 30) say(cn, "Hello %s! Thou hadst better leave this area - it is too dangerous for thee.", ch[co].name);
             else say(cn, "Hello %s! Welcome to Rodney's \260c4Warped World\260c0! Wouldst thou like to buy some \260c4keys\260c0?", ch[co].name);
             mem_add_driver(cn, co, 7);
         }

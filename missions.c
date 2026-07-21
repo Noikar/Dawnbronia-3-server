@@ -1301,15 +1301,15 @@ void mission_giver_driver(int cn, int ret, int lastact) {
                     break;
                 case 7:
                     if (ppd->sm[0].type && !ppd->active && !ppd->solved) start_mission(cn, co, 0, ppd);
-                    else quiet_say(cn, "I have not offered you that job yet.");
+                    else quiet_say(cn, "I have not offered thee that job yet.");
                     break;
                 case 8:
                     if (ppd->sm[1].type && !ppd->active && !ppd->solved) start_mission(cn, co, 1, ppd);
-                    else quiet_say(cn, "I have not offered you that job yet.");
+                    else quiet_say(cn, "I have not offered thee that job yet.");
                     break;
                 case 9:
                     if (ppd->sm[2].type && !ppd->active && !ppd->solved) start_mission(cn, co, 2, ppd);
-                    else quiet_say(cn, "I have not offered you that job yet.");
+                    else quiet_say(cn, "I have not offered thee that job yet.");
                     break;
                 case 10:
                     if (ppd->active) {
@@ -1321,7 +1321,7 @@ void mission_giver_driver(int cn, int ret, int lastact) {
                         ppd->dif_kill = max(ppd->dif_kill - 20, 0);
                         dlog(co, 0, "failed mission, lost %d points (new total %d points)", pts, ppd->points);
                         if (pts) {
-                            quiet_say(cn, "Thou lost %d brownie points for a new total of %d points.", pts, ppd->points);
+                            quiet_say(cn, "Thou lostest %d brownie points for a new total of %d points.", pts, ppd->points);
                         }
                         log_char(co, LOG_SYSTEM, 0, "#30");
                         log_char(co, LOG_SYSTEM, 0, "#40");

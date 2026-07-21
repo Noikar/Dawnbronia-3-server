@@ -279,7 +279,7 @@ void macro_driver(int cn, int ret, int lastact) {
                             else say(cn, "Merry Christmas, %s!", ch[co].name);
                         }
                     } else if (RANDOM(20) == 0) {
-                        say(cn, "Experience is a nice thing, is not it?");
+                        say(cn, "Experience is a nice thing, is it not?");
                         give_exp(co, level_value(ch[co].level) / 20 + 1);
                     }
                     dat->victim++;

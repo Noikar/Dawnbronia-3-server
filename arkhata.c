@@ -1197,7 +1197,7 @@ void ramin_driver(int cn, int ret, int lastact) {
                     if (ppd->fiona_state >= 4) ppd->ramin_state++;
                     else break;
                 case 1:
-                    say(cn, "Hello Great Adventurer! Tidings of thy deed of returning Queen Fiona's ring have reached me. I believe thee could help me too.");
+                    say(cn, "Hello Great Adventurer! Tidings of thy deed of returning Queen Fiona's ring have reached me. I believe thou couldst help me too.");
                     questlog_open(co, 68);
                     ppd->ramin_state++;
                     didsay = 1;
@@ -1564,7 +1564,7 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                     break;
                 case 14:
                     if (nr == 3) {
-                        say(cn, "I will now continue my research to uncover the secrets held within these books. Why do not thou goest and talk to Tracy in the meantime?");
+                        say(cn, "I will now continue my research to uncover the secrets held within these books. Why dost thou not go and talk to Tracy in the meantime?");
                         ppd->monk_state++;
                         didsay = 1;
                     }
@@ -1756,7 +1756,7 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                     ch[cn].citem = 0;
                 } else if (ppd && nr == 3 && it[in].ID == IID_ARKHATA_DICTIONARY && ppd->monk_state == 28) {
                     destroy_item_byID(co, IID_ARKHATA_DICTIONARY);
-                    say(cn, "This is much more then I had hoped for, I am now able to learn and translate the language in it is whole. Let us study together and share this knowledge.");
+                    say(cn, "This is much more then I had hoped for, I am now able to learn and translate the language in its whole. Let us study together and share this knowledge.");
                     give_exp(co, 15000);
                     log_char(co, LOG_SYSTEM, 0, "You learn the ancient language and gain some experience.");
                     ppd->monk_state++;
@@ -2640,7 +2640,7 @@ void potmaker_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 2:
-                    say(cn, "It is quite a valuable pot, it can hold water in temperatures far below freezing without it turning to ice. Thai Pan has told me he could sense it is magic south of his temple, perhaps thou shouldst search the forest in that direction.");
+                    say(cn, "It is quite a valuable pot, it can hold water in temperatures far below freezing without it turning to ice. Thai Pan has told me he could sense its magic south of his temple, perhaps thou shouldst search the forest in that direction.");
                     ppd->pot_state++;
                     didsay = 1;
                     break;
@@ -2784,7 +2784,7 @@ void hunter_driver(int cn, int ret, int lastact) {
                     if (ppd->pot_state > 0) ppd->hunter_state++;
                     else break;
                 case 1:
-                    say(cn, "Hail adventurer! I see thee are seeking for a ceremonial pot. Well that is an odd coincidence.");
+                    say(cn, "Hail adventurer! I see thou art seeking for a ceremonial pot. Well that is an odd coincidence.");
                     ppd->hunter_state++;
                     didsay = 1;
                     break;
@@ -3706,7 +3706,7 @@ void krenach_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    say(cn, "10000g for a book is alot of money. I see thee have taken good care of it. Here take these 5000g from me. All in all, the price of thine adventure should be more reasonable now.");
+                    say(cn, "10000g for a book is alot of money. I see thou hast taken good care of it. Here take these 5000g from me. All in all, the price of thine adventure should be more reasonable now.");
                     give_money(co, 5000 * 100, "Krenach Dictionary Quest");
                     ppd->krenach_state++;
                     didsay = 1;

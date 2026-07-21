@@ -1260,7 +1260,7 @@ void nook_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 4:
-                    quiet_say(cn, "If thou hast news from James, the drunkard, thou'd best make haste and bring Lydia his apologies. Her daughterness was not too happy about James passing out at the party.");
+                    quiet_say(cn, "If thou hast news from James, the drunkard, thou hadst best make haste and bring Lydia his apologies. Her daughterness was not too happy about James passing out at the party.");
                     ppd->nook_state++;
                     didsay = 1;
                     break;
@@ -1994,7 +1994,7 @@ void reskin_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 5:
-                    quiet_say(cn, "A few days ago, a new master took over their, uh, organization, and he's been threatening me. If thou couldst talk to him, I would appreciate it. I would even give thee a nice reward.");
+                    quiet_say(cn, "A few days ago, a new master took over their, uh, organization, and he hath been threatening me. If thou couldst talk to him, I would appreciate it. I would even give thee a nice reward.");
                     ppd->reskin_state++;
                     didsay = 1;
                     break;

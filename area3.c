@@ -359,7 +359,7 @@ void seymour_driver(int cn, int ret, int lastact) {
                         ppd->seymour_state = 12;
                         break;
                     }
-                    say(cn, "Thy next mission, %s, is to search Loisan's house here in Aston. It is on this street, on the western side. As far as we know, he's been using silver skulls here, and I would have thee bring me one of those. Thou mightst also want to talk to the Governor of Aston for additional missions.", get_army_rank_string(co));
+                    say(cn, "Thy next mission, %s, is to search Loisan's house here in Aston. It is on this street, on the western side. As far as we know, he hath been using silver skulls here, and I would have thee bring me one of those. Thou mightst also want to talk to the Governor of Aston for additional missions.", get_army_rank_string(co));
                     questlog_open(co, 11);
                     ppd->seymour_state++;
                     didsay = 1;

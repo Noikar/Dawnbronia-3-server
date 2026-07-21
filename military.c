@@ -575,7 +575,7 @@ void military_master_driver(int cn, int ret, int lastact) {
                     break;
                 }
                 if (ppd->mission_yday != yday + 1) {
-                    say(cn, "I have not offered you that kind of mission today, %s.", ch[co].name);
+                    say(cn, "I have not offered thee that kind of mission today, %s.", ch[co].name);
                     break;
                 }
                 display_mission(cn, co, 0, ppd);
@@ -593,11 +593,11 @@ void military_master_driver(int cn, int ret, int lastact) {
                     break;
                 }
                 if (ppd->current_pts < ppd->mis[1].pts) {
-                    say(cn, "I have not offered you that kind of mission, %s.", ch[co].name);
+                    say(cn, "I have not offered thee that kind of mission, %s.", ch[co].name);
                     break;
                 }
                 if (ppd->mission_yday != yday + 1) {
-                    say(cn, "I have not offered you that kind of mission today, %s.", ch[co].name);
+                    say(cn, "I have not offered thee that kind of mission today, %s.", ch[co].name);
                     break;
                 }
                 display_mission(cn, co, 1, ppd);
@@ -616,11 +616,11 @@ void military_master_driver(int cn, int ret, int lastact) {
                     break;
                 }
                 if (ppd->current_pts < ppd->mis[2].pts) {
-                    say(cn, "I have not offered you that kind of mission, %s.", ch[co].name);
+                    say(cn, "I have not offered thee that kind of mission, %s.", ch[co].name);
                     break;
                 }
                 if (ppd->mission_yday != yday + 1) {
-                    say(cn, "I have not offered you that kind of mission today, %s.", ch[co].name);
+                    say(cn, "I have not offered thee that kind of mission today, %s.", ch[co].name);
                     break;
                 }
                 display_mission(cn, co, 2, ppd);
@@ -639,11 +639,11 @@ void military_master_driver(int cn, int ret, int lastact) {
                     break;
                 }
                 if (ppd->current_pts < ppd->mis[3].pts) {
-                    say(cn, "I have not offered you that kind of mission, %s.", ch[co].name);
+                    say(cn, "I have not offered thee that kind of mission, %s.", ch[co].name);
                     break;
                 }
                 if (ppd->mission_yday != yday + 1) {
-                    say(cn, "I have not offered you that kind of mission today, %s.", ch[co].name);
+                    say(cn, "I have not offered thee that kind of mission today, %s.", ch[co].name);
                     break;
                 }
                 display_mission(cn, co, 3, ppd);
@@ -662,11 +662,11 @@ void military_master_driver(int cn, int ret, int lastact) {
                     break;
                 }
                 if (ppd->current_pts < ppd->mis[4].pts) {
-                    say(cn, "I have not offered you that kind of mission, %s.", ch[co].name);
+                    say(cn, "I have not offered thee that kind of mission, %s.", ch[co].name);
                     break;
                 }
                 if (ppd->mission_yday != yday + 1) {
-                    say(cn, "I have not offered you that kind of mission today, %s.", ch[co].name);
+                    say(cn, "I have not offered thee that kind of mission today, %s.", ch[co].name);
                     break;
                 }
                 display_mission(cn, co, 4, ppd);

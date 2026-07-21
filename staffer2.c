@@ -798,7 +798,7 @@ void brenneth_brannington_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    quiet_say(cn, "Perhaps thou canst help me, though I do not wish to burden thou... Thou seest, it appeareth that I have lost my memory due to being attacked by something...");
+                    quiet_say(cn, "Perhaps thou canst help me, though I do not wish to burden thee... Thou seest, it appeareth that I have lost my memory due to being attacked by something...");
                     ppd->brennethbran_state++;
                     didsay = 1;
                     break;
@@ -1283,19 +1283,19 @@ void forest_brannington_driver(int cn, int ret, int lastact) {
                 if (it[in].ID == IID_STAFF_FORESTMAP && ppd) {
                     switch (ppd->forestbran_done) {
                     case 0:
-                        say(cn, "Ah, I see thee have brought me a map. Let me see where this one is hidden. hhhmmm... It is beneath a dead tree...");
+                        say(cn, "Ah, I see thou hast brought me a map. Let me see where this one is hidden. hhhmmm... It is beneath a dead tree...");
                         break;
                     case 1:
-                        say(cn, "Ah, I see thee have brought me a map. Let me see where this one is hidden. hhhmmm... It is under the heat of a fire...");
+                        say(cn, "Ah, I see thou hast brought me a map. Let me see where this one is hidden. hhhmmm... It is under the heat of a fire...");
                         break;
                     case 2:
-                        say(cn, "Ah, I see thee have brought me a map. Let me see where this one is hidden. hhhmmm... It is next to an empty bucket...");
+                        say(cn, "Ah, I see thou hast brought me a map. Let me see where this one is hidden. hhhmmm... It is next to an empty bucket...");
                         break;
                     case 3:
-                        say(cn, "Ah, I see thee have brought me a map. Let me see where this one is hidden. hhhmmm... It is inside a circle of stones...");
+                        say(cn, "Ah, I see thou hast brought me a map. Let me see where this one is hidden. hhhmmm... It is inside a circle of stones...");
                         break;
                     case 4:
-                        say(cn, "Ah, I see thee have brought me a map. Let me see where this one is hidden. hhhmmm... It is next to a pair of bags...");
+                        say(cn, "Ah, I see thou hast brought me a map. Let me see where this one is hidden. hhhmmm... It is next to a pair of bags...");
                         break;
                     case 5:
                         say(cn, "This is the first map again, I am afraid. I think thou hast found all the treasures.");
@@ -2211,7 +2211,7 @@ void grinnich_driver(int cn, int ret, int lastact) {
                 case 2:
                     break; // waiting for completion of quest
                 case 3:
-                    quiet_say(cn, "Did not I tell thee it was worth it? Oh, all that knowledge just makes the mind grow! Is not Shanra wonderful? She can tell so many stories, more even than those books of her can...");
+                    quiet_say(cn, "Did I not tell thee it was worth it? Oh, all that knowledge just makes the mind grow! Is Shanra not wonderful? She can tell so many stories, more even than those books of her can...");
                     ppd->grinnich_state++;
                     didsay = 1;
                     break;

@@ -172,7 +172,7 @@ struct story ruby11_story[] = {
     {2, "Well, I need one of Islena's rings for my collection.", 0, 0, {{"Islena's Rings?", 3}, {"No, sorry. I cannot help thee with that.", 21}, {NULL}}},
     {3, "Yes. Islena is wearing them. Wouldst thou bring me one of them?", 0, 0, {{"Yes, I will.", 4}, {"No, sorry. I cannot help thee with that.", 21}, {NULL}}},
     {4, "(Waiting for Islena's ring)", SPEC_ITEM, IID_ISLENARING, {{NULL, 5}, {NULL}}},
-    {5, "Oh, it's wonderful. I thank thee, %s, thank thee very much! ", SPEC_SETBIT, BIT_ISLENA, {{NULL}}},
+    {5, "Oh, it is wonderful. I thank thee, %s, thank thee very much! ", SPEC_SETBIT, BIT_ISLENA, {{NULL}}},
 
     {20, "So? Well, it's thy choice, %s, but I think thou wilt regret this.", 0, 0, {{NULL}}},
     {21, "Oh. Alright. I understand.", 0, 0, {{NULL}}},
@@ -191,7 +191,7 @@ struct story ruby15_story[] = {
     {0, "May Ishtar be with thee, %s.", 0, 0, {{"Hello, %s!", 1}, {"And with thee, %s!", 1}, {"Yes?", 1}, {NULL}}},
     {1, "I am looking for Swamp Beast heads, thou dost not happen to have any, %s?", 0, 0, {{"Here, I can spare one.", 2}, {"Not right now, but I'll go get one for thee.", 2}, {"No, and I don't care what thou wantst.", 20}, {NULL}}},
     {2, "(Waiting for Swamp Beast head)", SPEC_ITEM, IID_AREA15_HEAD, {{NULL, 3}, {NULL}}},
-    {3, "Ah, yes, that's it. I thank thee, %s!", SPEC_SETBIT, BIT_SWAMP, {{NULL}}},
+    {3, "Ah, yes, that is it. I thank thee, %s!", SPEC_SETBIT, BIT_SWAMP, {{NULL}}},
 
     {20, "So? I don't like thee either, %s.", 0, 0, {{NULL}}},
     {0, NULL}};
@@ -537,7 +537,7 @@ int ruby_aston_char(int cn, int co, struct sidestory_ppd *ppd) {
         if (bitvalue >= 30) ppd->ruby3.state = 0;
         break;
     case 3:
-        quiet_say(cn, "Oh, hello again, %s. I guess I owe thee something for thy help. I collect weapons of all kinds. Maybe thou'd take one of them for all thy trouble?", ch[co].name);
+        quiet_say(cn, "Oh, hello again, %s. I guess I owe thee something for thy help. I collect weapons of all kinds. Maybe thou wouldst take one of them for all thy trouble?", ch[co].name);
         ppd->ruby3.state++;
         didsay = 1;
         break;

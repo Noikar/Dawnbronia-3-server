@@ -950,7 +950,7 @@ void servant(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 3:
-                    say(cn, "It looketh like it'll rain soon, does not it? The farmers sure could use a good rain.");
+                    say(cn, "It looketh like it will rain soon, doth it not? The farmers sure could use a good rain.");
                     didsay = 1;
                     break;
                 case 5:
@@ -998,7 +998,7 @@ void servant(int cn, int ret, int lastact) {
                     break;
                 case 2:
                     if (ch[co].flags & CF_MALE) {
-                        say(cn, "Uh, thou likest it rough, do not thou, %s? Well, I do not.", ch[co].name);
+                        say(cn, "Uh, thou likest it rough, dost thou not, %s? Well, I do not.", ch[co].name);
                         call_guard(cn, co);
                     } else {
                         say(cn, "Uh, thou seemest most determined, lady. I shall relent to thy wishes, then. There is a secret passage to the governors private rooms. It starteth in the room behind the southern door leading north-west in the corridor in front of my room. Here is the key.");
@@ -1116,7 +1116,7 @@ void servant_dead(int cn, int co) {
         if (ppd) {
             ppd->citizen_status = CS_ENEMY;
             ppd->legal_status = LS_DEAD;
-            say(cn, "Thou shalt pay dearly for this, %s. Even though I am just the governors double, he wilt have thy head just for trying to kill him!", ch[co].name);
+            say(cn, "Thou shalt pay dearly for this, %s. Even though I am just the governors double, he will have thy head just for trying to kill him!", ch[co].name);
         }
     } else say(cn, "Arrgh! GUARDS!");
 
@@ -1367,7 +1367,7 @@ void thiefguard(int cn, int ret, int lastact) {
                 case 2:
                     break; // waiting for player to pay the fee
                 case 3:
-                    say(cn, "Thou mightst want to talk to the guild master now, %s. He's in the room behind me.", ch[co].name);
+                    say(cn, "Thou mightst want to talk to the guild master now, %s. He is in the room behind me.", ch[co].name);
                     ppd->thief_state++;
                     didsay = 1;
                     break;

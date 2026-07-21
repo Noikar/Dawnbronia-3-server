@@ -547,7 +547,7 @@ void lab2_deamon_driver(int cn, int ret, int lastact) {
 
     case 21:
         if (ticker < dat->talkticker) break;
-        say(cn, "Ahh, it art thou again, Master Elias. See Thee.");
+        say(cn, "Ahh, it is thou again, Master Elias. See thee.");
         dat->talkstep++;
         dat->talkticker = ticker + 3 * TICKS;
         break;
