@@ -83,18 +83,18 @@ struct qa qa[] = {
     {{"what", "is", "your", "name", NULL}, NULL, 1},
     {{"who", "are", "you", NULL}, NULL, 1},
     {{"play", NULL}, "I only play for bronze chips. Thou canst \260c4bet one\260c0 or \260c4bet two\260c0 or \260c4bet five\260c0 of them. Then thou shalt roll three dice and depending on the \260c4results\260c0 thou shalt win the most fantastic stuff possible!", 0},
-    {{"results", NULL}, "The dice are twenty-sided and the numbers are added up. If thou rollest 3 to 20 thou winnest and if thou rollest 43 to 60 thou winnest, too. Want to hear about the \260c4prizes\260c0?", 0},
-    {{"prizes", NULL}, "A 3 getteth thee a Cape of the Warrior. A 60 a Cape of the Mage. +7 if thou bettest one chip, +14 if thou bettest two, +21 if thou bettest all five. Want to hear \260c4 more prizes\260c0?", 0},
+    {{"results", NULL}, "The dice are twenty-sided and the numbers are added up. If thou rollest 3 to 20 thou winnest and if thou rollest 43 to 60 thou winnest, too. Wouldst thou hear about the \260c4prizes\260c0?", 0},
+    {{"prizes", NULL}, "A 3 getteth thee a Cape of the Warrior. A 60 a Cape of the Mage. +7 if thou bettest one chip, +14 if thou bettest two, +21 if thou bettest all five. Wouldst thou hear \260c4 more prizes\260c0?", 0},
     {{"more", "prizes", NULL}, "With a 4 or a 59 thou shalt win 100,000 gold (when betting 5 chips, 20,000 for 1 chip, 40,000 for 2 chips). And there are many, many more prizes...", 0},
 
     {{"play2", NULL}, "I only play for silver chips. Thou canst \260c4bet one\260c0 or \260c4bet two\260c0 or \260c4bet five\260c0 of them. Then thou shalt roll three dice and depending on the \260c4results2\260c0 thou shalt win the most fantastic stuff possible!", 0},
-    {{"results2", NULL}, "The dice are twenty-sided and the numbers are added up. If thou rollest 3 to 20 thou winnest and if thou rollest 43 to 60 thou winnest, too. Want to hear about the \260c4prizes2\260c0?", 0},
-    {{"prizes2", NULL}, "A 3 getteth thee boots of the Warrior. A 60 boots of the Mage. +8 if thou bettest one chip, +15 if thou bettest two, +22 if thou bettest all five. Want to hear \260c4 more prizes2\260c0?", 0},
+    {{"results2", NULL}, "The dice are twenty-sided and the numbers are added up. If thou rollest 3 to 20 thou winnest and if thou rollest 43 to 60 thou winnest, too. Wouldst thou hear about the \260c4prizes2\260c0?", 0},
+    {{"prizes2", NULL}, "A 3 getteth thee boots of the Warrior. A 60 boots of the Mage. +8 if thou bettest one chip, +15 if thou bettest two, +22 if thou bettest all five. Wouldst thou hear \260c4 more prizes2\260c0?", 0},
     {{"more", "prizes2", NULL}, "With a 4 or a 59 thou shalt win 150,000 gold (when betting 5 chips, 30,000 for 1 chip, 60,000 for 2 chips). And there are many, many more prizes...", 0},
 
     {{"play3", NULL}, "I only play for gold chips. Thou canst \260c4bet one\260c0 or \260c4bet two\260c0 or \260c4bet five\260c0 of them. Then thou shalt roll three dice and depending on the \260c4results3\260c0 thou shalt win the most fantastic stuff possible!", 0},
-    {{"results3", NULL}, "The dice are twenty-sided and the numbers are added up. If thou rollest 3 to 20 thou winnest and if thou rollest 43 to 60 thou winnest, too. Want to hear about the \260c4prizes3\260c0?", 0},
-    {{"prizes3", NULL}, "A 3 getteth thee a helmet of the Warrior. A 60 a hat of the Mage. +9 if thou bettest one chip, +16 if thou bettest two, +23 if thou bettest all five. Want to hear \260c4 more prizes3\260c0?", 0},
+    {{"results3", NULL}, "The dice are twenty-sided and the numbers are added up. If thou rollest 3 to 20 thou winnest and if thou rollest 43 to 60 thou winnest, too. Wouldst thou hear about the \260c4prizes3\260c0?", 0},
+    {{"prizes3", NULL}, "A 3 getteth thee a helmet of the Warrior. A 60 a hat of the Mage. +9 if thou bettest one chip, +16 if thou bettest two, +23 if thou bettest all five. Wouldst thou hear \260c4 more prizes3\260c0?", 0},
     {{"more", "prizes3", NULL}, "With a 4 or a 59 thou shalt win 200,000 gold (when betting 5 chips, 40,000 for 1 chip, 80,000 for 2 chips). And there are many, many more prizes...", 0},
 
     {{"bet", "one", NULL}, NULL, 2},
@@ -954,19 +954,19 @@ void teufelgambler_driver(int cn, int ret, int lastact) {
 
             if (dat->nr == 1) {
                 if (!is_demon(co)) {
-                    say(cn, "Oh. A human. Well, no matter I guess. Wanna \260c4play\260c0 with me, kid?");
+                    say(cn, "Oh. A human. Well, no matter I guess. Wilt thou \260c4play\260c0 with me, kid?");
                 } else {
                     say(cn, "Hello there, %s! Make thy bet! Win big! Come on, \260c4play\260c0 with me!", ch[co].name);
                 }
             } else if (dat->nr == 2) {
                 if (!is_demon(co)) {
-                    say(cn, "Oh. A human. Well, no matter I guess. Wanna \260c4play2\260c0 with me, kid?");
+                    say(cn, "Oh. A human. Well, no matter I guess. Wilt thou \260c4play2\260c0 with me, kid?");
                 } else {
                     say(cn, "Hello there, %s! Make thy bet! Win big! Come on, \260c4play2\260c0 with me!", ch[co].name);
                 }
             } else if (dat->nr == 3) {
                 if (!is_demon(co)) {
-                    say(cn, "Oh. A human. Well, no matter I guess. Wanna \260c4play3\260c0 with me, kid?");
+                    say(cn, "Oh. A human. Well, no matter I guess. Wilt thou \260c4play3\260c0 with me, kid?");
                 } else {
                     say(cn, "Hello there, %s! Make thy bet! Win big! Come on, \260c4play3\260c0 with me!", ch[co].name);
                 }
