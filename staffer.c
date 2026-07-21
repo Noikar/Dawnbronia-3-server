@@ -397,7 +397,7 @@ void smugglecom_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    quiet_say(cn, "I want you to find a book for me called 'the contraband book', which contains the names of four of the smuggler's most precious items.");
+                    quiet_say(cn, "I would have thee find a book for me called 'the contraband book', which containeth the names of four of the smuggler's most precious items.");
                     ppd->smugglecom_state++;
                     didsay = 1;
                     break;
@@ -417,7 +417,7 @@ void smugglecom_driver(int cn, int ret, int lastact) {
                         ppd->smugglecom_state = 7;
                         break;
                     }
-                    quiet_say(cn, "It lists four important items which I want you to retrieve: the Rainbow Pearls, the Crimson Ring, the Leopard Cape, and the Emerald Necklace. Find them, and bring them to me.");
+                    quiet_say(cn, "It listeth four important items which I would have thee retrieve: the Rainbow Pearls, the Crimson Ring, the Leopard Cape, and the Emerald Necklace. Find them, and bring them to me.");
                     questlog_open(co, 36);
                     ppd->smugglecom_state++;
                     didsay = 1;
@@ -434,7 +434,7 @@ void smugglecom_driver(int cn, int ret, int lastact) {
                         ppd->smugglecom_state = 10;
                         break;
                     }
-                    quiet_say(cn, "Now, as a final task, I want you to kill the smuggler's leader. Good luck!");
+                    quiet_say(cn, "Now, as a final task, I would have thee kill the smuggler's leader. Good luck!");
                     questlog_open(co, 37);
                     ppd->smugglecom_state++;
                     didsay = 1;
@@ -654,7 +654,7 @@ void rouven_driver(int cn, int ret, int lastact) {
                     questlog_open(co, 62);
                     break;
                 case 1:
-                    quiet_say(cn, "First, I beg you to try to locate the source of the curse that has befallen the Imperial Vault.");
+                    quiet_say(cn, "First, I beg thee to try to locate the source of the curse that hath befallen the Imperial Vault.");
                     ppd->rouven_state++;
                     didsay = 1;
                     break;

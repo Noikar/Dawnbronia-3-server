@@ -253,7 +253,7 @@ void dwarfchief_driver(int cn, int ret, int lastact) {
                         ppd->dwarfchief_state = 8;
                         break;
                     }
-                    quiet_say(cn, "Not too bad for a human, you people are sturdier than I thought... Don't cheer up though, the miner in the next section is surrounded by stronger golems. Don't let them hurt your precious nails!");
+                    quiet_say(cn, "Not too bad for a human, ye people are sturdier than I thought... Do not cheer up though, the miner in the next section is surrounded by stronger golems. Do not let them hurt thy precious nails!");
                     questlog_open(co, 48);
                     ppd->dwarfchief_state++;
                     didsay = 1;
@@ -466,7 +466,7 @@ void dwarfshaman_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    quiet_say(cn, "But before I give you the quest, I want to see if you can fight the lizards you will be facing. Bring me back 9 lizard's teeth, and I will see that as proof of your strength.");
+                    quiet_say(cn, "But before I give thee the quest, I would see if thou canst fight the lizards thou wilt be facing. Bring me back 9 lizard's teeth, and I will see that as proof of thy strength.");
                     ppd->dwarfshaman_state++;
                     didsay = 1;
                     break;
@@ -484,7 +484,7 @@ void dwarfshaman_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 4:
-                    quiet_say(cn, "Since I hate water, I need others like you to grab them for me. If you want to breath underwater, you will have to combine 3 flowers. I'll leave it up to you to figure out which ones. Now go get me 9 brown berries!");
+                    quiet_say(cn, "Since I hate water, I need others like thee to grab them for me. If thou wantest to breath underwater, thou wilt have to combine 3 flowers. I shall leave it up to thee to figure out which ones. Now go get me 9 brown berries!");
                     ppd->dwarfshaman_state++;
                     didsay = 1;
                     break;

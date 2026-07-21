@@ -287,7 +287,7 @@ void monk_gatama_driver(int cn, int ret, int lastact) {
                 ppd->gatamastate++;
                 break;
             case 11:
-                say(cn, "Thou might want to know more \260c4details\260c0 of what thee can do for the monastery. After this, thou might \260c4begin\260c0 helping us, or not.");
+                say(cn, "Thou mightst want to know more \260c4details\260c0 of what thou canst do for the monastery. After this, thou mightst \260c4begin\260c0 helping us, or not.");
                 didsay = 1;
                 ppd->gatamastate++;
                 break;
@@ -297,12 +297,12 @@ void monk_gatama_driver(int cn, int ret, int lastact) {
 
                 // Details
             case 20:
-                say(cn, "Thou will have to lead group of monks safely to certain ladders in the saltmine. Once reached, thou \"use\" the ladder, and one of the monks will get the salt out of that place. Every ladder can be used only once every 12 astonian days, and every monk can only carry one bag of salt.");
+                say(cn, "Thou wilt have to lead a group of monks safely to certain ladders in the saltmine. Once reached, thou must \"use\" the ladder, and one of the monks will get the salt out of that place. Every ladder can be used only once every 12 astonian days, and every monk can only carry one bag of salt.");
                 didsay = 1;
                 ppd->gatamastate++;
                 break;
             case 21:
-                say(cn, "The monks will follow thee, and help thee against the golems. Once left, thou canst return to the monastery any time you like, the monks will then deposit their salt, if they have any, and will rest then. Thou can give some commands to the monks by simply speaking to them. Those commands are:");
+                say(cn, "The monks will follow thee, and help thee against the golems. Once left, thou canst return to the monastery any time thou likest, the monks will then deposit their salt, if they have any, and will rest then. Thou canst give some commands to the monks by simply speaking to them. Those commands are:");
                 say(cn, "wait - and they will wait a short while.");
                 say(cn, "come - and they will come to thee.");
                 say(cn, "salt - and they will show thee if they carry salt, or not.");
@@ -310,7 +310,7 @@ void monk_gatama_driver(int cn, int ret, int lastact) {
                 ppd->gatamastate++;
                 break;
             case 22:
-                say(cn, "Hopefully thou now decide to \260c4begin\260c0 helping us.");
+                say(cn, "Hopefully thou now decidest to \260c4begin\260c0 helping us.");
                 didsay = 1;
                 ppd->gatamastate++;
                 break;
@@ -324,7 +324,7 @@ void monk_gatama_driver(int cn, int ret, int lastact) {
                 else ppd->gatamastate++;
                 break;
             case 31:
-                say(cn, "Come here, Monks. The mighty %s offers %s help. I want to see and hear quick feet now!", ch[co].name, hisname(co));
+                say(cn, "Come here, Monks. The mighty %s offers %s help. I would see and hear quick feet now!", ch[co].name, hisname(co));
                 didsay = 1;
                 ppd->gatamastate++;
                 create_worker(co, ppd);

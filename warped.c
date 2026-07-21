@@ -85,8 +85,8 @@ struct qa qa[] = {
     {{"warped", "world", NULL}, "This world has been created by Rodney, the Mighty Mage. Well, actually, Ishtar created it while he was trying out designs for his Labyrinth, but Rodney added the final touches. He tried to create a Labyrinth, just like Ishtar. Anyway. Dost thou want to buy some \260c4keys\260c0 and \260c4explore\260c0 it?", 0},
     {{"keys", NULL}, "Thou needest keys to open the various doors here. Each key will only work once, so thou shalt need plenty of them. I shall trade one key for an earth \260c4stone\260c0, two keys for a fire stone, three keys for an ice stone and four keys for a hell stone. Just hand me the stones if thou wantest to trade.", 0},
     {{"stone", NULL}, "I need the stones to power the \260c4Warped World\260c0. Rodney created a device that will draw power from them.", 0},
-    {{"explore", NULL}, "It might be worth the trouble. Adventurers report that \260c4dangers\260c0 and rewards are to be found inside. Oh, and one word of warning: Don't venture into the blue area before you're level 70.", 0},
-    {{"dangers", NULL}, "It is said that enemies hide behind red doors. I've also heard that people can get stuck, with no way to progress. Should that happen to you, ask me to \260c4reset\260c0 your current points. You will not lose the level reached.", 0},
+    {{"explore", NULL}, "It might be worth the trouble. Adventurers report that \260c4dangers\260c0 and rewards are to be found inside. Oh, and one word of warning: Do not venture into the blue area before thou art level 70.", 0},
+    {{"dangers", NULL}, "It is said that enemies hide behind red doors. I have also heard that people can get stuck, with no way to progress. Should that happen to thee, ask me to \260c4reset\260c0 thy current points. Thou wilt not lose the level reached.", 0},
     {{"reset", NULL}, NULL, 2}
 
 };

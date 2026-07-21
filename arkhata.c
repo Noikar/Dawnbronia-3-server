@@ -761,7 +761,7 @@ void fiona_driver(int cn, int ret, int lastact) {
                     if (ch[co].level >= 50) ppd->fiona_state++;
                     else break;
                 case 1:
-                    say(cn, "Hello there stranger, and welcome to my Academy of the Fighting Arts. I can train thine abillities here if thou provest thy worth first.");
+                    say(cn, "Hello there stranger, and welcome to my Academy of the Fighting Arts. I can train thine abilities here if thou provest thy worth first.");
                     questlog_open(co, 67);
                     ppd->fiona_state++;
                     didsay = 1;
@@ -1238,7 +1238,7 @@ void ramin_driver(int cn, int ret, int lastact) {
                     if (ch[co].level >= 54 && ppd->monk_state >= 20) ppd->ramin_state++;
                     else break;
                 case 10:
-                    if (ppd->rammy_state < 14) say(cn, "Greetings my friend! I hear that you have helped the monks. Now Rammy has sent me news about trouble opening the fortress for a trade route, he is in need of thy help again. Please go and talk to him.");
+                    if (ppd->rammy_state < 14) say(cn, "Greetings my friend! I hear that thou hast helped the monks. Now Rammy has sent me news about trouble opening the fortress for a trade route, he is in need of thy help again. Please go and talk to him.");
                     ppd->ramin_state++;
                     didsay = 1;
                     break;
@@ -1477,7 +1477,7 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                     else break;
                 case 1:
                     if (nr == 1) {
-                        say(cn, "Dried leaves of lavender, and rose buttons, cinnamon powder and three drops elcalyptus extract is all thou needest for a fragrance so refreshing it will open thine air channels even when cought by the worst cold.");
+                        say(cn, "Dried leaves of lavender, and rose buttons, cinnamon powder and three drops elcalyptus extract is all thou needest for a fragrance so refreshing it will open thine air channels even when caught by the worst cold.");
                         ppd->monk_state++;
                         didsay = 1;
                     }
@@ -1571,7 +1571,7 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                     break;
                 case 15:
                     if (nr == 4) {
-                        say(cn, "I see you have assisted the monks, perhaps you can help me too?");
+                        say(cn, "I see thou hast assisted the monks, perhaps thou canst help me too?");
                         questlog_open(co, 70);
                         ppd->monk_state++;
                         didsay = 1;
@@ -1662,7 +1662,7 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                     break; // waiting for corby
                 case 29:
                     if (nr == 3) {
-                        say(cn, "I can not cover all thine expences I am afraid, but here is 3000g Let me at least repay some of my debt to thee.");
+                        say(cn, "I can not cover all thine expenses I am afraid, but here is 3000g Let me at least repay some of my debt to thee.");
                         give_money(co, 3000 * 100, "Monk Dictionary Quest");
                         ppd->monk_state++;
                         didsay = 1;
@@ -1733,7 +1733,7 @@ void arkhatamonk_driver(int cn, int ret, int lastact) {
                 } else if (ppd && nr == 2 && it[in].ID == IID_ARKHATA_MONKPART3 && ppd->monk_state == 12) {
                     destroy_item_byID(co, IID_ARKHATA_MONKPART3);
                     ppd->monk_bits |= 2;
-                    say(cn, "I shall remember thy herosim. Perhaps I shall write down thy family tree next, %s?", ch[co].name);
+                    say(cn, "I shall remember thy heroism. Perhaps I shall write down thy family tree next, %s?", ch[co].name);
                     if (ppd->monk_bits == 7) {
                         questlog_done(co, 69);
                         ppd->monk_state = 13;

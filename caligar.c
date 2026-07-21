@@ -254,7 +254,7 @@ void guard_driver(int cn, int ret, int lastact) {
                 break;
             case 2:
                 if (me != 0) break;
-                quiet_say(cn, "Quiet you fool!");
+                quiet_say(cn, "Quiet thou fool!");
                 ppd->guard_last_talk = realtime;
                 ppd->guard_state++;
                 break;
@@ -733,7 +733,7 @@ void arquin_driver(int cn, int ret, int lastact) {
                     ppd->arquin_state++;
                 } else break;
             case 4:
-                quiet_say(cn, "Aha, I see you have gotten a hold of the key. I know of someone who may be able to tell you what it unlocks. He is a brother of the Carmin Clan, named Homden.");
+                quiet_say(cn, "Aha, I see thou hast gotten a hold of the key. I know of someone who may be able to tell thee what it unlocketh. He is a brother of the Carmin Clan, named Homden.");
                 ppd->arquin_last_talk = realtime;
                 ppd->arquin_state++;
                 didsay = 1;
@@ -900,7 +900,7 @@ void smith_driver(int cn, int ret, int lastact) {
                 didsay = 1;
                 break;
             case 7:
-                quiet_say(cn, "Well I forged you a key for 5000g, a hand written dictionary like this must be worth at least the double. So \260c04pay 10000g\260c0 must be a fair price don't you think?");
+                quiet_say(cn, "Well I forged thee a key for 5000g, a hand written dictionary like this must be worth at least the double. So \260c04pay 10000g\260c0 must be a fair price, dost thou not think?");
                 ppd->smith_state++;
                 ppd->smith_last_talk = realtime;
                 didsay = 1;
@@ -1069,7 +1069,7 @@ void homden_driver(int cn, int ret, int lastact) {
                 if (has_item(co, IID_CALIGARDUNGEONKEY)) ppd->homden_state++; // fall thru
                 else break;
             case 1:
-                quiet_say(cn, "You come seeking my help? I'd be glad to help if it means my brothers will be put to a stop. However, I need your help first.");
+                quiet_say(cn, "Thou comest seeking my help? I would be glad to help if it meaneth my brothers will be put to a stop. However, I need thy help first.");
                 questlog_open(co, 59);
                 ppd->homden_last_talk = realtime;
                 ppd->homden_state++;
@@ -1082,7 +1082,7 @@ void homden_driver(int cn, int ret, int lastact) {
                 didsay = 1;
                 break;
             case 3:
-                quiet_say(cn, "If you could please go and find it for me while I gather my thoughts on my brothers I would reward thee. There is a cave to the east, start your search there.");
+                quiet_say(cn, "If thou couldst please go and find it for me while I gather my thoughts on my brothers I would reward thee. There is a cave to the east, start thy search there.");
                 ppd->homden_last_talk = realtime;
                 ppd->homden_state++;
                 didsay = 1;

@@ -499,7 +499,7 @@ void clara_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 7:
-                    say(cn, "I want thee to find a way to slay it. I have heard rumors about a man who used to live with the swamp beasts north-east of this camp. Mayhap he knows a way to injure this beast.");
+                    say(cn, "I would have thee find a way to slay it. I have heard rumors about a man who used to live with the swamp beasts north-east of this camp. Mayhap he knoweth a way to injure this beast.");
                     ppd->clara_state++;
                     didsay = 1;
                     break;

@@ -84,17 +84,17 @@ struct qa qa[] = {
     {{"who", "are", "you", NULL}, NULL, 1},
     {{"play", NULL}, "I only play for bronze chips. Thou canst \260c4bet one\260c0 or \260c4bet two\260c0 or \260c4bet five\260c0 of them. Then thou shalt roll three dice and depending on the \260c4results\260c0 thou shalt win the most fantastic stuff possible!", 0},
     {{"results", NULL}, "The dice are twenty-sided and the numbers are added up. If thou rollest 3 to 20 thee win and if thou rollest 43 to 60 thee win, too. Want to hear about the \260c4prizes\260c0?", 0},
-    {{"prizes", NULL}, "A 3 gets you a Cape of the Warrior. A 60 a Cape of the Mage. +7 if you bet one chip, +14 if you bet two, +21 if you bet all five. Want to hear \260c4 more prizes\260c0?", 0},
+    {{"prizes", NULL}, "A 3 gets thee a Cape of the Warrior. A 60 a Cape of the Mage. +7 if thou bettest one chip, +14 if thou bettest two, +21 if thou bettest all five. Want to hear \260c4 more prizes\260c0?", 0},
     {{"more", "prizes", NULL}, "With a 4 or a 59 thou shalt win 100,000 gold (when betting 5 chips, 20,000 for 1 chip, 40,000 for 2 chips). And there are many, many more prizes...", 0},
 
     {{"play2", NULL}, "I only play for silver chips. Thou canst \260c4bet one\260c0 or \260c4bet two\260c0 or \260c4bet five\260c0 of them. Then thou shalt roll three dice and depending on the \260c4results2\260c0 thou shalt win the most fantastic stuff possible!", 0},
     {{"results2", NULL}, "The dice are twenty-sided and the numbers are added up. If thou rollest 3 to 20 thee win and if thou rollest 43 to 60 thee win, too. Want to hear about the \260c4prizes2\260c0?", 0},
-    {{"prizes2", NULL}, "A 3 gets you boots of the Warrior. A 60 boots of the Mage. +8 if you bet one chip, +15 if you bet two, +22 if you bet all five. Want to hear \260c4 more prizes2\260c0?", 0},
+    {{"prizes2", NULL}, "A 3 gets thee boots of the Warrior. A 60 boots of the Mage. +8 if thou bettest one chip, +15 if thou bettest two, +22 if thou bettest all five. Want to hear \260c4 more prizes2\260c0?", 0},
     {{"more", "prizes2", NULL}, "With a 4 or a 59 thou shalt win 150,000 gold (when betting 5 chips, 30,000 for 1 chip, 60,000 for 2 chips). And there are many, many more prizes...", 0},
 
     {{"play3", NULL}, "I only play for gold chips. Thou canst \260c4bet one\260c0 or \260c4bet two\260c0 or \260c4bet five\260c0 of them. Then thou shalt roll three dice and depending on the \260c4results3\260c0 thou shalt win the most fantastic stuff possible!", 0},
     {{"results3", NULL}, "The dice are twenty-sided and the numbers are added up. If thou rollest 3 to 20 thee win and if thou rollest 43 to 60 thee win, too. Want to hear about the \260c4prizes3\260c0?", 0},
-    {{"prizes3", NULL}, "A 3 gets you a helmet of the Warrior. A 60 a hat of the Mage. +9 if you bet one chip, +16 if you bet two, +23 if you bet all five. Want to hear \260c4 more prizes3\260c0?", 0},
+    {{"prizes3", NULL}, "A 3 gets thee a helmet of the Warrior. A 60 a hat of the Mage. +9 if thou bettest one chip, +16 if thou bettest two, +23 if thou bettest all five. Want to hear \260c4 more prizes3\260c0?", 0},
     {{"more", "prizes3", NULL}, "With a 4 or a 59 thou shalt win 200,000 gold (when betting 5 chips, 40,000 for 1 chip, 80,000 for 2 chips). And there are many, many more prizes...", 0},
 
     {{"bet", "one", NULL}, NULL, 2},
@@ -1036,9 +1036,9 @@ void teufelgambler_driver(int cn, int ret, int lastact) {
                         c = RANDOM(20) + 1;
 
                         t = a + b + c;
-                        if (t > 20 && t < 43) say(cn, "Ha! You rolled %d, %d and %d. You lost!", a, b, c);
+                        if (t > 20 && t < 43) say(cn, "Ha! Thou rolledst %d, %d and %d. Thou lostest!", a, b, c);
                         else {
-                            say(cn, "Oh. You rolled %d, %d and %d. You win!", a, b, c);
+                            say(cn, "Oh. Thou rolledst %d, %d and %d. Thou winnest!", a, b, c);
                             if (dat->nr == 1) give_reward(co, t, cnt);
                             else if (dat->nr == 2) give_reward2(co, t, cnt);
                             else if (dat->nr == 3) give_reward3(co, t, cnt);

@@ -1564,7 +1564,7 @@ void carlos_driver(int cn, int ret, int lastact) {
                         didsay = 1;
                         break;
                     case 1:
-                        quiet_say(cn, "I need thy help in aquiring a magical ritual that may aid in preventing any more attacks on the city.");
+                        quiet_say(cn, "I need thy help in acquiring a magical ritual that may aid in preventing any more attacks on the city.");
                         ppd->carlos2_state++;
                         didsay = 1;
                         break;
@@ -1664,7 +1664,7 @@ void carlos_driver(int cn, int ret, int lastact) {
                 ppd = set_data(co, DRD_STAFFER_PPD, sizeof(struct staffer_ppd));
                 if (ppd && ppd->carlos_state <= 5 && it[in].ID == IID_STAFF_DRAGONSTAFF) {
                     ppd->carlos_state = 6;
-                    quiet_say(cn, "Well done, %s, that is the staff I wanted.", ch[co].name);
+                    quiet_say(cn, "Well done, %s, that is the staff I sought.", ch[co].name);
                     questlog_done(co, 20);
                     destroy_item_byID(co, IID_STAFF_DRAGONSTAFF);
                     destroy_item_byID(co, IID_STAFF_DRAGONKEY1);
@@ -1673,7 +1673,7 @@ void carlos_driver(int cn, int ret, int lastact) {
                     destroy_item_byID(co, IID_STAFF_DRAGONKEY4);
                 } else if (ppd && ppd->carlos2_state <= 4 && it[in].ID == IID_MAX_RITUAL) {
                     ppd->carlos2_state = 5;
-                    quiet_say(cn, "Well done, %s, that is the ritual I wanted.", ch[co].name);
+                    quiet_say(cn, "Well done, %s, that is the ritual I sought.", ch[co].name);
                     questlog_done(co, 61);
                     destroy_item_byID(co, IID_MAX_CHRONICLES);
                 } else {

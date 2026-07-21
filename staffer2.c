@@ -854,7 +854,7 @@ void brenneth_brannington_driver(int cn, int ret, int lastact) {
                 case 11:
                     break; // waiting for journal
                 case 12:
-                    quiet_say(cn, "I was to kill these thief mages were they to get out of hand... And probably even you and who knows who else...");
+                    quiet_say(cn, "I was to kill these thief mages were they to get out of hand... And probably even thee and who knoweth whom else...");
                     ppd->brennethbran_state++;
                     didsay = 1;
                     break;
@@ -1702,7 +1702,7 @@ void guard_brannington_driver(int cn, int ret, int lastact) {
                     if (ch[co].level >= 45 && (ppd->countbran_bits & (1 | 2 | 4)) == (1 | 2 | 4)) ppd->guardbran_state++;
                     else break;
                 case 2:
-                    quiet_say(cn, "Greetings! Count Brannington has told me thou helped him retrieve his family heirlooms. This time I must ask for thy help.");
+                    quiet_say(cn, "Greetings! Count Brannington has told me thou helpedst him retrieve his family heirlooms. This time I must ask for thy help.");
                     ppd->guardbran_state++;
                     didsay = 1;
                     break;
@@ -2199,7 +2199,7 @@ void grinnich_driver(int cn, int ret, int lastact) {
             if (ppd) {
                 switch (ppd->grinnich_state) {
                 case 0:
-                    quiet_say(cn, "Oh my! What brings the likes of you to this hermit's home? Adventure? Treasure? You sure do look like an adventurer... Well, if it's adventure you seek, then adventure you get! You see, this here is no ordinary place... It's a tower!");
+                    quiet_say(cn, "Oh my! What brings the likes of thee to this hermit's home? Adventure? Treasure? Thou sure dost look like an adventurer... Well, if it is adventure thou seekest, then adventure thou gettest! Thou seest, this here is no ordinary place... It is a tower!");
                     ppd->grinnich_state++;
                     didsay = 1;
                     break;
@@ -2352,7 +2352,7 @@ void shanra_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    quiet_say(cn, "I will now teleport you to the basement.");
+                    quiet_say(cn, "I will now teleport thee to the basement.");
                     teleport_char_driver(co, 5, 106);
                     ppd->shanra_state++;
                     didsay = 1;

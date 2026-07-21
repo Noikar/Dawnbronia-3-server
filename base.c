@@ -91,8 +91,8 @@ struct qa qa[] = {
     {{"trade", NULL}, "I am not a normal merchant. Talk to Fred in Cameron or Jeremy in Aston instead.", 0},
     {{"buy", NULL}, "I am not a normal merchant. Talk to Fred in Cameron or Jeremy in Aston instead.", 0},
     {{"sell", NULL}, "I am not a normal merchant. Talk to Fred in Cameron or Jeremy in Aston instead.", 0},
-    {{"help", NULL}, "To start trading with someone, say: 'trade with <name>'. Then you hand me the items you wish to exchange. You can stop the deal at any time by saying: 'stop trade'. To check what items I am holding, say: 'show trade'. When you are satisfied with the deal, say 'accept trade'. Both parties must accept the deal to make it take place.", 1},
-    {{"repeat", NULL}, "To start trading with someone, say: 'trade with <name>'. Then you hand me the items you wish to exchange. You can stop the deal at any time by saying: 'stop trade'. To check what items I am holding, say: 'show trade'. When you are satisfied with the deal, say 'accept trade'. Both parties must accept the deal to make it take place.", 1}};
+    {{"help", NULL}, "To start trading with someone, say: 'trade with <name>'. Then thou handest me the items thou wishest to exchange. Thou canst stop the deal at any time by saying: 'stop trade'. To check what items I am holding, say: 'show trade'. When thou art satisfied with the deal, say 'accept trade'. Both parties must accept the deal to make it take place.", 1},
+    {{"repeat", NULL}, "To start trading with someone, say: 'trade with <name>'. Then thou handest me the items thou wishest to exchange. Thou canst stop the deal at any time by saying: 'stop trade'. To check what items I am holding, say: 'show trade'. When thou art satisfied with the deal, say 'accept trade'. Both parties must accept the deal to make it take place.", 1}};
 
 void lowerstrcpy(char *dst, char *src) {
     while (*src) *dst++ = tolower(*src++);

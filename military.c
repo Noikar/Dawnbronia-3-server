@@ -680,7 +680,7 @@ void military_master_driver(int cn, int ret, int lastact) {
                     say(cn, "But thou didst not take any \260c4mission\260c0, %s.", ch[co].name);
                     break;
                 }
-                say(cn, "So, you failed? Well, %s, I'll remove that mission from your record. Would you like to get another \260c4mission\260c0?", get_army_rank_string(co));
+                say(cn, "So, thou failedst? Well, %s, I shall remove that mission from thy record. Wouldst thou like to get another \260c4mission\260c0?", get_army_rank_string(co));
                 ppd->took_mission = 0;
                 break;
             case 17:

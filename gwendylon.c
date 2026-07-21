@@ -477,7 +477,7 @@ void gwendylon_driver(int cn, int ret, int lastact) {
                         if (!give_char_item(co, in)) destroy_item(in);
                     }
                 } else if (it[in].ID == IID_CALIGARLETTER) {
-                    quiet_say(cn, "Hmm, I see. Well, I can teleport you to the area but I am uncertain of what will be there waiting for you. Be prepared adventurer. I would not trust those mages as far as I could throw them!");
+                    quiet_say(cn, "Hmm, I see. Well, I can teleport thee to the area but I am uncertain of what will be there waiting for thee. Be prepared adventurer. I would not trust those mages as far as I could throw them!");
                     log_char(co, LOG_SYSTEM, 0, "While you are still trying to figure out how far Gwendylon might be able to throw those mages he quickly mutters a spell and teleports you.");
 
                     if (!give_char_item(co, ch[cn].citem)) destroy_item(ch[cn].citem);
@@ -1120,7 +1120,7 @@ void james_driver(int cn, int ret, int lastact) {
                     james_create_eq(co);
                 }
             case 11:
-                quiet_say(cn, "Hardcore is an option only available to paying players. A hardcore character does not earn saves when he levels, and he loses a lot more experience on death than a normal character. But he can train his skills higher than any other character.");
+                quiet_say(cn, "Hardcore is an option only available to paying players. A hardcore character does not earn saves when he leveleth, and he loseth a lot more experience on death than a normal character. But he can train his skills higher than any other character.");
                 quiet_say(cn, "Since death is a lot harder on hardcore characters, thou must be aware that the gods (game management) will ignore any complaints about deaths caused by lag, other players luring monsters to thee or other reasons which are not entirely fair, but not real bugs either.");
                 quiet_say(cn, "So, the rule is: It is thy choice to become a hardcore character, and thou must live with the consequences of that choice. The gods wilt not help thee. Dost thou accept these rules? [ \260c4I accept the rules and wish to become a hardcore character\260c0 ]");
                 break;

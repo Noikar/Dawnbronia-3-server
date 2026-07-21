@@ -438,7 +438,7 @@ void yoatin_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    quiet_say(cn, "Wait...I recognize you from the description my brother gave - you must be %s!", ch[co].name);
+                    quiet_say(cn, "Wait...I recognize thee from the description my brother gave - thou must be %s!", ch[co].name);
                     ppd->yoatin_state++;
                     didsay = 1;
                     break;

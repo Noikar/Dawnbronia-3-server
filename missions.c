@@ -1232,7 +1232,7 @@ void mission_giver_driver(int cn, int ret, int lastact) {
                         ppd->sm[1].type = 0;
                         ppd->sm[2].type = 0;
 
-                        quiet_say(cn, "Congratulations on doing a good job, %s. You earned %d brownie points in my book, for a total of %d points. Feel free to ask me for an \260c4offer\260c0 anytime. You can also ask me to \260c4increase\260c0 or \260c4decrease\260c0 the difficulty of your jobs (this must be done before asking for a new job, otherwise you'll be changing the difficulty of the following job offer, not the current one; multiple commands will stack). Or do you want a \260c4new job\260c0?", ch[co].name, pts, ppd->points);
+                        quiet_say(cn, "Congratulations on doing a good job, %s. Thou earnedst %d brownie points in my book, for a total of %d points. Feel free to ask me for an \260c4offer\260c0 anytime. Thou canst also ask me to \260c4increase\260c0 or \260c4decrease\260c0 the difficulty of thy jobs (this must be done before asking for a new job, otherwise thou shalt be changing the difficulty of the following job offer, not the current one; multiple commands will stack). Or dost thou want a \260c4new job\260c0?", ch[co].name, pts, ppd->points);
                         log_char(co, LOG_SYSTEM, 0, "#30");
                         log_char(co, LOG_SYSTEM, 0, "#40");
                         log_char(co, LOG_SYSTEM, 0, "#50");

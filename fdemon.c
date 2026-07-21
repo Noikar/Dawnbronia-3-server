@@ -741,7 +741,7 @@ void do_emote(int cn, struct farmy_data *dat) {
         //say(cn,"bored: score=%d, co=%d, n=%d",bestscore,bestco,n);
 
         if (dat->emote.likes[n] < 0) {
-            say(cn, "You stink, %s.", ch[co].name);
+            say(cn, "Thou stinkest, %s.", ch[co].name);
             if (dat->emote.talked[n] > -2) dat->emote.likes[n]--;
             dat->emote.talked[n]--;
             dat->emote.answer_timer = ticker;
@@ -958,7 +958,7 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
         if (dat->emote.likes[slot] > 5) {
             say(cn, "Thou art a tough fellow, %s!", ch[co].name);
         } else {
-            say(cn, "Oh, be quiet, %s, you bigmouth!", ch[co].name);
+            say(cn, "Oh, be quiet, %s, thou bigmouth!", ch[co].name);
             dat->emote.likes[slot] -= 2;
         }
         dat->emote.talked[slot]++;
@@ -979,7 +979,7 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
             say(cn, "There is no need to be afraid, %s.", ch[co].name);
             dat->emote.likes[slot] += 2;
         } else {
-            say(cn, "Shut up you, %s, you coward!", ch[co].name);
+            say(cn, "Shut up thou, %s, thou coward!", ch[co].name);
             dat->emote.likes[slot] -= 2;
         }
         dat->emote.talked[slot]++;
@@ -1392,12 +1392,12 @@ void fdemon_boss(int cn, int ret, int lastact) {
                     ppd->boss_timer = realtime;
                     break;
                 case 1:
-                    say(cn, "Unfortunately, I have a lack of good leaders. But you can \260c4take\260c0 some men to explore the underground and solve your missions. Just be sure to \260c4drop\260c0 them off here again before you leave.");
+                    say(cn, "Unfortunately, I have a lack of good leaders. But thou canst \260c4take\260c0 some men to explore the underground and solve thy missions. Just be sure to \260c4drop\260c0 them off here again before thou leavest.");
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     break;
                 case 2:
-                    say(cn, "These soldiers have been trained to obey some easy commands: 'Follow' makes them follow you. 'Front' makes them walk in front of you. With 'Back', they'll take one step back. They follow you more closely if you order a 'retreat'. And you can make them attack your enemy from 'behind'.");
+                    say(cn, "These soldiers have been trained to obey some easy commands: 'Follow' makes them follow thee. 'Front' makes them walk in front of thee. With 'Back', they shall take one step back. They follow thee more closely if thou orderest a 'retreat'. And thou canst make them attack thine enemy from 'behind'.");
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     break;
@@ -1419,7 +1419,7 @@ void fdemon_boss(int cn, int ret, int lastact) {
                     ppd->boss_timer = realtime;
                     break;
                 case 7:
-                    say(cn, "Your next mission is to activate Defense Station 3. That is the next station north-west of the one you activated in your last mission.");
+                    say(cn, "Thy next mission is to activate Defense Station 3. That is the next station north-west of the one thou activatedst in thy last mission.");
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     break;
@@ -1456,7 +1456,7 @@ void fdemon_boss(int cn, int ret, int lastact) {
                     ppd->boss_timer = realtime;
                     break;
                 case 16:
-                    say(cn, "I've been getting reports about some beings we called 'Fire Golems', %s. It seems these beasts are very hard to kill. I've lost many good men to them. The few who made it back reported that only an attack in the back had any success. Your next mission is to slay one of those 'Fire Golems'. You can find them north-west of Defense Station 3. Oh, %s, may I remind you, that our soldiers have been trained to obey the commands 'follow', 'retreat', 'behind', 'front' and 'back'?", ch[co].name, get_army_rank_string(co));
+                    say(cn, "I have been getting reports about some beings we called 'Fire Golems', %s. It seemeth these beasts are very hard to kill. I have lost many good men to them. The few who made it back reported that only an attack in the back had any success. Thy next mission is to slay one of those 'Fire Golems'. Thou canst find them north-west of Defense Station 3. Oh, %s, may I remind thee, that our soldiers have been trained to obey the commands 'follow', 'retreat', 'behind', 'front' and 'back'?", ch[co].name, get_army_rank_string(co));
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     ppd->boss_counter = 0;
@@ -1469,7 +1469,7 @@ void fdemon_boss(int cn, int ret, int lastact) {
                     ppd->boss_timer = realtime;
                     break;
                 case 19:
-                    say(cn, "Scouts have found a room made by the ancients where a lot of small containers are stored. It is located in the north-western part of the underground. I want you to go there, aquire some of these containers and find out what they do. Good luck, %s.", ch[co].name);
+                    say(cn, "Scouts have found a room made by the ancients where a lot of small containers are stored. It is located in the north-western part of the underground. I would have thee go there, acquire some of these containers and find out what they do. Good luck, %s.", ch[co].name);
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     ppd->boss_counter = 0;
@@ -1495,7 +1495,7 @@ void fdemon_boss(int cn, int ret, int lastact) {
                     ppd->boss_timer = realtime;
                     break;
                 case 25:
-                    say(cn, "So that's how we can pass those lava fields. Well, since you can cross them now, %s, I want you to activate Defense Station 6. It is located north-east of number 5.", ch[co].name);
+                    say(cn, "So that is how we can pass those lava fields. Well, since thou canst cross them now, %s, I would have thee activate Defense Station 6. It is located north-east of number 5.", ch[co].name);
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     ppd->boss_counter = 0;
@@ -1511,7 +1511,7 @@ void fdemon_boss(int cn, int ret, int lastact) {
                     ppd->boss_stage++;
                     ppd->boss_counter = 0; // fall thru intended
                 case 29:
-                    say(cn, "I do not have a specific mission for you at the moment, %s, but I want you to scout the whole underground and find all the Defense Stations. When you find one, activate it, and report back from time to time. You don't have to come back for every single new station you find, though.", ch[co].name);
+                    say(cn, "I do not have a specific mission for thee at the moment, %s, but I would have thee scout the whole underground and find all the Defense Stations. When thou findest one, activate it, and report back from time to time. Thou dost not have to come back for every single new station thou findest, though.", ch[co].name);
                     ppd->boss_stage++;
                     ppd->boss_timer = realtime;
                     break;

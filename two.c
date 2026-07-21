@@ -967,7 +967,7 @@ void servant(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    say(cn, "Listen, %s, I know of a secret passage, which connects two store rooms. Thou couldst use it to avoid the guards. I even have the key, which unlocks this door. (\260c4pay bribe\260c0 of 50G)", ch[co].name);
+                    say(cn, "Listen, %s, I know of a secret passage, which connecteth two store rooms. Thou couldst use it to avoid the guards. I even have the key, which unlocketh this door. (\260c4pay bribe\260c0 of 50G)", ch[co].name);
                     didsay = 1;
                     break;
                 case 2:
@@ -1544,7 +1544,7 @@ void thiefmaster(int cn, int ret, int lastact) {
                     questlog_close(co, 28);
                     break;
                 case 6:
-                    say(cn, "Ah. This might be just right for thee. Listen, %s. A band of robbers has settled down in an abandoned section of Exkordon. They are committing crimes without our permission. I want thee to go there, and kill as many robbers as thou canst.", ch[co].name);
+                    say(cn, "Ah. This might be just right for thee. Listen, %s. A band of robbers has settled down in an abandoned section of Exkordon. They are committing crimes without our permission. I would have thee go there, and kill as many robbers as thou canst.", ch[co].name);
                     ppd->thief_state++;
                     didsay = 1;
                     break;
@@ -1615,7 +1615,7 @@ void thiefmaster(int cn, int ret, int lastact) {
                         ppd->thief_state = 15;
                         break;
                     }
-                    say(cn, "Now that thou hast earned thine lockpick, %s, I want thee to punish a merchant who hast not paid his bills.", ch[co].name);
+                    say(cn, "Now that thou hast earned thy lockpick, %s, I would have thee punish a merchant who hath not paid his bills.", ch[co].name);
                     questlog_open(co, 26);
                     questlog_close(co, 27);
                     questlog_close(co, 28);
@@ -1669,7 +1669,7 @@ void thiefmaster(int cn, int ret, int lastact) {
                         ppd->thief_state = 18;
                         break;
                     }
-                    say(cn, "I have another job for thee, %s. Some of the merchants in Exkordon decided to fix the prices, and I want to know the exact figures. They all signed an agreement, and I want thee to obtain a copy.", ch[co].name);
+                    say(cn, "I have another job for thee, %s. Some of the merchants in Exkordon decided to fix the prices, and I would know the exact figures. They all signed an agreement, and I would have thee obtain a copy.", ch[co].name);
                     questlog_open(co, 27);
                     questlog_close(co, 28);
                     ppd->thief_state++;
@@ -1806,7 +1806,7 @@ void thiefmaster(int cn, int ret, int lastact) {
                 ppd = set_data(co, DRD_TWOCITY_PPD, sizeof(struct twocity_ppd));
 
                 if (it[in].ID == IID_AREA17_MERCHANTNOTE1 && ppd && ppd->thief_state == 17) {
-                    say(cn, "Ah, yes, that is the agreement I wanted. Nice job, %s. Here, this key will open the remaining sewer doors.", ch[co].name);
+                    say(cn, "Ah, yes, that is the agreement I sought. Nice job, %s. Here, this key will open the remaining sewer doors.", ch[co].name);
 
                     questlog_done(co, 27);
                     destroy_item_byID(co, IID_AREA17_MERCHANTNOTE1);

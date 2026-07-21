@@ -1253,7 +1253,7 @@ void lab2_grave(int in, int cn) {
         }
 
         // set enemy
-        if (fight_driver_add_enemy(co, cn, 1, 1)) say(co, "Thou woke me, %s. Now, thou die!", ch[cn].name);
+        if (fight_driver_add_enemy(co, cn, 1, 1)) say(co, "Thou wokest me, %s. Now, thou diest!", ch[cn].name);
 
         // store the undead values and open the grave
         dat->co = co;
