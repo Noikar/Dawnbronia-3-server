@@ -783,7 +783,7 @@ void fiona_driver(int cn, int ret, int lastact) {
                         say(cn, "I was going to offer thee a chance to prove thyself against my students, but they are no challenge for thee.");
                         ppd->fiona_state = 19;
                     } else {
-                        say(cn, "I will now allow you to test your skills against my students. If you defeat them all I will raise one of your skills by 2 points for the price of 10000gold.");
+                        say(cn, "I will now allow thee to test thy skills against my students. If thou defeatest them all, I will raise one of thy skills by 2 points for the price of 10000 gold.");
                         ppd->fiona_state++;
                     }
                     didsay = 1;
@@ -1895,7 +1895,7 @@ void captain_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 9:
-                    say(cn, "And a little warning. Your entrance pass is only valid in open areas of the fortress, some places my guard will attack you still.");
+                    say(cn, "And a little warning. Thine entrance pass is only valid in open areas of the fortress, some places my guard will attack thee still.");
                     ppd->captain_state++;
                     didsay = 1;
                     break;
@@ -2070,7 +2070,7 @@ void judge_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 4:
-                    say(cn, "And for you, an entrance pass to the fortress, whilst carrying it, no guard will attack you.");
+                    say(cn, "And for thee, an entrance pass to the fortress, whilst carrying it, no guard will attack thee.");
                     if (!has_item(co, IID_ARKHATA_LETTER5)) {
                         in = create_item("letter5");
                         if (in && !give_char_item(co, in)) destroy_item(in);

@@ -913,7 +913,7 @@ void military_advisor_driver(int cn, int ret, int lastact) {
             }
             if (ppd->advisor_state == 0 || ppd->current_advisor != dat->storage_ID) {
                 if (ppd->advisor_last[idx] == yday + 1) {
-                    quiet_say(cn, "Ah, %s. I have not forgotten you.", ch[co].name);
+                    quiet_say(cn, "Ah, %s. I have not forgotten thee.", ch[co].name);
                 } else {
                     adv_introduction(cn, co, dat);
                 }

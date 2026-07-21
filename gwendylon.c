@@ -264,7 +264,7 @@ void gwendylon_driver(int cn, int ret, int lastact) {
                         ppd->gwendy_state = 10;
                         break;
                     }
-                    quiet_say(cn, "I have analyzed the item thou brought me. It seems there are more places with skeletons close by.");
+                    quiet_say(cn, "I have analyzed the item thou broughtest me. It seemeth there are more places with skeletons close by.");
                     questlog_open(co, 2);
                     ppd->gwendy_state++;
                     didsay = 1;

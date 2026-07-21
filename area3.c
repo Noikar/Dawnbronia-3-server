@@ -383,7 +383,7 @@ void seymour_driver(int cn, int ret, int lastact) {
                 case 15:
                     break;
                 case 16:
-                    say(cn, "Kelly, my superior, mentioned that she needeth some fighters. Please go to her and offer thy service. And do not forget to report to the Governor from time to time.");
+                    say(cn, "Kelly, my superior, mentioned that she needeth some fighters. Pray, go to her and offer thy service. And do not forget to report to the Governor from time to time.");
                     ppd->seymour_state++;
                     didsay = 1;
                     break;
@@ -678,7 +678,7 @@ void kelly_driver(int cn, int ret, int lastact) {
                         ppd->kelly_state = 19;
                         break;
                     }
-                    quiet_say(cn, "We have lost contact with our outpost in the swamp north of Aston. I want thee to go there and deliver a full report when thou getst back. Dismissed, %s.", get_army_rank_string(co));
+                    quiet_say(cn, "We have lost contact with our outpost in the swamp north of Aston. I would have thee go there and deliver a full report when thou getst back. Dismissed, %s.", get_army_rank_string(co));
                     questlog_open(co, 15);
                     ppd->kelly_state++;
                     didsay = 1;
@@ -738,7 +738,7 @@ void kelly_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 24:
-                    quiet_say(cn, "Go to Gwendylon with this letter. He will teleport you there. I have a contact named Glori collecting information on the area. See what she knows, and get that plaque back at all costs! Dismissed!");
+                    quiet_say(cn, "Go to Gwendylon with this letter. He will teleport thee there. I have a contact named Glori collecting information on the area. See what she knoweth, and get that plaque back at all costs! Dismissed!");
                     if (!has_item(co, IID_CALIGARLETTER)) {
                         in = create_item("caligar_letter");
                         if (in && !give_char_item(co, in)) destroy_item(in);
@@ -834,7 +834,7 @@ void kelly_driver(int cn, int ret, int lastact) {
 
                     questlog_done(co, 60);
 
-                    quiet_say(cn, "Oh, I thank thee so much, %s! I don't think I can ever repay you for your effort. However, I can give you these 5,000 gold coins.", ch[co].name);
+                    quiet_say(cn, "Oh, I thank thee so much, %s! I do not think I can ever repay thee for thine effort. However, I can give thee these 5,000 gold coins.", ch[co].name);
                     ch[co].gold += 5000 * 100;
                     ch[co].flags |= CF_ITEMS;
 
@@ -1906,7 +1906,7 @@ void supermax_driver(int cn, int ret, int lastact) {
                 break;
             case 6:
                 ppd = set_data(co, DRD_MISC_PPD, sizeof(struct misc_ppd));
-                if (ppd && ppd->supermax_gold > 0) say(cn, "You spent %d gold already. The Astonian Wildlife Fund says: 'I thank thee!'", ppd->supermax_gold / 100);
+                if (ppd && ppd->supermax_gold > 0) say(cn, "Thou spentest %d gold already. The Astonian Wildlife Fund says: 'We thank thee!'", ppd->supermax_gold / 100);
                 break;
             }
             if (didsay > 100 && didsay < 200) supermax_raise(cn, co, didsay - 100);

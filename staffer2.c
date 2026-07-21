@@ -1220,7 +1220,7 @@ void forest_brannington_driver(int cn, int ret, int lastact) {
                     didsay = 1;
                     break;
                 case 1:
-                    quiet_say(cn, "I've heard of your ventures, and thought I might tell you something that might interest you.");
+                    quiet_say(cn, "I have heard of thy ventures, and thought I might tell thee something that might interest thee.");
                     ppd->forestbran_state++;
                     didsay = 1;
                     break;

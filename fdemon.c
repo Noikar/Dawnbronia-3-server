@@ -896,7 +896,7 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
             say(cn, "Why are you so mean to me, %s?", ch[co].name);
             dat->emote.likes[slot] -= 5;
         } else {
-            say(cn, "And you smell like a ratling, %s!", ch[co].name);
+            say(cn, "And thou smellest like a ratling, %s!", ch[co].name);
             dat->emote.likes[slot]--;
         }
         dat->emote.talked[slot]++;
@@ -1037,7 +1037,7 @@ void got_emote(int cn, int co, int slot, int nr, struct farmy_data *dat) {
         break;
     case QA_STOPBOTHER:
         if (dat->emote.answer_type != AT_RELAX || dat->emote.answer_cn != co || ticker - dat->emote.answer_timer > TICKS * 30) {
-            say(cn, "I am not bothering you, %s.", ch[co].name);
+            say(cn, "I am not bothering thee, %s.", ch[co].name);
             break;
         }
         dat->emote.talked[slot]++;

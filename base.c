@@ -367,7 +367,7 @@ void macro_driver(int cn, int ret, int lastact) {
         dat->val2 = RANDOM(6) + 1;
         dat->state = 3;
 
-        say(cn, "Hello, %s. I'm %s. I'll ask you a question. If you do not answer correctly within 5 minutes, I'll punish you.", ch[co].name, ch[cn].name);
+        say(cn, "Hello, %s. I am %s. I shall ask thee a question. If thou dost not answer correctly within 5 minutes, I shall punish thee.", ch[co].name, ch[cn].name);
         talkdir = offset2dx(ch[cn].x, ch[cn].y, ch[co].x, ch[co].y);
     }
     if (dat->state == 3) {
@@ -2898,7 +2898,7 @@ void trader_driver(int cn, int ret, int lastact) {
                 continue;
             }
 
-            quiet_say(cn, "Hello %s! I will work as middleman in any deal you might wish to make with another player. With my \260c4help\260c0, no one will cheat you. ", ch[co].name);
+            quiet_say(cn, "Hello %s! I will work as middleman in any deal thou mightst wish to make with another player. With my \260c4help\260c0, no one will cheat thee. ", ch[co].name);
             talkdir = offset2dx(ch[cn].x, ch[cn].y, ch[co].x, ch[co].y);
             mem_add_driver(cn, co, 7);
         }

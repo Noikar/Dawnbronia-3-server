@@ -1114,7 +1114,7 @@ void homden_driver(int cn, int ret, int lastact) {
                 didsay = 1;
                 break;
             case 9:
-                quiet_say(cn, "It's a passage that leads to the palace. There will be three levels in the palace to test you. Not even I am sure how to navigate it. I do know the plaque you seek is locked in a chest on the last floor of the palace.");
+                quiet_say(cn, "It is a passage that leadeth to the palace. There will be three levels in the palace to test thee. Not even I am sure how to navigate it. I do know the plaque thou seekest is locked in a chest on the last floor of the palace.");
                 ppd->homden_last_talk = realtime;
                 ppd->homden_state++;
                 didsay = 1;

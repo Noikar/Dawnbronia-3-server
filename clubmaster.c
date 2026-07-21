@@ -296,7 +296,7 @@ void clubmaster_driver(int cn, int ret, int lastact) {
                         if (strcasecmp(dat->accept, ch[co].name)) {
                             quiet_say(cn, "Thou hast not been invited, %s.", ch[co].name);
                         } else if (strcasecmp(dat->join, tmp)) {
-                            quiet_say(cn, "%s has not invited you, %s.", tmp, ch[co].name);
+                            quiet_say(cn, "%s has not invited thee, %s.", tmp, ch[co].name);
                         } else {
                             //add_member(co,dat->accept_clan,dat->join);
                             ch[co].clan = dat->accept_clan + CLUBOFFSET;
