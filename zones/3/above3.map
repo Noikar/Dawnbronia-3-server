@@ -239018,7 +239018,6 @@ flag=MF_NEUTRAL
 
 field="150,182"
 gsprite=20333
-it=warp_150_182
 flag=MF_INDOORS
 flag=MF_PEACE
 flag=MF_NEUTRAL
@@ -319794,6 +319793,7 @@ flag=MF_NEUTRAL
 
 field="102,242"
 gsprite=12016
+it=warp_102_242
 flag=MF_NEUTRAL
 
 field="103,242"
