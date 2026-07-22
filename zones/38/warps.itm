@@ -1,0 +1,12 @@
+
+warp_128_128:
+name="Teleporter"
+description="A teleporter door."
+sprite=11061
+driver=10
+arg="9600B600030001"
+mod_index=V_LIGHT
+mod_value=50
+flag=IF_MOVEBLOCK
+flag=IF_USE
+;
