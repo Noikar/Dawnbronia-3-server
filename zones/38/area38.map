@@ -502,6 +502,10 @@ gsprite=12000
 
 field="127,130"
 gsprite=12000
+fsprite=20105
+flag=MF_MOVEBLOCK
+flag=MF_INDOORS
+flag=MF_CLAN
 
 field="128,130"
 gsprite=12000
@@ -547,12 +551,25 @@ gsprite=12000
 
 field="126,131"
 gsprite=12000
+fsprite=20102
+flag=MF_MOVEBLOCK
+flag=MF_INDOORS
+flag=MF_CLAN
 
 field="127,131"
 gsprite=12000
+fsprite=20158
+flag=MF_MOVEBLOCK
+flag=MF_INDOORS
+flag=MF_CLAN
 
 field="128,131"
 gsprite=12000
+fsprite=20104
+flag=MF_MOVEBLOCK
+flag=MF_INDOORS
+flag=MF_PEACE
+flag=MF_NEUTRAL
 
 field="129,131"
 gsprite=12000
@@ -598,6 +615,10 @@ gsprite=12000
 
 field="127,132"
 gsprite=12000
+fsprite=20103
+flag=MF_MOVEBLOCK
+flag=MF_INDOORS
+flag=MF_CLAN
 
 field="128,132"
 gsprite=12000

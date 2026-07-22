@@ -48,6 +48,18 @@ services:
       - ./logs:/server/logs
       # Persist Live Quest saves (/questsave writes quest/<name>.qst here)
       - ./quest:/server/quest
+      # DO NOT bind-mount zone directories. The server is a 32-bit i386 binary,
+      # and 32-bit readdir() fails with EOVERFLOW on inode numbers that do not
+      # fit in 32 bits. Docker Desktop's mounts hand out inodes in the
+      # 10^15 range (the image's overlayfs stays around 10^5), so load_zones()
+      # enumerates a mounted zone dir as EMPTY and the area silently comes up
+      # with no map, no items and no characters. Measured 2026-07-22.
+      #
+      # To push content without an image rebuild, copy it into the container's
+      # own filesystem instead, then reload just that area:
+      #   docker cp zones/38/. astonia3-server:/server/zones/38/
+      #   /zone off 38   then   /zone on 38     (in game, god)
+      # Rebuild the image to make it permanent -- docker cp is lost on recreate.
     networks:
       - astonia3-net
 
